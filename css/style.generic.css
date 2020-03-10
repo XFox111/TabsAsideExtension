@@ -1,0 +1,123 @@
+.aside ::-webkit-scrollbar 
+{
+	height: 6px;
+}
+
+.aside ::-webkit-scrollbar-thumb
+{
+	background: darkgray;
+	border-radius: 3px;
+}
+	::-webkit-scrollbar-thumb:hover
+	{
+		background: gray;
+	}
+
+.aside a
+{
+	font-family: 'Segoe UI', 'Segoe MDL2 Assets';
+	color: #0078d7;
+}
+	.aside a:hover 
+	{
+		text-decoration: underline;
+		cursor: pointer;
+	}
+
+.aside .slider
+{
+	position: relative;
+	display: inline-block;
+
+	border-radius: 13px;
+	width: 50px;
+	height: 26px;
+	
+	background-color: #cccccc;
+	transition: .4s;
+}
+
+	.aside .slider:before
+	{
+		position: absolute;
+		content: "";
+
+		height: 16px;
+		width: 16px;
+		left: 5px;
+		top: 5px;
+		border-radius: 50%;
+
+		margin: auto;
+
+		background-color: white;
+		transition: .3s;
+	}
+
+	.aside input:checked + .slider,
+	.aside input:focus + .slider
+	{
+		background-color: #0078d7;
+	}
+
+	.aside input:checked + .slider:before
+	{
+		transform: translateX(24px);
+		background-color: #3f3f3f;
+	}
+
+.aside nav
+{
+	font-family: 'Segoe UI';
+	user-select: none;
+
+	position: absolute;
+	width: 250px;
+
+	box-shadow: 0px 0px 10px black;
+	background-color: white;
+	border-radius: 5px;
+
+	z-index: 10;
+
+    visibility: hidden;
+}
+
+	.aside nav button 
+	{
+		font-family: 'Segoe UI';
+		cursor: pointer;
+		background-color: transparent;
+		border: none;
+		
+		font-size: medium;
+		text-align: start;
+
+		padding: 10px;
+		width: 100%;
+		height: initial;
+	}
+
+	.aside button + nav:active,
+	.aside button:focus + nav 
+	{
+		visibility: visible;
+	}
+
+.aside button
+{
+	font-family: 'Segoe MDL2 Assets';
+	width: 32px;
+	height: 32px;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+}
+	.aside button:hover
+	{
+		background-color: #c6c6c6;
+	}
+	.aside button:active
+	{
+		background-color: gray;
+	}

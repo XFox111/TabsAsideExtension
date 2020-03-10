@@ -1,0 +1,178 @@
+.aside.pane
+{
+	font-family: 'Segoe UI', 'Segoe MDL2 Assets';
+	user-select: none;
+	position: fixed;
+	z-index: 999;
+
+	right: 0px;
+	top: 0px;
+	width: 40%;
+	min-width: 500px;
+	min-height: 100%;
+
+	background-color: #f7f7f7;
+	border: 1px solid rgba(100, 100, 100, .5);
+	box-sizing: border-box;
+	box-shadow: 6px 0px 12px black;
+
+	transition: .2s;
+}
+
+	.aside.pane > .header
+	{
+		margin: 20px 40px;
+	}
+		.aside.pane > .header > .title
+		{
+			display: grid;
+			grid-template-columns: 1fr auto;
+		}
+
+			.aside.pane > .header > .title > h1
+			{
+				margin: 10px 0px;
+				font-weight: normal;
+				font-size: 21pt;
+			}
+
+			.aside.pane > .header > .title > button
+			{
+				margin: auto;
+			}
+			
+			.aside.pane > .header > .title > nav
+			{
+				top: 70px;
+				right: 40px;
+			}
+
+				.aside.pane > .header > .title > nav > div
+				{
+					box-shadow: 0px 4px 5px -2px rgba(100, 100, 100, .5);
+				}
+
+				.aside.pane > .header > .title > nav > p
+				{
+					margin: 10px;
+				}
+
+		.aside.pane > .header > hr
+		{
+			border: 1px solid #8a8a8a;
+		}
+
+	.aside.pane > #content > h2
+	{
+		margin: 0px 40px;
+		font-weight: normal;
+	}
+
+	.aside.pane > #content > .set > .setHeader
+	{
+		margin: 0px 20px;
+		display: grid;
+		grid-template-columns: 1fr auto;
+	}
+
+		.aside.pane > #content > .set > .setHeader small
+		{
+			color: gray;
+		}
+
+		.aside.pane > #content > .set > .setHeader span
+		{
+			font-weight: 600;
+		}
+
+		.aside.pane > #content > .set > .setHeader a
+		{
+			font-size: 11pt;
+			font-weight: 500;
+		}
+		.aside.pane > #content > .set > .setHeader nav
+		{
+			width: 200px;
+			margin-top: 10px;
+			right: 50px;
+		}
+
+		.aside.pane > #content > .set > .setHeader > div:first-child
+		{
+			margin: auto 0px;
+		}
+
+		.aside.pane > #content > .set > .collection
+		{
+			padding: 10px 0px;
+			padding-left: 40px;
+			white-space: nowrap;
+			overflow: auto;
+		}
+
+			.aside.pane > #content > .set > .collection > .item
+			{
+				width: 175px;
+				height: 148px;
+				margin: 5px;
+
+				background-color: #c2c2c2;
+				background-image: url("../images/tab_thumbnail.png");
+
+				display: inline-grid;
+				grid-template-rows: 1fr auto;
+
+				box-shadow: 0px 0px 5px rgba(100, 100, 100, .5);
+				transition: .25s;
+				cursor: pointer;
+			}
+				.aside.pane > #content > .set > .collection > .item:hover
+				{
+					filter: brightness(120%);
+					box-shadow: 0px 0px 15px rgba(100, 100, 100, .5);
+				}
+
+				.aside.pane > #content > .set > .collection > .item > .caption
+				{
+					background-color: rgba(233, 233, 233, .75);
+					grid-row: 2;
+					display: grid;
+					grid-template-columns: auto 1fr auto;
+				}
+
+					.aside.pane > #content > .set > .collection > .item > .caption > button
+					{
+						margin: auto;
+						margin-right: 5px;
+						visibility: hidden;
+					}
+
+					.aside.pane > #content > .set > .collection > .item:hover > .caption > button
+					{
+						visibility: visible;
+					}
+
+					.aside.pane > #content > .set > .collection > .item > .caption > div
+					{
+						width: 20px;
+						height: 20px;
+						margin: 10px;
+
+						background-image: url("../images/tab_icon.png");
+					}
+
+					.aside.pane > #content > .set > .collection > .item > .caption > span
+					{
+						margin: auto 0px;
+					}
+
+@media only screen and (max-width: 500px)
+{
+	.aside.pane
+	{
+		right: initial;
+		width: 100%;
+		left: 0px;
+		min-width: initial;
+	}
+}

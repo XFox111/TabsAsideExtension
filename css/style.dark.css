@@ -1,0 +1,54 @@
+.aside.pane
+{	
+	background-color: #333333;
+	color: white;
+}
+
+.aside button
+{
+	color: white;
+}
+.aside button:hover
+{
+	background-color: gray;
+}
+.aside button:active
+{
+	background-color: dimgray;
+}
+
+.aside.pane > #content > .set > .setHeader small
+{
+	color: lightgray;
+}
+
+.aside ::-webkit-scrollbar-thumb
+{
+	background: gray;
+	border-radius: 3px;
+}
+	::-webkit-scrollbar-thumb:hover
+	{
+		background: dimgray;
+	}
+
+.aside.pane > #content > .set > .collection > .item
+{
+	background-color: #0c0c0c;
+	background-image: url("../images/tab_thumbnail_dark.png");
+}
+
+.aside.pane > #content > .set > .collection > .item > .caption
+{
+	background-color: rgba(50, 50, 50, .75);
+}
+
+.aside nav
+{
+	background-color: #3f3f3f;
+}
+
+.aside.pane > #content > .set > .collection > .item > .caption > div
+{
+	background-image: url("../images/tab_icon_dark.png");
+}

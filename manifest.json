@@ -1,0 +1,39 @@
+{
+	"name": "Tabs Aside",
+	"version": "0.1",
+	"manifest_version": 2,
+	"description": "Classic Microsoft Edge \"Tabs Aside\" feature",
+	"author": "Michael \"XFox\" Gordeev",
+	"permissions": [ "tabs" ],
+	
+	"icons": 
+	{
+		"128": "icons/light/empty/128.png",
+		"48": "icons/light/empty/48.png",
+		"32": "icons/light/empty/32.png",
+		"16": "icons/light/empty/16.png"
+	},
+	"web_accessible_resources": [ "*" ],
+
+	"browser_action": 
+	{
+		"default_popup": "popup/popup.html"
+	},
+	"content_scripts":
+	[
+		{
+			"matches": [ "<all_urls>" ],
+			"js": [ "js/aside-script.js" ],
+			"css":
+			[
+				"css/style.css",
+				"css/style.generic.css"
+			]
+		}
+	],
+	"background":
+	{
+		"scripts": ["js/background.js"],
+		"persistent": true
+	}
+}
