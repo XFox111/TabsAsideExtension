@@ -1,54 +1,59 @@
-.aside.pane
+.tabsAside[darkmode].background
+{
+	background-color: rgba(0, 0, 0, .5) !important;
+}
+
+.tabsAside[darkmode] .pane
 {	
-	background-color: #333333;
-	color: white;
+	background-color: #333333 !important;
+	color: white !important;
 }
 
-.aside button
-{
-	color: white;
-}
-.aside button:hover
-{
-	background-color: gray;
-}
-.aside button:active
-{
-	background-color: dimgray;
-}
-
-.aside.pane > #content > .set > .setHeader small
-{
-	color: lightgray;
-}
-
-.aside ::-webkit-scrollbar-thumb
-{
-	background: gray;
-	border-radius: 3px;
-}
-	::-webkit-scrollbar-thumb:hover
+	.tabsAside[darkmode] .pane button
 	{
-		background: dimgray;
+		color: white !important;
+	}
+	.tabsAside[darkmode] .pane button:hover
+	{
+		background-color: gray !important;
+	}
+	.tabsAside[darkmode] .pane button:active
+	{
+		background-color: dimgray !important;
 	}
 
-.aside.pane > #content > .set > .collection > .item
-{
-	background-color: #0c0c0c;
-	background-image: url("../images/tab_thumbnail_dark.png");
-}
+	.tabsAside[darkmode] .pane > section > div > div:first-child > div:first-child > small
+	{
+		color: lightgray !important;
+	}
 
-.aside.pane > #content > .set > .collection > .item > .caption
-{
-	background-color: rgba(50, 50, 50, .75);
-}
+	.tabsAside[darkmode] .pane ::-webkit-scrollbar-thumb
+	{
+		background: gray !important;
+		border-radius: 3px !important;
+	}
+		.tabsAside[darkmode] .pane ::-webkit-scrollbar-thumb:hover
+		{
+			background: dimgray !important;
+		}
 
-.aside nav
-{
-	background-color: #3f3f3f;
-}
+	.tabsAside[darkmode] .pane > section > div > div:last-child > div
+	{
+		background-color: #0c0c0c !important;
+		background-image: url("chrome-extension://__MSG_@@extension_id__/images/tab_thumbnail_dark.png");
+	}
 
-.aside.pane > #content > .set > .collection > .item > .caption > div
-{
-	background-image: url("../images/tab_icon_dark.png");
-}
+		.tabsAside[darkmode] .pane > section > div > div:last-child > div > div
+		{
+			background-color: rgba(50, 50, 50, .75) !important;
+		}
+
+			.tabsAside[darkmode] .pane > section > div > div:last-child > div > div > div
+			{
+				background-image: url("chrome-extension://__MSG_@@extension_id__/images/tab_icon_dark.png");
+			}
+
+	.tabsAside[darkmode] .pane nav
+	{
+		background-color: #3f3f3f !important;
+	}

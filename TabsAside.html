@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Tabs aside</title>
+	<link id="icon" rel="shortcut icon" type="image/png" href="icons/light/empty/16.png" />
+
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.generic.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.dark.css" />
+
+	<style type="text/css">
+		body {
+			margin: 0px;
+			overflow: hidden;
+		}
+
+		aside {
+			transform: none !important;
+			left: 0px;
+			width: initial !important;
+		}
+	</style>
+</head>
+
+<body class="tabsAside">
+	<aside class="tabsAside pane">
+		<header>
+			<div>
+				<h1>Tabs aside</h1>
+				<button title="Options">&#xE10C;</button>
+
+				<nav>
+					<div>
+						<button value="https://github.com/xfox111/ChromiumTabsAside">Visit GitHub page</button>
+						<button value="https://chrome.google.com/webstore/category/extensions">Leave feedback</button>
+						<button value="https://buymeacoffee.com/xfox111">Buy me a coffee!</button>
+						<button hidden>Backup saved tabs</button>
+					</div>
+					<p>
+						<small>v1.0</small><br />
+						Developed by Michael Gordeev (<a href="https://twitter.com/xfox111"
+							target="_blank">@xfox111</a>)
+					</p>
+				</nav>
+			</div>
+			<a class="saveTabs">&#xE0AB; Set current tabs aside</a>
+			<hr />
+		</header>
+
+		<section>
+			<h2>You have no aside tabs</h1>
+
+				<!--<div>
+					<div>
+						<span>Tabs: $(tabsCount)</span>
+						<small>$(timestamp)</small>
+		
+						<a>Restore tabs</a>
+		
+						<div>
+							<button title="More...">&#xE10C;</button>
+							<nav>
+								<button>Add tabs to favorites</button>
+								<button>Share tabs</button>
+							</nav>
+						</div>
+						<button title="Remove collection">&#xE106;</button>
+					</div>
+		
+					<div>
+						<div title="Tab title caption">
+							<div>
+								<div></div>
+								<span>$(title)</span>
+								<button title="Remove tab from collection">&#xE106;</button>
+							</div>
+						</div>
+					</div>
+				</div>-->
+		</section>
+	</aside>
+
+	<script type="text/javascript" src="js/aside-script.js"></script>
+</body>
+
+</html>

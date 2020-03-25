@@ -1,178 +1,222 @@
-.aside.pane
+.tabsAside.background
 {
-	font-family: 'Segoe UI', 'Segoe MDL2 Assets';
-	user-select: none;
-	position: fixed;
-	z-index: 999;
-
-	right: 0px;
-	top: 0px;
-	width: 40%;
-	min-width: 500px;
-	min-height: 100%;
-
-	background-color: #f7f7f7;
-	border: 1px solid rgba(100, 100, 100, .5);
-	box-sizing: border-box;
-	box-shadow: 6px 0px 12px black;
-
-	transition: .2s;
+	z-index: 9999 !important;
+	background-color: rgba(255, 255, 255, .5) !important;
+	position: fixed !important;
+	top: 0 !important;
+	bottom: 0 !important;
+	right: 0 !important;
+	left: 0 !important;
+	transition: .2s !important;
+	opacity: 0;
 }
 
-	.aside.pane > .header
+.tabsAside.pane
+{
+	font-family: 'Segoe UI', 'Segoe MDL2 Assets' !important;
+	user-select: none !important;
+	position: fixed !important;
+
+	right: 0px !important;
+	top: 0px !important;
+	bottom: 0px !important;
+	overflow: auto !important;
+	
+	width: 40%;
+	min-width: 500px !important;
+
+	background-color: #f7f7f7 !important;
+	border: 1px solid rgba(100, 100, 100, .5) !important;
+	border-width: 0px 0px 0px 1px !important;
+	box-sizing: border-box !important;
+	box-shadow: 6px 0px 12px black !important;
+
+	font-size: small !important;
+
+	transform: translateX(110%);	/* Pane is hidden */
+	transition: .2s !important;
+}
+
+	.tabsAside.pane[opened]
 	{
-		margin: 20px 40px;
+		transform: translateX(0px) !important;
 	}
-		.aside.pane > .header > .title
+
+	/* Pane header*/
+	.tabsAside.pane > header
+	{
+		margin: 20px 40px !important;
+	}
+		.tabsAside.pane > header > div
 		{
-			display: grid;
-			grid-template-columns: 1fr auto;
+			display: grid !important;
+			grid-template-columns: 1fr auto !important;
 		}
 
-			.aside.pane > .header > .title > h1
+			.tabsAside.pane > header > div > h1
 			{
-				margin: 10px 0px;
-				font-weight: normal;
-				font-size: 21pt;
+				margin: 10px 0px !important;
+				font-weight: normal !important;
+				font-size: 21pt !important;
 			}
 
-			.aside.pane > .header > .title > button
+			.tabsAside.pane > header > div > button
 			{
-				margin: auto;
+				margin: auto !important;
 			}
 			
-			.aside.pane > .header > .title > nav
+			.tabsAside.pane > header > div > nav
 			{
-				top: 70px;
-				right: 40px;
+				top: 70px !important;
+				right: 40px !important;
 			}
 
-				.aside.pane > .header > .title > nav > div
+				.tabsAside.pane > header > div > nav > div
 				{
-					box-shadow: 0px 4px 5px -2px rgba(100, 100, 100, .5);
+					box-shadow: 0px 4px 5px -2px rgba(100, 100, 100, .5) !important;
 				}
 
-				.aside.pane > .header > .title > nav > p
+				.tabsAside.pane > header > div > nav > p
 				{
-					margin: 10px;
+					margin: 10px !important;
 				}
 
-		.aside.pane > .header > hr
+		.tabsAside.pane > header > hr
 		{
-			border: 1px solid #8a8a8a;
+			border: 1px solid #8a8a8a !important;
 		}
 
-	.aside.pane > #content > h2
+	.tabsAside.pane > section > h2
 	{
-		margin: 0px 40px;
-		font-weight: normal;
+		margin: 0px 40px !important;
+		font-weight: normal !important;
 	}
 
-	.aside.pane > #content > .set > .setHeader
+	/* Collection header */
+	.tabsAside.pane > section > div
 	{
-		margin: 0px 20px;
-		display: grid;
-		grid-template-columns: 1fr auto;
+		transition: .2s !important;
 	}
 
-		.aside.pane > #content > .set > .setHeader small
+	.tabsAside.pane > section > div > div:first-child
+	{
+		margin: 0px 20px !important;
+		display: grid !important;
+		grid-template-columns: auto 1fr auto auto auto !important;
+		grid-column-gap: 10px !important;
+		align-items: center !important;
+	}
+
+		.tabsAside.pane > section > div > div:first-child > small
 		{
-			color: gray;
+			color: gray !important;
+		}
+		
+		.tabsAside.pane > section > div > div:first-child > span
+		{
+			font-weight: 600 !important;
+		}
+		
+		.tabsAside.pane > section > div > div:first-child > a
+		{
+			font-size: 11pt !important;
 		}
 
-		.aside.pane > #content > .set > .setHeader span
+		.tabsAside.pane > section > div > div:first-child > div
 		{
-			font-weight: 600;
+			display: none !important;	/* TODO: Implement this menu */
 		}
 
-		.aside.pane > #content > .set > .setHeader a
-		{
-			font-size: 11pt;
-			font-weight: 500;
-		}
-		.aside.pane > #content > .set > .setHeader nav
-		{
-			width: 200px;
-			margin-top: 10px;
-			right: 50px;
-		}
-
-		.aside.pane > #content > .set > .setHeader > div:first-child
-		{
-			margin: auto 0px;
-		}
-
-		.aside.pane > #content > .set > .collection
-		{
-			padding: 10px 0px;
-			padding-left: 40px;
-			white-space: nowrap;
-			overflow: auto;
-		}
-
-			.aside.pane > #content > .set > .collection > .item
+			.tabsAside.pane > section > div > div:first-child > div > nav
 			{
-				width: 175px;
-				height: 148px;
-				margin: 5px;
-
-				background-color: #c2c2c2;
-				background-image: url("../images/tab_thumbnail.png");
-
-				display: inline-grid;
-				grid-template-rows: 1fr auto;
-
-				box-shadow: 0px 0px 5px rgba(100, 100, 100, .5);
-				transition: .25s;
-				cursor: pointer;
+				width: 200px !important;
+				margin-top: 10px !important;
+				right: 50px !important;
 			}
-				.aside.pane > #content > .set > .collection > .item:hover
+
+		/* Tabs collection */
+		.tabsAside.pane > section > div > div:last-child
+		{
+			margin: 0px 0px 0px 20px !important;
+			padding: 10px 40px 10px 20px !important;
+			white-space: nowrap !important;
+			overflow: auto !important;
+		}
+
+			.tabsAside.pane > section > div > div:last-child:hover::-webkit-scrollbar-thumb
+			{
+				visibility: visible !important;
+			}
+
+			.tabsAside.pane > section > div > div:last-child > div
+			{
+				width: 175px !important;
+				height: 148px !important;
+				margin: 5px !important;
+
+				background-color: #c2c2c2 !important;
+				background-image: url("chrome-extension://__MSG_@@extension_id__/images/tab_thumbnail.png");
+
+				display: inline-grid !important;
+				grid-template-rows: 1fr auto !important;
+
+				box-shadow: 0px 0px 5px rgba(100, 100, 100, .5) !important;
+				transition: .25s !important;
+				cursor: pointer !important;
+			}
+				.tabsAside.pane > section > div > div:last-child > div:hover
 				{
-					filter: brightness(120%);
-					box-shadow: 0px 0px 15px rgba(100, 100, 100, .5);
+					filter: brightness(120%) !important;
+					box-shadow: 0px 0px 15px rgba(100, 100, 100, .5) !important;
 				}
 
-				.aside.pane > #content > .set > .collection > .item > .caption
+				.tabsAside.pane > section > div > div:last-child > div > div
 				{
-					background-color: rgba(233, 233, 233, .75);
-					grid-row: 2;
-					display: grid;
-					grid-template-columns: auto 1fr auto;
+					background-color: rgba(233, 233, 233, .75) !important;
+					grid-row: 2 !important;
+					display: grid !important;
+					grid-template-columns: auto 1fr auto !important;
 				}
 
-					.aside.pane > #content > .set > .collection > .item > .caption > button
+					.tabsAside.pane > section > div > div:last-child > div > div > button
 					{
-						margin: auto;
-						margin-right: 5px;
-						visibility: hidden;
+						margin: auto !important;
+						margin-right: 5px !important;
+						display: none !important;
 					}
 
-					.aside.pane > #content > .set > .collection > .item:hover > .caption > button
+					.tabsAside.pane > section > div > div:last-child > div:hover > div > button
 					{
-						visibility: visible;
+						display: initial !important;
 					}
 
-					.aside.pane > #content > .set > .collection > .item > .caption > div
+					.tabsAside.pane > section > div > div:last-child > div > div > div
 					{
-						width: 20px;
-						height: 20px;
-						margin: 10px;
+						width: 20px !important;
+						height: 20px !important;
+						margin: 10px !important;
 
-						background-image: url("../images/tab_icon.png");
+						background-image: url("chrome-extension://__MSG_@@extension_id__/images/tab_icon.png");
+						background-size: 20px !important;
 					}
 
-					.aside.pane > #content > .set > .collection > .item > .caption > span
+					.tabsAside.pane > section > div > div:last-child > div > div > span
 					{
-						margin: auto 0px;
+						overflow: hidden !important;
+						margin: auto 0px !important;
+						margin-right: 10px !important;
+					}
+					.tabsAside.pane > section > div > div:last-child > div:hover > div > span
+					{
+						margin-right: 5px !important;
 					}
 
 @media only screen and (max-width: 500px)
 {
-	.aside.pane
+	.tabsAside.pane
 	{
-		right: initial;
-		width: 100%;
-		left: 0px;
-		min-width: initial;
+		width: initial !important;
+		left: 0px !important;
+		min-width: initial !important;
 	}
 }

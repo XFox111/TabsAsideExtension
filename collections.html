@@ -1,56 +1,57 @@
-<div class="aside pane" id="aside-pane" style="transform: translateX(110%);">
-	<div class="header">
-		<div class="title">
-			<h1>Tabs aside</h1>
-			<button title="Options">&#xE10C;</button>
-
-			<nav>
-				<div>
-					<button onclick="window.open('https://github.com/xfox111/ChromiumTabsAside', '_blank')">Visit GitHub page</button>
-					<button onclick="window.open('https://chrome.google.com/webstore/category/extensions', '_blank')">Leave feedback</button>
-					<button onclick="window.open('https://www.buymeacoffee.com/xfox111', '_blank')">Buy me a coffee!</button>
-				</div>
-				<p>
-					<small>v1.0</small><br />
-					Developed by Michael Gordeev (<a href="https://twitter.com/xfox111" target="_blank">@xfox111</a>)
-				</p>
-			</nav>
-		</div>
-		<a class="setAside">&#xE0AB; Set current tabs aside</a>
-		<hr />
-	</div>
-
-	<div id="content">
-		<h2 id="noTabsTitle" style="display: none;">You have no aside tabs</h1>
-
-		<div class="set">
-			<div class="setHeader">
+<div class="tabsAside background">
+	<aside class="tabsAside pane">
+		<header>
+			<div>
+				<h1>Tabs aside</h1>
+				<button title="Options">&#xE10C;</button>
+	
+				<nav>
+					<div>
+						<button onclick="window.open('https://github.com/xfox111/ChromiumTabsAside', '_blank')">Visit GitHub page</button>
+						<button onclick="window.open('https://chrome.google.com/webstore/category/extensions', '_blank')">Leave feedback</button>
+						<button onclick="window.open('https://buymeacoffee.com/xfox111', '_blank')">Buy me a coffee!</button>
+						<button hidden>Backup saved tabs</button>
+					</div>
+					<p>
+						<small>v1.0</small><br />
+						Developed by Michael Gordeev (<a href="https://twitter.com/xfox111" target="_blank">@xfox111</a>)
+					</p>
+				</nav>
+			</div>
+			<a class="saveTabs">&#xE0AB; Set current tabs aside</a>
+			<hr />
+		</header>
+	
+		<section>
+			<h2>You have no aside tabs</h1>
+	
+			<!--<div>
 				<div>
 					<span>Tabs: $(tabsCount)</span>
 					<small>$(timestamp)</small>
-				</div>
-				<div>
+	
 					<a>Restore tabs</a>
-					<button title="More...">&#xE10C;</button>
-					<nav>
-						<button>Add tabs to favorites</button>
-						<button>Share tabs</button>
-					</nav>
+	
+					<div>
+						<button title="More...">&#xE10C;</button>
+						<nav>
+							<button>Add tabs to favorites</button>
+							<button>Share tabs</button>
+						</nav>
+					</div>
 					<button title="Remove collection">&#xE106;</button>
 				</div>
-			</div>
-
-			<div class="collection">
-				<div class="item" title="Tab title caption">
-					<div class="caption">
-						<div></div>
-						<span>$(title)</span>
-						<button title="Remove tab from collection">&#xE106;</button>
+	
+				<div>
+					<div title="Tab title caption">
+						<div>
+							<div></div>
+							<span>$(title)</span>
+							<button title="Remove tab from collection">&#xE106;</button>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
-
-	<link id="darkCSS" rel="stylesheet" type="text/css" href="%EXTENSION_PATH%css/style.dark.css" disabled/>
+			</div>-->
+		</section>
+	</aside>
 </div>
