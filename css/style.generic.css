@@ -56,6 +56,17 @@
 	background-color: transparent !important;
 	border: none !important;
 	cursor: pointer !important;
+	box-shadow: initial !important;
+	font-size: inherit !important;
+	padding: initial !important;
+	position: initial !important;
+	box-sizing: initial !important;
+	line-height: initial !important;
+	text-align: center !important;
+	border-radius: 2px !important;
+	min-height: initial !important;
+	display: initial !important;
+	min-width: initial !important;
 }
 	.tabsAside button:hover
 	{
@@ -81,7 +92,14 @@
 
 	z-index: 10 !important;
 
-    visibility: hidden !important;
+	visibility: hidden !important;
+	
+	display: initial !important;
+    left: initial !important;
+    bottom: initial !important;
+    padding: initial !important;
+    min-height: initial !important;
+    font-size: inherit !important;
 }
 
 	.tabsAside nav button 

@@ -324,4 +324,3 @@ function RemoveElement(el)
 
 // TODO: Add more actions
 // TODO: Make backup system
-// TODO: Override websites' CSS
