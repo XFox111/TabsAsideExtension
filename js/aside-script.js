@@ -156,9 +156,16 @@ function AddCollection(collection)
 		i.onclick = function () { RestoreTabs(i.parentElement.parentElement) };
 	});
 
-	list.querySelectorAll("div > div:last-child > div > span").forEach(i =>
+	list.querySelectorAll("div > div:last-child > div > span").forEach(i => 
 	{
-		i.onclick = function () { window.open(i.getAttribute("value"), '_blank'); };
+		i.onclick = function () {
+			chrome.runtime.sendMessage(
+				{
+					command: "openTab",
+					url: i.getAttribute("value")
+				}
+			);
+		};
 	})
 
 	document.querySelectorAll(".tabsAside.pane > section > div > div:first-child > button").forEach(i => 

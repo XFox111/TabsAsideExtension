@@ -1,15 +1,14 @@
 {
 	"name": "Tabs Aside",
-	"version": "0.1",
+	"version": "1.0",
 	"manifest_version": 2,
-	"description": "Classic Microsoft Edge \"Tabs Aside\" feature for Chromium browers",
+	"description": "Classic Microsoft Edge \"Tabs Aside\" feature for Chromium browsers",
 	"author": "Michael \"XFox\" Gordeev",
 	"permissions": 
 	[
 		"tabs",
 		"unlimitedStorage",
-		"<all_urls>",
-		"bookmarks"
+		"activeTab"
 	],
 	
 	"icons": 
@@ -22,19 +21,6 @@
 	"browser_action": { "default_icon": "icons/light/empty/32.png" },
 	"web_accessible_resources": [ "*" ],
 
-	"content_scripts":
-	[
-		{
-			"matches": [ "<all_urls>" ],
-			"css":
-			[
-				"css/style.css",
-				"css/style.generic.css",
-				"css/style.dark.css"
-			],
-			"run_at": "document_idle"
-		}
-	],
 	"background":
 	{
 		"scripts": [ "js/background.js" ],

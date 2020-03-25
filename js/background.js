@@ -2,6 +2,25 @@ chrome.browserAction.onClicked.addListener(function (tab)
 {
 	if (tab.url.startsWith("http"))
 	{
+		chrome.tabs.insertCSS(
+			{
+				file: "css/style.css",
+				allFrames: true,
+				runAt: "document_idle"
+			});
+		chrome.tabs.insertCSS(
+			{
+				file: "css/style.generic.css",
+				allFrames: true,
+				runAt: "document_idle"
+			});
+		chrome.tabs.insertCSS(
+			{
+				file: "css/style.dark.css",
+				allFrames: true,
+				runAt: "document_idle"
+			});
+
 		chrome.tabs.executeScript(tab.id,
 			{
 				file: "js/aside-script.js",
@@ -98,6 +117,9 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse)
 {
 	switch (message.command)
 	{
+		case "openTab":
+			chrome.tabs.create({ url: message.url });
+			break;
 		case "loadData":
 			sendResponse(collections);
 			break;
