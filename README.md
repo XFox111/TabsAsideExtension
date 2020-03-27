@@ -16,16 +16,21 @@
 
 ![Tabs aside](https://xfox111.net/images/TabsAside.png)
 
-If you’re like me, you often  find yourself with a bunch of open tabs. You’d like to get those tabs out of the way sometimes, but they’re maybe not worth saving as actual bookmarks.
+If you’re like me, you often find yourself with a bunch of open tabs. You’d like to get those tabs out of the way sometimes, but they’re maybe not worth saving as actual bookmarks.
 
-In the Edge browser Microsoft has introduced new feature called "Tabs aside" (or Tab groups) which lets you set tabs aside in a sort of temporary workspace so that you can call them back up later.
+In the Edge browser, Microsoft has introduced a new feature called "Tabs aside" (or Tab groups) which lets you set tabs aside in a sort of temporary workspace so that you can call them back up later.
 
-Unfortunately, in new Chromium-based Microsoft Edge the devs decided not to implement this must-have-feature. So I've decided to create an browser extension which replicates this awesome feature in Chromium-based browsers
+Unfortunately, in new Chromium-based Microsoft Edge, the devs decided not to implement this must-have-feature. So I've decided to create a browser extension which replicates this awesome feature in Chromium-based browsers
 
 ## Features
 - Familiar UI inherited from legacy Microsoft Edge with some improvements
 - Auto Dark mode
 - Now you can restore one tab from collection without removing
+
+## Download
+- [Google Chrome Webstore](https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin)
+- [Microsoft Edge Add-ons Webstore]() *Available soon*
+- [GitHub Releases](https://github.com/xfox111/chromiumtabsaside/releases/latest)
 
 ## To-do list
 - Add ability to backup and restore saved tabs
