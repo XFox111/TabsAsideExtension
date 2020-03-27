@@ -1,14 +1,14 @@
 # Tabs aside for Google Chrome
 
-![Chrome Web Store](https://img.shields.io/chrome-web-store/users/mgmjbodjgijnebfgohlnjkegdpbdjgin?label=Chrome%20Web%20Store%20downloads)
-![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/mgmjbodjgijnebfgohlnjkegdpbdjgin)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/users/mgmjbodjgijnebfgohlnjkegdpbdjgin?label=Chrome%20Web%20Store%20downloads)](https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/mgmjbodjgijnebfgohlnjkegdpbdjgin)](https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin)
 
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/xfox111/chromiumtabsaside)](https://github.com/xfox111/chromiumtabsaside/releases/latest)
-![GitHub All Releases](https://img.shields.io/github/downloads/xfox111/chromiumtabsaside/total?label=GitHub%20downloads)
+[![GitHub All Releases Downloads](https://img.shields.io/github/downloads/xfox111/chromiumtabsaside/total?label=GitHub%20downloads)](https://github.com/xfox111/chromiumtabsaside/releases/latest)
 
 [![GitHub issues](https://img.shields.io/github/issues/xfox111/chromiumtabsaside)](https://github.com/xfox111/ChromiumTabsAside/issues)
 [![GitHub last commit](https://img.shields.io/github/last-commit/xfox111/chromiumtabsaside)](https://github.com/xfox111/ChromiumTabsAside/commits/master)
-![GitHub repo size](https://img.shields.io/github/repo-size/xfox111/chromiumtabsaside?label=repo%20size)
+[![GitHub repo size](https://img.shields.io/github/repo-size/xfox111/chromiumtabsaside?label=repo%20size)](https://github.com/xfox111/ChromiumTabsAside)
 [![MIT License](https://img.shields.io/github/license/xfox111/chromiumtabsaside)](https://opensource.org/licenses/MIT)
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/xfox111?style=social)](https://twitter.com/xfox111)
@@ -37,6 +37,7 @@ Unfortunately, in new Chromium-based Microsoft Edge the devs decided not to impl
 - Add ability to restore collections without removing them from the pane
 - Add more languages (probably engage auto translator)
 - Code cleanup
+- Fix appearance on some websites
 
 ## Copyrights
 > ©2020 Michael "XFox" Gordeev
