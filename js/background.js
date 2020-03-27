@@ -1,6 +1,8 @@
 chrome.browserAction.onClicked.addListener(function (tab)
 {
-	if (tab.url.startsWith("http"))
+	if (tab.url.startsWith("http")
+	&& !tab.url.includes("chrome.google.com")
+	&& !tab.url.includes("microsoftedge.microsoft.com"))
 	{
 		chrome.tabs.insertCSS(
 			{

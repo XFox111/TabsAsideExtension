@@ -9,6 +9,7 @@
 	left: 0 !important;
 	transition: .2s !important;
 	opacity: 0;
+	color: black !important;
 }
 
 .tabsAside.pane
@@ -122,8 +123,11 @@
 
 	.tabsAside.pane > section > h2
 	{
+		color: inherit !important;
 		margin: 0px 40px !important;
 		font-weight: normal !important;
+		font-size: 1.5em !important;
+		line-height: normal !important;
 	}
 
 	/* Collection header */
