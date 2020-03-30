@@ -29,7 +29,7 @@ Unfortunately, in new Chromium-based Microsoft Edge, the devs decided not to imp
 
 ## Download
 - [Google Chrome Webstore](https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin)
-- [Microsoft Edge Add-ons Webstore]() *Available soon*
+- [Microsoft Edge Add-ons Webstore](https://microsoftedge.microsoft.com/addons/detail/kmnblllmalkiapkfknnlpobmjjdnlhnd)
 - [GitHub Releases](https://github.com/xfox111/chromiumtabsaside/releases/latest)
 
 ## To-do list
