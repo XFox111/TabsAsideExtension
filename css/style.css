@@ -162,15 +162,10 @@
 			line-height: initial !important;
 		}
 
-		.tabsAside.pane > section > div > div:first-child > div
-		{
-			display: none !important;	/* TODO: Implement this menu */
-		}
-
 			.tabsAside.pane > section > div > div:first-child > div > nav
 			{
-				width: 200px !important;
-				margin-top: 10px !important;
+				width: 250px !important;
+				margin-top: 40px !important;
 				right: 50px !important;
 			}
 

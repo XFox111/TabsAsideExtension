@@ -141,8 +141,9 @@ function AddCollection(collection)
 		"<div>" +
 		"<button title='More...'>&#xE10C;</button>" +
 		"<nav>" +
-		"<button>Add tabs to favorites</button>" +
-		"<button>Share tabs</button>" +
+		"<button>Restore without removing</button>" +
+		"<button hidden>Add tabs to favorites</button>" +
+		"<button hidden>Share tabs</button>" +
 		"</nav>" +
 		"</div>" +
 		"<button title='Remove collection'>&#xE106;</button>" +
@@ -154,6 +155,11 @@ function AddCollection(collection)
 	list.querySelectorAll("a").forEach(i => 
 	{
 		i.onclick = function () { RestoreTabs(i.parentElement.parentElement) };
+	});
+
+	list.querySelectorAll("nav button:first-child").forEach(i => 
+	{
+		i.onclick = function () { RestoreTabs(i.parentElement.parentElement.parentElement.parentElement, false) };
 	});
 
 	list.querySelectorAll("div > div:last-child > div > span").forEach(i => 
@@ -173,14 +179,14 @@ function AddCollection(collection)
 		i.onclick = function () { RemoveTabs(i.parentElement.parentElement) };
 	});
 
-	document.querySelectorAll(".tabsAside.pane > section > div > div:first-child > div > nav > button:first-child").forEach(i => 
+	/*document.querySelectorAll(".tabsAside.pane > section > div > div:first-child > div > nav > button:first-child").forEach(i => 
 	{
 		i.onclick = function () { AddToFavorites(i.parentElement.parentElement.parentElement.parentElement) };
 	});
 	document.querySelectorAll(".tabsAside.pane > section > div > div:first-child > div > nav > button:last-child").forEach(i => 
 	{
 		i.onclick = function () { ShareTabs(i.parentElement.parentElement.parentElement.parentElement) };
-	});
+	});*/
 
 	document.querySelectorAll(".tabsAside.pane > section > div > div:last-child > div > div > button").forEach(i => 
 	{
@@ -193,7 +199,7 @@ function SetTabsAside()
 	chrome.runtime.sendMessage({ command: "saveTabs" });
 }
 
-function RestoreTabs(collectionData)
+function RestoreTabs(collectionData, removeCollection = true)
 {
 	chrome.runtime.sendMessage(
 		{
@@ -202,6 +208,9 @@ function RestoreTabs(collectionData)
 		},
 		function ()
 		{
+			if (!removeCollection)
+				return;
+
 			if (collectionData.parentElement.children.length < 3)
 			{
 				RemoveElement(collectionData);

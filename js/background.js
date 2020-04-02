@@ -129,7 +129,7 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse)
 			SaveCollection();
 			break;
 		case "restoreTabs":
-			RestoreCollection(message.collectionIndex);
+			RestoreCollection(message.collectionIndex, message.removeCollection);
 			sendResponse();
 			break;
 		case "deleteTabs":
@@ -211,7 +211,7 @@ function DeleteCollection(collectionIndex)
 	UpdateTheme();
 }
 
-function RestoreCollection(collectionIndex)
+function RestoreCollection(collectionIndex, removeCollection)
 {
 	collections[collectionIndex].links.forEach(i => 
 	{
@@ -221,6 +221,9 @@ function RestoreCollection(collectionIndex)
 				active: false
 			});
 	});
+
+	if (!removeCollection)
+		return;
 
 	collections = collections.filter(i => i != collections[collectionIndex]);
 	localStorage.setItem("sets", JSON.stringify(collections));

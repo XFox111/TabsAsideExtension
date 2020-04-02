@@ -108,6 +108,7 @@
 		cursor: pointer !important;
 		background-color: transparent !important;
 		border: none !important;
+		box-sizing: border-box !important;
 		
 		font-size: medium !important;
 		text-align: start !important;
