@@ -123,7 +123,7 @@ function AddCollection(collection)
 	for (var i = 0; i < collection.links.length; i++)
 	{
 		rawTabs +=
-			"<div title='" + collection.titles[i] + "'>" +
+			"<div title='" + collection.titles[i] + "'" + ((collection.thumbnails[i]) ? " style='background-image: url(" + collection.thumbnails[i] + ")'" : "") + ">" +
 			"<span value='" + collection.links[i] + "'></span>" +
 			"<div>" +
 			"<div" + ((collection.icons[i] == 0 || collection.icons[i] == null) ? "" : " style='background-image: url(\"" + collection.icons[i] + "\")'") + "></div>" +
@@ -204,6 +204,7 @@ function RestoreTabs(collectionData, removeCollection = true)
 	chrome.runtime.sendMessage(
 		{
 			command: "restoreTabs",
+			removeCollection: removeCollection,
 			collectionIndex: Array.prototype.slice.call(collectionData.parentElement.children).indexOf(collectionData) - 1
 		},
 		function ()

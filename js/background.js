@@ -179,8 +179,8 @@ function SaveCollection()
 			tabsCount: tabs.length,
 			titles: tabs.map(tab => tab.title ?? ""),
 			links: tabs.map(tab => tab.url ?? ""),
-			icons: tabs.map(tab => tab.favIconUrl ?? "")//,
-			//tumbnails: tabs.map(tab => chrome.tabs.captureVisibleTab)
+			icons: tabs.map(tab => tab.favIconUrl ?? ""),
+			thumbnails: tabs.map(tab => thumbnails.find(i => i.tabId == tab.id)?.url ?? "")
 		};
 
 		var rawData;
@@ -283,3 +283,40 @@ function RemoveTab(collectionIndex, tabIndex)
 
 	UpdateTheme();
 }
+
+var thumbnails = [];
+
+function AppendThumbnail(tabId, cahngeInfo, tab)
+{
+	if (!tab.active || !tab.url.startsWith("http"))
+		return;
+
+	chrome.tabs.captureVisibleTab(
+		{
+			format: "jpeg",
+			quality: 1
+		},
+		function (dataUrl)
+		{
+			if(!dataUrl)
+			{
+				console.log("Failed to retrieve thumbnail");
+				return;
+			}
+
+			console.log("Thumbnail retrieved");
+			var item = thumbnails.find(i => i.tabId == tabId);
+			if (item)
+				item.url = dataUrl;
+			else
+				thumbnails.unshift(
+					{
+						tabId: tabId,
+						url: dataUrl
+					}
+				);
+		}
+	);
+}
+
+chrome.tabs.onUpdated.addListener(AppendThumbnail);

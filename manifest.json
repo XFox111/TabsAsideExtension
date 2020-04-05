@@ -8,7 +8,7 @@
 	[
 		"tabs",
 		"unlimitedStorage",
-		"activeTab"
+		"<all_urls>"
 	],
 	
 	"icons": 
