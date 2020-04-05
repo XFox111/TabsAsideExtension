@@ -2,9 +2,7 @@
 
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/users/mgmjbodjgijnebfgohlnjkegdpbdjgin?label=Chrome%20Web%20Store%20downloads)](https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/mgmjbodjgijnebfgohlnjkegdpbdjgin)](https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin)
-
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/xfox111/chromiumtabsaside)](https://github.com/xfox111/chromiumtabsaside/releases/latest)
-[![GitHub All Releases Downloads](https://img.shields.io/github/downloads/xfox111/chromiumtabsaside/total?label=GitHub%20downloads)](https://github.com/xfox111/chromiumtabsaside/releases/latest)
 
 [![GitHub issues](https://img.shields.io/github/issues/xfox111/chromiumtabsaside)](https://github.com/xfox111/ChromiumTabsAside/issues)
 [![GitHub last commit](https://img.shields.io/github/last-commit/xfox111/chromiumtabsaside)](https://github.com/xfox111/ChromiumTabsAside/commits/master)
@@ -32,17 +30,8 @@ Unfortunately, in new Chromium-based Microsoft Edge, the devs decided not to imp
 - [Microsoft Edge Add-ons Webstore](https://microsoftedge.microsoft.com/addons/detail/kmnblllmalkiapkfknnlpobmjjdnlhnd)
 - [GitHub Releases](https://github.com/xfox111/chromiumtabsaside/releases/latest)
 
-## To-do list
-- Add ability to backup and restore saved tabs
-- Add ability to share collections
-- Add ability to add collections to bookmarks
-- Add ability to sync saved tabs across different devices
-- Add saved tabs thumbnails
-- Add ability to reorder tabs inside collections
-- Add ability to restore collections without removing them from the pane
-- Add more languages (probably engage auto translator)
-- Code cleanup
-- Fix appearance on some websites
+## Project roadmap
+You can go to the project's [roadmap kanban board](https://github.com/XFox111/ChromiumTabsAside/projects/1) and see what have we planned and watch our progress in realtime
 
 ## Copyrights
 > ©2020 Michael "XFox" Gordeev

@@ -4,12 +4,11 @@
 	"manifest_version": 2,
 	"description": "Classic Microsoft Edge \"Tabs Aside\" feature for Chromium browsers",
 	"author": "Michael \"XFox\" Gordeev",
-	"default_locale": "en",
 	"permissions": 
 	[
 		"tabs",
 		"unlimitedStorage",
-		"activeTab"
+		"<all_urls>"
 	],
 	
 	"icons": 
