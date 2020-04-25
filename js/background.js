@@ -171,7 +171,7 @@ function SaveCollection()
 {
 	chrome.tabs.query({ currentWindow: true }, function (tabs)
 	{
-		tabs = tabs.filter(i => !i.url.startsWith("chrome-extension") && !i.url.endsWith("TabsAside.html"));
+		tabs = tabs.filter(i => !i.url.startsWith("chrome-extension") && !i.url.endsWith("TabsAside.html") && !i.pinned);
 		
 		var collection =
 		{
