@@ -169,9 +169,15 @@ chrome.tabs.onReplaced.addListener(UpdateTheme);
 
 function SaveCollection()
 {
-	chrome.tabs.query({ currentWindow: true }, function (tabs)
+	chrome.tabs.query({ currentWindow: true }, function (rawTabs)
 	{
-		tabs = tabs.filter(i => !i.url.startsWith("chrome-extension") && !i.url.endsWith("TabsAside.html") && !i.pinned);
+		var tabs = rawTabs.filter(i => !(i.url.startsWith("chrome-extension") && i.url.endsWith("TabsAside.html")) && !i.pinned && !i.url.includes("//newtab"));
+
+		if (tabs.length < 1)
+		{
+			alert("No tabs available to save");
+			return;
+		}
 		
 		var collection =
 		{
@@ -196,8 +202,8 @@ function SaveCollection()
 
 		collections = JSON.parse(localStorage.getItem("sets"));
 
+		chrome.tabs.remove(rawTabs.filter(i => !i.url.startsWith("chrome-extension") && !i.url.endsWith("TabsAside.html") && !i.pinned).map(tab => tab.id));
 		chrome.tabs.create({});
-		chrome.tabs.remove(tabs.map(tab => tab.id));
 	});
 
 	UpdateTheme();
