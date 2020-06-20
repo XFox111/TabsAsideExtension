@@ -37,6 +37,26 @@ else
 
 					document.querySelector(".tabsAside .saveTabs").onclick = SetTabsAside;
 
+					document.querySelector("nav > p > small").textContent = chrome.runtime.getManifest()["version"];
+
+					/* var loadOnRestoreCheckbox = document.querySelector("nav > p > input[type=checkbox]");
+					chrome.runtime.sendMessage(
+						{
+							command: "getDiscardOption"
+						},
+						function(loadOnRestore)
+						{
+							loadOnRestoreCheckbox.checked = loadOnRestore;
+						}
+					);
+					loadOnRestoreCheckbox.addEventListener("click", function ()
+					{
+						chrome.runtime.sendMessage(
+							{
+								command: "toggleDiscard"
+							}
+						);
+					}); */
 
 					document.querySelectorAll(".tabsAside.pane > header nav button").forEach(i => 
 					{
@@ -98,6 +118,27 @@ function InitializeStandalone()
 
 	document.querySelector(".tabsAside .saveTabs").onclick = SetTabsAside;
 
+	document.querySelector("nav > p > small").textContent = chrome.runtime.getManifest()["version"];
+
+	/* var loadOnRestoreCheckbox = document.querySelector("nav > p > input[type=checkbox]");
+	chrome.runtime.sendMessage(
+		{
+			command: "getDiscardOption"
+		},
+		function(loadOnRestore)
+		{
+			loadOnRestoreCheckbox.checked = loadOnRestore;
+		}
+	);
+	loadOnRestoreCheckbox.addEventListener("click", function ()
+	{
+		chrome.runtime.sendMessage(
+			{
+				command: "toggleDiscard"
+			}
+		);
+	}); */
+
 	document.querySelectorAll(".tabsAside.pane > header nav button").forEach(i => 
 	{
 		i.onclick = function () { window.open(i.value, '_blank'); };
@@ -142,8 +183,8 @@ function AddCollection(collection)
 		"<button title='More...'>&#xE10C;</button>" +
 		"<nav>" +
 		"<button>Restore without removing</button>" +
-		"<button hidden>Add tabs to favorites</button>" +
-		"<button hidden>Share tabs</button>" +
+		// "<button hidden>Add tabs to favorites</button>" +
+		// "<button hidden>Share tabs</button>" +
 		"</nav>" +
 		"</div>" +
 		"<button title='Remove collection'>&#xE106;</button>" +
@@ -164,7 +205,8 @@ function AddCollection(collection)
 
 	list.querySelectorAll("div > div:last-child > div > span").forEach(i => 
 	{
-		i.onclick = function () {
+		i.onclick = function ()
+		{
 			chrome.runtime.sendMessage(
 				{
 					command: "openTab",

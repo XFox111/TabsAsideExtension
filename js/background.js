@@ -1,8 +1,8 @@
 chrome.browserAction.onClicked.addListener(function (tab)
 {
 	if (tab.url.startsWith("http")
-	&& !tab.url.includes("chrome.google.com")
-	&& !tab.url.includes("microsoftedge.microsoft.com"))
+		&& !tab.url.includes("chrome.google.com")
+		&& !tab.url.includes("microsoftedge.microsoft.com"))
 	{
 		chrome.tabs.insertCSS(
 			{
@@ -146,6 +146,15 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse)
 		case "share":
 			ShareTabs(message.collectionIndex);
 			break;
+		case "toggleDiscard":
+			if (localStorage.getItem("loadOnRestore") == "true")
+				localStorage.setItem("loadOnRestore", false);
+			else
+				localStorage.setItem("loadOnRestore", true);
+			break;
+		case "getDiscardOption":
+			sendResponse(localStorage.getItem("loadOnRestore") == "false" ? false : true);
+			break;
 	}
 });
 
@@ -202,8 +211,10 @@ function SaveCollection()
 
 		collections = JSON.parse(localStorage.getItem("sets"));
 
-		chrome.tabs.remove(rawTabs.filter(i => !i.url.startsWith("chrome-extension") && !i.url.endsWith("TabsAside.html") && !i.pinned).map(tab => tab.id));
-		chrome.tabs.create({});
+		var newTabId;
+		chrome.tabs.create({}, function(tab) { newTabId = tab.id; });
+		
+		chrome.tabs.remove(rawTabs.filter(i => !i.url.startsWith("chrome-extension") && !i.url.endsWith("TabsAside.html") && !i.pinned && i.id != newTabId).map(tab => tab.id));
 	});
 
 	UpdateTheme();
@@ -225,7 +236,20 @@ function RestoreCollection(collectionIndex, removeCollection)
 			{
 				url: i,
 				active: false
-			});
+			}/* , function (tab)
+		{
+			if (localStorage.getItem("loadOnRestore") == "false" ? true : false)
+			{
+				setTimeout(function()
+				{
+					chrome.tabs.get(tab.id, function(tab1)
+					{
+						console.log(tab.url);
+						chrome.tabs.discard(tab1.id);
+					});
+				}, 1000);
+			}
+		} */);
 	});
 
 	if (!removeCollection)
@@ -304,7 +328,7 @@ function AppendThumbnail(tabId, cahngeInfo, tab)
 		},
 		function (dataUrl)
 		{
-			if(!dataUrl)
+			if (!dataUrl)
 			{
 				console.log("Failed to retrieve thumbnail");
 				return;
