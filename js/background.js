@@ -37,25 +37,22 @@ chrome.browserAction.onClicked.addListener(function (tab)
 		chrome.tabs.create({
 			url: chrome.extension.getURL("TabsAside.html"),
 			active: true
-		});
+		},
+			chrome.tabs.onActivated.addListener(function TabsAsideCloser(activeInfo) {
+				chrome.tabs.query({ url: chrome.extension.getURL("TabsAside.html") }, function (result) {
+					if (result.length)
+						setTimeout(function () {
+							result.forEach(i => {
+								if (activeInfo.tabId != i.id)
+									chrome.tabs.remove(i.id);
+							});
+						}, 200);
+					else chrome.tabs.onActivated.removeListener(TabsAsideCloser);
+				});
+			}));
 	}
 });
 
-chrome.tabs.onActivated.addListener(function (activeInfo)
-{
-	chrome.tabs.query({ url: chrome.extension.getURL("TabsAside.html") }, function (result)
-	{
-		if (result.length)
-			setTimeout(function ()
-			{
-				result.forEach(i => 
-				{
-					if (activeInfo.tabId != i.id)
-						chrome.tabs.remove(i.id);
-				});
-			}, 200);
-	});
-});
 
 function UpdateTheme()
 {
