@@ -39,7 +39,7 @@ else
 
 					document.querySelector("nav > p > small").textContent = chrome.runtime.getManifest()["version"];
 
-					/* var loadOnRestoreCheckbox = document.querySelector("nav > p > input[type=checkbox]");
+					 var loadOnRestoreCheckbox = document.querySelector("nav > p > input[type=checkbox]");
 					chrome.runtime.sendMessage(
 						{
 							command: "getDiscardOption"
@@ -56,7 +56,7 @@ else
 								command: "toggleDiscard"
 							}
 						);
-					}); */
+					});
 
 					document.querySelectorAll(".tabsAside.pane > header nav button").forEach(i => 
 					{
@@ -120,7 +120,7 @@ function InitializeStandalone()
 
 	document.querySelector("nav > p > small").textContent = chrome.runtime.getManifest()["version"];
 
-	/* var loadOnRestoreCheckbox = document.querySelector("nav > p > input[type=checkbox]");
+	var loadOnRestoreCheckbox = document.querySelector("nav > p > input[type=checkbox]");
 	chrome.runtime.sendMessage(
 		{
 			command: "getDiscardOption"
@@ -137,7 +137,7 @@ function InitializeStandalone()
 				command: "toggleDiscard"
 			}
 		);
-	}); */
+	});
 
 	document.querySelectorAll(".tabsAside.pane > header nav button").forEach(i => 
 	{
