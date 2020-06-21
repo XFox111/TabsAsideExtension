@@ -150,7 +150,7 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse)
 				localStorage.setItem("loadOnRestore", true);
 			break;
 		case "getDiscardOption":
-			sendResponse(localStorage.getItem("loadOnRestore") == "false" ? false : true);
+			sendResponse(localStorage.getItem("loadOnRestore") == "false");
 			break;
 	}
 });
