@@ -212,9 +212,9 @@ function SaveCollection()
 		chrome.tabs.create({}, function(tab) { newTabId = tab.id; });
 		
 		chrome.tabs.remove(rawTabs.filter(i => !i.url.startsWith("chrome-extension") && !i.url.endsWith("TabsAside.html") && !i.pinned && i.id != newTabId).map(tab => tab.id));
-	});
 
 	UpdateTheme();
+});
 }
 
 function DeleteCollection(collectionIndex)
