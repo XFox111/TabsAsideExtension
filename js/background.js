@@ -238,7 +238,7 @@ function RestoreCollection(collectionIndex, removeCollection)
 				active: false
 			} , function (createdTab)
 		{
-			if (localStorage.getItem("loadOnRestore") == "false" ? true : false) {
+			if (localStorage.getItem("loadOnRestore") == "false") {
 				chrome.tabs.onUpdated.addListener(function discarder(updatedTabId, changeInfo, updatedTab) {
 					if (updatedTabId === createdTab.id) {
 						chrome.tabs.onUpdated.removeListener(discarder);
