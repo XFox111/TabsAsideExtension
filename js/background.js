@@ -236,20 +236,19 @@ function RestoreCollection(collectionIndex, removeCollection)
 			{
 				url: i,
 				active: false
-			}/* , function (tab)
+			} , function (createdTab)
 		{
-			if (localStorage.getItem("loadOnRestore") == "false" ? true : false)
-			{
-				setTimeout(function()
-				{
-					chrome.tabs.get(tab.id, function(tab1)
-					{
-						console.log(tab.url);
-						chrome.tabs.discard(tab1.id);
-					});
-				}, 1000);
+			if (localStorage.getItem("loadOnRestore") == "false") {
+				chrome.tabs.onUpdated.addListener(function discarder(updatedTabId, changeInfo, updatedTab) {
+					if (updatedTabId === createdTab.id) {
+						chrome.tabs.onUpdated.removeListener(discarder);
+						if (!updatedTab.active) {
+							chrome.tabs.discard(updatedTabId);
+						}
+					}
+				});
 			}
-		} */);
+		});
 	});
 
 	if (!removeCollection)
