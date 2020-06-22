@@ -43,6 +43,15 @@ else
 					chrome.storage.sync.get({ "loadOnRestore": false },
 						values => loadOnRestoreCheckbox.checked = values.loadOnRestore
 					);
+					chrome.storage.onChanged.addListener(function (changes, namespace) {
+						if (namespace == 'sync'){
+							for (key in changes) {
+								if (key === 'loadOnRestore') {
+									loadOnRestoreCheckbox.checked = changes[key].newValue
+								}
+							}
+						}
+					});
 					loadOnRestoreCheckbox.addEventListener("click", function ()
 					{
 						chrome.storage.sync.set(
@@ -117,6 +126,15 @@ function InitializeStandalone()
 	chrome.storage.sync.get({ "loadOnRestore": false },
 		values => loadOnRestoreCheckbox.checked = values.loadOnRestore
 	);
+	chrome.storage.onChanged.addListener(function (changes, namespace) {
+		if (namespace == 'sync'){
+			for (key in changes) {
+				if (key === 'loadOnRestore') {
+					loadOnRestoreCheckbox.checked = changes[key].newValue
+				}
+			}
+		}
+	});
 	loadOnRestoreCheckbox.addEventListener("click", function ()
 	{
 		chrome.storage.sync.set(
