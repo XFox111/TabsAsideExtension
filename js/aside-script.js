@@ -40,21 +40,17 @@ else
 					document.querySelector("nav > p > small").textContent = chrome.runtime.getManifest()["version"];
 
 					 var loadOnRestoreCheckbox = document.querySelector("nav > p > input[type=checkbox]");
-					chrome.runtime.sendMessage(
-						{
-							command: "getDiscardOption"
-						},
-						function(loadOnRestore)
-						{
-							loadOnRestoreCheckbox.checked = loadOnRestore;
-						}
+					chrome.storage.sync.get({ "loadOnRestore" : false },
+						values => loadOnRestoreCheckbox.checked = values.loadOnRestore
 					);
 					loadOnRestoreCheckbox.addEventListener("click", function ()
 					{
-						chrome.runtime.sendMessage(
-							{
-								command: "toggleDiscard"
-							}
+						chrome.storage.sync.get({ "loadOnRestore" : false },
+							values => chrome.storage.sync.set(
+								{
+									"loadOnRestore": !values.loadOnRestore
+								}
+							)
 						);
 					});
 
@@ -121,21 +117,17 @@ function InitializeStandalone()
 	document.querySelector("nav > p > small").textContent = chrome.runtime.getManifest()["version"];
 
 	var loadOnRestoreCheckbox = document.querySelector("nav > p > input[type=checkbox]");
-	chrome.runtime.sendMessage(
-		{
-			command: "getDiscardOption"
-		},
-		function(loadOnRestore)
-		{
-			loadOnRestoreCheckbox.checked = loadOnRestore;
-		}
+	chrome.storage.sync.get({ "loadOnRestore" : false },
+		values => loadOnRestoreCheckbox.checked = values.loadOnRestore
 	);
 	loadOnRestoreCheckbox.addEventListener("click", function ()
 	{
-		chrome.runtime.sendMessage(
-			{
-				command: "toggleDiscard"
-			}
+		chrome.storage.sync.get({ "loadOnRestore" : false },
+			values => chrome.storage.sync.set(
+				{
+					"loadOnRestore": !values.loadOnRestore
+				}
+			)
 		);
 	});
 

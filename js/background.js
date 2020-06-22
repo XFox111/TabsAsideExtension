@@ -143,15 +143,6 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse)
 		case "share":
 			ShareTabs(message.collectionIndex);
 			break;
-		case "toggleDiscard":
-			if (localStorage.getItem("loadOnRestore") == "true")
-				localStorage.setItem("loadOnRestore", false);
-			else
-				localStorage.setItem("loadOnRestore", true);
-			break;
-		case "getDiscardOption":
-			sendResponse(localStorage.getItem("loadOnRestore") == "false");
-			break;
 	}
 });
 
@@ -235,16 +226,17 @@ function RestoreCollection(collectionIndex, removeCollection)
 				active: false
 			} , function (createdTab)
 		{
-			if (localStorage.getItem("loadOnRestore") == "false") {
-				chrome.tabs.onUpdated.addListener(function discarder(updatedTabId, changeInfo, updatedTab) {
-					if (updatedTabId === createdTab.id) {
-						chrome.tabs.onUpdated.removeListener(discarder);
-						if (!updatedTab.active) {
-							chrome.tabs.discard(updatedTabId);
+			chrome.storage.sync.get({ "loadOnRestore" : false }, values => {
+				if (!values.loadOnRestore)
+					chrome.tabs.onUpdated.addListener(function discarder(updatedTabId, changeInfo, updatedTab) {
+						if (updatedTabId === createdTab.id) {
+							chrome.tabs.onUpdated.removeListener(discarder);
+							if (!updatedTab.active) {
+								chrome.tabs.discard(updatedTabId);
+							}
 						}
-					}
-				});
-			}
+					});
+			});
 		});
 	});
 
