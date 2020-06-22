@@ -39,7 +39,7 @@ else
 
 					document.querySelector("nav > p > small").textContent = chrome.runtime.getManifest()["version"];
 
-					 var loadOnRestoreCheckbox = document.querySelector("nav > p > input[type=checkbox]");
+					var loadOnRestoreCheckbox = document.querySelector("nav > p > input[type=checkbox]");
 					chrome.storage.sync.get({ "loadOnRestore" : false },
 						values => loadOnRestoreCheckbox.checked = values.loadOnRestore
 					);
