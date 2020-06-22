@@ -40,18 +40,15 @@ else
 					document.querySelector("nav > p > small").textContent = chrome.runtime.getManifest()["version"];
 
 					var loadOnRestoreCheckbox = document.querySelector("nav > p > input[type=checkbox]");
-					chrome.storage.sync.get({ "loadOnRestore" : false },
+					chrome.storage.sync.get({ "loadOnRestore": false },
 						values => loadOnRestoreCheckbox.checked = values.loadOnRestore
 					);
 					loadOnRestoreCheckbox.addEventListener("click", function ()
 					{
-						chrome.storage.sync.get({ "loadOnRestore" : false },
-							values => chrome.storage.sync.set(
-								{
-									"loadOnRestore": !values.loadOnRestore
-								}
-							)
-						);
+						chrome.storage.sync.set(
+							{
+								"loadOnRestore": loadOnRestoreCheckbox.checked
+							});
 					});
 
 					document.querySelectorAll(".tabsAside.pane > header nav button").forEach(i => 
@@ -117,18 +114,15 @@ function InitializeStandalone()
 	document.querySelector("nav > p > small").textContent = chrome.runtime.getManifest()["version"];
 
 	var loadOnRestoreCheckbox = document.querySelector("nav > p > input[type=checkbox]");
-	chrome.storage.sync.get({ "loadOnRestore" : false },
+	chrome.storage.sync.get({ "loadOnRestore": false },
 		values => loadOnRestoreCheckbox.checked = values.loadOnRestore
 	);
 	loadOnRestoreCheckbox.addEventListener("click", function ()
 	{
-		chrome.storage.sync.get({ "loadOnRestore" : false },
-			values => chrome.storage.sync.set(
-				{
-					"loadOnRestore": !values.loadOnRestore
-				}
-			)
-		);
+		chrome.storage.sync.set(
+			{
+				"loadOnRestore": loadOnRestoreCheckbox.checked
+			});
 	});
 
 	document.querySelectorAll(".tabsAside.pane > header nav button").forEach(i => 
