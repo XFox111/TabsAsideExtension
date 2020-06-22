@@ -37,25 +37,22 @@ chrome.browserAction.onClicked.addListener(function (tab)
 		chrome.tabs.create({
 			url: chrome.extension.getURL("TabsAside.html"),
 			active: true
-		});
+		},
+			chrome.tabs.onActivated.addListener(function TabsAsideCloser(activeInfo) {
+				chrome.tabs.query({ url: chrome.extension.getURL("TabsAside.html") }, function (result) {
+					if (result.length)
+						setTimeout(function () {
+							result.forEach(i => {
+								if (activeInfo.tabId != i.id)
+									chrome.tabs.remove(i.id);
+							});
+						}, 200);
+					else chrome.tabs.onActivated.removeListener(TabsAsideCloser);
+				});
+			}));
 	}
 });
 
-chrome.tabs.onActivated.addListener(function (activeInfo)
-{
-	chrome.tabs.query({ url: chrome.extension.getURL("TabsAside.html") }, function (result)
-	{
-		if (result.length)
-			setTimeout(function ()
-			{
-				result.forEach(i => 
-				{
-					if (activeInfo.tabId != i.id)
-						chrome.tabs.remove(i.id);
-				});
-			}, 200);
-	});
-});
 
 function UpdateTheme()
 {
@@ -146,35 +143,14 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse)
 		case "share":
 			ShareTabs(message.collectionIndex);
 			break;
-		case "toggleDiscard":
-			if (localStorage.getItem("loadOnRestore") == "true")
-				localStorage.setItem("loadOnRestore", false);
-			else
-				localStorage.setItem("loadOnRestore", true);
-			break;
-		case "getDiscardOption":
-			sendResponse(localStorage.getItem("loadOnRestore") == "false" ? false : true);
-			break;
 	}
 });
 
 UpdateTheme();
-chrome.windows.onCreated.addListener(UpdateTheme);
-chrome.windows.onRemoved.addListener(UpdateTheme);
 chrome.windows.onFocusChanged.addListener(UpdateTheme);
 
 chrome.tabs.onUpdated.addListener(UpdateTheme);
-chrome.tabs.onCreated.addListener(UpdateTheme);
-chrome.tabs.onMoved.addListener(UpdateTheme);
-chrome.tabs.onSelectionChanged.addListener(UpdateTheme);
-chrome.tabs.onActiveChanged.addListener(UpdateTheme);
 chrome.tabs.onActivated.addListener(UpdateTheme);
-chrome.tabs.onHighlightChanged.addListener(UpdateTheme);
-chrome.tabs.onHighlighted.addListener(UpdateTheme);
-chrome.tabs.onDetached.addListener(UpdateTheme);
-chrome.tabs.onAttached.addListener(UpdateTheme);
-chrome.tabs.onRemoved.addListener(UpdateTheme);
-chrome.tabs.onReplaced.addListener(UpdateTheme);
 
 function SaveCollection()
 {
@@ -215,9 +191,9 @@ function SaveCollection()
 		chrome.tabs.create({}, function(tab) { newTabId = tab.id; });
 		
 		chrome.tabs.remove(rawTabs.filter(i => !i.url.startsWith("chrome-extension") && !i.url.endsWith("TabsAside.html") && !i.pinned && i.id != newTabId).map(tab => tab.id));
-	});
 
-	UpdateTheme();
+		UpdateTheme();
+	});
 }
 
 function DeleteCollection(collectionIndex)
@@ -238,16 +214,17 @@ function RestoreCollection(collectionIndex, removeCollection)
 				active: false
 			} , function (createdTab)
 		{
-			if (localStorage.getItem("loadOnRestore") == "false") {
-				chrome.tabs.onUpdated.addListener(function discarder(updatedTabId, changeInfo, updatedTab) {
-					if (updatedTabId === createdTab.id) {
-						chrome.tabs.onUpdated.removeListener(discarder);
-						if (!updatedTab.active) {
-							chrome.tabs.discard(updatedTabId);
+			chrome.storage.sync.get({ "loadOnRestore" : false }, values => {
+				if (!values.loadOnRestore)
+					chrome.tabs.onUpdated.addListener(function discarder(updatedTabId, changeInfo, updatedTab) {
+						if (updatedTabId === createdTab.id) {
+							chrome.tabs.onUpdated.removeListener(discarder);
+							if (!updatedTab.active) {
+								chrome.tabs.discard(updatedTabId);
+							}
 						}
-					}
-				});
-			}
+					});
+			});
 		});
 	});
 
