@@ -152,17 +152,7 @@ chrome.windows.onRemoved.addListener(UpdateTheme);
 chrome.windows.onFocusChanged.addListener(UpdateTheme);
 
 chrome.tabs.onUpdated.addListener(UpdateTheme);
-chrome.tabs.onCreated.addListener(UpdateTheme);
-chrome.tabs.onMoved.addListener(UpdateTheme);
-chrome.tabs.onSelectionChanged.addListener(UpdateTheme);
-chrome.tabs.onActiveChanged.addListener(UpdateTheme);
 chrome.tabs.onActivated.addListener(UpdateTheme);
-chrome.tabs.onHighlightChanged.addListener(UpdateTheme);
-chrome.tabs.onHighlighted.addListener(UpdateTheme);
-chrome.tabs.onDetached.addListener(UpdateTheme);
-chrome.tabs.onAttached.addListener(UpdateTheme);
-chrome.tabs.onRemoved.addListener(UpdateTheme);
-chrome.tabs.onReplaced.addListener(UpdateTheme);
 
 function SaveCollection()
 {
