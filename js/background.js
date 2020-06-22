@@ -147,8 +147,6 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse)
 });
 
 UpdateTheme();
-chrome.windows.onCreated.addListener(UpdateTheme);
-chrome.windows.onRemoved.addListener(UpdateTheme);
 chrome.windows.onFocusChanged.addListener(UpdateTheme);
 
 chrome.tabs.onUpdated.addListener(UpdateTheme);
