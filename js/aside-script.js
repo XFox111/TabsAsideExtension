@@ -39,24 +39,26 @@ else
 
 					document.querySelector("nav > p > small").textContent = chrome.runtime.getManifest()["version"];
 
-					/* var loadOnRestoreCheckbox = document.querySelector("nav > p > input[type=checkbox]");
-					chrome.runtime.sendMessage(
-						{
-							command: "getDiscardOption"
-						},
-						function(loadOnRestore)
-						{
-							loadOnRestoreCheckbox.checked = loadOnRestore;
-						}
+					var loadOnRestoreCheckbox = document.querySelector("nav > p > input[type=checkbox]");
+					chrome.storage.sync.get({ "loadOnRestore": false },
+						values => loadOnRestoreCheckbox.checked = values.loadOnRestore
 					);
+					chrome.storage.onChanged.addListener(function (changes, namespace) {
+						if (namespace == 'sync'){
+							for (key in changes) {
+								if (key === 'loadOnRestore') {
+									loadOnRestoreCheckbox.checked = changes[key].newValue
+								}
+							}
+						}
+					});
 					loadOnRestoreCheckbox.addEventListener("click", function ()
 					{
-						chrome.runtime.sendMessage(
+						chrome.storage.sync.set(
 							{
-								command: "toggleDiscard"
-							}
-						);
-					}); */
+								"loadOnRestore": loadOnRestoreCheckbox.checked
+							});
+					});
 
 					document.querySelectorAll(".tabsAside.pane > header nav button").forEach(i => 
 					{
@@ -120,24 +122,26 @@ function InitializeStandalone()
 
 	document.querySelector("nav > p > small").textContent = chrome.runtime.getManifest()["version"];
 
-	/* var loadOnRestoreCheckbox = document.querySelector("nav > p > input[type=checkbox]");
-	chrome.runtime.sendMessage(
-		{
-			command: "getDiscardOption"
-		},
-		function(loadOnRestore)
-		{
-			loadOnRestoreCheckbox.checked = loadOnRestore;
-		}
+	var loadOnRestoreCheckbox = document.querySelector("nav > p > input[type=checkbox]");
+	chrome.storage.sync.get({ "loadOnRestore": false },
+		values => loadOnRestoreCheckbox.checked = values.loadOnRestore
 	);
+	chrome.storage.onChanged.addListener(function (changes, namespace) {
+		if (namespace == 'sync'){
+			for (key in changes) {
+				if (key === 'loadOnRestore') {
+					loadOnRestoreCheckbox.checked = changes[key].newValue
+				}
+			}
+		}
+	});
 	loadOnRestoreCheckbox.addEventListener("click", function ()
 	{
-		chrome.runtime.sendMessage(
+		chrome.storage.sync.set(
 			{
-				command: "toggleDiscard"
-			}
-		);
-	}); */
+				"loadOnRestore": loadOnRestoreCheckbox.checked
+			});
+	});
 
 	document.querySelectorAll(".tabsAside.pane > header nav button").forEach(i => 
 	{
