@@ -110,7 +110,7 @@ else
 
 function InitializeStandalone()
 {
-	pane = document.querySelector(".tabsAside.pane");
+	var pane = document.querySelector(".tabsAside.pane");
 
 	if (window.matchMedia("(prefers-color-scheme: dark)").matches)
 	{
@@ -187,8 +187,6 @@ function AddCollection(collection)
 		"<button title='More...'>&#xE10C;</button>" +
 		"<nav>" +
 		"<button>Restore without removing</button>" +
-		// "<button hidden>Add tabs to favorites</button>" +
-		// "<button hidden>Share tabs</button>" +
 		"</nav>" +
 		"</div>" +
 		"<button title='Remove collection'>&#xE106;</button>" +
@@ -224,15 +222,6 @@ function AddCollection(collection)
 	{
 		i.onclick = function () { RemoveTabs(i.parentElement.parentElement) };
 	});
-
-	/*document.querySelectorAll(".tabsAside.pane > section > div > div:first-child > div > nav > button:first-child").forEach(i => 
-	{
-		i.onclick = function () { AddToFavorites(i.parentElement.parentElement.parentElement.parentElement) };
-	});
-	document.querySelectorAll(".tabsAside.pane > section > div > div:first-child > div > nav > button:last-child").forEach(i => 
-	{
-		i.onclick = function () { ShareTabs(i.parentElement.parentElement.parentElement.parentElement) };
-	});*/
 
 	document.querySelectorAll(".tabsAside.pane > section > div > div:last-child > div > div > button").forEach(i => 
 	{
@@ -274,6 +263,9 @@ function RestoreTabs(collectionData, removeCollection = true)
 
 function RemoveTabs(collectionData)
 {
+	if (!confirm("Are you sure you want to delete this collection?"))
+		return;
+
 	chrome.runtime.sendMessage(
 		{
 			command: "deleteTabs",
@@ -315,6 +307,9 @@ function ShareTabs(collectionData)
 
 function RemoveOneTab(tabData)
 {
+	if (!confirm("Are you sure you want to delete this tab?"))
+		return;
+
 	chrome.runtime.sendMessage(
 		{
 			command: "removeTab",
