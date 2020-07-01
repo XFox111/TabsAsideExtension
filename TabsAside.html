@@ -8,55 +8,43 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="stylesheet" type="text/css" href="css/style.generic.css" />
 	<link rel="stylesheet" type="text/css" href="css/style.dark.css" />
-
-	<style type="text/css">
-		body {
-			margin: 0px;
-			overflow: hidden;
-		}
-
-		aside {
-			transform: none !important;
-			left: 0px;
-			width: initial !important;
-		}
-	</style>
 </head>
 
-<body class="tabsAside">
-	<aside class="tabsAside pane">
-		<header>
-			<div>
-				<h1>Tabs aside</h1>
-				<button title="Options">&#xE10C;</button>
+<body>
+	<div class="tabsAside background">
+		<aside class="tabsAside pane">
+			<header>
+				<div>
+					<h1>Tabs aside</h1>
+					<button class="btn more" title="Options"></button>
 
-				<nav>
-					<p>
-						<input type="checkbox" id="loadOnRestore"/>
-						<label for="loadOnRestore">Load tabs on restore</label>
-					</p>
-					<div>
-						<button value="https://github.com/xfox111/ChromiumTabsAside">Visit GitHub page</button>
-						<button value="https://github.com/XFox111/ChromiumTabsAside/graphs/contributors">Project contributors</button>
-						<button value="https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin">Leave feedback</button>
-						<button value="https://buymeacoffee.com/xfox111">Buy me a coffee!</button>
-						<!-- <button hidden>Backup saved tabs</button> -->
-					</div>
-					<p>
-						<small>v1.0</small><br />
-						Developed by Michael Gordeev (<a href="https://twitter.com/xfox111"
-							target="_blank">@xfox111</a>)
-					</p>
-				</nav>
-			</div>
-			<a class="saveTabs">&#xE0AB; Set current tabs aside</a>
-			<hr />
-		</header>
+					<nav>
+						<p>
+							<input type="checkbox" id="loadOnRestore"/>
+							<label for="loadOnRestore">Load tabs on restore</label>
+						</p>
+						<div>
+							<button value="https://github.com/xfox111/ChromiumTabsAside">Visit GitHub page</button>
+							<button value="https://github.com/XFox111/ChromiumTabsAside/graphs/contributors">Project contributors</button>
+							<button value="https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin">Leave feedback</button>
+							<button value="https://buymeacoffee.com/xfox111">Buy me a coffee!</button>
+						</div>
+						<p>
+							<small>v1.0</small><br />
+							Developed by Michael Gordeev (<a href="https://twitter.com/xfox111"
+								target="_blank">@xfox111</a>)
+						</p>
+					</nav>
+				</div>
+				<a class="saveTabs"><div></div> Set current tabs aside</a>
+				<hr />
+			</header>
 
-		<section>
-			<h2>You have no aside tabs</h1>
-		</section>
-	</aside>
+			<section>
+				<h2>You have no aside tabs</h1>
+			</section>
+		</aside>
+	</div>
 
 	<script type="text/javascript" src="js/aside-script.js"></script>
 </body>
