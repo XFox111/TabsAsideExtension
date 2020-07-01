@@ -138,8 +138,8 @@ function AddCollection(collection)
 	}
 
 	list.innerHTML +=
-		"<div>" +
-			"<div>" +
+		"<div class='collectionSet'>" +
+			"<div class='header'>" +
 				"<span>Tabs: " + collection.links.length + "</span>" +
 				"<small>" + GetAgo(collection.timestamp) + "</small>" +
 				"<a class='restoreCollection'>Restore tabs</a>" +
@@ -152,7 +152,7 @@ function AddCollection(collection)
 				"<button class='btn remove' title='Remove collection'></button>" +
 			"</div>" +
 
-			"<div class='tabsList'>" + rawTabs + "</div>" +
+			"<div class='set' class='tabsList'>" + rawTabs + "</div>" +
 		"</div>"
 
 	list.querySelectorAll(".restoreCollection").forEach(i => 

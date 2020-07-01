@@ -8,13 +8,11 @@
 	right: 0;
 	left: 0;
 	transition: .2s;
-	/* opacity: 0; */
 	color: black;
 }
 
 .tabsAside.pane
 {
-	/* font-family: 'Segoe UI', 'Segoe MDL2 Assets'; */
 	user-select: none;
 	position: fixed;
 
@@ -29,14 +27,12 @@
 	background-color: #f7f7f7;
 	border: 1px solid rgba(100, 100, 100, .5);
 	border-width: 0px 0px 0px 1px;
-	box-sizing: border-box;
 	box-shadow: 6px 0px 12px black;
 
 	font-size: 13px;
 
 	transform: translateX(110%);	/* pane is hidded */
 	transition: .2s;
-	text-align: initial;
 }
 
 	aside[embedded]
@@ -53,8 +49,6 @@
 	.tabsAside.pane > header
 	{
 		margin: 20px 40px;
-		line-height: initial;
-		height: initial;
 	}
 		.tabsAside.pane > header > div
 		{
@@ -67,10 +61,6 @@
 				margin: 10px 0px;
 				font-weight: normal;
 				font-size: 21pt;
-				direction: initial;
-				color: inherit;
-				line-height: initial;
-				/* font-family: inherit; */
 			}
 
 			.tabsAside.pane > header > div > button
@@ -84,38 +74,20 @@
 				right: 40px;
 			}
 
-				.tabsAside.pane > header > div > nav > div
+				.tabsAside.pane > header nav > div
 				{
 					box-shadow: 0px 4px 5px -2px rgba(100, 100, 100, .5);
-					cursor: initial;
-					overflow: hidden;
 				}
 
-				.tabsAside.pane > header > div > nav > p
+				.tabsAside.pane > header nav > p
 				{
 					margin: 10px;
-					/* font-family: inherit; */
-					font-size: inherit;
-					line-height: initial;
 				}
 
-					.tabsAside.pane > header > div > nav > p > small
-					{
-						font-size: inherit;
-						/* font-family: inherit; */
-					}
-
-					.tabsAside.pane > header > div > nav > p > a
+					.tabsAside.pane > header nav > p > a
 					{
 						text-decoration: none;
-						font-size: inherit;
-						border: none;
 					}
-
-		.tabsAside.pane > header > a
-		{
-			font-size: inherit;
-		}
 
 		.saveTabs > div
 		{
@@ -131,19 +103,12 @@
 		.tabsAside.pane > header > hr
 		{
 			border: 1px solid #8a8a8a;
-			direction: initial;
-			color: inherit;
-			height: initial;
-			margin: 6.5px 0px;
 		}
 
 	.tabsAside.pane > section > h2
 	{
-		color: inherit;
 		margin: 0px 40px;
 		font-weight: normal;
-		font-size: 1.5em;
-		line-height: normal;
 	}
 
 	/* Collection header */
@@ -152,7 +117,7 @@
 		transition: .2s;
 	}
 
-	.tabsAside.pane > section > div > div:first-child
+	.collectionSet > .header
 	{
 		margin: 0px 20px;
 		display: grid;
@@ -161,32 +126,29 @@
 		align-items: center;
 	}
 
-		.tabsAside.pane > section > div > div:first-child > small
+		.collectionSet > .header > small
 		{
 			color: gray;
-			font-size: smaller;
 		}
 		
-		.tabsAside.pane > section > div > div:first-child > span
+		.collectionSet > .header > span
 		{
 			font-weight: 600;
 		}
 		
-		.tabsAside.pane > section > div > div:first-child > a
+		.collectionSet > .header > a
 		{
 			font-size: 11pt;
-			line-height: initial;
 		}
 
-			.tabsAside.pane > section > div > div:first-child > div > nav
-			{
-				width: 250px;
-				margin-top: 40px;
-				right: 50px;
-			}
+		.collectionSet > .header > div > nav
+		{
+			width: 250px;
+			right: 60px;
+		}
 
 		/* Tabs collection */
-		.tabsAside.pane > section > div > div:last-child
+		.collectionSet > .set
 		{
 			margin: 0px 0px 0px 20px;
 			padding: 10px 40px 10px 20px;
@@ -194,17 +156,17 @@
 			overflow: auto;
 		}
 
-			.tabsAside.pane > section > div > div:last-child::-webkit-scrollbar-thumb
+			.collectionSet > .set::-webkit-scrollbar-thumb
 			{
 				visibility: hidden;
 			}
 
-			.tabsAside.pane > section > div > div:last-child:hover::-webkit-scrollbar-thumb
+			.collectionSet > .set:hover::-webkit-scrollbar-thumb
 			{
 				visibility: visible;
 			}	
 
-			.tabsAside.pane > section > div > div:last-child > div
+			.collectionSet > .set > div
 			{
 				width: 175px;
 				height: 148px;
@@ -222,13 +184,13 @@
 				transition: .25s;
 				cursor: pointer;
 			}
-				.tabsAside.pane > section > div > div:last-child > div:hover
+				.collectionSet > .set > div:hover
 				{
 					filter: brightness(120%);
 					box-shadow: 0px 0px 15px rgba(100, 100, 100, .5);
 				}
 
-				.tabsAside.pane > section > div > div:last-child > div > div
+				.collectionSet > .set > div > div
 				{
 					background-color: rgba(233, 233, 233, .75);
 					grid-row: 2;
@@ -236,19 +198,19 @@
 					grid-template-columns: auto 1fr auto;
 				}
 
-					.tabsAside.pane > section > div > div:last-child > div > div > button
+					.collectionSet > .set > div > div > button
 					{
 						margin: auto;
 						margin-right: 5px;
 						display: none;
 					}
 
-					.tabsAside.pane > section > div > div:last-child > div:hover > div > button
+					.collectionSet > .set > div:hover > div > button
 					{
 						display: initial;
 					}
 
-					.tabsAside.pane > section > div > div:last-child > div > div > div
+					.collectionSet > .set > div > div > div
 					{
 						width: 20px;
 						height: 20px;
@@ -258,14 +220,13 @@
 						background-size: 20px;
 					}
 
-					.tabsAside.pane > section > div > div:last-child > div > div > span
+					.collectionSet > .set > div > div > span
 					{
 						overflow: hidden;
 						margin: auto 0px;
 						margin-right: 10px;
-						line-height: initial;
 					}
-					.tabsAside.pane > section > div > div:last-child > div:hover > div > span
+					.collectionSet > .set > div:hover > div > span
 					{
 						margin-right: 5px;
 					}
@@ -274,8 +235,7 @@
 {
 	.tabsAside.pane
 	{
-		width: initial;
-		left: 0px;
+		width: 100% !important;
 		min-width: initial;
 	}
 }
