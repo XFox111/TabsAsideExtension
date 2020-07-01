@@ -22,6 +22,9 @@ if (window.location === window.parent.location && window.location.protocol != "c
 		iframe.style.background = "transparent";
 		iframe.style.opacity = 0;
 
+		var bodyStyle = document.body.getAttribute("style");
+		document.body.setAttribute("style", "overflow: hidden !important");
+
 		iframe.onload = function ()
 		{
 			setTimeout(function () 
@@ -39,6 +42,7 @@ if (window.location === window.parent.location && window.location.protocol != "c
 		setTimeout(function ()
 		{
 			iframe.remove();
+			document.body.setAttribute("style", bodyStyle);
 		}, 250);
 	}
 }
