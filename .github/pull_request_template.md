@@ -1,3 +1,5 @@
+Implements following issues: 
+
 ## Changelog
 - Item 1
 - Item 2

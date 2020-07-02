@@ -1,4 +1,4 @@
-chrome.browserAction.onClicked.addListener(function (tab)
+chrome.browserAction.onClicked.addListener((tab) =>
 {
 	if (tab.url.startsWith("http")
 		&& !tab.url.includes("chrome.google.com")
@@ -21,10 +21,10 @@ chrome.browserAction.onClicked.addListener(function (tab)
 		},
 			chrome.tabs.onActivated.addListener(function TabsAsideCloser(activeInfo) 
 			{
-				chrome.tabs.query({ url: chrome.extension.getURL("TabsAside.html") }, function (result) 
+				chrome.tabs.query({ url: chrome.extension.getURL("TabsAside.html") }, (result) =>
 				{
 					if (result.length)
-						setTimeout(function () 
+						setTimeout(() =>
 						{
 							result.forEach(i => 
 								{
@@ -40,7 +40,7 @@ chrome.browserAction.onClicked.addListener(function (tab)
 
 var collections = JSON.parse(localStorage.getItem("sets")) || [];
 
-chrome.runtime.onMessage.addListener(function (message, sender, sendResponse)
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) =>
 {
 	switch (message.command)
 	{
@@ -96,7 +96,7 @@ chrome.tabs.onActivated.addListener(UpdateTheme);
 // Set current tabs aside
 function SaveCollection()
 {
-	chrome.tabs.query({ currentWindow: true }, function (rawTabs)
+	chrome.tabs.query({ currentWindow: true }, (rawTabs) =>
 	{
 		var tabs = rawTabs.filter(i => !(i.url.startsWith("chrome-extension") && i.url.endsWith("TabsAside.html")) && !i.pinned && !i.url.includes("//newtab"));
 
@@ -130,7 +130,7 @@ function SaveCollection()
 		collections = JSON.parse(localStorage.getItem("sets"));
 
 		var newTabId;
-		chrome.tabs.create({}, function (tab) { newTabId = tab.id; });
+		chrome.tabs.create({}, (tab) => newTabId = tab.id);
 
 		chrome.tabs.remove(rawTabs.filter(i => !i.url.startsWith("chrome-extension") && !i.url.endsWith("TabsAside.html") && !i.pinned && i.id != newTabId).map(tab => tab.id));
 
@@ -154,22 +154,23 @@ function RestoreCollection(collectionIndex, removeCollection)
 			{
 				url: i,
 				active: false
-			}, function (createdTab)
-		{
-			chrome.storage.sync.get({ "loadOnRestore" : false }, values => 
+			},
+			(createdTab) =>
 			{
-				if (!values.loadOnRestore)
-					chrome.tabs.onUpdated.addListener(function discarder(updatedTabId, changeInfo, updatedTab) 
-					{
-						if (updatedTabId === createdTab.id) {
-							chrome.tabs.onUpdated.removeListener(discarder);
-							if (!updatedTab.active) {
-								chrome.tabs.discard(updatedTabId);
+				chrome.storage.sync.get({ "loadOnRestore" : false }, values => 
+				{
+					if (!values.loadOnRestore)
+						chrome.tabs.onUpdated.addListener(function DiscardTab(updatedTabId, changeInfo, updatedTab) 
+						{
+							if (updatedTabId === createdTab.id) {
+								chrome.tabs.onUpdated.removeListener(DiscardTab);
+								if (!updatedTab.active) {
+									chrome.tabs.discard(updatedTabId);
+								}
 							}
-						}
-					});
+						});
+				});
 			});
-		});
 	});
 
 	if (!removeCollection)
@@ -228,7 +229,7 @@ function AppendThumbnail(tabId, cahngeInfo, tab)
 			format: "jpeg",
 			quality: 1
 		},
-		function (dataUrl)
+		(dataUrl) =>
 		{
 			if (!dataUrl)
 			{

@@ -25,6 +25,7 @@ Unfortunately, in new Chromium-based Microsoft Edge, the devs decided not to imp
 - Familiar UI inherited from legacy Microsoft Edge with some improvements
 - Auto Dark mode
 - Now you can restore one tab from collection without removing
+- Now you can choose if you want to load restored tabs only when you're navigating onto them
 
 ## Download
 - [Google Chrome Webstore](https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin)

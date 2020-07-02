@@ -1,10 +1,10 @@
-# Tabs Aside Contribution Guidelines
-Welcome, and thank you for your interest in contributing to my app!
+# Contribution Guidelines
+Welcome, and thank you for your interest in contributing to my project!
 
 There are many ways in which you can contribute, beyond writing code. The goal of this document is to provide a high-level overview of how you can get involved.
 
 ## Table of Contents
-- [Tabs Aside Contribution Guidelines](#gutschedule-contribution-guidelines)
+- [Contribution Guidelines](#gutschedule-contribution-guidelines)
   - [Table of Contents](#table-of-contents)
   - [Asking Questions](#asking-questions)
   - [Providing Feedback](#providing-feedback)
@@ -38,7 +38,7 @@ Your comments and feedback are welcome.
 You can leave your feedbak on feedback@xfox111.net or do it on [Microsoft Edge Add-ons Webstore](https://microsoftedge.microsoft.com/addons/detail/tabs-aside/kmnblllmalkiapkfknnlpobmjjdnlhnd) or [Chrome Webstore](https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin)
 
 ## Reporting Issues
-Have you identified a reproducible problem in the application? Have a feature request? I'd like to hear it! Here's how you can make reporting your issue as effective as possible.
+Have you identified a reproducible problem in the extension? Have a feature request? I'd like to hear it! Here's how you can make reporting your issue as effective as possible.
 
 ### Look For an Existing Issue
 Before you create a new issue, please do a search in [open issues](https://github.com/xfox111/ChromiumTabsAside/issues) to see if the issue or feature request has already been filed.
@@ -55,9 +55,9 @@ If you cannot find an existing issue that describes your bug or feature, create 
 ### Writing Good Bug Reports and Feature Requests
 File a single issue per problem and feature request. Do not enumerate multiple bugs or feature requests in the same issue.
 
-Do not add your issue as a comment to an existing issue unless it's for the identical input. Many issues look similar, but have different causes.
+Do not add your issue as a comment to an existing issue unless they are the same ones. Many issues look similar, but have different causes.
 
-The more information you can provide, the more likely someone will be successful at reproducing the issue and finding a fix.
+The more information you can provide, the more likely someone will be successful at reproducing the issue and finding a solution.
 
 Please include the following with each issue:
 - Current version of the extension
@@ -101,7 +101,7 @@ This section represents how contributors should interact with codebase implement
 7. Done
 
 #### Release
-Next stage is release. Release performs on every push to master (which makes functional changes to application source code). Release performs manually by @XFox111 into: Chrome webstore, Edge webstore and GitHub releases
+Next stage is release. Release performs on every push to master (which makes functional changes to the source code). Release performs manually by @XFox111 into: Chrome webstore, Edge webstore and GitHub releases
 
 ### Coding guidelines
 #### Indentation
@@ -175,18 +175,18 @@ Use "double quotes" wherever it's possible
         ```
 
 ### Finding an issue to work on
-Check out the [full issues list](https://github.com/XFox111/ChromiumTabsAside/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue) for a list of all potential areas for contributions. **Note** that just because an issue exists in the repository does not mean we will accept a contribution to the core editor for it. There are several reasons we may not accept a pull request like:
+Check out the [full issues list](https://github.com/XFox111/ChromiumTabsAside/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue) for a list of all potential areas for contributions. **Note** that just because an issue exists in the repository does not mean we will accept a contribution. There are several reasons we may not accept a pull request like:
 
-- Performance - One of Tabs Aside core values is to deliver a lightweight extension, that means it should perform well in both real and perceived performance.
+- Performance - One of Tabs Aside core values is to deliver a lightweight extension, that means it should perform well in both real and test environments.
 - User experience - Since we want to deliver a lightweight extension, the UX should feel lightweight as well and not be cluttered. Most changes to the UI should go through the issue owner and project owner (@XFox111).
-- Architectural - Feature owner needs to agree with any architectural impact a change may make. Such things must be discussed with and agreed upon by the feature owner.
+- Architectural - Project owner needs to agree with any architectural impact a change may make. Such things must be discussed with and agreed upon by the project owner.
 
-To improve the chances to get a pull request merged you should select an issue that is labelled with the `help-wanted` or `bug` labels. If the issue you want to work on is not labelled with `help-wanted` or `bug`, you can start a conversation with the issue owner asking whether an external contribution will be considered.
+To improve the chances to get a pull request merged you should select an issue that is labelled with the `help-wanted` or `bug` labels. If the issue you want to work on is not labelled with `help-wanted` or `bug`, you can start a conversation with the project owner asking whether an external contribution will be considered.
 
 To avoid multiple pull requests resolving the same issue, let others know you are working on it by saying so in a comment.
 
 ### Contributing to translations
-If you want to help us to translate this application into other languages, please read [this article](https://developer.chrome.com/extensions/i18n)
+If you want to help us to translate this extension into other languages, please read [this article](https://developer.chrome.com/extensions/i18n)
 
 **Note** that whatever you want to contribute to the codebase, you should do it only after you got assigned on an issue
 
@@ -194,7 +194,7 @@ If you want to help us to translate this application into other languages, pleas
 To enable us to quickly review and accept your pull requests, always create one pull request per issue and [link the issue in the pull request](https://github.com/blog/957-introducing-issue-mentions). Never merge multiple requests in one unless they have the same root cause. Be sure to follow our [Coding Guidelines](#coding-guidelines) and keep code changes as small as possible. Avoid pure formatting changes to code that has not been modified otherwise. Pull requests should contain tests whenever possible. Fill pull request content according to its template. Deviations from template are not recommended
 
 #### Spell check errors
-Pull requests that fix spell check errors in translatable strings (strings in nls.localize(...) calls) are welcomed but please make sure it doesn't touch multiple feature areas, otherwise it will be difficult to review. Pull requests only fixing spell check errors in source code are not recommended.
+Pull requests that fix typos are welcomed but please make sure it doesn't touch multiple feature areas, otherwise it will be difficult to review. Pull requests only fixing spell check errors in source code are not recommended.
 
 ## Thank You!
 

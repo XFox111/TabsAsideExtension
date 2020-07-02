@@ -8,7 +8,7 @@ if (window.location === window.parent.location && window.location.protocol != "c
 		iframe.setAttribute("class", "tabsAsideIframe");
 
 		iframe.style.position = "fixed";
-		iframe.style.zIndex = "9000000000000000000";
+		iframe.style.zIndex = "2147483647";
 
 		iframe.style.height = "100%";
 		iframe.style.width = "100%";
@@ -25,13 +25,7 @@ if (window.location === window.parent.location && window.location.protocol != "c
 		var bodyStyle = document.body.getAttribute("style");
 		document.body.setAttribute("style", "overflow: hidden !important");
 
-		iframe.onload = function ()
-		{
-			setTimeout(function () 
-			{
-				iframe.style.opacity = 1;
-			}, 100);
-		};
+		iframe.onload = () => setTimeout(() => iframe.style.opacity = 1, 100);
 
 		iframe.src = chrome.extension.getURL("TabsAside.html");
 		document.body.appendChild(iframe);
@@ -39,7 +33,7 @@ if (window.location === window.parent.location && window.location.protocol != "c
 	else
 	{
 		iframe.contentWindow.postMessage({ target: "TabsAside", command: "TogglePane" }, "*");
-		setTimeout(function ()
+		setTimeout(() =>
 		{
 			iframe.remove();
 			document.body.setAttribute("style", bodyStyle);
@@ -52,12 +46,14 @@ else // For init call
 function Initialize()
 {
 	var pane = document.querySelector(".tabsAside.pane");
+	if (!pane)
+		return;
 
 	if (window.location !== window.parent.location)
 	{
 		pane.setAttribute("embedded", "");
-		window.addEventListener('message', event => {
-			// IMPORTANT: check the origin of the data! 
+		window.addEventListener('message', event => 
+		{
 			if (event.data.target == "TabsAside")
 			{
 				pane.parentElement.style.opacity = 0;
@@ -77,44 +73,35 @@ function Initialize()
 	document.querySelector("nav > p > small").textContent = chrome.runtime.getManifest()["version"];
 
 	var loadOnRestoreCheckbox = document.querySelector("nav > p > input[type=checkbox]");
-	chrome.storage.sync.get({ "loadOnRestore": false },
+	chrome.storage.sync.get(
+		{ "loadOnRestore": false },
 		values => loadOnRestoreCheckbox.checked = values.loadOnRestore
 	);
-	chrome.storage.onChanged.addListener(function (changes, namespace) {
-		if (namespace == 'sync'){
-			for (key in changes) {
-				if (key === 'loadOnRestore') {
-					loadOnRestoreCheckbox.checked = changes[key].newValue
-				}
-			}
-		}
-	});
-	loadOnRestoreCheckbox.addEventListener("click", function ()
+	chrome.storage.onChanged.addListener((changes, namespace) =>
 	{
+		if (namespace == 'sync')
+			for (key in changes)
+				if (key === 'loadOnRestore')
+					loadOnRestoreCheckbox.checked = changes[key].newValue
+	});
+	loadOnRestoreCheckbox.addEventListener("click", () =>
 		chrome.storage.sync.set(
 			{
 				"loadOnRestore": loadOnRestoreCheckbox.checked
-			});
-	});
+			})
+	);
 
 	document.querySelectorAll(".tabsAside.pane > header nav button").forEach(i => 
-	{
-		i.onclick = function () { window.open(i.value, '_blank'); };
-	});
+		i.onclick = () => window.open(i.value, '_blank'));
 
-	chrome.runtime.sendMessage({ command: "loadData" }, function (collections)
+	chrome.runtime.sendMessage({ command: "loadData" }, (collections) =>
 	{
 		if (document.querySelector(".tabsAside.pane section div") == null)
 			collections.forEach(i => 
-			{
-				AddCollection(i);
-			});
+				AddCollection(i));
 	});
 
-	setTimeout(function ()
-	{
-		pane.setAttribute("opened", "");
-	}, 100);
+	setTimeout(() => pane.setAttribute("opened", ""), 100);
 }
 
 function AddCollection(collection)
@@ -156,37 +143,25 @@ function AddCollection(collection)
 		"</div>"
 
 	list.querySelectorAll(".restoreCollection").forEach(i => 
-	{
-		i.onclick = function () { RestoreTabs(i.parentElement.parentElement) };
-	});
+		i.onclick = () => RestoreTabs(i.parentElement.parentElement));
 
 	list.querySelectorAll(".restoreCollection.noDelete").forEach(i => 
-	{
-		i.onclick = function () { RestoreTabs(i.parentElement.parentElement.parentElement.parentElement, false) };
-	});
+		i.onclick = () => RestoreTabs(i.parentElement.parentElement.parentElement.parentElement, false));
 
-	list.querySelectorAll(".openTab").forEach(i => 
-	{
-		i.onclick = function ()
-		{
+	list.querySelectorAll(".openTab").forEach(i =>
+		i.onclick = () =>
 			chrome.runtime.sendMessage(
 				{
 					command: "openTab",
 					url: i.getAttribute("value")
 				}
-			);
-		};
-	});
+			));
 
-	document.querySelectorAll(".btn.remove").forEach(i => 
-	{
-		i.onclick = function () { RemoveTabs(i.parentElement.parentElement) };
-	});
+	document.querySelectorAll(".btn.remove").forEach(i =>
+		i.onclick = () => RemoveTabs(i.parentElement.parentElement));
 
-	document.querySelectorAll(".tabsList .btn.remove").forEach(i => 
-	{
-		i.onclick = function () { RemoveOneTab(i.parentElement.parentElement) };
-	});
+	document.querySelectorAll(".tabsList .btn.remove").forEach(i =>
+		i.onclick = () => RemoveOneTab(i.parentElement.parentElement));
 }
 
 function SetTabsAside()
@@ -202,7 +177,7 @@ function RestoreTabs(collectionData, removeCollection = true)
 			removeCollection: removeCollection,
 			collectionIndex: Array.prototype.slice.call(collectionData.parentElement.children).indexOf(collectionData) - 1
 		},
-		function ()
+		() =>
 		{
 			if (removeCollection)
 				RemoveCollectionElement(collectionData);
@@ -220,7 +195,7 @@ function RemoveTabs(collectionData)
 			command: "deleteTabs",
 			collectionIndex: Array.prototype.slice.call(collectionData.parentElement.children).indexOf(collectionData) - 1
 		},
-		function () { RemoveCollectionElement(collectionData); }
+		() => RemoveCollectionElement(collectionData)
 	);
 }
 
@@ -235,17 +210,14 @@ function RemoveOneTab(tabData)
 			collectionIndex: Array.prototype.slice.call(tabData.parentElement.parentElement.parentElement.children).indexOf(tabData.parentElement.parentElement) - 1,
 			tabIndex: Array.prototype.slice.call(tabData.parentElement.children).indexOf(tabData)
 		},
-		function ()
+		() =>
 		{
 			tabData.parentElement.previousElementSibling.children[0].textContent = "Tabs: " + (tabData.parentElement.children.length - 1);
 			if (tabData.parentElement.children.length < 2)
 			{
 				RemoveElement(tabData.parentElement.parentElement);
 				if (document.querySelector("tabsAside.pane > section").children.length < 2)
-					setTimeout(function ()
-					{
-						document.querySelector(".tabsAside.pane > section > h2").removeAttribute("hidden");
-					}, 250);
+					setTimeout(() => document.querySelector(".tabsAside.pane > section > h2").removeAttribute("hidden"), 250);
 			}
 			else
 				RemoveElement(tabData);
@@ -293,21 +265,12 @@ function GetAgo(timestamp)
 function RemoveElement(el)
 {
 	el.style.opacity = 0;
-	setTimeout(function ()
-	{
-		el.remove();
-	}, 200);
+	setTimeout(() => el.remove(), 200);
 }
 
 function RemoveCollectionElement(el)
 {
 	RemoveElement(el);
 	if (el.parentElement.children.length < 2)
-		setTimeout(function ()
-		{
-			document.querySelector(".tabsAside.pane > section > h2").removeAttribute("hidden");
-		}, 250);	
+		setTimeout(() => document.querySelector(".tabsAside.pane > section > h2").removeAttribute("hidden"), 250);	
 }
-
-// TODO: Add more actions
-// TODO: Make backup system
