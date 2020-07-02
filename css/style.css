@@ -1,6 +1,5 @@
 .tabsAside.background
 {
-	z-index: 9999;
 	background-color: rgba(255, 255, 255, .5);
 	position: fixed;
 	top: 0;
@@ -89,7 +88,7 @@
 						text-decoration: none;
 					}
 
-		.saveTabs > div
+		.iconArrowRight
 		{
 			width: 13px;
 			height: 13px;
