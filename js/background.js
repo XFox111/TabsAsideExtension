@@ -11,7 +11,7 @@ chrome.browserAction.onClicked.addListener((tab) =>
 				runAt: "document_idle"
 			});
 	}
-	else if (tab.url.startsWith("chrome-extension") && tab.url.endsWith("TabsAside.html"))
+	else if (tab.url == chrome.runtime.getURL("TabsAside.html"))
 		chrome.tabs.remove(tab.id);
 	else
 	{
@@ -90,7 +90,6 @@ function UpdateTheme()
 
 UpdateTheme();
 chrome.windows.onFocusChanged.addListener(UpdateTheme);
-chrome.tabs.onUpdated.addListener(UpdateTheme);
 chrome.tabs.onActivated.addListener(UpdateTheme);
 
 // Set current tabs aside
@@ -98,7 +97,7 @@ function SaveCollection()
 {
 	chrome.tabs.query({ currentWindow: true }, (rawTabs) =>
 	{
-		var tabs = rawTabs.filter(i => !(i.url.startsWith("chrome-extension") && i.url.endsWith("TabsAside.html")) && !i.pinned && !i.url.includes("//newtab"));
+		var tabs = rawTabs.filter(i => i.url != chrome.runtime.getURL("TabsAside.html") && !i.pinned && !i.url.includes("//newtab"));
 
 		if (tabs.length < 1)
 		{
@@ -130,9 +129,11 @@ function SaveCollection()
 		collections = JSON.parse(localStorage.getItem("sets"));
 
 		var newTabId;
-		chrome.tabs.create({}, (tab) => newTabId = tab.id);
-
-		chrome.tabs.remove(rawTabs.filter(i => !i.url.startsWith("chrome-extension") && !i.url.endsWith("TabsAside.html") && !i.pinned && i.id != newTabId).map(tab => tab.id));
+		chrome.tabs.create({}, (tab) => 
+		{
+			newTabId = tab.id;
+			chrome.tabs.remove(rawTabs.filter(i => !i.pinned && i.id != newTabId).map(tab => tab.id));
+		});
 
 		UpdateTheme();
 	});
@@ -219,7 +220,7 @@ function RemoveTab(collectionIndex, tabIndex)
 
 var thumbnails = [];
 
-function AppendThumbnail(tabId, cahngeInfo, tab)
+function AppendThumbnail(tabId, tab)
 {
 	if (!tab.active || !tab.url.startsWith("http"))
 		return;
@@ -252,4 +253,8 @@ function AppendThumbnail(tabId, cahngeInfo, tab)
 	);
 }
 
-chrome.tabs.onUpdated.addListener(AppendThumbnail);
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) =>
+{
+	if (changeInfo.status === "complete")
+		AppendThumbnail(tabId, tab)
+});
