@@ -15,26 +15,28 @@ chrome.browserAction.onClicked.addListener((tab) =>
 		chrome.tabs.remove(tab.id);
 	else
 	{
-		chrome.tabs.create({
-			url: chrome.extension.getURL("TabsAside.html"),
-			active: true
-		},
-			chrome.tabs.onActivated.addListener(function TabsAsideCloser(activeInfo) 
+		chrome.tabs.create(
 			{
-				chrome.tabs.query({ url: chrome.extension.getURL("TabsAside.html") }, (result) =>
+				url: chrome.extension.getURL("TabsAside.html"),
+				active: true
+			},
+			(activeTab) =>
+				chrome.tabs.onActivated.addListener(function TabsAsideCloser(activeInfo) 
 				{
-					if (result.length)
-						setTimeout(() =>
-						{
-							result.forEach(i => 
-								{
-								if (activeInfo.tabId != i.id)
-									chrome.tabs.remove(i.id);
-							});
-						}, 200);
-					else chrome.tabs.onActivated.removeListener(TabsAsideCloser);
-				});
-			}));
+					chrome.tabs.query({ url: chrome.extension.getURL("TabsAside.html") }, (result) =>
+					{
+						if (result.length)
+							setTimeout(() =>
+							{
+								result.forEach(i => 
+									{
+									if (activeInfo.tabId != i.id)
+										chrome.tabs.remove(i.id);
+									});
+							}, 200);
+						else chrome.tabs.onActivated.removeListener(TabsAsideCloser);
+					});
+				}));
 	}
 });
 
@@ -90,6 +92,7 @@ function UpdateTheme()
 
 UpdateTheme();
 chrome.windows.onFocusChanged.addListener(UpdateTheme);
+chrome.tabs.onUpdated.addListener(UpdateTheme);
 chrome.tabs.onActivated.addListener(UpdateTheme);
 
 // Set current tabs aside
