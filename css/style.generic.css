@@ -1,126 +1,115 @@
 /* Custom scrollbar */
 .tabsAside ::-webkit-scrollbar
 {
-	height: 6px !important;
+	height: 6px;
+	width: 6px;
 }
 
 .tabsAside ::-webkit-scrollbar-thumb
 {
-	visibility: hidden !important;
-	background: darkgray !important;
-	border-radius: 3px !important;
+	background: darkgray;
+	border-radius: 3px;
 }
 	.tabsAside ::-webkit-scrollbar-thumb:hover
 	{
-		background: gray !important;
+		background: gray;
 	}
 
-.tabsAside::-webkit-scrollbar
+.tabsAside
 {
-	width: 6px !important;
+	font-family: 'DefaultFont';
+	font-size: 14px;
+	user-select: none;
 }
-
-.tabsAside::-webkit-scrollbar-thumb
-{
-	background: gray !important;
-	border-radius: 3px !important;
-}
-	.tabsAside::-webkit-scrollbar-thumb:hover
-	{
-		background: darkgray !important;
-	}
 
 /* Links style */
 .tabsAside a
 {
-	font-family: 'Segoe UI', 'Segoe MDL2 Assets' !important;
-	color: #0078d7 !important;
-	font-weight: 400 !important;
+	color: #0078d7;
 }
 	.tabsAside a:hover 
 	{
-		text-decoration: underline !important;
-		cursor: pointer !important;
+		text-decoration: underline;
+		cursor: pointer;
 	}
 
 	.tabsAside a:visited
 	{
-		color: #0078d7 !important;
+		color: #0078d7;
 	}
 
 /* Buttons style */
 .tabsAside button
 {
-	font-family: 'Segoe MDL2 Assets' !important;
-	width: 32px !important;
-	height: 32px !important;
-	background-color: transparent !important;
-	border: none !important;
-	cursor: pointer !important;
-	box-shadow: initial !important;
-	font-size: inherit !important;
-	padding: initial !important;
-	position: initial !important;
-	box-sizing: initial !important;
-	line-height: initial !important;
-	text-align: center !important;
-	border-radius: 2px !important;
-	min-height: initial !important;
-	display: initial !important;
-	min-width: initial !important;
+	width: 32px;
+	height: 32px;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
 }
 	.tabsAside button:hover
 	{
-		background-color: #c6c6c6 !important;
+		background-color: #c6c6c6;
 	}
 	.tabsAside button:active
 	{
-		background-color: gray !important;
+		background-color: gray;
 	}
 
 /* Context menus style */
 .tabsAside nav
 {
-	font-family: 'Segoe UI' !important;
-	user-select: none !important;
+	user-select: none;
 
-	position: absolute !important;
-	width: 250px !important;
+	position: absolute;
+	width: 250px;
 
-	box-shadow: 0px 0px 10px black !important;
-	background-color: white !important;
-	border-radius: 5px !important;
+	box-shadow: 0px 0px 10px black;
+	background-color: white;
+	border-radius: 5px;
 
-	z-index: 10 !important;
+	z-index: 10;
 
-	visibility: hidden !important;
-	
-	display: initial !important;
-    left: initial !important;
-    bottom: initial !important;
-    padding: initial !important;
-    min-height: initial !important;
-    font-size: inherit !important;
+	visibility: hidden;
 }
 
 	.tabsAside nav button 
-	{
-		font-family: 'Segoe UI' !important;
-		cursor: pointer !important;
-		background-color: transparent !important;
-		border: none !important;
-		box-sizing: border-box !important;
-		
-		font-size: medium !important;
-		text-align: start !important;
+	{		
+		text-align: start;
 
-		padding: 10px !important;
-		width: 100% !important;
-		height: initial !important;
+		padding: 0px 10px;
+		width: 100%;
 	}
 
 	.tabsAside button + nav:active,
 	.tabsAside button:focus + nav 
 	{
-		visibility: visible !important;
+		visibility: visible;
 	}
+
+/* Icon buttons style */
+.btn
+{
+	background-repeat: no-repeat;
+	background-size: 15px;
+	background-position: center;
+}
+
+	.btn.more
+	{
+		background-image: url("chrome-extension://__MSG_@@extension_id__/icons/more.svg");
+	}
+
+	.btn.remove
+	{
+		background-image: url("chrome-extension://__MSG_@@extension_id__/icons/cancel.svg");
+	}
+
+@font-face
+{
+	font-family: 'DefaultFont';
+	src: local("Segoe UI"),
+		url("chrome-extension://__MSG_@@extension_id__/fonts/WeblySleekUI/weblysleekuisemilight.ttf") format("truetype"),
+		url("chrome-extension://__MSG_@@extension_id__/fonts/WeblySleekUI/weblysleekuisemilight.woff") format("woff"),
+		url("chrome-extension://__MSG_@@extension_id__/fonts/WeblySleekUI/weblysleekuisemilight.woff2") format("woff2");
+}

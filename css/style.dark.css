@@ -1,59 +1,74 @@
 .tabsAside[darkmode].background
 {
-	background-color: rgba(0, 0, 0, .5) !important;
+	background-color: rgba(0, 0, 0, .5);
 }
 
 .tabsAside[darkmode] .pane
 {	
-	background-color: #333333 !important;
-	color: white !important;
+	background-color: #333333;
+	color: white;
 }
 
+	.tabsAside[darkmode] .saveTabs > div
+	{
+		filter: invert();
+	}
+
+	/* Button style */
 	.tabsAside[darkmode] .pane button
 	{
-		color: white !important;
+		filter: invert();
 	}
 	.tabsAside[darkmode] .pane button:hover
 	{
-		background-color: gray !important;
+		background-color: gray;
 	}
 	.tabsAside[darkmode] .pane button:active
 	{
-		background-color: dimgray !important;
+		background-color: dimgray;
 	}
 
-	.tabsAside[darkmode] .pane > section > div > div:first-child > div:first-child > small
+	.tabsAside[darkmode] a
+	{
+		color: #48adff;
+	}
+
+	/* Timestamp label */
+	.tabsAside[darkmode] > .pane > section small
 	{
 		color: lightgray !important;
 	}
 
+	/* Scrollbar style */
 	.tabsAside[darkmode] .pane ::-webkit-scrollbar-thumb
 	{
-		background: gray !important;
-		border-radius: 3px !important;
+		background: gray;
+		border-radius: 3px;
 	}
 		.tabsAside[darkmode] .pane ::-webkit-scrollbar-thumb:hover
 		{
-			background: dimgray !important;
+			background: dimgray;
 		}
 
-	.tabsAside[darkmode] .pane > section > div > div:last-child > div
+	/* Tab style */
+	.tabsAside[darkmode] .pane .collectionSet > .set > div
 	{
-		background-color: #0c0c0c !important;
+		background-color: #0c0c0c;
 		background-image: url("chrome-extension://__MSG_@@extension_id__/images/tab_thumbnail_dark.png");
 	}
 
-		.tabsAside[darkmode] .pane > section > div > div:last-child > div > div
+		.tabsAside[darkmode] .pane .collectionSet > .set > div > div
 		{
-			background-color: rgba(50, 50, 50, .75) !important;
+			background-color: rgba(50, 50, 50, .75);
 		}
 
-			.tabsAside[darkmode] .pane > section > div > div:last-child > div > div > div
+			.tabsAside[darkmode] .pane .collectionSet > .set > div > div > div
 			{
 				background-image: url("chrome-extension://__MSG_@@extension_id__/images/tab_icon_dark.png");
 			}
 
+	/* Context menu style */
 	.tabsAside[darkmode] .pane nav
 	{
-		background-color: #3f3f3f !important;
+		background-color: #3f3f3f;
 	}

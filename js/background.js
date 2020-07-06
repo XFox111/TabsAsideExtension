@@ -1,28 +1,9 @@
-chrome.browserAction.onClicked.addListener(function (tab)
+chrome.browserAction.onClicked.addListener((tab) =>
 {
 	if (tab.url.startsWith("http")
 		&& !tab.url.includes("chrome.google.com")
 		&& !tab.url.includes("microsoftedge.microsoft.com"))
 	{
-		chrome.tabs.insertCSS(
-			{
-				file: "css/style.css",
-				allFrames: true,
-				runAt: "document_idle"
-			});
-		chrome.tabs.insertCSS(
-			{
-				file: "css/style.generic.css",
-				allFrames: true,
-				runAt: "document_idle"
-			});
-		chrome.tabs.insertCSS(
-			{
-				file: "css/style.dark.css",
-				allFrames: true,
-				runAt: "document_idle"
-			});
-
 		chrome.tabs.executeScript(tab.id,
 			{
 				file: "js/aside-script.js",
@@ -30,89 +11,38 @@ chrome.browserAction.onClicked.addListener(function (tab)
 				runAt: "document_idle"
 			});
 	}
-	else if (tab.url.startsWith("chrome-extension") && tab.url.endsWith("TabsAside.html"))
+	else if (tab.url == chrome.runtime.getURL("TabsAside.html"))
 		chrome.tabs.remove(tab.id);
 	else
 	{
-		chrome.tabs.create({
-			url: chrome.extension.getURL("TabsAside.html"),
-			active: true
-		},
-			chrome.tabs.onActivated.addListener(function TabsAsideCloser(activeInfo) {
-				chrome.tabs.query({ url: chrome.extension.getURL("TabsAside.html") }, function (result) {
-					if (result.length)
-						setTimeout(function () {
-							result.forEach(i => {
-								if (activeInfo.tabId != i.id)
-									chrome.tabs.remove(i.id);
-							});
-						}, 200);
-					else chrome.tabs.onActivated.removeListener(TabsAsideCloser);
-				});
-			}));
+		chrome.tabs.create(
+			{
+				url: chrome.extension.getURL("TabsAside.html"),
+				active: true
+			},
+			(activeTab) =>
+				chrome.tabs.onActivated.addListener(function TabsAsideCloser(activeInfo) 
+				{
+					chrome.tabs.query({ url: chrome.extension.getURL("TabsAside.html") }, (result) =>
+					{
+						if (result.length)
+							setTimeout(() =>
+							{
+								result.forEach(i => 
+									{
+									if (activeInfo.tabId != i.id)
+										chrome.tabs.remove(i.id);
+									});
+							}, 200);
+						else chrome.tabs.onActivated.removeListener(TabsAsideCloser);
+					});
+				}));
 	}
 });
 
+var collections = JSON.parse(localStorage.getItem("sets")) || [];
 
-function UpdateTheme()
-{
-	if (window.matchMedia("(prefers-color-scheme: dark)").matches)
-	{
-		if (collections.length)
-			chrome.browserAction.setIcon(
-				{
-					path:
-					{
-						"128": "icons/dark/full/128.png",
-						"48": "icons/dark/full/48.png",
-						"32": "icons/dark/full/32.png",
-						"16": "icons/dark/full/16.png"
-					}
-				});
-		else
-			chrome.browserAction.setIcon(
-				{
-					path:
-					{
-						"128": "icons/dark/empty/128.png",
-						"48": "icons/dark/empty/48.png",
-						"32": "icons/dark/empty/32.png",
-						"16": "icons/dark/empty/16.png"
-					}
-				});
-	}
-	else
-	{
-		if (collections.length)
-			chrome.browserAction.setIcon(
-				{
-					path:
-					{
-						"128": "icons/light/full/128.png",
-						"48": "icons/light/full/48.png",
-						"32": "icons/light/full/32.png",
-						"16": "icons/light/full/16.png"
-					}
-				});
-		else
-			chrome.browserAction.setIcon(
-				{
-					path:
-					{
-						"128": "icons/light/empty/128.png",
-						"48": "icons/light/empty/48.png",
-						"32": "icons/light/empty/32.png",
-						"16": "icons/light/empty/16.png"
-					}
-				});
-	}
-}
-
-var collections = JSON.parse(localStorage.getItem("sets"));
-if (collections == null)
-	collections = [];
-
-chrome.runtime.onMessage.addListener(function (message, sender, sendResponse)
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) =>
 {
 	switch (message.command)
 	{
@@ -137,33 +67,47 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse)
 			RemoveTab(message.collectionIndex, message.tabIndex);
 			sendResponse();
 			break;
-		case "toFavorites":
-			AddTabsToFavorites(message.collectionIndex);
-			break;
-		case "share":
-			ShareTabs(message.collectionIndex);
-			break;
 	}
 });
 
+// This function updates the extension's toolbar icon
+function UpdateTheme()
+{
+	var theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+	var iconStatus = collections.length ? "full" : "empty";
+
+	var basePath = "icons/" + theme + "/" + iconStatus + "/";
+
+	chrome.browserAction.setIcon(
+		{
+			path:
+			{
+				"128": basePath + "128.png",
+				"48": basePath + "48.png",
+				"32": basePath + "32.png",
+				"16": basePath + "16.png"
+			}
+		});
+}
+
 UpdateTheme();
 chrome.windows.onFocusChanged.addListener(UpdateTheme);
-
 chrome.tabs.onUpdated.addListener(UpdateTheme);
 chrome.tabs.onActivated.addListener(UpdateTheme);
 
+// Set current tabs aside
 function SaveCollection()
 {
-	chrome.tabs.query({ currentWindow: true }, function (rawTabs)
+	chrome.tabs.query({ currentWindow: true }, (rawTabs) =>
 	{
-		var tabs = rawTabs.filter(i => !(i.url.startsWith("chrome-extension") && i.url.endsWith("TabsAside.html")) && !i.pinned && !i.url.includes("//newtab"));
+		var tabs = rawTabs.filter(i => i.url != chrome.runtime.getURL("TabsAside.html") && !i.pinned && !i.url.includes("//newtab"));
 
 		if (tabs.length < 1)
 		{
 			alert("No tabs available to save");
 			return;
 		}
-		
+
 		var collection =
 		{
 			timestamp: Date.now(),
@@ -188,9 +132,11 @@ function SaveCollection()
 		collections = JSON.parse(localStorage.getItem("sets"));
 
 		var newTabId;
-		chrome.tabs.create({}, function(tab) { newTabId = tab.id; });
-		
-		chrome.tabs.remove(rawTabs.filter(i => !i.url.startsWith("chrome-extension") && !i.url.endsWith("TabsAside.html") && !i.pinned && i.id != newTabId).map(tab => tab.id));
+		chrome.tabs.create({}, (tab) => 
+		{
+			newTabId = tab.id;
+			chrome.tabs.remove(rawTabs.filter(i => !i.pinned && i.id != newTabId).map(tab => tab.id));
+		});
 
 		UpdateTheme();
 	});
@@ -212,20 +158,23 @@ function RestoreCollection(collectionIndex, removeCollection)
 			{
 				url: i,
 				active: false
-			} , function (createdTab)
-		{
-			chrome.storage.sync.get({ "loadOnRestore" : false }, values => {
-				if (!values.loadOnRestore)
-					chrome.tabs.onUpdated.addListener(function discarder(updatedTabId, changeInfo, updatedTab) {
-						if (updatedTabId === createdTab.id) {
-							chrome.tabs.onUpdated.removeListener(discarder);
-							if (!updatedTab.active) {
-								chrome.tabs.discard(updatedTabId);
+			},
+			(createdTab) =>
+			{
+				chrome.storage.sync.get({ "loadOnRestore" : false }, values => 
+				{
+					if (!values.loadOnRestore)
+						chrome.tabs.onUpdated.addListener(function DiscardTab(updatedTabId, changeInfo, updatedTab) 
+						{
+							if (updatedTabId === createdTab.id) {
+								chrome.tabs.onUpdated.removeListener(DiscardTab);
+								if (!updatedTab.active) {
+									chrome.tabs.discard(updatedTabId);
+								}
 							}
-						}
-					});
+						});
+				});
 			});
-		});
 	});
 
 	if (!removeCollection)
@@ -235,24 +184,6 @@ function RestoreCollection(collectionIndex, removeCollection)
 	localStorage.setItem("sets", JSON.stringify(collections));
 
 	UpdateTheme();
-}
-
-function AddTabsToFavorites(collectionIndex)
-{
-	alert("Adding to favorites");
-	/*for (var i = 0; i < collections[collectionIndex].links.length; i++)
-	{
-		chrome.bookmarks.create(
-			{
-				title: collections[collectionIndex].titles[i],
-				url: collections[collectionIndex].links[i],
-			});
-	}*/
-}
-
-function ShareTabs(collectionId)
-{
-	alert("Sharing");
 }
 
 function RemoveTab(collectionIndex, tabIndex)
@@ -292,7 +223,7 @@ function RemoveTab(collectionIndex, tabIndex)
 
 var thumbnails = [];
 
-function AppendThumbnail(tabId, cahngeInfo, tab)
+function AppendThumbnail(tabId, tab)
 {
 	if (!tab.active || !tab.url.startsWith("http"))
 		return;
@@ -302,7 +233,7 @@ function AppendThumbnail(tabId, cahngeInfo, tab)
 			format: "jpeg",
 			quality: 1
 		},
-		function (dataUrl)
+		(dataUrl) =>
 		{
 			if (!dataUrl)
 			{
@@ -325,4 +256,8 @@ function AppendThumbnail(tabId, cahngeInfo, tab)
 	);
 }
 
-chrome.tabs.onUpdated.addListener(AppendThumbnail);
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) =>
+{
+	if (changeInfo.status === "complete")
+		AppendThumbnail(tabId, tab)
+});

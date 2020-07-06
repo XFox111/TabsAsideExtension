@@ -1,260 +1,240 @@
 .tabsAside.background
 {
-	z-index: 9999 !important;
-	background-color: rgba(255, 255, 255, .5) !important;
-	position: fixed !important;
-	top: 0 !important;
-	bottom: 0 !important;
-	right: 0 !important;
-	left: 0 !important;
-	transition: .2s !important;
-	opacity: 0;
-	color: black !important;
+	background-color: rgba(255, 255, 255, .5);
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	transition: .2s;
+	color: black;
 }
 
 .tabsAside.pane
 {
-	font-family: 'Segoe UI', 'Segoe MDL2 Assets' !important;
-	user-select: none !important;
-	position: fixed !important;
+	user-select: none;
+	position: fixed;
 
-	right: 0px !important;
-	top: 0px !important;
-	bottom: 0px !important;
-	overflow: auto !important;
+	right: 0px;
+	top: 0px;
+	bottom: 0px;
+	overflow: auto;
 	
-	width: 40%;
-	min-width: 500px !important;
+	width: 100%;
+	min-width: 500px;
 
-	background-color: #f7f7f7 !important;
-	border: 1px solid rgba(100, 100, 100, .5) !important;
-	border-width: 0px 0px 0px 1px !important;
-	box-sizing: border-box !important;
-	box-shadow: 6px 0px 12px black !important;
+	background-color: #f7f7f7;
+	border: 1px solid rgba(100, 100, 100, .5);
+	border-width: 0px 0px 0px 1px;
+	box-shadow: 6px 0px 12px black;
 
-	font-size: small !important;
+	font-size: 13px;
 
-	transform: translateX(110%);	/* Pane is hidden */
-	transition: .2s !important;
-	text-align: initial !important;
+	transform: translateX(110%);	/* pane is hidded */
+	transition: .2s;
 }
+
+	aside[embedded]
+	{
+		width: 40% !important;
+	}
 
 	.tabsAside.pane[opened]
 	{
-		transform: translateX(0px) !important;
+		transform: translateX(0px);
 	}
 
 	/* Pane header*/
 	.tabsAside.pane > header
 	{
-		margin: 20px 40px !important;
-		line-height: initial !important;
-		height: initial !important;
+		margin: 20px 40px;
 	}
 		.tabsAside.pane > header > div
 		{
-			display: grid !important;
-			grid-template-columns: 1fr auto !important;
+			display: grid;
+			grid-template-columns: 1fr auto;
 		}
 
 			.tabsAside.pane > header > div > h1
 			{
-				margin: 10px 0px !important;
-				font-weight: normal !important;
-				font-size: 21pt !important;
-				direction: initial !important;
-				color: inherit !important;
-				line-height: initial !important;
-				font-family: inherit !important;
+				margin: 10px 0px;
+				font-weight: normal;
+				font-size: 21pt;
 			}
 
 			.tabsAside.pane > header > div > button
 			{
-				margin: auto !important;
+				margin: auto;
 			}
 			
 			.tabsAside.pane > header > div > nav
 			{
-				top: 70px !important;
-				right: 40px !important;
+				top: 70px;
+				right: 40px;
 			}
 
-				.tabsAside.pane > header > div > nav > div
+				.tabsAside.pane > header nav > div
 				{
-					box-shadow: 0px 4px 5px -2px rgba(100, 100, 100, .5) !important;
-					cursor: initial !important;
-					overflow: hidden !important;
+					box-shadow: 0px 4px 5px -2px rgba(100, 100, 100, .5);
 				}
 
-				.tabsAside.pane > header > div > nav > p
+				.tabsAside.pane > header nav > p
 				{
-					margin: 10px !important;
-					font-family: inherit !important;
-					font-size: inherit !important;
-					line-height: initial !important;
+					margin: 10px;
 				}
 
-					.tabsAside.pane > header > div > nav > p > small
-					{
-						font-size: inherit !important;
-						font-family: inherit !important;
-					}
-
-					.tabsAside.pane > header > div > nav > p > a
+					.tabsAside.pane > header nav > p > a
 					{
 						text-decoration: none;
-						font-size: inherit !important;
-						border: none !important;
 					}
 
-		.tabsAside.pane > header > a
+		.iconArrowRight
 		{
-			font-size: inherit;
+			width: 13px;
+			height: 13px;
+			display: inline-block;
+			background-repeat: no-repeat;
+			background-size: 13px;
+			background-position: center;
+			background-image: url("chrome-extension://__MSG_@@extension_id__/icons/arrowRight.svg");
 		}
 
 		.tabsAside.pane > header > hr
 		{
-			border: 1px solid #8a8a8a !important;
-			direction: initial !important;
-			color: inherit !important;
-			height: initial !important;
-			margin: 6.5px 0px !important;
+			border: 1px solid #8a8a8a;
 		}
 
 	.tabsAside.pane > section > h2
 	{
-		color: inherit !important;
-		margin: 0px 40px !important;
-		font-weight: normal !important;
-		font-size: 1.5em !important;
-		line-height: normal !important;
+		margin: 0px 40px;
+		font-weight: normal;
 	}
 
 	/* Collection header */
 	.tabsAside.pane > section > div
 	{
-		transition: .2s !important;
+		transition: .2s;
 	}
 
-	.tabsAside.pane > section > div > div:first-child
+	.collectionSet > .header
 	{
-		margin: 0px 20px !important;
-		display: grid !important;
-		grid-template-columns: auto 1fr auto auto auto !important;
-		grid-column-gap: 10px !important;
-		align-items: center !important;
+		margin: 0px 20px;
+		display: grid;
+		grid-template-columns: auto 1fr auto auto auto;
+		grid-column-gap: 10px;
+		align-items: center;
 	}
 
-		.tabsAside.pane > section > div > div:first-child > small
+		.collectionSet > .header > small
 		{
-			color: gray !important;
-			font-size: smaller !important;
+			color: gray;
 		}
 		
-		.tabsAside.pane > section > div > div:first-child > span
+		.collectionSet > .header > span
 		{
-			font-weight: 600 !important;
+			font-weight: 600;
 		}
 		
-		.tabsAside.pane > section > div > div:first-child > a
+		.collectionSet > .header > a
 		{
-			font-size: 11pt !important;
-			line-height: initial !important;
+			font-size: 11pt;
 		}
 
-			.tabsAside.pane > section > div > div:first-child > div > nav
-			{
-				width: 250px !important;
-				margin-top: 40px !important;
-				right: 50px !important;
-			}
+		.collectionSet > .header > div > nav
+		{
+			width: 250px;
+			right: 60px;
+		}
 
 		/* Tabs collection */
-		.tabsAside.pane > section > div > div:last-child
+		.collectionSet > .set
 		{
-			margin: 0px 0px 0px 20px !important;
-			padding: 10px 40px 10px 20px !important;
-			white-space: nowrap !important;
-			overflow: auto !important;
+			margin: 0px 0px 0px 20px;
+			padding: 10px 40px 10px 20px;
+			white-space: nowrap;
+			overflow: auto;
 		}
 
-			.tabsAside.pane > section > div > div:last-child:hover::-webkit-scrollbar-thumb
+			.collectionSet > .set::-webkit-scrollbar-thumb
 			{
-				visibility: visible !important;
+				visibility: hidden;
 			}
 
-			.tabsAside.pane > section > div > div:last-child > div
+			.collectionSet > .set:hover::-webkit-scrollbar-thumb
 			{
-				width: 175px !important;
-				height: 148px !important;
-				margin: 5px !important;
+				visibility: visible;
+			}	
 
-				background-color: #c2c2c2 !important;
+			.collectionSet > .set > div
+			{
+				width: 175px;
+				height: 148px;
+				margin: 5px;
+
+				background-color: #c2c2c2;
 				background-image: url("chrome-extension://__MSG_@@extension_id__/images/tab_thumbnail.png");
-				background-size: cover !important;
-				background-position-x: center !important;
+				background-size: cover;
+				background-position-x: center;
 
-				display: inline-grid !important;
-				grid-template-rows: 1fr auto !important;
+				display: inline-grid;
+				grid-template-rows: 1fr auto;
 
-				box-shadow: 0px 0px 5px rgba(100, 100, 100, .5) !important;
-				transition: .25s !important;
-				cursor: pointer !important;
+				box-shadow: 0px 0px 5px rgba(100, 100, 100, .5);
+				transition: .25s;
+				cursor: pointer;
 			}
-				.tabsAside.pane > section > div > div:last-child > div:hover
+				.collectionSet > .set > div:hover
 				{
-					filter: brightness(120%) !important;
-					box-shadow: 0px 0px 15px rgba(100, 100, 100, .5) !important;
+					filter: brightness(120%);
+					box-shadow: 0px 0px 15px rgba(100, 100, 100, .5);
 				}
 
-				.tabsAside.pane > section > div > div:last-child > div > div
+				.collectionSet > .set > div > div
 				{
-					background-color: rgba(233, 233, 233, .75) !important;
-					grid-row: 2 !important;
-					display: grid !important;
-					grid-template-columns: auto 1fr auto !important;
+					background-color: rgba(233, 233, 233, .75);
+					grid-row: 2;
+					display: grid;
+					grid-template-columns: auto 1fr auto;
 				}
 
-					.tabsAside.pane > section > div > div:last-child > div > div > button
+					.collectionSet > .set > div > div > button
 					{
-						margin: auto !important;
-						margin-right: 5px !important;
-						display: none !important;
+						margin: auto;
+						margin-right: 5px;
+						display: none;
 					}
 
-					.tabsAside.pane > section > div > div:last-child > div:hover > div > button
+					.collectionSet > .set > div:hover > div > button
 					{
-						display: initial !important;
+						display: initial;
 					}
 
-					.tabsAside.pane > section > div > div:last-child > div > div > div
+					.collectionSet > .set > div > div > div
 					{
-						width: 20px !important;
-						height: 20px !important;
-						margin: 10px !important;
+						width: 20px;
+						height: 20px;
+						margin: 10px;
 
 						background-image: url("chrome-extension://__MSG_@@extension_id__/images/tab_icon.png");
-						background-size: 20px !important;
+						background-size: 20px;
 					}
 
-					.tabsAside.pane > section > div > div:last-child > div > div > span
+					.collectionSet > .set > div > div > span
 					{
-						overflow: hidden !important;
-						margin: auto 0px !important;
-						margin-right: 10px !important;
-						line-height: initial !important;
+						overflow: hidden;
+						margin: auto 0px;
+						margin-right: 10px;
 					}
-					.tabsAside.pane > section > div > div:last-child > div:hover > div > span
+					.collectionSet > .set > div:hover > div > span
 					{
-						margin-right: 5px !important;
+						margin-right: 5px;
 					}
 
 @media only screen and (max-width: 500px)
 {
 	.tabsAside.pane
 	{
-		width: initial !important;
-		left: 0px !important;
-		min-width: initial !important;
+		width: 100% !important;
+		min-width: initial;
 	}
 }

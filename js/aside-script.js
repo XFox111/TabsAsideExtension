@@ -1,116 +1,66 @@
-if (document.location.protocol == "chrome-extension:")
-	InitializeStandalone();
-else
+if (window.location === window.parent.location && window.location.protocol != "chrome-extension:")	// For open/close call
 {
-	setTimeout(function ()
+	var iframe = document.querySelector("iframe.tabsAsideIframe");
+	if (!iframe)
 	{
-		var pane = document.querySelector(".tabsAside.pane");
+		iframe = document.createElement('iframe');
 
-		if (pane == null)
+		iframe.setAttribute("class", "tabsAsideIframe");
+
+		iframe.style.position = "fixed";
+		iframe.style.zIndex = "2147483647";
+
+		iframe.style.height = "100%";
+		iframe.style.width = "100%";
+
+		iframe.style.top = "0px";
+		iframe.style.right = "0px";
+		iframe.style.left = "0px";
+		iframe.style.bottom = "0px";
+
+		iframe.style.border = "none";
+		iframe.style.background = "transparent";
+		iframe.style.opacity = 0;
+
+		var bodyStyle = document.body.getAttribute("style");
+		document.body.setAttribute("style", "overflow: hidden !important");
+
+		iframe.onload = () => setTimeout(() => iframe.style.opacity = 1, 100);
+
+		iframe.src = chrome.extension.getURL("TabsAside.html");
+		document.body.appendChild(iframe);
+	}
+	else
+	{
+		iframe.contentWindow.postMessage({ target: "TabsAside", command: "TogglePane" }, "*");
+		setTimeout(() =>
 		{
-			var xhr = new XMLHttpRequest();
-			xhr.open('GET', chrome.extension.getURL("collections.html"), true);
-			xhr.onreadystatechange = function ()
-			{
-				if (this.status !== 200 || document.querySelector("#aside-pane") != null)
-					return;
-
-				if (document.querySelector(".tabsAside.pane") == null)
-				{
-					document.body.innerHTML += this.responseText;
-					chrome.runtime.sendMessage({ command: "loadData" }, function (collections)
-					{
-						if (document.querySelector(".tabsAside.pane section div") == null)
-							collections.forEach(i => 
-							{
-								AddCollection(i);
-							});
-					});
-				}
-
-				setTimeout(function ()
-				{
-					pane = document.querySelector(".tabsAside.pane");
-
-					if (window.matchMedia("(prefers-color-scheme: dark)").matches)
-						pane.parentElement.setAttribute("darkmode", "");
-
-					document.querySelector(".tabsAside .saveTabs").onclick = SetTabsAside;
-
-					document.querySelector("nav > p > small").textContent = chrome.runtime.getManifest()["version"];
-
-					var loadOnRestoreCheckbox = document.querySelector("nav > p > input[type=checkbox]");
-					chrome.storage.sync.get({ "loadOnRestore": false },
-						values => loadOnRestoreCheckbox.checked = values.loadOnRestore
-					);
-					chrome.storage.onChanged.addListener(function (changes, namespace) {
-						if (namespace == 'sync'){
-							for (key in changes) {
-								if (key === 'loadOnRestore') {
-									loadOnRestoreCheckbox.checked = changes[key].newValue
-								}
-							}
-						}
-					});
-					loadOnRestoreCheckbox.addEventListener("click", function ()
-					{
-						chrome.storage.sync.set(
-							{
-								"loadOnRestore": loadOnRestoreCheckbox.checked
-							});
-					});
-
-					document.querySelectorAll(".tabsAside.pane > header nav button").forEach(i => 
-					{
-						i.onclick = function () { window.open(i.value, '_blank'); };
-					});
-
-					document.querySelector(".tabsAside.background").addEventListener("click", function (event)
-					{
-						if (event.target == pane.parentElement)
-						{
-							pane.removeAttribute("opened");
-							pane.parentElement.style.opacity = 0;
-							document.body.style.overflow = "";
-							setTimeout(function ()
-							{
-								pane.parentElement.remove();
-							}, 300);
-						}
-					});
-
-					pane.setAttribute("opened", "");
-					pane.parentElement.style.opacity = 1;
-					document.body.style.overflow = "hidden";
-				}, 50);
-			};
-			xhr.send();
-		}
-		else
-		{
-			if (pane.hasAttribute("opened"))
-			{
-				pane.removeAttribute("opened");
-				pane.parentElement.style.opacity = 0;
-				document.body.style.overflow = "";
-				setTimeout(function ()
-				{
-					if (!pane.hasAttribute("opened"))
-						pane.parentElement.remove();
-				}, 300);
-			}
-			else
-			{
-				pane.setAttribute("opened", "");
-				pane.parentElement.style.opacity = 1;
-			}
-		}
-	}, 50);
+			iframe.remove();
+			document.body.setAttribute("style", bodyStyle);
+		}, 250);
+	}
 }
+else // For init call
+	Initialize();
 
-function InitializeStandalone()
+function Initialize()
 {
-	pane = document.querySelector(".tabsAside.pane");
+	var pane = document.querySelector(".tabsAside.pane");
+	if (!pane)
+		return;
+
+	if (window.location !== window.parent.location)
+	{
+		pane.setAttribute("embedded", "");
+		window.addEventListener('message', event => 
+		{
+			if (event.data.target == "TabsAside")
+			{
+				pane.parentElement.style.opacity = 0;
+				pane.removeAttribute("opened");
+			}
+		}); 
+	}
 
 	if (window.matchMedia("(prefers-color-scheme: dark)").matches)
 	{
@@ -123,39 +73,35 @@ function InitializeStandalone()
 	document.querySelector("nav > p > small").textContent = chrome.runtime.getManifest()["version"];
 
 	var loadOnRestoreCheckbox = document.querySelector("nav > p > input[type=checkbox]");
-	chrome.storage.sync.get({ "loadOnRestore": false },
+	chrome.storage.sync.get(
+		{ "loadOnRestore": false },
 		values => loadOnRestoreCheckbox.checked = values.loadOnRestore
 	);
-	chrome.storage.onChanged.addListener(function (changes, namespace) {
-		if (namespace == 'sync'){
-			for (key in changes) {
-				if (key === 'loadOnRestore') {
-					loadOnRestoreCheckbox.checked = changes[key].newValue
-				}
-			}
-		}
-	});
-	loadOnRestoreCheckbox.addEventListener("click", function ()
+	chrome.storage.onChanged.addListener((changes, namespace) =>
 	{
+		if (namespace == 'sync')
+			for (key in changes)
+				if (key === 'loadOnRestore')
+					loadOnRestoreCheckbox.checked = changes[key].newValue
+	});
+	loadOnRestoreCheckbox.addEventListener("click", () =>
 		chrome.storage.sync.set(
 			{
 				"loadOnRestore": loadOnRestoreCheckbox.checked
-			});
-	});
+			})
+	);
 
 	document.querySelectorAll(".tabsAside.pane > header nav button").forEach(i => 
-	{
-		i.onclick = function () { window.open(i.value, '_blank'); };
-	});
+		i.onclick = () => window.open(i.value, '_blank'));
 
-	chrome.runtime.sendMessage({ command: "loadData" }, function (collections)
+	chrome.runtime.sendMessage({ command: "loadData" }, (collections) =>
 	{
 		if (document.querySelector(".tabsAside.pane section div") == null)
 			collections.forEach(i => 
-			{
-				AddCollection(i);
-			});
+				AddCollection(i));
 	});
+
+	setTimeout(() => pane.setAttribute("opened", ""), 100);
 }
 
 function AddCollection(collection)
@@ -169,75 +115,53 @@ function AddCollection(collection)
 	{
 		rawTabs +=
 			"<div title='" + collection.titles[i] + "'" + ((collection.thumbnails && collection.thumbnails[i]) ? " style='background-image: url(" + collection.thumbnails[i] + ")'" : "") + ">" +
-			"<span value='" + collection.links[i] + "'></span>" +
-			"<div>" +
-			"<div" + ((collection.icons[i] == 0 || collection.icons[i] == null) ? "" : " style='background-image: url(\"" + collection.icons[i] + "\")'") + "></div>" +
-			"<span>" + collection.titles[i] + "</span>" +
-			"<button title='Remove tab from collection'>&#xE106;</button>" +
-			"</div>" +
+				"<span class='openTab' value='" + collection.links[i] + "'></span>" +
+				"<div>" +
+					"<div" + ((collection.icons[i] == 0 || collection.icons[i] == null) ? "" : " style='background-image: url(\"" + collection.icons[i] + "\")'") + "></div>" +
+					"<span>" + collection.titles[i] + "</span>" +
+					"<button class='btn remove' title='Remove tab from collection'></button>" +
+				"</div>" +
 			"</div>";
 	}
 
-	list.innerHTML += "<div>" +
-		"<div>" +
-		"<span>Tabs: " + collection.links.length + "</span>" +
-		"<small>" + GetAgo(collection.timestamp) + "</small>" +
-		"<a>Restore tabs</a>" +
-		"<div>" +
-		"<button title='More...'>&#xE10C;</button>" +
-		"<nav>" +
-		"<button>Restore without removing</button>" +
-		// "<button hidden>Add tabs to favorites</button>" +
-		// "<button hidden>Share tabs</button>" +
-		"</nav>" +
-		"</div>" +
-		"<button title='Remove collection'>&#xE106;</button>" +
-		"</div>" +
+	list.innerHTML +=
+		"<div class='collectionSet'>" +
+			"<div class='header'>" +
+				"<span>Tabs: " + collection.links.length + "</span>" +
+				"<small>" + GetAgo(collection.timestamp) + "</small>" +
+				"<a class='restoreCollection'>Restore tabs</a>" +
+				"<div>" +
+					"<button class='btn more' title='More...'></button>" +
+					"<nav>" +
+						"<button class='restoreCollection noDelete'>Restore without removing</button>" +
+					"</nav>" +
+				"</div>" +
+				"<button class='btn remove' title='Remove collection'></button>" +
+			"</div>" +
 
-		"<div>" + rawTabs + "</div>" +
+			"<div class='set' class='tabsList'>" + rawTabs + "</div>" +
 		"</div>"
 
-	list.querySelectorAll("a").forEach(i => 
-	{
-		i.onclick = function () { RestoreTabs(i.parentElement.parentElement) };
-	});
+	list.querySelectorAll(".restoreCollection").forEach(i => 
+		i.onclick = () => RestoreTabs(i.parentElement.parentElement));
 
-	list.querySelectorAll("nav button:first-child").forEach(i => 
-	{
-		i.onclick = function () { RestoreTabs(i.parentElement.parentElement.parentElement.parentElement, false) };
-	});
+	list.querySelectorAll(".restoreCollection.noDelete").forEach(i => 
+		i.onclick = () => RestoreTabs(i.parentElement.parentElement.parentElement.parentElement, false));
 
-	list.querySelectorAll("div > div:last-child > div > span").forEach(i => 
-	{
-		i.onclick = function ()
-		{
+	list.querySelectorAll(".openTab").forEach(i =>
+		i.onclick = () =>
 			chrome.runtime.sendMessage(
 				{
 					command: "openTab",
 					url: i.getAttribute("value")
 				}
-			);
-		};
-	})
+			));
 
-	document.querySelectorAll(".tabsAside.pane > section > div > div:first-child > button").forEach(i => 
-	{
-		i.onclick = function () { RemoveTabs(i.parentElement.parentElement) };
-	});
+	document.querySelectorAll(".btn.remove").forEach(i =>
+		i.onclick = () => RemoveTabs(i.parentElement.parentElement));
 
-	/*document.querySelectorAll(".tabsAside.pane > section > div > div:first-child > div > nav > button:first-child").forEach(i => 
-	{
-		i.onclick = function () { AddToFavorites(i.parentElement.parentElement.parentElement.parentElement) };
-	});
-	document.querySelectorAll(".tabsAside.pane > section > div > div:first-child > div > nav > button:last-child").forEach(i => 
-	{
-		i.onclick = function () { ShareTabs(i.parentElement.parentElement.parentElement.parentElement) };
-	});*/
-
-	document.querySelectorAll(".tabsAside.pane > section > div > div:last-child > div > div > button").forEach(i => 
-	{
-		i.onclick = function () { RemoveOneTab(i.parentElement.parentElement) };
-	});
+	document.querySelectorAll(".tabsList .btn.remove").forEach(i =>
+		i.onclick = () => RemoveOneTab(i.parentElement.parentElement));
 }
 
 function SetTabsAside()
@@ -253,85 +177,47 @@ function RestoreTabs(collectionData, removeCollection = true)
 			removeCollection: removeCollection,
 			collectionIndex: Array.prototype.slice.call(collectionData.parentElement.children).indexOf(collectionData) - 1
 		},
-		function ()
+		() =>
 		{
-			if (!removeCollection)
-				return;
-
-			if (collectionData.parentElement.children.length < 3)
-			{
-				RemoveElement(collectionData);
-				setTimeout(function ()
-				{
-					document.querySelector(".tabsAside.pane > section > h2").removeAttribute("hidden");
-				}, 250);
-			}
-			else
-				RemoveElement(collectionData);
+			if (removeCollection)
+				RemoveCollectionElement(collectionData);
 		}
 	);
 }
 
 function RemoveTabs(collectionData)
 {
+	if (!confirm("Are you sure you want to delete this collection?"))
+		return;
+
 	chrome.runtime.sendMessage(
 		{
 			command: "deleteTabs",
 			collectionIndex: Array.prototype.slice.call(collectionData.parentElement.children).indexOf(collectionData) - 1
 		},
-		function ()
-		{
-			if (collectionData.parentElement.children.length < 3)
-			{
-				RemoveElement(collectionData);
-				setTimeout(function ()
-				{
-					document.querySelector(".tabsAside.pane > section > h2").removeAttribute("hidden");
-				}, 250);
-			}
-			else
-				RemoveElement(collectionData);
-		}
+		() => RemoveCollectionElement(collectionData)
 	);
-}
-
-function AddToFavorites(collectionData)
-{
-	chrome.runtime.sendMessage(
-		{
-			command: "toFavorites",
-			collectionIndex: Array.prototype.slice.call(collectionData.parentElement.children).indexOf(collectionData) - 1
-		});
-}
-
-function ShareTabs(collectionData)
-{
-	chrome.runtime.sendMessage(
-		{
-			command: "share",
-			collectionIndex: Array.prototype.slice.call(collectionData.parentElement.children).indexOf(collectionData) - 1
-		});
 }
 
 function RemoveOneTab(tabData)
 {
+	if (!confirm("Are you sure you want to delete this tab?"))
+		return;
+
 	chrome.runtime.sendMessage(
 		{
 			command: "removeTab",
 			collectionIndex: Array.prototype.slice.call(tabData.parentElement.parentElement.parentElement.children).indexOf(tabData.parentElement.parentElement) - 1,
 			tabIndex: Array.prototype.slice.call(tabData.parentElement.children).indexOf(tabData)
 		},
-		function ()
+		() =>
 		{
-			tabData.parentElement.previousElementSibling.children[0].textContent = "Tabs: " + tabData.parentElement.children.length - 1;
+			tabData.parentElement.previousElementSibling.children[0].textContent = "Tabs: " + (tabData.parentElement.children.length - 1);
 			if (tabData.parentElement.children.length < 2)
 			{
 				RemoveElement(tabData.parentElement.parentElement);
 				if (document.querySelector("tabsAside.pane > section").children.length < 2)
-					setTimeout(function ()
-					{
-						document.querySelector(".tabsAside.pane > section > h2").removeAttribute("hidden");
-					}, 250);
+					setTimeout(() => document.querySelector(".tabsAside.pane > section > h2").removeAttribute("hidden"), 250);
 			}
 			else
 				RemoveElement(tabData);
@@ -379,11 +265,12 @@ function GetAgo(timestamp)
 function RemoveElement(el)
 {
 	el.style.opacity = 0;
-	setTimeout(function ()
-	{
-		el.remove();
-	}, 200);
+	setTimeout(() => el.remove(), 200);
 }
 
-// TODO: Add more actions
-// TODO: Make backup system
+function RemoveCollectionElement(el)
+{
+	RemoveElement(el);
+	if (el.parentElement.children.length < 2)
+		setTimeout(() => document.querySelector(".tabsAside.pane > section > h2").removeAttribute("hidden"), 250);	
+}

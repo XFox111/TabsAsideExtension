@@ -25,6 +25,7 @@ Unfortunately, in new Chromium-based Microsoft Edge, the devs decided not to imp
 - Familiar UI inherited from legacy Microsoft Edge with some improvements
 - Auto Dark mode
 - Now you can restore one tab from collection without removing
+- Now you can choose if you want to load restored tabs only when you're navigating onto them
 
 ## Download
 - [Google Chrome Webstore](https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin)
@@ -33,6 +34,23 @@ Unfortunately, in new Chromium-based Microsoft Edge, the devs decided not to imp
 
 ## Project roadmap
 You can go to the project's [roadmap kanban board](https://github.com/XFox111/ChromiumTabsAside/projects/1) and see what have we planned and watch our progress in realtime
+
+## Contributing
+There are many ways in which you can participate in the project, for example:
+- [Submit bugs and feature requests](https://github.com/xfox111/gutschedule/issues), and help us verify as they are checked in
+- Review [source code changes](https://github.com/xfox111/gutschedule/pulls)
+- Review documentation and make pull requests for anything from typos to new content
+
+If you are interested in fixing issues and contributing directly to the code base, please see the [Contribution Guidelines](https://github.com/XFox111/ChromiumTabsAside/blob/master/CONTRIBUTING.md), which covers the following:
+- [How to deploy the extension on your browser](https://github.com/XFox111/ChromiumTabsAside/blob/master/CONTRIBUTING.md#deploy-test-version-on-your-browser)
+- [The development workflow](https://github.com/XFox111/ChromiumTabsAside/blob/master/CONTRIBUTING.md#development-workflow), including debugging and running tests
+- [Coding guidelines](https://github.com/XFox111/ChromiumTabsAside/blob/master/CONTRIBUTING.md#coding-guidelines)
+- [Submitting pull requests](https://github.com/XFox111/ChromiumTabsAside/blob/master/CONTRIBUTING.md#submitting-pull-requests)
+- [Finding an issue to work on](https://github.com/XFox111/ChromiumTabsAside/blob/master/CONTRIBUTING.md#finding-an-issue-to-work-on)
+- [Contributing to translations](https://github.com/XFox111/ChromiumTabsAside/blob/master/CONTRIBUTING.md#contributing-to-translations)
+
+## Code of Conduct
+This project has adopted the Contributor Covenant. For more information see the [Code of Conduct](https://github.com/XFox111/ChromiumTabsAside/blob/master/CODE_OF_CONDUCT.md)
 
 ## Copyrights
 > ©2020 Michael "XFox" Gordeev
