@@ -92,7 +92,18 @@ function Initialize()
 	);
 
 	document.querySelectorAll(".tabsAside.pane > header nav button").forEach(i => 
-		i.onclick = () => window.open(i.value, '_blank'));
+		i.onclick = () =>
+		{
+			if (i.hasAttribute("feedback-button"))
+			{
+				if (chrome.runtime.getManifest()["update_url"] && chrome.runtime.getManifest()["update_url"].includes("edge.microsoft.com"))
+					window.open("https://microsoftedge.microsoft.com/addons/detail/tabs-aside/kmnblllmalkiapkfknnlpobmjjdnlhnd", "_blank")
+				else
+					window.open("https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin", "_blank")
+			}
+			else
+				window.open(i.value, "_blank");
+		});
 
 	chrome.runtime.sendMessage({ command: "loadData" }, (collections) =>
 	{
