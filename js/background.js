@@ -88,6 +88,12 @@ function UpdateTheme()
 				"16": basePath + "16.png"
 			}
 		});
+
+	// Updating badge counter
+	if (collections.length < 1)
+		chrome.browserAction.setBadgeText({ });
+	else
+		chrome.browserAction.setBadgeText({ text: collections.length.toString() });
 }
 
 UpdateTheme();
