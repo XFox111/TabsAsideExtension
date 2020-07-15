@@ -40,11 +40,7 @@ function TogglePane(tab)
 	}
 }
 
-chrome.browserAction.onClicked.addListener(TogglePane);
-
-var collections = JSON.parse(localStorage.getItem("sets")) || [];
-
-chrome.commands.onCommand.addListener((command) =>
+function ProcessCommand(command)
 {
 	switch(command)
 	{
@@ -61,7 +57,39 @@ chrome.commands.onCommand.addListener((command) =>
 			)
 			break;
 	}
+}
+
+chrome.browserAction.onClicked.addListener((tab) =>
+{
+	chrome.storage.sync.get({ "setAsideOnClick": false }, values => 
+	{
+		if (values.setAsideOnClick)
+			SaveCollection();
+		else
+			TogglePane(tab);
+	});
 });
+
+// Adding context menu options
+chrome.contextMenus.create(
+	{
+		id: "toggle-pane",
+		contexts: ['all'],
+		title: "Open the pane"
+	}
+);
+chrome.contextMenus.create(
+	{
+		id: "set-aside",
+		contexts: ['all'],
+		title: "Set current tabs aside"
+	}
+);
+
+var collections = JSON.parse(localStorage.getItem("sets")) || [];
+
+chrome.commands.onCommand.addListener(ProcessCommand);
+chrome.contextMenus.onClicked.addListener((info) => ProcessCommand(info.menuItemId));
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) =>
 {

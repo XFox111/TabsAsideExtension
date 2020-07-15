@@ -72,7 +72,8 @@ function Initialize()
 
 	document.querySelector("nav > p > small").textContent = chrome.runtime.getManifest()["version"];
 
-	var loadOnRestoreCheckbox = document.querySelector("nav > p > input[type=checkbox]");
+	// Tabs dismiss option
+	var loadOnRestoreCheckbox = document.querySelector("#loadOnRestore");
 	chrome.storage.sync.get(
 		{ "loadOnRestore": false },
 		values => loadOnRestoreCheckbox.checked = values.loadOnRestore
@@ -88,6 +89,26 @@ function Initialize()
 		chrome.storage.sync.set(
 			{
 				"loadOnRestore": loadOnRestoreCheckbox.checked
+			})
+	);
+
+	// Exntension browser icon action
+	var swapIconAction = document.querySelector("#swapIconAction");
+	chrome.storage.sync.get(
+		{ "setAsideOnClick": false },
+		values => swapIconAction.checked = values.setAsideOnClick
+	);
+	chrome.storage.onChanged.addListener((changes, namespace) =>
+	{
+		if (namespace == 'sync')
+			for (key in changes)
+				if (key === 'setAsideOnClick')
+					swapIconAction.checked = changes[key].newValue
+	});
+	swapIconAction.addEventListener("click", () =>
+		chrome.storage.sync.set(
+			{
+				"setAsideOnClick": swapIconAction.checked
 			})
 	);
 
