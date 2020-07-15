@@ -1,15 +1,18 @@
 {
-	"name": "Tabs Aside",
-	"version": "1.5",
+	"name": "__MSG_name__",
+	"version": "1.6",
 	"manifest_version": 2,
-	"description": "Classic Microsoft Edge \"Tabs Aside\" feature for Chromium browsers",
-	"author": "Michael \"XFox\" Gordeev",
+	"description": "__MSG_description__",
+	"author": "__MSG_author__",
+	"default_locale": "en",
+
 	"permissions": 
 	[
 		"tabs",
 		"unlimitedStorage",
 		"storage",
-		"<all_urls>"
+		"<all_urls>",
+		"contextMenus"
 	],
 	
 	"icons": 
@@ -26,5 +29,25 @@
 	{
 		"scripts": [ "js/background.js" ],
 		"persistent": false
+	},
+
+	"commands":
+	{
+		"set-aside":
+		{
+			"description": "__MSG_setAside__",
+			"suggested_key":
+			{
+				"default": "Alt+Left"
+			}
+		},
+		"toggle-pane":
+		{
+			"description": "__MSG_togglePaneContext__",
+			"suggested_key":
+			{
+				"default": "Alt+P"
+			}
+		}
 	}
 }
