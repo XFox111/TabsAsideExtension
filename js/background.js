@@ -1,4 +1,4 @@
-chrome.browserAction.onClicked.addListener((tab) =>
+function TogglePane(tab)
 {
 	if (tab.url.startsWith("http")
 		&& !tab.url.includes("chrome.google.com")
@@ -38,9 +38,30 @@ chrome.browserAction.onClicked.addListener((tab) =>
 					});
 				}));
 	}
-});
+}
+
+chrome.browserAction.onClicked.addListener(TogglePane);
 
 var collections = JSON.parse(localStorage.getItem("sets")) || [];
+
+chrome.commands.onCommand.addListener((command) =>
+{
+	switch(command)
+	{
+		case "set-aside":
+			SaveCollection();
+			break;
+		case "toggle-pane":
+			chrome.tabs.query(
+				{
+					active: true,
+					currentWindow: true
+				},
+				(tabs) => TogglePane(tabs[0])
+			)
+			break;
+	}
+});
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) =>
 {

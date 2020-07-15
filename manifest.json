@@ -26,5 +26,25 @@
 	{
 		"scripts": [ "js/background.js" ],
 		"persistent": false
+	},
+
+	"commands":
+	{
+		"set-aside":
+		{
+			"description": "Set current tabs aside",
+			"suggested_key":
+			{
+				"default": "Alt+Left"
+			}
+		},
+		"toggle-pane":
+		{
+			"description": "Toggle tabs aside pane",
+			"suggested_key":
+			{
+				"default": "Alt+P"
+			}
+		}
 	}
 }
