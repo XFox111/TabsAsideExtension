@@ -1,0 +1,157 @@
+{
+	"name":
+	{
+		"message": "Tabs aside",
+		"description": "Extension name. Displayed in the manifest and pane header"
+	},
+	"description":
+	{
+		"message": "Classic Microsoft Edge \"Tabs Aside\" feature for Chromium browsers",
+		"description": "Extension description"
+	},
+	"author":
+	{
+		"message": "Michael \"XFox\" Gordeev",
+		"description": "Author name"
+	},
+	"options":
+	{
+		"message": "Options",
+		"description": "Alternative text for options button in the pane"
+	},
+	"loadOnRestore":
+	{
+		"message": "Load tabs on restore",
+		"description": "Label for option"
+	},
+	"swapIconAction":
+	{
+		"message": "Set tabs aside on extension icon click (Alt+P or right-click to open the pane)",
+		"description": "Label for option"
+	},
+	"github":
+	{
+		"message": "Visit GitHub page",
+		"description": "Link title"
+	},
+	"contributors":
+	{
+		"message": "Project contributors",
+		"description": "Link title"
+	},
+	"feedback":
+	{
+		"message": "Leave feedback",
+		"description": "Link title"
+	},
+	"buyMeACoffee":
+	{
+		"message": "Buy me a coffee!",
+		"description": "Link title"
+	},
+	"credits":
+	{
+		"message": "Developed by Michael 'XFox' Gordeev",
+		"description": "Options menu credits"
+	},
+	"setAside":
+	{
+		"message": "Set current tabs aside",
+		"description": "Save collection action name. Used in the pane, extension context menu and manifest shortcuts"
+	},
+	"nothingSaved":
+	{
+		"message": "You have no aside tabs",
+		"description": "Placeholder for empty pane"
+	},
+	"removeTab":
+	{
+		"message": "Remove tab from collection",
+		"description": "Button hint on a tab card"
+	},
+	"restoreTabs":
+	{
+		"message": "Restore tabs",
+		"description": "Collection restore action link name"
+	},
+	"more":
+	{
+		"message": "More...",
+		"description": "Collections' more button title"
+	},
+	"restoreNoRemove":
+	{
+		"message": "Restore without removing",
+		"description": "Context action item name"
+	},
+	"removeCollection":
+	{
+		"message": "Remove collection",
+		"description": "Collection remove action name"
+	},
+	"removeCollectionConfirm":
+	{
+		"message": "Are you sure you want to delete this collection?",
+		"description": "Prompt dialog content on collection deletion"
+	},
+	"removeTabConfirm":
+	{
+		"message": "Are you sure you want to delete this tab?",
+		"description": "Prompt dialog content on one tab deletion"
+	},
+	"togglePaneContext":
+	{
+		"message": "Toggle tabs aside pane",
+		"description": "Context action name. Used in extension context menu and manifest shortcuts"
+	},
+	"noTabsToSave":
+	{
+		"message": "No tabs available to save",
+		"description": "Alert dialog message when there's no tabs to save"
+	},
+	"tabs":
+	{
+		"message": "Tabs",
+		"description": "Collection tabs counter label"
+	},
+	"ago":
+	{
+		"message": "ago",
+		"description": "Human friendly timestamp part (e.g. 15 hour(s) ago)"
+	},
+	"minutes":
+	{
+		"message": "minute(s)",
+		"description": "Human friendly timestamp part (e.g. 15 minute(s) ago)"
+	},
+	"hours":
+	{
+		"message": "hour(s)",
+		"description": "Human friendly timestamp part (e.g. 15 hour(s) ago)"
+	},
+	"days":
+	{
+		"message": "day(s)",
+		"description": "Human friendly timestamp part (e.g. 15 day(s) ago)"
+	},
+	"weeks":
+	{
+		"message": "week(s)",
+		"description": "Human friendly timestamp part (e.g. 15 week(s) ago)"
+	},
+	"months":
+	{
+		"message": "month(s)",
+		"description": "Human friendly timestamp part (e.g. 15 month(s) ago)"
+	},
+	"years":
+	{
+		"message": "years(s)",
+		"description": "Human friendly timestamp part (e.g. 15 years(s) ago)"
+	},
+	"justNow":
+	{
+		"message": "Just now",
+		"description": "Human friendly timestamp part"
+	}
+}

@@ -62,6 +62,8 @@ function Initialize()
 		}); 
 	}
 
+	UpdateLocale();
+
 	if (window.matchMedia("(prefers-color-scheme: dark)").matches)
 	{
 		pane.parentElement.setAttribute("darkmode", "");
@@ -136,6 +138,12 @@ function Initialize()
 	setTimeout(() => pane.setAttribute("opened", ""), 100);
 }
 
+function UpdateLocale()
+{
+	document.querySelectorAll("*[loc]").forEach(i => i.textContent = chrome.i18n.getMessage(i.getAttribute("loc")));
+	document.querySelectorAll("*[loc_alt]").forEach(i => i.title = chrome.i18n.getMessage(i.getAttribute("loc_alt")));
+}
+
 function AddCollection(collection)
 {
 	var list = document.querySelector(".tabsAside section");
@@ -151,7 +159,7 @@ function AddCollection(collection)
 				"<div>" +
 					"<div" + ((collection.icons[i] == 0 || collection.icons[i] == null) ? "" : " style='background-image: url(\"" + collection.icons[i] + "\")'") + "></div>" +
 					"<span>" + collection.titles[i] + "</span>" +
-					"<button class='btn remove' title='Remove tab from collection'></button>" +
+					"<button loc_alt='name' class='btn remove' title='Remove tab from collection'></button>" +
 				"</div>" +
 			"</div>";
 	}
@@ -159,20 +167,22 @@ function AddCollection(collection)
 	list.innerHTML +=
 		"<div class='collectionSet'>" +
 			"<div class='header'>" +
-				"<span>Tabs: " + collection.links.length + "</span>" +
+				"<span>" + chrome.i18n.getMessage("tabs") + ": " + collection.links.length + "</span>" +
 				"<small>" + GetAgo(collection.timestamp) + "</small>" +
-				"<a class='restoreCollection'>Restore tabs</a>" +
+				"<a loc='restoreTabs' class='restoreCollection'>Restore tabs</a>" +
 				"<div>" +
-					"<button class='btn more' title='More...'></button>" +
+					"<button loc_alt='more' class='btn more' title='More...'></button>" +
 					"<nav>" +
-						"<button class='restoreCollection noDelete'>Restore without removing</button>" +
+						"<button loc='restoreNoRemove' class='restoreCollection noDelete'>Restore without removing</button>" +
 					"</nav>" +
 				"</div>" +
-				"<button class='btn remove' title='Remove collection'></button>" +
+				"<button loc_alt='removeCollection' class='btn remove' title='Remove collection'></button>" +
 			"</div>" +
 
 			"<div class='set' class='tabsList'>" + rawTabs + "</div>" +
-		"</div>"
+		"</div>";
+		
+	UpdateLocale();
 
 	list.querySelectorAll(".restoreCollection").forEach(i => 
 		i.onclick = () => RestoreTabs(i.parentElement.parentElement));
@@ -219,7 +229,7 @@ function RestoreTabs(collectionData, removeCollection = true)
 
 function RemoveTabs(collectionData)
 {
-	if (!confirm("Are you sure you want to delete this collection?"))
+	if (!confirm(chrome.i18n.getMessage("removeCollectionConfirm")))
 		return;
 
 	chrome.runtime.sendMessage(
@@ -233,7 +243,7 @@ function RemoveTabs(collectionData)
 
 function RemoveOneTab(tabData)
 {
-	if (!confirm("Are you sure you want to delete this tab?"))
+	if (!confirm(chrome.i18n.getMessage("removeTabConfirm")))
 		return;
 
 	chrome.runtime.sendMessage(
@@ -244,7 +254,7 @@ function RemoveOneTab(tabData)
 		},
 		() =>
 		{
-			tabData.parentElement.previousElementSibling.children[0].textContent = "Tabs: " + (tabData.parentElement.children.length - 1);
+			tabData.parentElement.previousElementSibling.children[0].textContent = chrome.i18n.getMessage("tabs") + ": " + (tabData.parentElement.children.length - 1);
 			if (tabData.parentElement.children.length < 2)
 			{
 				RemoveElement(tabData.parentElement.parentElement);
@@ -261,37 +271,19 @@ function GetAgo(timestamp)
 	var minutes = (Date.now() - timestamp) / 60000;
 
 	if (minutes < 1)
-		return "Just now";
-
-	else if (Math.floor(minutes) == 1)
-		return "1 minute ago";
+		return chrome.i18n.getMessage("justNow");
 	else if (minutes < 60)
-		return Math.floor(minutes) + " minutes ago";
-
-	else if (Math.floor(minutes / 60) == 1)
-		return "1 hour ago";
+		return Math.floor(minutes) + " " + chrome.i18n.getMessage("minutes") + " " + chrome.i18n.getMessage("ago");
 	else if (minutes < 24 * 60)
-		return Math.floor(minutes / 60) + " hours ago";
-
-	else if (Math.floor(minutes / 24 / 60) == 1)
-		return "1 day ago";
+		return Math.floor(minutes / 60) + " " + chrome.i18n.getMessage("hours") + " " + chrome.i18n.getMessage("ago");
 	else if (minutes < 7 * 24 * 60)
-		return Math.floor(minutes / 24 / 60) + " days ago";
-
-	else if (Math.floor(minutes / 7 / 24 / 60) == 1)
-		return "1 week ago";
+		return Math.floor(minutes / 24 / 60) + " " + chrome.i18n.getMessage("days") + " " + chrome.i18n.getMessage("ago");
 	else if (minutes < 30 * 24 * 60)
-		return Math.floor(minutes / 7 / 24 / 60) + " weeks ago";
-
-	else if (Math.floor(minutes / 30 / 24 / 60) == 1)
-		return "1 month ago";
+		return Math.floor(minutes / 7 / 24 / 60) + " " + chrome.i18n.getMessage("weeks") + " " + chrome.i18n.getMessage("ago");
 	else if (minutes < 365 * 24 * 60)
-		return Math.floor(minutes / 30 / 24 / 60) + " months ago";
-
-	else if (Math.floor(minutes / 24 / 60) == 365)
-		return "1 year ago";
+		return Math.floor(minutes / 30 / 24 / 60) + " " + chrome.i18n.getMessage("months") + " " + chrome.i18n.getMessage("ago");
 	else
-		return Math.floor(minutes / 365 / 24 / 60) + "years ago";
+		return Math.floor(minutes / 365 / 24 / 60) + " " + chrome.i18n.getMessage("years") + " " + chrome.i18n.getMessage("ago");
 }
 
 function RemoveElement(el)

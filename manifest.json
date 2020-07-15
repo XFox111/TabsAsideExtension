@@ -1,9 +1,11 @@
 {
-	"name": "Tabs Aside",
+	"name": "__MSG_name__",
 	"version": "1.6",
 	"manifest_version": 2,
-	"description": "Classic Microsoft Edge \"Tabs Aside\" feature for Chromium browsers",
-	"author": "Michael \"XFox\" Gordeev",
+	"description": "__MSG_description__",
+	"author": "__MSG_author__",
+	"default_locale": "en",
+
 	"permissions": 
 	[
 		"tabs",
@@ -33,7 +35,7 @@
 	{
 		"set-aside":
 		{
-			"description": "Set current tabs aside",
+			"description": "__MSG_setAside__",
 			"suggested_key":
 			{
 				"default": "Alt+Left"
@@ -41,7 +43,7 @@
 		},
 		"toggle-pane":
 		{
-			"description": "Toggle tabs aside pane",
+			"description": "__MSG_togglePaneContext__",
 			"suggested_key":
 			{
 				"default": "Alt+P"

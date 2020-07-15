@@ -75,14 +75,14 @@ chrome.contextMenus.create(
 	{
 		id: "toggle-pane",
 		contexts: ['all'],
-		title: "Open the pane"
+		title: chrome.i18n.getMessage("togglePaneContext")
 	}
 );
 chrome.contextMenus.create(
 	{
 		id: "set-aside",
 		contexts: ['all'],
-		title: "Set current tabs aside"
+		title: chrome.i18n.getMessage("setAside")
 	}
 );
 
@@ -159,7 +159,7 @@ function SaveCollection()
 
 		if (tabs.length < 1)
 		{
-			alert("No tabs available to save");
+			alert(chrome.i18n.getMessage("noTabsToSave"));
 			return;
 		}
 

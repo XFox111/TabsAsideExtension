@@ -1,0 +1,157 @@
+{
+	"name":
+	{
+		"message": "Отложенные вкладки",
+		"description": "Extension name. Displayed in the manifest and pane header"
+	},
+	"description":
+	{
+		"message": "Функиця классического Microsoft Edge на браузерах Chromium",
+		"description": "Extension description"
+	},
+	"author":
+	{
+		"message": "Михаил \"XFox\" Гордеев",
+		"description": "Author name"
+	},
+	"options":
+	{
+		"message": "Настройки",
+		"description": "Alternative text for options button in the pane"
+	},
+	"loadOnRestore":
+	{
+		"message": "Загружать вкладки после открытия",
+		"description": "Label for option"
+	},
+	"swapIconAction":
+	{
+		"message": "Откладывать вкладки при нажатии на иконку расширения (Alt+P или правая кнопка мыши для открытия панели)",
+		"description": "Label for option"
+	},
+	"github":
+	{
+		"message": "Страница GitHub",
+		"description": "Link title"
+	},
+	"contributors":
+	{
+		"message": "Свой вклад вложили",
+		"description": "Link title"
+	},
+	"feedback":
+	{
+		"message": "Оставить отзыв",
+		"description": "Link title"
+	},
+	"buyMeACoffee":
+	{
+		"message": "Купить мне кофе!",
+		"description": "Link title"
+	},
+	"credits":
+	{
+		"message": "Разработано: Михаил 'XFox' Гордеев",
+		"description": "Options menu credits"
+	},
+	"setAside":
+	{
+		"message": "Отложить открытые вкладки",
+		"description": "Save collection action name. Used in the pane, extension context menu and manifest shortcuts"
+	},
+	"nothingSaved":
+	{
+		"message": "У вас нет отложенных вкладок",
+		"description": "Placeholder for empty pane"
+	},
+	"removeTab":
+	{
+		"message": "Удалить вкладку из коллекции",
+		"description": "Button hint on a tab card"
+	},
+	"restoreTabs":
+	{
+		"message": "Восстановить вкладки",
+		"description": "Collection restore action link name"
+	},
+	"more":
+	{
+		"message": "Больше...",
+		"description": "Collections' more button title"
+	},
+	"restoreNoRemove":
+	{
+		"message": "Восстановить без удаления",
+		"description": "Context action item name"
+	},
+	"removeCollection":
+	{
+		"message": "Удалить коллекцию",
+		"description": "Collection remove action name"
+	},
+	"removeCollectionConfirm":
+	{
+		"message": "Вы уверены, что хотите удалить эту коллекцию?",
+		"description": "Prompt dialog content on collection deletion"
+	},
+	"removeTabConfirm":
+	{
+		"message": "Вы уверены, что хотите удалить эту вкладку из коллекции?",
+		"description": "Prompt dialog content on one tab deletion"
+	},
+	"togglePaneContext":
+	{
+		"message": "Открыть/закрыть панель",
+		"description": "Context action name. Used in extension context menu and manifest shortcuts"
+	},
+	"noTabsToSave":
+	{
+		"message": "Нет доступных для сохранения вкладок",
+		"description": "Alert dialog message when there's no tabs to save"
+	},
+	"tabs":
+	{
+		"message": "Вкладок",
+		"description": "Collection tabs counter label"
+	},
+	"ago":
+	{
+		"message": "назад",
+		"description": "Human friendly timestamp part (e.g. 15 hour(s) ago)"
+	},
+	"minutes":
+	{
+		"message": "минут(ы)",
+		"description": "Human friendly timestamp part (e.g. 15 minute(s) ago)"
+	},
+	"hours":
+	{
+		"message": "час(ов)",
+		"description": "Human friendly timestamp part (e.g. 15 hour(s) ago)"
+	},
+	"days":
+	{
+		"message": "дней",
+		"description": "Human friendly timestamp part (e.g. 15 day(s) ago)"
+	},
+	"weeks":
+	{
+		"message": "недель",
+		"description": "Human friendly timestamp part (e.g. 15 week(s) ago)"
+	},
+	"months":
+	{
+		"message": "месяц(ев)",
+		"description": "Human friendly timestamp part (e.g. 15 month(s) ago)"
+	},
+	"years":
+	{
+		"message": "лет",
+		"description": "Human friendly timestamp part (e.g. 15 years(s) ago)"
+	},
+	"justNow":
+	{
+		"message": "Только что",
+		"description": "Human friendly timestamp part"
+	}
+}
