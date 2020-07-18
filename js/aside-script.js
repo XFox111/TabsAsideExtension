@@ -199,10 +199,10 @@ function AddCollection(collection)
 				}
 			));
 
-	document.querySelectorAll(".btn.remove").forEach(i =>
+	document.querySelectorAll(".header .btn.remove").forEach(i =>
 		i.onclick = () => RemoveTabs(i.parentElement.parentElement));
 
-	document.querySelectorAll(".tabsList .btn.remove").forEach(i =>
+	document.querySelectorAll(".set .btn.remove").forEach(i =>
 		i.onclick = () => RemoveOneTab(i.parentElement.parentElement));
 }
 
