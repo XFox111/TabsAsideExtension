@@ -6,7 +6,7 @@
 	},
 	"description":
 	{
-		"message": "为Chromium浏览器提供旧版 Microsoft Edge 中\"搁置标签页\" 功能",
+		"message": "为Chromium浏览器提供旧版 Microsoft Edge 中的\"搁置标签页\" 功能",
 		"description": "Extension description"
 	},
 	"author":
@@ -46,7 +46,7 @@
 	},
 	"buyMeACoffee":
 	{
-		"message": "给我买杯冰红茶!",
+		"message": "给我买杯咖啡!",
 		"description": "Link title"
 	},
 	"credits":
@@ -66,7 +66,7 @@
 	},
 	"removeTab":
 	{
-		"message": "从标签集中移除标签页",
+		"message": "从标签页集中移除标签页",
 		"description": "Button hint on a tab card"
 	},
 	"restoreTabs":
@@ -86,12 +86,12 @@
 	},
 	"removeCollection":
 	{
-		"message": "移除标签集",
+		"message": "移除标签页集",
 		"description": "Collection remove action name"
 	},
 	"removeCollectionConfirm":
 	{
-		"message": "你确定要移除这个标签集吗?",
+		"message": "你确定要移除这个标签页集吗?",
 		"description": "Prompt dialog content on collection deletion"
 	},
 	"removeTabConfirm":
