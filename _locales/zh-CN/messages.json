@@ -1,0 +1,157 @@
+{
+	"name":
+	{
+		"message": "搁置的标签页",
+		"description": "Extension name. Displayed in the manifest and pane header"
+	},
+	"description":
+	{
+		"message": "为Chromium浏览器提供旧版 Microsoft Edge 中的\"搁置标签页\" 功能",
+		"description": "Extension description"
+	},
+	"author":
+	{
+		"message": "Michael \"XFox\" Gordeev",
+		"description": "Author name"
+	},
+	"options":
+	{
+		"message": "设置",
+		"description": "Alternative text for options button in the pane"
+	},
+	"loadOnRestore":
+	{
+		"message": "在重新打开时加载页面",
+		"description": "Label for option"
+	},
+	"swapIconAction":
+	{
+		"message": "点击拓展图标来搁置所有标签页 (按Alt+P或右键来打开侧栏)",
+		"description": "Label for option"
+	},
+	"github":
+	{
+		"message": "查看GitHub页面",
+		"description": "Link title"
+	},
+	"contributors":
+	{
+		"message": "项目贡献者",
+		"description": "Link title"
+	},
+	"feedback":
+	{
+		"message": "给我们反馈",
+		"description": "Link title"
+	},
+	"buyMeACoffee":
+	{
+		"message": "给我买杯咖啡!",
+		"description": "Link title"
+	},
+	"credits":
+	{
+		"message": "由Michael 'XFox' Gordeev开发",
+		"description": "Options menu credits"
+	},
+	"setAside":
+	{
+		"message": "搁置当前的所有标签页",
+		"description": "Save collection action name. Used in the pane, extension context menu and manifest shortcuts"
+	},
+	"nothingSaved":
+	{
+		"message": "你目前没有搁置的标签页",
+		"description": "Placeholder for empty pane"
+	},
+	"removeTab":
+	{
+		"message": "从标签页集中移除标签页",
+		"description": "Button hint on a tab card"
+	},
+	"restoreTabs":
+	{
+		"message": "恢复标签页",
+		"description": "Collection restore action link name"
+	},
+	"more":
+	{
+		"message": "更多...",
+		"description": "Collections' more button title"
+	},
+	"restoreNoRemove":
+	{
+		"message": "恢复但不移除标签页",
+		"description": "Context action item name"
+	},
+	"removeCollection":
+	{
+		"message": "移除标签页集",
+		"description": "Collection remove action name"
+	},
+	"removeCollectionConfirm":
+	{
+		"message": "你确定要移除这个标签页集吗?",
+		"description": "Prompt dialog content on collection deletion"
+	},
+	"removeTabConfirm":
+	{
+		"message": "你确定要移除这个标签页吗?",
+		"description": "Prompt dialog content on one tab deletion"
+	},
+	"togglePaneContext":
+	{
+		"message": "打开或关闭侧栏",
+		"description": "Context action name. Used in extension context menu and manifest shortcuts"
+	},
+	"noTabsToSave":
+	{
+		"message": "没有可以搁置的标签页",
+		"description": "Alert dialog message when there's no tabs to save"
+	},
+	"tabs":
+	{
+		"message": "搁置的标签页",
+		"description": "Collection tabs counter label"
+	},
+	"ago":
+	{
+		"message": "前",
+		"description": "Human friendly timestamp part (e.g. 15 hour(s) ago)"
+	},
+	"minutes":
+	{
+		"message": "分钟",
+		"description": "Human friendly timestamp part (e.g. 15 minute(s) ago)"
+	},
+	"hours":
+	{
+		"message": "时",
+		"description": "Human friendly timestamp part (e.g. 15 hour(s) ago)"
+	},
+	"days":
+	{
+		"message": "天",
+		"description": "Human friendly timestamp part (e.g. 15 day(s) ago)"
+	},
+	"weeks":
+	{
+		"message": "周",
+		"description": "Human friendly timestamp part (e.g. 15 week(s) ago)"
+	},
+	"months":
+	{
+		"message": "月",
+		"description": "Human friendly timestamp part (e.g. 15 month(s) ago)"
+	},
+	"years":
+	{
+		"message": "年",
+		"description": "Human friendly timestamp part (e.g. 15 years(s) ago)"
+	},
+	"justNow":
+	{
+		"message": "刚刚",
+		"description": "Human friendly timestamp part"
+	}
+}
