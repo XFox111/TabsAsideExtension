@@ -38,7 +38,8 @@
 			"description": "__MSG_setAside__",
 			"suggested_key":
 			{
-				"default": "Alt+Left"
+				"default": "Ctrl+Shift+Left",
+				"mac": "Command+Shift+Left"
 			}
 		},
 		"toggle-pane":
@@ -46,7 +47,8 @@
 			"description": "__MSG_togglePaneContext__",
 			"suggested_key":
 			{
-				"default": "Alt+P"
+				"default": "Ctrl+Shift+P",
+				"mac": "Command+Shift+P"
 			}
 		}
 	}

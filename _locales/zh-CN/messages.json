@@ -26,7 +26,7 @@
 	},
 	"swapIconAction":
 	{
-		"message": "点击拓展图标来搁置所有标签页 (按Alt+P或右键来打开侧栏)",
+		"message": "点击拓展图标来搁置所有标签页 (按%TOGGLE_SHORTCUT%或右键来打开侧栏)",
 		"description": "Label for option"
 	},
 	"github":

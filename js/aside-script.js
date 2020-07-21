@@ -142,6 +142,9 @@ function UpdateLocale()
 {
 	document.querySelectorAll("*[loc]").forEach(i => i.textContent = chrome.i18n.getMessage(i.getAttribute("loc")));
 	document.querySelectorAll("*[loc_alt]").forEach(i => i.title = chrome.i18n.getMessage(i.getAttribute("loc_alt")));
+	
+	var swapActionsLabel = document.querySelector("label[loc=swapIconAction]");
+	chrome.commands.getAll((commands) => swapActionsLabel.textContent = swapActionsLabel.textContent.replace("%TOGGLE_SHORTCUT%", commands[2].shortcut));
 }
 
 function AddCollection(collection)
