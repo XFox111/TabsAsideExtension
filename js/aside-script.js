@@ -114,6 +114,26 @@ function Initialize()
 			})
 	);
 
+	// Deletion confirmation dialog
+	var showDeleteDialog = document.querySelector("#showDeleteDialog");
+	chrome.storage.sync.get(
+		{ "showDeleteDialog": true },
+		values => showDeleteDialog.checked = values.showDeleteDialog
+	);
+	chrome.storage.onChanged.addListener((changes, namespace) =>
+	{
+		if (namespace == 'sync')
+			for (key in changes)
+				if (key === 'showDeleteDialog')
+				showDeleteDialog.checked = changes[key].newValue
+	});
+	showDeleteDialog.addEventListener("click", () =>
+		chrome.storage.sync.set(
+			{
+				"showDeleteDialog": showDeleteDialog.checked
+			})
+	);
+
 	document.querySelectorAll(".tabsAside.pane > header nav button").forEach(i => 
 		i.onclick = () =>
 		{
@@ -232,41 +252,47 @@ function RestoreTabs(collectionData, removeCollection = true)
 
 function RemoveTabs(collectionData)
 {
-	if (!confirm(chrome.i18n.getMessage("removeCollectionConfirm")))
-		return;
+	chrome.storage.sync.get({ "showDeleteDialog": true }, values => 
+	{
+		if (values.showDeleteDialog && !confirm(chrome.i18n.getMessage("removeCollectionConfirm")))
+			return;
 
-	chrome.runtime.sendMessage(
-		{
-			command: "deleteTabs",
-			collectionIndex: Array.prototype.slice.call(collectionData.parentElement.children).indexOf(collectionData) - 1
-		},
-		() => RemoveCollectionElement(collectionData)
-	);
+		chrome.runtime.sendMessage(
+			{
+				command: "deleteTabs",
+				collectionIndex: Array.prototype.slice.call(collectionData.parentElement.children).indexOf(collectionData) - 1
+			},
+			() => RemoveCollectionElement(collectionData)
+		);
+	});
 }
 
 function RemoveOneTab(tabData)
 {
-	if (!confirm(chrome.i18n.getMessage("removeTabConfirm")))
-		return;
+	chrome.storage.sync.get({ "showDeleteDialog": true }, values => 
+	{
+		if (values.showDeleteDialog && !confirm(chrome.i18n.getMessage("removeTabConfirm")))
+			return;
 
-	chrome.runtime.sendMessage(
-		{
-			command: "removeTab",
-			collectionIndex: Array.prototype.slice.call(tabData.parentElement.parentElement.parentElement.children).indexOf(tabData.parentElement.parentElement) - 1,
-			tabIndex: Array.prototype.slice.call(tabData.parentElement.children).indexOf(tabData)
-		},
-		() =>
-		{
-			tabData.parentElement.previousElementSibling.children[0].textContent = chrome.i18n.getMessage("tabs") + ": " + (tabData.parentElement.children.length - 1);
-			if (tabData.parentElement.children.length < 2)
+		chrome.runtime.sendMessage(
 			{
-				RemoveElement(tabData.parentElement.parentElement);
-				if (document.querySelector("tabsAside.pane > section").children.length < 2)
-					setTimeout(() => document.querySelector(".tabsAside.pane > section > h2").removeAttribute("hidden"), 250);
-			}
-			else
-				RemoveElement(tabData);
-		});
+				command: "removeTab",
+				collectionIndex: Array.prototype.slice.call(tabData.parentElement.parentElement.parentElement.children).indexOf(tabData.parentElement.parentElement) - 1,
+				tabIndex: Array.prototype.slice.call(tabData.parentElement.children).indexOf(tabData)
+			},
+			() =>
+			{
+				tabData.parentElement.previousElementSibling.children[0].textContent = chrome.i18n.getMessage("tabs") + ": " + (tabData.parentElement.children.length - 1);
+				if (tabData.parentElement.children.length < 2)
+				{
+					RemoveElement(tabData.parentElement.parentElement);
+					if (document.querySelector("tabsAside.pane > section").children.length < 2)
+						setTimeout(() => document.querySelector(".tabsAside.pane > section > h2").removeAttribute("hidden"), 250);
+				}
+				else
+					RemoveElement(tabData);
+			});
+	});
 }
 
 function GetAgo(timestamp)

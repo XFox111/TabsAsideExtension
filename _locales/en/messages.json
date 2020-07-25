@@ -24,6 +24,11 @@
 		"message": "Load tabs on restore",
 		"description": "Label for option"
 	},
+	"showDeleteDialog":
+	{
+		"message": "Show confirmation dialog before deleting an item",
+		"description": "Label for option"
+	},
 	"swapIconAction":
 	{
 		"message": "Set tabs aside on extension icon click (%TOGGLE_SHORTCUT% or right-click to open the pane)",

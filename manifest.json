@@ -1,6 +1,6 @@
 {
 	"name": "__MSG_name__",
-	"version": "1.6.2",
+	"version": "1.7",
 	"manifest_version": 2,
 	"description": "__MSG_description__",
 	"author": "__MSG_author__",
@@ -39,7 +39,7 @@
 			"suggested_key":
 			{
 				"default": "Ctrl+Shift+Left",
-				"mac": "Command+Shift+Left"
+				"mac": "MacCtrl+T"
 			}
 		},
 		"toggle-pane":
