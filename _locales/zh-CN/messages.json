@@ -24,6 +24,11 @@
 		"message": "在重新打开时加载页面",
 		"description": "Label for option"
 	},
+	"showDeleteDialog":
+	{
+		"message": "在删除项目之前显示确认对话框",
+		"description": "Label for option"
+	},
 	"swapIconAction":
 	{
 		"message": "点击拓展图标来搁置所有标签页 (按%TOGGLE_SHORTCUT%或右键来打开侧栏)",
