@@ -9,6 +9,16 @@
 	color: white;
 }
 
+	.tabsAside[darkmode] .pane header .iconArrowRight
+	{
+		filter: invert();
+	}
+
+	.tabsAside[darkmode] .pane header
+	{
+		background-color: #3b3b3b;
+	}
+
 	.tabsAside[darkmode] .saveTabs > div
 	{
 		filter: invert();
@@ -50,11 +60,18 @@
 			background: dimgray;
 		}
 
+	.tabsAside[darkmode] .pane .collectionSet
+	{
+		background-color: #3b3b3b;
+		border-color: #444;
+	}
+
 	/* Tab style */
 	.tabsAside[darkmode] .pane .collectionSet > .set > div
 	{
 		background-color: #0c0c0c;
 		background-image: url("chrome-extension://__MSG_@@extension_id__/images/tab_thumbnail_dark.png");
+		border-color: #444;
 	}
 
 		.tabsAside[darkmode] .pane .collectionSet > .set > div > div

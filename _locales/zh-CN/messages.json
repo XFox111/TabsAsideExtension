@@ -19,6 +19,11 @@
 		"message": "设置",
 		"description": "Alternative text for options button in the pane"
 	},
+	"closePanel":
+	{
+		"message": "关",
+		"description": "Alternative text for close panel button"
+	},
 	"loadOnRestore":
 	{
 		"message": "在重新打开时加载页面",
@@ -116,47 +121,7 @@
 	},
 	"tabs":
 	{
-		"message": "搁置的标签页",
-		"description": "Collection tabs counter label"
-	},
-	"ago":
-	{
-		"message": "前",
-		"description": "Human friendly timestamp part (e.g. 15 hour(s) ago)"
-	},
-	"minutes":
-	{
-		"message": "分钟",
-		"description": "Human friendly timestamp part (e.g. 15 minute(s) ago)"
-	},
-	"hours":
-	{
-		"message": "时",
-		"description": "Human friendly timestamp part (e.g. 15 hour(s) ago)"
-	},
-	"days":
-	{
-		"message": "天",
-		"description": "Human friendly timestamp part (e.g. 15 day(s) ago)"
-	},
-	"weeks":
-	{
-		"message": "周",
-		"description": "Human friendly timestamp part (e.g. 15 week(s) ago)"
-	},
-	"months":
-	{
-		"message": "月",
-		"description": "Human friendly timestamp part (e.g. 15 month(s) ago)"
-	},
-	"years":
-	{
-		"message": "年",
-		"description": "Human friendly timestamp part (e.g. 15 years(s) ago)"
-	},
-	"justNow":
-	{
-		"message": "刚刚",
-		"description": "Human friendly timestamp part"
+		"message": "项",
+		"description": "Collection tabs counter label (e.g. 8 items)"
 	}
 }

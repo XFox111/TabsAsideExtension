@@ -38,7 +38,7 @@
 			"description": "__MSG_setAside__",
 			"suggested_key":
 			{
-				"default": "Ctrl+Shift+Left",
+				"default": "Alt+Left",
 				"mac": "MacCtrl+T"
 			}
 		},
@@ -47,7 +47,7 @@
 			"description": "__MSG_togglePaneContext__",
 			"suggested_key":
 			{
-				"default": "Ctrl+Shift+P",
+				"default": "Alt+P",
 				"mac": "Command+Shift+P"
 			}
 		}
