@@ -71,6 +71,9 @@ function Initialize()
 	}
 
 	document.querySelector(".tabsAside .saveTabs").onclick = SetTabsAside;
+	document.querySelector(".tabsAside header .btn.remove").addEventListener("click", () =>
+		chrome.runtime.sendMessage({ command: "togglePane" })
+	);
 
 	document.querySelector("nav > p > small").textContent = chrome.runtime.getManifest()["version"];
 
@@ -182,7 +185,7 @@ function AddCollection(collection)
 				"<div>" +
 					"<div" + ((collection.icons[i] == 0 || collection.icons[i] == null) ? "" : " style='background-image: url(\"" + collection.icons[i] + "\")'") + "></div>" +
 					"<span>" + collection.titles[i] + "</span>" +
-					"<button loc_alt='name' class='btn remove' title='Remove tab from collection'></button>" +
+					"<button loc_alt='removeTab' class='btn remove' title='Remove tab from collection'></button>" +
 				"</div>" +
 			"</div>";
 	}
@@ -190,8 +193,7 @@ function AddCollection(collection)
 	list.innerHTML +=
 		"<div class='collectionSet'>" +
 			"<div class='header'>" +
-				"<span>" + chrome.i18n.getMessage("tabs") + ": " + collection.links.length + "</span>" +
-				"<small>" + GetAgo(collection.timestamp) + "</small>" +
+				"<h4>" + new Date(collection.timestamp).toDateString() + "</h4>" +
 				"<a loc='restoreTabs' class='restoreCollection'>Restore tabs</a>" +
 				"<div>" +
 					"<button loc_alt='more' class='btn more' title='More...'></button>" +
@@ -200,6 +202,7 @@ function AddCollection(collection)
 					"</nav>" +
 				"</div>" +
 				"<button loc_alt='removeCollection' class='btn remove' title='Remove collection'></button>" +
+				"<small>" + collection.links.length + " " + chrome.i18n.getMessage("tabs") +"</small>" +
 			"</div>" +
 
 			"<div class='set' class='tabsList'>" + rawTabs + "</div>" +
@@ -295,26 +298,6 @@ function RemoveOneTab(tabData)
 	});
 }
 
-function GetAgo(timestamp)
-{
-	var minutes = (Date.now() - timestamp) / 60000;
-
-	if (minutes < 1)
-		return chrome.i18n.getMessage("justNow");
-	else if (minutes < 60)
-		return Math.floor(minutes) + " " + chrome.i18n.getMessage("minutes") + " " + chrome.i18n.getMessage("ago");
-	else if (minutes < 24 * 60)
-		return Math.floor(minutes / 60) + " " + chrome.i18n.getMessage("hours") + " " + chrome.i18n.getMessage("ago");
-	else if (minutes < 7 * 24 * 60)
-		return Math.floor(minutes / 24 / 60) + " " + chrome.i18n.getMessage("days") + " " + chrome.i18n.getMessage("ago");
-	else if (minutes < 30 * 24 * 60)
-		return Math.floor(minutes / 7 / 24 / 60) + " " + chrome.i18n.getMessage("weeks") + " " + chrome.i18n.getMessage("ago");
-	else if (minutes < 365 * 24 * 60)
-		return Math.floor(minutes / 30 / 24 / 60) + " " + chrome.i18n.getMessage("months") + " " + chrome.i18n.getMessage("ago");
-	else
-		return Math.floor(minutes / 365 / 24 / 60) + " " + chrome.i18n.getMessage("years") + " " + chrome.i18n.getMessage("ago");
-}
-
 function RemoveElement(el)
 {
 	el.style.opacity = 0;
@@ -323,7 +306,7 @@ function RemoveElement(el)
 
 function RemoveCollectionElement(el)
 {
-	RemoveElement(el);
-	if (el.parentElement.children.length < 2)
+	if (el.parentElement.children.length < 3)
 		setTimeout(() => document.querySelector(".tabsAside.pane > section > h2").removeAttribute("hidden"), 250);	
+	RemoveElement(el);
 }

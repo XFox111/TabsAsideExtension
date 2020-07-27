@@ -19,6 +19,11 @@
 		"message": "Options",
 		"description": "Alternative text for options button in the pane"
 	},
+	"closePanel":
+	{
+		"message": "Close",
+		"description": "Alternative text for close panel button"
+	},
 	"loadOnRestore":
 	{
 		"message": "Load tabs on restore",
@@ -116,47 +121,7 @@
 	},
 	"tabs":
 	{
-		"message": "Tabs",
-		"description": "Collection tabs counter label"
-	},
-	"ago":
-	{
-		"message": "ago",
-		"description": "Human friendly timestamp part (e.g. 15 hour(s) ago)"
-	},
-	"minutes":
-	{
-		"message": "minute(s)",
-		"description": "Human friendly timestamp part (e.g. 15 minute(s) ago)"
-	},
-	"hours":
-	{
-		"message": "hour(s)",
-		"description": "Human friendly timestamp part (e.g. 15 hour(s) ago)"
-	},
-	"days":
-	{
-		"message": "day(s)",
-		"description": "Human friendly timestamp part (e.g. 15 day(s) ago)"
-	},
-	"weeks":
-	{
-		"message": "week(s)",
-		"description": "Human friendly timestamp part (e.g. 15 week(s) ago)"
-	},
-	"months":
-	{
-		"message": "month(s)",
-		"description": "Human friendly timestamp part (e.g. 15 month(s) ago)"
-	},
-	"years":
-	{
-		"message": "years(s)",
-		"description": "Human friendly timestamp part (e.g. 15 years(s) ago)"
-	},
-	"justNow":
-	{
-		"message": "Just now",
-		"description": "Human friendly timestamp part"
+		"message": "items",
+		"description": "Collection tabs counter label (e.g. 8 items)"
 	}
 }

@@ -19,6 +19,11 @@
 		"message": "Настройки",
 		"description": "Alternative text for options button in the pane"
 	},
+	"closePanel":
+	{
+		"message": "Закрыть",
+		"description": "Alternative text for close panel button"
+	},
 	"loadOnRestore":
 	{
 		"message": "Загружать вкладки после открытия",
@@ -116,47 +121,7 @@
 	},
 	"tabs":
 	{
-		"message": "Вкладок",
-		"description": "Collection tabs counter label"
-	},
-	"ago":
-	{
-		"message": "назад",
-		"description": "Human friendly timestamp part (e.g. 15 hour(s) ago)"
-	},
-	"minutes":
-	{
-		"message": "минут(ы)",
-		"description": "Human friendly timestamp part (e.g. 15 minute(s) ago)"
-	},
-	"hours":
-	{
-		"message": "час(ов)",
-		"description": "Human friendly timestamp part (e.g. 15 hour(s) ago)"
-	},
-	"days":
-	{
-		"message": "дней",
-		"description": "Human friendly timestamp part (e.g. 15 day(s) ago)"
-	},
-	"weeks":
-	{
-		"message": "недель",
-		"description": "Human friendly timestamp part (e.g. 15 week(s) ago)"
-	},
-	"months":
-	{
-		"message": "месяц(ев)",
-		"description": "Human friendly timestamp part (e.g. 15 month(s) ago)"
-	},
-	"years":
-	{
-		"message": "лет",
-		"description": "Human friendly timestamp part (e.g. 15 years(s) ago)"
-	},
-	"justNow":
-	{
-		"message": "Только что",
-		"description": "Human friendly timestamp part"
+		"message": "вкладок",
+		"description": "Collection tabs counter label (e.g. 8 items)"
 	}
 }

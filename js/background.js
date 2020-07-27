@@ -116,6 +116,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) =>
 			RemoveTab(message.collectionIndex, message.tabIndex);
 			sendResponse();
 			break;
+		case "togglePane":
+			chrome.tabs.query(
+				{
+					active: true,
+					currentWindow: true
+				},
+				(tabs) => TogglePane(tabs[0])
+			)
+			break;
 	}
 });
 
