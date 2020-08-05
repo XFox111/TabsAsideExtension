@@ -166,7 +166,7 @@ function SaveCollection()
 {
 	chrome.tabs.query({ currentWindow: true }, (rawTabs) =>
 	{
-		var tabs = rawTabs.filter(i => i.url != chrome.runtime.getURL("TabsAside.html") && !i.pinned && !i.url.includes("//newtab") && !i.url.includes("about:"));
+		var tabs = rawTabs.filter(i => i.url != chrome.runtime.getURL("TabsAside.html") && !i.pinned && !i.url.includes("//newtab") && !i.url.includes("about:blank"));
 
 		if (tabs.length < 1)
 		{

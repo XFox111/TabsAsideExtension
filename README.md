@@ -1,4 +1,4 @@
-# Tabs aside browser extension
+# Tabs aside
 
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/users/mgmjbodjgijnebfgohlnjkegdpbdjgin?label=Chrome%20Webstore%20downloads)](https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/mgmjbodjgijnebfgohlnjkegdpbdjgin)](https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin)
