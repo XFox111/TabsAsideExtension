@@ -1,8 +1,12 @@
-# Tabs aside for Google Chrome
+# Tabs aside browser extension
 
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/users/mgmjbodjgijnebfgohlnjkegdpbdjgin?label=Chrome%20Web%20Store%20downloads)](https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/users/mgmjbodjgijnebfgohlnjkegdpbdjgin?label=Chrome%20Webstore%20downloads)](https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/mgmjbodjgijnebfgohlnjkegdpbdjgin)](https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/xfox111/chromiumtabsaside)](https://github.com/xfox111/chromiumtabsaside/releases/latest)
+
+[![Mozilla Add-on](https://img.shields.io/amo/users/popup-blocker?label=Firefox%20Webstore%20downloads)](https://addons.mozilla.org/)
+[![Mozilla Add-on](https://img.shields.io/amo/rating/popup-blocker)](https://addons.mozilla.org/)
+[![Mozilla Add-on](https://img.shields.io/amo/dw/popup-blocker)](https://addons.mozilla.org/)
 
 [![GitHub issues](https://img.shields.io/github/issues/xfox111/chromiumtabsaside)](https://github.com/xfox111/ChromiumTabsAside/issues)
 [![GitHub last commit](https://img.shields.io/github/last-commit/xfox111/chromiumtabsaside)](https://github.com/xfox111/ChromiumTabsAside/commits/master)
@@ -13,23 +17,25 @@
 [![GitHub followers](https://img.shields.io/github/followers/xfox111?label=Follow%20@xfox111&style=social)](https://github.com/xfox111)
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-%40xfox111-orange)](https://buymeacoffee.com/xfox111)
 
-![Tabs aside](https://xfox111.net/images/TabsAside.png)
+![Tabs aside](https://xfox111.net/y7xk3z)
 
 If you’re like me, you often find yourself with a bunch of open tabs. You’d like to get those tabs out of the way sometimes, but they’re maybe not worth saving as actual bookmarks.
 
 In the Edge browser, Microsoft has introduced a new feature called "Tabs aside" (or Tab groups) which lets you set tabs aside in a sort of temporary workspace so that you can call them back up later.
 
-Unfortunately, in new Chromium-based Microsoft Edge, the devs decided not to implement this must-have-feature. So I've decided to create a browser extension which replicates this awesome feature in Chromium-based browsers
+Unfortunately, in new Chromium-based Microsoft Edge, the devs decided not to implement this must-have-feature. So I've decided to create a browser extension which replicates this awesome feature
 
 ## Features
 - Familiar UI inherited from legacy Microsoft Edge with some improvements
 - Auto Dark mode
 - Now you can restore one tab from collection without removing
 - Now you can choose if you want to load restored tabs only when you're navigating onto them
+- **Now available for Firefox!**
 
 ## Download
 - [Google Chrome Webstore](https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin)
 - [Microsoft Edge Add-ons Webstore](https://microsoftedge.microsoft.com/addons/detail/kmnblllmalkiapkfknnlpobmjjdnlhnd)
+- [Firefox Add-ons](https://addons.mozilla.org/)
 - [GitHub Releases](https://github.com/xfox111/chromiumtabsaside/releases/latest)
 
 ## Project roadmap

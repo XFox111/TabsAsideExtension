@@ -1,4 +1,4 @@
-if (window.location === window.parent.location && window.location.protocol != "chrome-extension:")	// For open/close call
+if (window.location === window.parent.location && !window.location.protocol.includes("-extension:"))	// For open/close call
 {
 	var iframe = document.querySelector("iframe.tabsAsideIframe");
 	if (!iframe)
@@ -80,8 +80,8 @@ function Initialize()
 	// Tabs dismiss option
 	var loadOnRestoreCheckbox = document.querySelector("#loadOnRestore");
 	chrome.storage.sync.get(
-		{ "loadOnRestore": false },
-		values => loadOnRestoreCheckbox.checked = values.loadOnRestore
+		{ "loadOnRestore": true },
+		values => loadOnRestoreCheckbox.checked = values?.loadOnRestore ?? true
 	);
 	chrome.storage.onChanged.addListener((changes, namespace) =>
 	{
@@ -101,7 +101,7 @@ function Initialize()
 	var swapIconAction = document.querySelector("#swapIconAction");
 	chrome.storage.sync.get(
 		{ "setAsideOnClick": false },
-		values => swapIconAction.checked = values.setAsideOnClick
+		values => swapIconAction.checked = values?.setAsideOnClick ?? false
 	);
 	chrome.storage.onChanged.addListener((changes, namespace) =>
 	{
@@ -167,7 +167,9 @@ function UpdateLocale()
 	document.querySelectorAll("*[loc_alt]").forEach(i => i.title = chrome.i18n.getMessage(i.getAttribute("loc_alt")));
 	
 	var swapActionsLabel = document.querySelector("label[loc=swapIconAction]");
-	chrome.commands.getAll((commands) => swapActionsLabel.textContent = swapActionsLabel.textContent.replace("%TOGGLE_SHORTCUT%", commands[2].shortcut));
+	chrome.runtime.sendMessage({ command: "getShortcuts" }, (shortcuts) =>
+		swapActionsLabel.textContent = swapActionsLabel.textContent.replace("%TOGGLE_SHORTCUT%", shortcuts.filter(i => i.name == "toggle-pane")[0].shortcut)
+	);
 }
 
 function AddCollection(collection)

@@ -113,12 +113,14 @@
 
 	.btn.more
 	{
-		background-image: url("chrome-extension://__MSG_@@extension_id__/icons/more.svg");
+		background-image: url("chrome-extension://__MSG_@@extension_id__/icons/more.svg"),
+						  url("moz-extension://__MSG_@@extension_id__/icons/more.svg");
 	}
 
 	.btn.remove
 	{
-		background-image: url("chrome-extension://__MSG_@@extension_id__/icons/cancel.svg");
+		background-image: url("chrome-extension://__MSG_@@extension_id__/icons/cancel.svg"),
+						  url("moz-extension://__MSG_@@extension_id__/icons/cancel.svg");
 	}
 
 @font-face
@@ -127,5 +129,9 @@
 	src: local("Segoe UI"),
 		url("chrome-extension://__MSG_@@extension_id__/fonts/WeblySleekUI/weblysleekuisemilight.ttf") format("truetype"),
 		url("chrome-extension://__MSG_@@extension_id__/fonts/WeblySleekUI/weblysleekuisemilight.woff") format("woff"),
-		url("chrome-extension://__MSG_@@extension_id__/fonts/WeblySleekUI/weblysleekuisemilight.woff2") format("woff2");
+		url("chrome-extension://__MSG_@@extension_id__/fonts/WeblySleekUI/weblysleekuisemilight.woff2") format("woff2"),
+
+		url("moz-extension://__MSG_@@extension_id__/fonts/WeblySleekUI/weblysleekuisemilight.ttf") format("truetype"),
+		url("moz-extension://__MSG_@@extension_id__/fonts/WeblySleekUI/weblysleekuisemilight.woff") format("woff"),
+		url("moz-extension://__MSG_@@extension_id__/fonts/WeblySleekUI/weblysleekuisemilight.woff2") format("woff2");
 }
