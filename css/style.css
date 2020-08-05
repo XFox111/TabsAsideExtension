@@ -18,7 +18,9 @@
 	right: 0px;
 	top: 0px;
 	bottom: 0px;
-	overflow: auto;
+	overflow: hidden;
+	display: grid;
+	grid-template-rows: auto 1fr;
 	
 	width: 100%;
 	min-width: 500px;
@@ -36,7 +38,7 @@
 
 	aside[embedded]
 	{
-		width: 40% !important;
+		width: 500px !important;
 	}
 
 	.tabsAside.pane[opened]
@@ -47,36 +49,31 @@
 	/* Pane header*/
 	.tabsAside.pane > header
 	{
-		margin: 20px 40px;
+		z-index: 1;
+		padding: 14px 20px 16px 20px;
+		box-shadow: 0px 0px 5px rgba(0,0,0,.5);
+		background-color: white;
 	}
 		.tabsAside.pane > header > div
 		{
 			display: grid;
-			grid-template-columns: 1fr auto;
+			grid-template-columns: 1fr auto auto;
+			grid-column-gap: 10px;
+			margin-bottom: 29px;
 		}
 
 			.tabsAside.pane > header > div > h1
 			{
-				margin: 10px 0px;
-				font-weight: normal;
-				font-size: 21pt;
-			}
-
-			.tabsAside.pane > header > div > button
-			{
-				margin: auto;
+				margin: 0px 5px;
+				font-weight: 500;
+				font-size: 15pt;
 			}
 			
 			.tabsAside.pane > header > div > nav
 			{
-				top: 70px;
-				right: 40px;
+				top: 45px;
+				right: 55px;
 			}
-
-				.tabsAside.pane > header nav > div
-				{
-					box-shadow: 0px 4px 5px -2px rgba(100, 100, 100, .5);
-				}
 
 				.tabsAside.pane > header nav > p
 				{
@@ -88,25 +85,35 @@
 						text-decoration: none;
 					}
 
-		.iconArrowRight
+		.saveTabs
 		{
-			width: 13px;
-			height: 13px;
-			display: inline-block;
-			background-repeat: no-repeat;
-			background-size: 13px;
-			background-position: center;
-			background-image: url("chrome-extension://__MSG_@@extension_id__/icons/arrowRight.svg");
+			display: inline-grid;
+			grid-template-columns: 16px auto;
+			grid-column-gap: 15px;
+
+			font-weight: 600;
 		}
 
-		.tabsAside.pane > header > hr
+		.iconArrowRight
 		{
-			border: 1px solid #8a8a8a;
+			width: 16px;
+			height: 16px;
+			display: inline-block;
+			background-repeat: no-repeat;
+			background-size: 16px;
+			background-position: center;
+			background-image: url("chrome-extension://__MSG_@@extension_id__/icons/arrowRight.svg");
+			margin: 2px;
 		}
+
+	.tabsAside.pane section
+	{
+		overflow: auto;
+	}
 
 	.tabsAside.pane > section > h2
 	{
-		margin: 0px 40px;
+		margin: 20px;
 		font-weight: normal;
 	}
 
@@ -116,11 +123,34 @@
 		transition: .2s;
 	}
 
+	.collectionSet
+	{
+		background-color: white;
+		margin: 10px;
+		border-radius: 5px;
+		border: 1px solid #eee;
+	}
+
+	.collectionSet:hover
+	{
+		box-shadow: 0px 0px 5px rgba(0, 0, 0, .25);
+	}
+
+	.collectionSet .header > *
+	{
+		visibility: hidden;
+	}
+
+	.collectionSet:hover .header > *
+	{
+		visibility: visible;
+	}
+
 	.collectionSet > .header
 	{
-		margin: 0px 20px;
+		margin: 10px 10px 0px 20px;
 		display: grid;
-		grid-template-columns: auto 1fr auto auto auto;
+		grid-template-columns: 1fr auto auto auto;
 		grid-column-gap: 10px;
 		align-items: center;
 	}
@@ -128,11 +158,14 @@
 		.collectionSet > .header > small
 		{
 			color: gray;
+			visibility: visible !important;
 		}
 		
-		.collectionSet > .header > span
+		.collectionSet > .header > h4
 		{
-			font-weight: 600;
+			margin: 0px;
+			visibility: visible !important;
+			font-weight: 500;
 		}
 		
 		.collectionSet > .header > a
@@ -149,8 +182,7 @@
 		/* Tabs collection */
 		.collectionSet > .set
 		{
-			margin: 0px 0px 0px 20px;
-			padding: 10px 40px 10px 20px;
+			padding: 5px 10px;
 			white-space: nowrap;
 			overflow: auto;
 		}
@@ -179,14 +211,15 @@
 				display: inline-grid;
 				grid-template-rows: 1fr auto;
 
-				box-shadow: 0px 0px 5px rgba(100, 100, 100, .5);
 				transition: .25s;
 				cursor: pointer;
+
+				border: 1px solid #eee;
+				border-radius: 5px;
 			}
 				.collectionSet > .set > div:hover
 				{
-					filter: brightness(120%);
-					box-shadow: 0px 0px 15px rgba(100, 100, 100, .5);
+					box-shadow: 0px 0px 5px rgba(100, 100, 100, .5);
 				}
 
 				.collectionSet > .set > div > div
@@ -213,7 +246,7 @@
 					{
 						width: 20px;
 						height: 20px;
-						margin: 10px;
+						margin: 8px;
 
 						background-image: url("chrome-extension://__MSG_@@extension_id__/images/tab_icon.png");
 						background-size: 20px;

@@ -1,6 +1,6 @@
 {
 	"name": "__MSG_name__",
-	"version": "1.6.1",
+	"version": "1.7",
 	"manifest_version": 2,
 	"description": "__MSG_description__",
 	"author": "__MSG_author__",
@@ -38,7 +38,8 @@
 			"description": "__MSG_setAside__",
 			"suggested_key":
 			{
-				"default": "Alt+Left"
+				"default": "Alt+Left",
+				"mac": "MacCtrl+T"
 			}
 		},
 		"toggle-pane":
@@ -46,7 +47,8 @@
 			"description": "__MSG_togglePaneContext__",
 			"suggested_key":
 			{
-				"default": "Alt+P"
+				"default": "Alt+P",
+				"mac": "Command+Shift+P"
 			}
 		}
 	}

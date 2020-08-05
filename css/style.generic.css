@@ -17,7 +17,7 @@
 
 .tabsAside
 {
-	font-family: 'DefaultFont';
+	font-family: 'Segoe UI' ,'DefaultFont';
 	font-size: 14px;
 	user-select: none;
 }
@@ -41,15 +41,15 @@
 /* Buttons style */
 .tabsAside button
 {
-	width: 32px;
-	height: 32px;
+	width: 28px;
+	height: 28px;
 	background-color: transparent;
 	border: none;
 	cursor: pointer;
 }
 	.tabsAside button:hover
 	{
-		background-color: #c6c6c6;
+		background-color: #f2f2f2;
 	}
 	.tabsAside button:active
 	{
@@ -62,16 +62,24 @@
 	user-select: none;
 
 	position: absolute;
-	width: 250px;
+	width: 290px;
 
-	box-shadow: 0px 0px 10px black;
+	box-shadow: 0px 0px 10px rgba(0,0,0,.5);
 	background-color: white;
 	border-radius: 5px;
 
 	z-index: 10;
 
 	visibility: hidden;
+	padding: 4px 0px;
 }
+
+	.tabsAside nav hr
+	{
+		border: none;
+		height: 1px;
+		background-color: lightgray;
+	}
 
 	.tabsAside nav button 
 	{		
@@ -79,7 +87,15 @@
 
 		padding: 0px 10px;
 		width: 100%;
+
+		height: 32px;
+		font-family: 'Segoe UI' ,'DefaultFont';
 	}
+
+		.tabsAside nav button:hover
+		{
+			background-color: #eeee;
+		}
 
 	.tabsAside button + nav:active,
 	.tabsAside button:focus + nav 
@@ -91,7 +107,7 @@
 .btn
 {
 	background-repeat: no-repeat;
-	background-size: 15px;
+	background-size: 12px;
 	background-position: center;
 }
 
