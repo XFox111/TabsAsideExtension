@@ -57,7 +57,7 @@
 		"gecko":
 		{
 			"id": "tabsaside@xfox111.net",
-			"strict_min_version": "42.0"
+			"strict_min_version": "58.0"
 		}
 	}
 }

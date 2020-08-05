@@ -35,15 +35,15 @@ Have a question? Rather than opening an issue, please ask me directly on opensou
 
 ## Providing Feedback
 Your comments and feedback are welcome.
-You can leave your feedbak on feedback@xfox111.net or do it on [Microsoft Edge Add-ons Webstore](https://microsoftedge.microsoft.com/addons/detail/tabs-aside/kmnblllmalkiapkfknnlpobmjjdnlhnd) or [Chrome Webstore](https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin)
+You can leave your feedbak on feedback@xfox111.net or do it on [Microsoft Edge Add-ons Webstore](https://microsoftedge.microsoft.com/addons/detail/tabs-aside/kmnblllmalkiapkfknnlpobmjjdnlhnd), [Chrome Extensions Webstore](https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin) or [Mozilla Add-ons Webstore](https://addons.mozilla.org/firefox/addon/ms-edge-tabs-aside/)
 
 ## Reporting Issues
 Have you identified a reproducible problem in the extension? Have a feature request? I'd like to hear it! Here's how you can make reporting your issue as effective as possible.
 
 ### Look For an Existing Issue
-Before you create a new issue, please do a search in [open issues](https://github.com/xfox111/ChromiumTabsAside/issues) to see if the issue or feature request has already been filed.
+Before you create a new issue, please do a search in [open issues](https://github.com/xfox111/TabsAsideExtension/issues) to see if the issue or feature request has already been filed.
 
-Be sure to scan through the [feature requests](https://github.com/XFox111/ChromiumTabsAside/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement).
+Be sure to scan through the [feature requests](https://github.com/XFox111/TabsAsideExtension/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement).
 
 If you find your issue already exists, make relevant comments and add your [reaction](https://github.com/blog/2119-add-reactions-to-pull-requests-issues-and-comments). Use a reaction in place of a "+1" comment:
 
@@ -83,7 +83,7 @@ If you are interested in writing code to fix issues or implement new awesome fea
 ### Deploy test version on your browser
 1. Clone repository to local storage using [Git](https://guides.github.com/introduction/git-handbook/)
     ```
-    git clone https://github.com/xfox111/ChromiumTabsAside.git
+    git clone https://github.com/xfox111/TabsAsideExtension.git
     ```
 2. Enable Developers mode on your browser extensions page
 3. Click "Load unpacked" button and navigate to the extension root folder (contains `manifest.json`)
@@ -175,7 +175,7 @@ Use "double quotes" wherever it's possible
         ```
 
 ### Finding an issue to work on
-Check out the [full issues list](https://github.com/XFox111/ChromiumTabsAside/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue) for a list of all potential areas for contributions. **Note** that just because an issue exists in the repository does not mean we will accept a contribution. There are several reasons we may not accept a pull request like:
+Check out the [full issues list](https://github.com/XFox111/TabsAsideExtension/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue) for a list of all potential areas for contributions. **Note** that just because an issue exists in the repository does not mean we will accept a contribution. There are several reasons we may not accept a pull request like:
 
 - Performance - One of Tabs Aside core values is to deliver a lightweight extension, that means it should perform well in both real and test environments.
 - User experience - Since we want to deliver a lightweight extension, the UX should feel lightweight as well and not be cluttered. Most changes to the UI should go through the issue owner and project owner (@XFox111).
