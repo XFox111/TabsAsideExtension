@@ -21,7 +21,7 @@
 	},
 	"closePanel":
 	{
-		"message": "关",
+		"message": "关闭",
 		"description": "Alternative text for close panel button"
 	},
 	"loadOnRestore":
