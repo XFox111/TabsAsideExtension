@@ -1,6 +1,6 @@
 {
 	"name": "__MSG_name__",
-	"version": "1.7.1",
+	"version": "1.7.3",
 	"manifest_version": 2,
 	"description": "__MSG_description__",
 	"author": "__MSG_author__",
@@ -22,7 +22,33 @@
 		"32": "icons/light/empty/32.png",
 		"16": "icons/light/empty/16.png"
 	},
-	"browser_action": { "default_icon": "icons/light/empty/32.png" },
+	"browser_action":
+	{
+		"default_icon": "icons/light/empty/32.png",
+		"theme_icons":
+		[
+			{
+				"size": 128,
+				"dark": "icons/light/full/128.png",
+				"light": "icons/dark/full/128.png"
+			},
+			{
+				"size": 48,
+				"dark": "icons/light/full/48.png",
+				"light": "icons/dark/full/48.png"
+			},
+			{
+				"size": 32,
+				"dark": "icons/light/full/32.png",
+				"light": "icons/dark/full/32.png"
+			},
+			{
+				"size": 16,
+				"dark": "icons/light/full/16.png",
+				"light": "icons/dark/full/16.png"
+			}
+		]
+	},
 	"web_accessible_resources": [ "*" ],
 
 	"background":

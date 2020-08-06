@@ -2,6 +2,7 @@ function TogglePane(tab)
 {
 	if (tab.url.startsWith("http")
 		&& !tab.url.includes("chrome.google.com")
+		&& !tab.url.includes("addons.mozilla.org")
 		&& !tab.url.includes("microsoftedge.microsoft.com"))
 	{
 		chrome.tabs.executeScript(tab.id,
@@ -136,6 +137,12 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) =>
 // This function updates the extension's toolbar icon
 function UpdateTheme()
 {
+	// Updating badge counter
+	chrome.browserAction.setBadgeText({ text: collections.length < 1 ? "" : collections.length.toString() });
+
+	if (chrome.theme)	// Firefox sets theme automatically
+		return;
+
 	var theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 	var iconStatus = collections.length ? "full" : "empty";
 
@@ -151,9 +158,6 @@ function UpdateTheme()
 				"16": basePath + "16.png"
 			}
 		});
-
-	// Updating badge counter
-	chrome.browserAction.setBadgeText({ text: collections.length < 1 ? "" : collections.length.toString() });
 }
 
 UpdateTheme();
@@ -166,7 +170,7 @@ function SaveCollection()
 {
 	chrome.tabs.query({ currentWindow: true }, (rawTabs) =>
 	{
-		var tabs = rawTabs.filter(i => i.url != chrome.runtime.getURL("TabsAside.html") && !i.pinned && !i.url.includes("//newtab") && !i.url.includes("about:blank"));
+		var tabs = rawTabs.filter(i => i.url != chrome.runtime.getURL("TabsAside.html") && !i.pinned && !i.url.includes("//newtab") && !i.url.includes("about:blank") && !i.url.includes("about:home"));
 
 		if (tabs.length < 1)
 		{

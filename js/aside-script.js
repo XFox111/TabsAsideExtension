@@ -287,7 +287,7 @@ function RemoveOneTab(tabData)
 			},
 			() =>
 			{
-				tabData.parentElement.previousElementSibling.children[0].textContent = chrome.i18n.getMessage("tabs") + ": " + (tabData.parentElement.children.length - 1);
+				tabData.parentElement.previousElementSibling.querySelector("small").textContent = (tabData.parentElement.children.length - 1) + " " + chrome.i18n.getMessage("tabs");
 				if (tabData.parentElement.children.length < 2)
 				{
 					RemoveElement(tabData.parentElement.parentElement);
