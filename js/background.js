@@ -2,6 +2,7 @@ function TogglePane(tab)
 {
 	if (tab.url.startsWith("http")
 		&& !tab.url.includes("chrome.google.com")
+		&& !tab.url.includes("addons.mozilla.org")
 		&& !tab.url.includes("microsoftedge.microsoft.com"))
 	{
 		chrome.tabs.executeScript(tab.id,
@@ -21,14 +22,14 @@ function TogglePane(tab)
 				active: true
 			},
 			(activeTab) =>
-				chrome.tabs.onActivated.addListener(function TabsAsideCloser(activeInfo) 
+				chrome.tabs.onActivated.addListener(function TabsAsideCloser(activeInfo)
 				{
 					chrome.tabs.query({ url: chrome.extension.getURL("TabsAside.html") }, (result) =>
 					{
 						if (result.length)
 							setTimeout(() =>
 							{
-								result.forEach(i => 
+								result.forEach(i =>
 									{
 									if (activeInfo.tabId != i.id)
 										chrome.tabs.remove(i.id);
@@ -61,9 +62,9 @@ function ProcessCommand(command)
 
 chrome.browserAction.onClicked.addListener((tab) =>
 {
-	chrome.storage.sync.get({ "setAsideOnClick": false }, values => 
+	chrome.storage.sync.get({ "setAsideOnClick": false }, values =>
 	{
-		if (values.setAsideOnClick)
+		if (values?.setAsideOnClick)
 			SaveCollection();
 		else
 			TogglePane(tab);
@@ -87,6 +88,8 @@ chrome.contextMenus.create(
 );
 
 var collections = JSON.parse(localStorage.getItem("sets")) || [];
+var shortcuts;
+chrome.commands.getAll((commands) => shortcuts = commands);
 
 chrome.commands.onCommand.addListener(ProcessCommand);
 chrome.contextMenus.onClicked.addListener((info) => ProcessCommand(info.menuItemId));
@@ -125,12 +128,21 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) =>
 				(tabs) => TogglePane(tabs[0])
 			)
 			break;
+		case "getShortcuts":
+			sendResponse(shortcuts);
+			break;
 	}
 });
 
 // This function updates the extension's toolbar icon
 function UpdateTheme()
 {
+	// Updating badge counter
+	chrome.browserAction.setBadgeText({ text: collections.length < 1 ? "" : collections.length.toString() });
+
+	if (chrome.theme)	// Firefox sets theme automatically
+		return;
+
 	var theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 	var iconStatus = collections.length ? "full" : "empty";
 
@@ -146,12 +158,6 @@ function UpdateTheme()
 				"16": basePath + "16.png"
 			}
 		});
-
-	// Updating badge counter
-	if (collections.length < 1)
-		chrome.browserAction.setBadgeText({ });
-	else
-		chrome.browserAction.setBadgeText({ text: collections.length.toString() });
 }
 
 UpdateTheme();
@@ -164,7 +170,7 @@ function SaveCollection()
 {
 	chrome.tabs.query({ currentWindow: true }, (rawTabs) =>
 	{
-		var tabs = rawTabs.filter(i => i.url != chrome.runtime.getURL("TabsAside.html") && !i.pinned && !i.url.includes("//newtab"));
+		var tabs = rawTabs.filter(i => i.url != chrome.runtime.getURL("TabsAside.html") && !i.pinned && !i.url.includes("//newtab") && !i.url.includes("about:blank") && !i.url.includes("about:home"));
 
 		if (tabs.length < 1)
 		{
@@ -196,7 +202,7 @@ function SaveCollection()
 		collections = JSON.parse(localStorage.getItem("sets"));
 
 		var newTabId;
-		chrome.tabs.create({}, (tab) => 
+		chrome.tabs.create({}, (tab) =>
 		{
 			newTabId = tab.id;
 			chrome.tabs.remove(rawTabs.filter(i => !i.pinned && i.id != newTabId).map(tab => tab.id));
@@ -216,7 +222,7 @@ function DeleteCollection(collectionIndex)
 
 function RestoreCollection(collectionIndex, removeCollection)
 {
-	collections[collectionIndex].links.forEach(i => 
+	collections[collectionIndex].links.forEach(i =>
 	{
 		chrome.tabs.create(
 			{
@@ -225,10 +231,10 @@ function RestoreCollection(collectionIndex, removeCollection)
 			},
 			(createdTab) =>
 			{
-				chrome.storage.sync.get({ "loadOnRestore" : false }, values => 
+				chrome.storage.sync.get({ "loadOnRestore" : true }, values =>
 				{
-					if (!values.loadOnRestore)
-						chrome.tabs.onUpdated.addListener(function DiscardTab(updatedTabId, changeInfo, updatedTab) 
+					if (!(values?.loadOnRestore))
+						chrome.tabs.onUpdated.addListener(function DiscardTab(updatedTabId, changeInfo, updatedTab)
 						{
 							if (updatedTabId === createdTab.id) {
 								chrome.tabs.onUpdated.removeListener(DiscardTab);

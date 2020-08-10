@@ -1,4 +1,4 @@
-if (window.location === window.parent.location && window.location.protocol != "chrome-extension:")	// For open/close call
+if (window.location === window.parent.location && !window.location.protocol.includes("-extension:"))	// For open/close call
 {
 	var iframe = document.querySelector("iframe.tabsAsideIframe");
 	if (!iframe)
@@ -52,14 +52,14 @@ function Initialize()
 	if (window.location !== window.parent.location)
 	{
 		pane.setAttribute("embedded", "");
-		window.addEventListener('message', event => 
+		window.addEventListener('message', event =>
 		{
 			if (event.data.target == "TabsAside")
 			{
 				pane.parentElement.style.opacity = 0;
 				pane.removeAttribute("opened");
 			}
-		}); 
+		});
 	}
 
 	UpdateLocale();
@@ -80,8 +80,8 @@ function Initialize()
 	// Tabs dismiss option
 	var loadOnRestoreCheckbox = document.querySelector("#loadOnRestore");
 	chrome.storage.sync.get(
-		{ "loadOnRestore": false },
-		values => loadOnRestoreCheckbox.checked = values.loadOnRestore
+		{ "loadOnRestore": true },
+		values => loadOnRestoreCheckbox.checked = values?.loadOnRestore ?? true
 	);
 	chrome.storage.onChanged.addListener((changes, namespace) =>
 	{
@@ -101,7 +101,7 @@ function Initialize()
 	var swapIconAction = document.querySelector("#swapIconAction");
 	chrome.storage.sync.get(
 		{ "setAsideOnClick": false },
-		values => swapIconAction.checked = values.setAsideOnClick
+		values => swapIconAction.checked = values?.setAsideOnClick ?? false
 	);
 	chrome.storage.onChanged.addListener((changes, namespace) =>
 	{
@@ -137,7 +137,7 @@ function Initialize()
 			})
 	);
 
-	document.querySelectorAll(".tabsAside.pane > header nav button").forEach(i => 
+	document.querySelectorAll(".tabsAside.pane > header nav button").forEach(i =>
 		i.onclick = () =>
 		{
 			if (i.hasAttribute("feedback-button"))
@@ -154,7 +154,7 @@ function Initialize()
 	chrome.runtime.sendMessage({ command: "loadData" }, (collections) =>
 	{
 		if (document.querySelector(".tabsAside.pane section div") == null)
-			collections.forEach(i => 
+			collections.forEach(i =>
 				AddCollection(i));
 	});
 
@@ -165,9 +165,11 @@ function UpdateLocale()
 {
 	document.querySelectorAll("*[loc]").forEach(i => i.textContent = chrome.i18n.getMessage(i.getAttribute("loc")));
 	document.querySelectorAll("*[loc_alt]").forEach(i => i.title = chrome.i18n.getMessage(i.getAttribute("loc_alt")));
-	
+
 	var swapActionsLabel = document.querySelector("label[loc=swapIconAction]");
-	chrome.commands.getAll((commands) => swapActionsLabel.textContent = swapActionsLabel.textContent.replace("%TOGGLE_SHORTCUT%", commands[2].shortcut));
+	chrome.runtime.sendMessage({ command: "getShortcuts" }, (shortcuts) =>
+		swapActionsLabel.textContent = swapActionsLabel.textContent.replace("%TOGGLE_SHORTCUT%", shortcuts.filter(i => i.name == "toggle-pane")[0].shortcut)
+	);
 }
 
 function AddCollection(collection)
@@ -207,13 +209,13 @@ function AddCollection(collection)
 
 			"<div class='set' class='tabsList'>" + rawTabs + "</div>" +
 		"</div>";
-		
+
 	UpdateLocale();
 
-	list.querySelectorAll(".restoreCollection").forEach(i => 
+	list.querySelectorAll(".restoreCollection").forEach(i =>
 		i.onclick = () => RestoreTabs(i.parentElement.parentElement));
 
-	list.querySelectorAll(".restoreCollection.noDelete").forEach(i => 
+	list.querySelectorAll(".restoreCollection.noDelete").forEach(i =>
 		i.onclick = () => RestoreTabs(i.parentElement.parentElement.parentElement.parentElement, false));
 
 	list.querySelectorAll(".openTab").forEach(i =>
@@ -255,7 +257,7 @@ function RestoreTabs(collectionData, removeCollection = true)
 
 function RemoveTabs(collectionData)
 {
-	chrome.storage.sync.get({ "showDeleteDialog": true }, values => 
+	chrome.storage.sync.get({ "showDeleteDialog": true }, values =>
 	{
 		if (values.showDeleteDialog && !confirm(chrome.i18n.getMessage("removeCollectionConfirm")))
 			return;
@@ -272,7 +274,7 @@ function RemoveTabs(collectionData)
 
 function RemoveOneTab(tabData)
 {
-	chrome.storage.sync.get({ "showDeleteDialog": true }, values => 
+	chrome.storage.sync.get({ "showDeleteDialog": true }, values =>
 	{
 		if (values.showDeleteDialog && !confirm(chrome.i18n.getMessage("removeTabConfirm")))
 			return;
@@ -285,7 +287,7 @@ function RemoveOneTab(tabData)
 			},
 			() =>
 			{
-				tabData.parentElement.previousElementSibling.children[0].textContent = chrome.i18n.getMessage("tabs") + ": " + (tabData.parentElement.children.length - 1);
+				tabData.parentElement.previousElementSibling.querySelector("small").textContent = (tabData.parentElement.children.length - 1) + " " + chrome.i18n.getMessage("tabs");
 				if (tabData.parentElement.children.length < 2)
 				{
 					RemoveElement(tabData.parentElement.parentElement);
@@ -307,6 +309,6 @@ function RemoveElement(el)
 function RemoveCollectionElement(el)
 {
 	if (el.parentElement.children.length < 3)
-		setTimeout(() => document.querySelector(".tabsAside.pane > section > h2").removeAttribute("hidden"), 250);	
+		setTimeout(() => document.querySelector(".tabsAside.pane > section > h2").removeAttribute("hidden"), 250);
 	RemoveElement(el);
 }
