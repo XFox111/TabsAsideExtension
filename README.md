@@ -4,9 +4,9 @@
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/mgmjbodjgijnebfgohlnjkegdpbdjgin)](https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/xfox111/TabsAsideExtension)](https://github.com/xfox111/TabsAsideExtension/releases/latest)
 
-[![Mozilla Add-on](https://img.shields.io/amo/users/ms-edge-tabs-aside?label=Firefox%20Webstore%20downloads)](https://addons.mozilla.org/)
-[![Mozilla Add-on](https://img.shields.io/amo/rating/ms-edge-tabs-aside)](https://addons.mozilla.org/)
-[![Mozilla Add-on](https://img.shields.io/amo/dw/ms-edge-tabs-aside)](https://addons.mozilla.org/)
+[![Mozilla Add-on](https://img.shields.io/amo/users/ms-edge-tabs-aside?label=Firefox%20Webstore%20downloads)](https://addons.mozilla.org/firefox/addon/ms-edge-tabs-aside/)
+[![Mozilla Add-on](https://img.shields.io/amo/rating/ms-edge-tabs-aside)](https://addons.mozilla.org/firefox/addon/ms-edge-tabs-aside/)
+[![Mozilla Add-on](https://img.shields.io/amo/dw/ms-edge-tabs-aside)](https://addons.mozilla.org/firefox/addon/ms-edge-tabs-aside/)
 
 [![GitHub issues](https://img.shields.io/github/issues/xfox111/TabsAsideExtension)](https://github.com/xfox111/TabsAsideExtension/issues)
 [![GitHub last commit](https://img.shields.io/github/last-commit/xfox111/TabsAsideExtension)](https://github.com/xfox111/TabsAsideExtension/commits/master)

@@ -22,14 +22,14 @@ function TogglePane(tab)
 				active: true
 			},
 			(activeTab) =>
-				chrome.tabs.onActivated.addListener(function TabsAsideCloser(activeInfo) 
+				chrome.tabs.onActivated.addListener(function TabsAsideCloser(activeInfo)
 				{
 					chrome.tabs.query({ url: chrome.extension.getURL("TabsAside.html") }, (result) =>
 					{
 						if (result.length)
 							setTimeout(() =>
 							{
-								result.forEach(i => 
+								result.forEach(i =>
 									{
 									if (activeInfo.tabId != i.id)
 										chrome.tabs.remove(i.id);
@@ -62,7 +62,7 @@ function ProcessCommand(command)
 
 chrome.browserAction.onClicked.addListener((tab) =>
 {
-	chrome.storage.sync.get({ "setAsideOnClick": false }, values => 
+	chrome.storage.sync.get({ "setAsideOnClick": false }, values =>
 	{
 		if (values?.setAsideOnClick)
 			SaveCollection();
@@ -202,7 +202,7 @@ function SaveCollection()
 		collections = JSON.parse(localStorage.getItem("sets"));
 
 		var newTabId;
-		chrome.tabs.create({}, (tab) => 
+		chrome.tabs.create({}, (tab) =>
 		{
 			newTabId = tab.id;
 			chrome.tabs.remove(rawTabs.filter(i => !i.pinned && i.id != newTabId).map(tab => tab.id));
@@ -222,7 +222,7 @@ function DeleteCollection(collectionIndex)
 
 function RestoreCollection(collectionIndex, removeCollection)
 {
-	collections[collectionIndex].links.forEach(i => 
+	collections[collectionIndex].links.forEach(i =>
 	{
 		chrome.tabs.create(
 			{
@@ -231,10 +231,10 @@ function RestoreCollection(collectionIndex, removeCollection)
 			},
 			(createdTab) =>
 			{
-				chrome.storage.sync.get({ "loadOnRestore" : true }, values => 
+				chrome.storage.sync.get({ "loadOnRestore" : true }, values =>
 				{
 					if (!(values?.loadOnRestore))
-						chrome.tabs.onUpdated.addListener(function DiscardTab(updatedTabId, changeInfo, updatedTab) 
+						chrome.tabs.onUpdated.addListener(function DiscardTab(updatedTabId, changeInfo, updatedTab)
 						{
 							if (updatedTabId === createdTab.id) {
 								chrome.tabs.onUpdated.removeListener(DiscardTab);

@@ -21,7 +21,7 @@
 	overflow: hidden;
 	display: grid;
 	grid-template-rows: auto 1fr;
-	
+
 	width: 100%;
 	min-width: 500px;
 
@@ -68,7 +68,7 @@
 				font-weight: 500;
 				font-size: 15pt;
 			}
-			
+
 			.tabsAside.pane > header > div > nav
 			{
 				top: 45px;
@@ -161,14 +161,14 @@
 			color: gray;
 			visibility: visible !important;
 		}
-		
+
 		.collectionSet > .header > h4
 		{
 			margin: 0px;
 			visibility: visible !important;
 			font-weight: 500;
 		}
-		
+
 		.collectionSet > .header > a
 		{
 			font-size: 11pt;
@@ -196,7 +196,7 @@
 			.collectionSet > .set:hover::-webkit-scrollbar-thumb
 			{
 				visibility: visible;
-			}	
+			}
 
 			.collectionSet > .set > div
 			{

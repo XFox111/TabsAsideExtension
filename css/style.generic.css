@@ -27,7 +27,7 @@
 {
 	color: #0078d7;
 }
-	.tabsAside a:hover 
+	.tabsAside a:hover
 	{
 		text-decoration: underline;
 		cursor: pointer;
@@ -81,8 +81,8 @@
 		background-color: lightgray;
 	}
 
-	.tabsAside nav button 
-	{		
+	.tabsAside nav button
+	{
 		text-align: start;
 
 		padding: 0px 10px;
@@ -98,7 +98,7 @@
 		}
 
 	.tabsAside button + nav:active,
-	.tabsAside button:focus + nav 
+	.tabsAside button:focus + nav
 	{
 		visibility: visible;
 	}

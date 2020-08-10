@@ -6,7 +6,7 @@
 	"author": "__MSG_author__",
 	"default_locale": "en",
 
-	"permissions": 
+	"permissions":
 	[
 		"tabs",
 		"unlimitedStorage",
@@ -14,8 +14,8 @@
 		"<all_urls>",
 		"contextMenus"
 	],
-	
-	"icons": 
+
+	"icons":
 	{
 		"128": "icons/light/empty/128.png",
 		"48": "icons/light/empty/48.png",

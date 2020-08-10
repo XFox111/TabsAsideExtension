@@ -135,14 +135,14 @@ Use "double quotes" wherever it's possible
         }
         ```
 - Put spaces between operators and before braces in methods declarations, conditionals and loops
-    - Wrong: 
+    - Wrong:
         - `y=k*x+b`
         - `function FunctionName()`
     - Correct:
         - `y = k * x + b`
         - `function FunctionName ()`
 - Use ternary conditionals wherever it's possible
-    - Wrong: 
+    - Wrong:
         ```
         var s;
         if (condition)
