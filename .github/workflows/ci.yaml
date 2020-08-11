@@ -1,0 +1,73 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ master ]
+    paths:
+      # Trigger deploy on manifest change
+      - 'manifest.json'
+
+jobs:
+  Firefox:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build Extension for Firefox
+      id: web-ext-build
+      uses: kewisch/action-web-ext@v1
+      with:
+        cmd: build
+
+    - name: Sign build
+      id: web-ext-sign
+      uses: kewisch/action-web-ext@v1
+      with:
+        cmd: sign
+        source: ${{ steps.web-ext-build.outputs.target }}
+        apiKey: ${{ secrets.FIREFOX_API_KEY }}
+        apiSecret: ${{ secrets.FIREFOX_CLIENT_SECRET }}
+
+    - name: Publish to Firefox Webstore
+      uses: trmcnvn/firefox-addon@v1
+      with:
+        uuid: tabsaside@xfox111.net
+        xpi: ${{ steps.web-ext-sign.outputs.target }}
+        manifest: ./manifest.json
+        api-key: ${{ secrets.FIREFOX_API_KEY }}
+        api-secret: ${{ secrets.FIREFOX_CLIENT_SECRET }}
+
+    - name: Drop artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: 'Firefox Artefacts'
+        path: ${{ steps.web-ext-sign.outputs.target }}
+
+  Chrome:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Pack extension
+      uses: TheDoctor0/zip-release@0.4.1
+      with:
+        filename: ./TabsAside.zip
+        exclusions: '.git/* .vscode/* .github/* *.md'
+
+    - name: Publish to Chrome Webstore
+      uses: SebastienGllmt/chrome-addon@v3
+      with:
+        extension: mgmjbodjgijnebfgohlnjkegdpbdjgin
+        zip: ./TabsAside.zip
+        client-id: ${{ secrets.CHROME_CLIENT_ID }}
+        client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
+        refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
+
+    - name: Drop artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: 'Chrome Artifacts'
+        path: ./TabsAside.zip
