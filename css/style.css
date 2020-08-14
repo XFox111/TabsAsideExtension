@@ -162,11 +162,18 @@
 			visibility: visible !important;
 		}
 
-		.collectionSet > .header > h4
+		.collectionSet > .header > input
 		{
 			margin: 0px;
 			visibility: visible !important;
 			font-weight: 500;
+			border: none;
+			background: transparent;
+		}
+
+		.collectionSet > .header > input:hover
+		{
+			border: 1px solid black;
 		}
 
 		.collectionSet > .header > a

@@ -195,7 +195,7 @@ function AddCollection(collection)
 	list.innerHTML +=
 		"<div class='collectionSet'>" +
 			"<div class='header'>" +
-				"<h4>" + new Date(collection.timestamp).toDateString() + "</h4>" +
+				"<input type='text' value='" + (collection.name ?? new Date(collection.timestamp).toDateString()) + "'/>" +
 				"<a loc='restoreTabs' class='restoreCollection'>Restore tabs</a>" +
 				"<div>" +
 					"<button loc_alt='more' class='btn more' title='More...'></button>" +
@@ -211,6 +211,9 @@ function AddCollection(collection)
 		"</div>";
 
 	UpdateLocale();
+
+	list.querySelectorAll("input").forEach(i =>
+		i.oninput = (event) => RenameCollection(i.parentElement.parentElement, event.target.value));
 
 	list.querySelectorAll(".restoreCollection").forEach(i =>
 		i.onclick = () => RestoreTabs(i.parentElement.parentElement));
@@ -237,6 +240,16 @@ function AddCollection(collection)
 function SetTabsAside()
 {
 	chrome.runtime.sendMessage({ command: "saveTabs" });
+}
+
+function RenameCollection(collectionData, name)
+{
+	chrome.runtime.sendMessage(
+		{
+			command: "renameCollection",
+			newName: name,
+			collectionIndex: Array.prototype.slice.call(collectionData.parentElement.children).indexOf(collectionData) - 1
+		});
 }
 
 function RestoreTabs(collectionData, removeCollection = true)

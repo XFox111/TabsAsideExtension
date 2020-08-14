@@ -119,6 +119,10 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) =>
 			RemoveTab(message.collectionIndex, message.tabIndex);
 			sendResponse();
 			break;
+		case "renameCollection":
+			collections[message.collectionIndex].name = message.newName;
+			localStorage.setItem("sets", JSON.stringify(collections));
+			break;
 		case "togglePane":
 			chrome.tabs.query(
 				{

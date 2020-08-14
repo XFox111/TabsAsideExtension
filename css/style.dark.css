@@ -38,6 +38,22 @@
 		background-color: dimgray;
 	}
 
+	.tabsAside[darkmode] .collectionSet > .header > input
+	{
+		color: white;
+	}
+
+	.tabsAside[darkmode] .collectionSet > .header > input:hover
+	{
+		border: 1px solid dimgray;
+	}
+
+	.tabsAside[darkmode] .collectionSet > .header > input:focus
+	{
+		background: white;
+		color: black;
+	}
+
 	.tabsAside[darkmode] a
 	{
 		color: #48adff;
