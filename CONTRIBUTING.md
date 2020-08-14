@@ -4,7 +4,7 @@ Welcome, and thank you for your interest in contributing to my project!
 There are many ways in which you can contribute, beyond writing code. The goal of this document is to provide a high-level overview of how you can get involved.
 
 ## Table of Contents
-- [Contribution Guidelines](#gutschedule-contribution-guidelines)
+- [Contribution Guidelines](#contribution-guidelines)
   - [Table of Contents](#table-of-contents)
   - [Asking Questions](#asking-questions)
   - [Providing Feedback](#providing-feedback)

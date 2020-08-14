@@ -44,8 +44,8 @@ You can go to the project's [roadmap kanban board](https://github.com/XFox111/Ta
 
 ## Contributing
 There are many ways in which you can participate in the project, for example:
-- [Submit bugs and feature requests](https://github.com/xfox111/gutschedule/issues), and help us verify as they are checked in
-- Review [source code changes](https://github.com/xfox111/gutschedule/pulls)
+- [Submit bugs and feature requests](https://github.com/xfox111/TabsAsideExtension/issues), and help us verify as they are checked in
+- Review [source code changes](https://github.com/xfox111/TabsAsideExtension/pulls)
 - Review documentation and make pull requests for anything from typos to new content
 
 If you are interested in fixing issues and contributing directly to the code base, please see the [Contribution Guidelines](https://github.com/XFox111/TabsAsideExtension/blob/master/CONTRIBUTING.md), which covers the following:
