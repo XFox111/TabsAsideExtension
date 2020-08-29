@@ -1,0 +1,58 @@
+.tabsAside[listview] .collectionSet > .header
+{
+	margin-bottom: 5px;
+}
+
+.tabsAside[listview] .collectionSet > .set
+{
+	max-height: 250px;
+}
+
+.tabsAside[listview] .collectionSet > .set > div
+{
+	width: initial;
+	height: initial;
+	background-image: none !important;
+	display: block;
+}
+
+.listviewSwitch
+{
+	width: 20px;
+	height: 20px;
+	display: grid;
+	grid-row-gap: 2px;
+	grid-column-gap: 2px;
+	cursor: pointer;
+}
+
+.listviewSwitch.tile
+{
+	grid-template-columns: 1fr 1fr;
+}
+
+.listviewSwitch > div
+{
+	border-radius: 1px;
+	background-color: #c2c2c2;
+}
+
+.listviewSwitch:hover > div
+{
+	background-color: #a0a0aa;
+}
+
+.tabsAside .listviewSwitch.tile > div
+{
+	background-color: gray;
+}
+
+.tabsAside[listview] .listviewSwitch.tile > div
+{
+	background-color: #c2c2c2;
+}
+
+.tabsAside[listview] .listviewSwitch.list > div
+{
+	background-color: gray;
+}
