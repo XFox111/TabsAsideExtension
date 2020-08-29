@@ -128,7 +128,7 @@ function Initialize()
 		if (namespace == 'sync')
 			for (key in changes)
 				if (key === 'showDeleteDialog')
-				showDeleteDialog.checked = changes[key].newValue
+					showDeleteDialog.checked = changes[key].newValue
 	});
 	showDeleteDialog.addEventListener("click", () =>
 		chrome.storage.sync.set(
@@ -136,6 +136,42 @@ function Initialize()
 				"showDeleteDialog": showDeleteDialog.checked
 			})
 	);
+
+	// Collections view switch
+	chrome.storage.sync.get(
+		{ "listview": false },
+		values =>
+		{
+			if (values?.listview)
+				pane.setAttribute("listview", "");
+		}
+	);
+	document.querySelectorAll(".listviewSwitch").forEach(i =>
+		{
+			i.onclick = (args) =>
+			{
+				if (args.currentTarget.classList[1] == "list")
+				{
+					pane.setAttribute("listview", "");
+					chrome.storage.sync.set({ "listview": true });
+				}
+				else
+				{
+					pane.removeAttribute("listview");
+					chrome.storage.sync.set({ "listview": false });
+				}
+			}
+		});
+	chrome.storage.onChanged.addListener((changes, namespace) =>
+	{
+		if (namespace == 'sync')
+			for (key in changes)
+				if (key === 'listview')
+					if (changes[key].newValue)
+						pane.setAttribute("listview", "");
+					else
+						pane.removeAttribute("listview");
+	});
 
 	document.querySelectorAll(".tabsAside.pane > header nav button").forEach(i =>
 		i.onclick = () =>
@@ -182,8 +218,8 @@ function AddCollection(collection)
 	for (var i = 0; i < collection.links.length; i++)
 	{
 		rawTabs +=
-			"<div title='" + collection.titles[i] + "'" + ((collection.thumbnails && collection.thumbnails[i]) ? " style='background-image: url(" + collection.thumbnails[i] + ")'" : "") + ">" +
-				"<span class='openTab' value='" + collection.links[i] + "'></span>" +
+			"<div title='" + collection.titles[i] + "'" + ((collection.thumbnails && collection.thumbnails[i]) ? " style='background-image: url(" + collection.thumbnails[i] + ")'" : "") + " value='" + collection.links[i] + "'>" +
+				//"<span class='openTab' value='" + collection.links[i] + "'></span>" +
 				"<div>" +
 					"<div" + ((collection.icons[i] == 0 || collection.icons[i] == null) ? "" : " style='background-image: url(\"" + collection.icons[i] + "\")'") + "></div>" +
 					"<span>" + collection.titles[i] + "</span>" +
@@ -221,20 +257,24 @@ function AddCollection(collection)
 	list.querySelectorAll(".restoreCollection.noDelete").forEach(i =>
 		i.onclick = () => RestoreTabs(i.parentElement.parentElement.parentElement.parentElement, false));
 
-	list.querySelectorAll(".openTab").forEach(i =>
-		i.onclick = () =>
-			chrome.runtime.sendMessage(
-				{
-					command: "openTab",
-					url: i.getAttribute("value")
-				}
-			));
+	list.querySelectorAll(".set > div").forEach(i =>
+		i.onclick = (args) =>
+		{
+			if (args.target.localName != "button")
+				chrome.runtime.sendMessage(
+					{
+						command: "openTab",
+						url: i.getAttribute("value")
+					}
+				);
+		});
 
 	document.querySelectorAll(".header .btn.remove").forEach(i =>
 		i.onclick = () => RemoveTabs(i.parentElement.parentElement));
 
 	document.querySelectorAll(".set .btn.remove").forEach(i =>
-		i.onclick = () => RemoveOneTab(i.parentElement.parentElement));
+		i.onclick = (args) =>
+			RemoveOneTab(i.parentElement.parentElement));
 }
 
 function SetTabsAside()
