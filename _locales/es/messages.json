@@ -1,0 +1,127 @@
+{
+	"name":
+	{
+		"message": "Pestañas que has reservado",
+		"description": "Extension name. Displayed in the manifest and pane header"
+	},
+	"description":
+	{
+		"message": "Función \"Reservar pestañas\" de Microsoft Edge clásico",
+		"description": "Extension description"
+	},
+	"author":
+	{
+		"message": "Michael \"XFox\" Gordeev",
+		"description": "Author name"
+	},
+	"options":
+	{
+		"message": "Opciones",
+		"description": "Alternative text for options button in the pane"
+	},
+	"closePanel":
+	{
+		"message": "Cerrar",
+		"description": "Alternative text for close panel button"
+	},
+	"loadOnRestore":
+	{
+		"message": "Cargar pestañas al restaurar",
+		"description": "Label for option"
+	},
+	"showDeleteDialog":
+	{
+		"message": "Mostrar diálogo de confirmacion antes de eliminar un item",
+		"description": "Label for option"
+	},
+	"swapIconAction":
+	{
+		"message": "Reservar pestañas al apretar el icono de la extensión (%TOGGLE_SHORTCUT% o click-derecho para abrir el panel)",
+		"description": "Label for option"
+	},
+	"github":
+	{
+		"message": "Visitar la pagina de GitHub",
+		"description": "Link title"
+	},
+	"contributors":
+	{
+		"message": "Contribuidores del proyecto",
+		"description": "Link title"
+	},
+	"feedback":
+	{
+		"message": "Deja un comentario",
+		"description": "Link title"
+	},
+	"buyMeACoffee":
+	{
+		"message": "¡Comprame un cafe!",
+		"description": "Link title"
+	},
+	"credits":
+	{
+		"message": "Desarrollado por Michael 'XFox' Gordeev",
+		"description": "Options menu credits"
+	},
+	"setAside":
+	{
+		"message": "Reservar las pestañas actuales",
+		"description": "Save collection action name. Used in the pane, extension context menu and manifest shortcuts"
+	},
+	"nothingSaved":
+	{
+		"message": "No tienes pestañas reservadas",
+		"description": "Placeholder for empty pane"
+	},
+	"removeTab":
+	{
+		"message": "Eliminar pestañas de la colección",
+		"description": "Button hint on a tab card"
+	},
+	"restoreTabs":
+	{
+		"message": "Restaurar pestañas",
+		"description": "Collection restore action link name"
+	},
+	"more":
+	{
+		"message": "Más...",
+		"description": "Collections' more button title"
+	},
+	"restoreNoRemove":
+	{
+		"message": "Restaurar sin eliminar",
+		"description": "Context action item name"
+	},
+	"removeCollection":
+	{
+		"message": "Eliminar la colección",
+		"description": "Collection remove action name"
+	},
+	"removeCollectionConfirm":
+	{
+		"message": "¿Está seguro que quiere eliminar esta colección?",
+		"description": "Prompt dialog content on collection deletion"
+	},
+	"removeTabConfirm":
+	{
+		"message": "¿Está seguro que quiere eliminar esta pestaña?",
+		"description": "Prompt dialog content on one tab deletion"
+	},
+	"togglePaneContext":
+	{
+		"message": "Abrir panel de pestañas",
+		"description": "Context action name. Used in extension context menu and manifest shortcuts"
+	},
+	"noTabsToSave":
+	{
+		"message": "No hay pestañas disponibles para reservar",
+		"description": "Alert dialog message when there's no tabs to save"
+	},
+	"tabs":
+	{
+		"message": "items",
+		"description": "Collection tabs counter label (e.g. 8 items)"
+	}
+}
