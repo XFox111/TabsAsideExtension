@@ -74,6 +74,9 @@ function Initialize()
 	document.querySelector(".tabsAside header .btn.remove").addEventListener("click", () =>
 		chrome.runtime.sendMessage({ command: "togglePane" })
 	);
+	document.querySelector(".tabsAside.closeArea").addEventListener("click", () =>
+		chrome.runtime.sendMessage({ command: "togglePane" })
+	);
 
 	document.querySelector("nav > p > small").textContent = chrome.runtime.getManifest()["version"];
 
