@@ -276,6 +276,10 @@ function RestoreCollection(collectionIndex, removeCollection)
 			});
 	});
 
+	//We added new tabs by restoring a collection, so we refresh the array of tabs ready to be saved.
+	GetTabsToSave((returnedTabs) => 
+	tabsToSave = returnedTabs)
+
 	if (!removeCollection)
 		return;
 
