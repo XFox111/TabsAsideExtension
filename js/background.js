@@ -1,12 +1,12 @@
 //This variable is populated when the browser action icon is clicked, or a command is called (with a shortcut for example).
 //We can't populate it later, as selected tabs get deselected on a click inside a tab.
-var tabsToSave=[];
+var tabsToSave = [];
 
 
 //Get the tabs to save, either all the window or the selected tabs only, and pass them through a callback.
 function GetTabsToSave(callback)
 {
-		chrome.tabs.query({currentWindow: true}, (windowTabs) =>
+		chrome.tabs.query({ currentWindow: true }, (windowTabs) =>
 		{
 			var highlightedTabs = windowTabs.filter(item => item.highlighted);
 			//If there are more than one selected tab in the window, we set only those aside.
