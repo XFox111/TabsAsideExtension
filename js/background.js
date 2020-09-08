@@ -102,14 +102,14 @@ chrome.browserAction.onClicked.addListener((tab) =>
 chrome.contextMenus.create(
 	{
 		id: "toggle-pane",
-		contexts: ['all'],
+		contexts: ["browser_action"],
 		title: chrome.i18n.getMessage("togglePaneContext")
 	}
 );
 chrome.contextMenus.create(
 	{
 		id: "set-aside",
-		contexts: ['all'],
+		contexts: ["browser_action"],
 		title: chrome.i18n.getMessage("setAside")
 	}
 );
