@@ -134,6 +134,8 @@ chrome.commands.getAll((commands) => shortcuts = commands);
 chrome.commands.onCommand.addListener(ProcessCommand);
 chrome.contextMenus.onClicked.addListener((info) => ProcessCommand(info.menuItemId));
 
+chrome.runtime.onInstalled.addListener((reason) => chrome.tabs.create({ url: "https://github.com/XFox111/TabsAsideExtension/releases/latest" }));
+
 //We receive a message from the pane aside-script, which means the tabsToSave are already assigned on message reception.
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) =>
 {
