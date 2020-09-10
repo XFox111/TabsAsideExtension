@@ -145,7 +145,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) =>
 			chrome.tabs.create({ url: message.url });
 			break;
 		case "loadData":
-			sendResponse(collections);
+			chrome.storage.sync.get("sets", values =>
+			{
+				if (values?.sets != null)
+					collections = JSON.parse(values?.sets)
+				sendResponse(collections);
+				UpdateTheme();
+			});
 			break;
 		case "saveTabs":
 			SaveCollection();
