@@ -1,3 +1,21 @@
+//This variable is populated when the browser action icon is clicked, or a command is called (with a shortcut for example).
+//We can't populate it later, as selected tabs get deselected on a click inside a tab.
+var tabsToSave = [];
+
+
+//Get the tabs to save, either all the window or the selected tabs only, and pass them through a callback.
+function GetTabsToSave(callback)
+{
+		chrome.tabs.query({ currentWindow: true }, (windowTabs) =>
+		{
+			var highlightedTabs = windowTabs.filter(item => item.highlighted);
+			//If there are more than one selected tab in the window, we set only those aside.
+			// Otherwise, all the window's tabs get saved.
+			return callback((highlightedTabs.length > 1 ? highlightedTabs : windowTabs));
+		});
+
+}
+
 function TogglePane(tab)
 {
 	if (tab.url.startsWith("http")
@@ -43,49 +61,42 @@ function TogglePane(tab)
 
 function ProcessCommand(command)
 {
-	switch(command)
+	GetTabsToSave((returnedTabs) =>
 	{
-		case "set-aside":
-			SaveCollection();
-			break;
-		case "toggle-pane":
-			chrome.tabs.query(
-				{
-					active: true,
-					currentWindow: true
-				},
-				(tabs) => TogglePane(tabs[0])
-			)
-			break;
-	}
+		tabsToSave = returnedTabs;
+		switch(command)
+		{
+			case "set-aside":
+				SaveCollection();
+				break;
+			case "toggle-pane":
+				chrome.tabs.query(
+					{
+						active: true,
+						currentWindow: true
+					},
+					(tabs) => TogglePane(tabs[0])
+				)
+				break;
+		}
+	});
 }
 
 chrome.browserAction.onClicked.addListener((tab) =>
 {
-	chrome.storage.sync.get({ "setAsideOnClick": false }, values =>
+	GetTabsToSave((returnedTabs) =>
 	{
-		if (values?.setAsideOnClick)
-			SaveCollection();
-		else
-			TogglePane(tab);
+		tabsToSave = returnedTabs;
+
+		chrome.storage.sync.get({ "setAsideOnClick": false }, values =>
+		{
+			if (values?.setAsideOnClick)
+				SaveCollection();
+			else
+				TogglePane(tab);
+		});
 	});
 });
-
-// Adding context menu options
-chrome.contextMenus.create(
-	{
-		id: "toggle-pane",
-		contexts: ['all'],
-		title: chrome.i18n.getMessage("togglePaneContext")
-	}
-);
-chrome.contextMenus.create(
-	{
-		id: "set-aside",
-		contexts: ['all'],
-		title: chrome.i18n.getMessage("setAside")
-	}
-);
 
 var collections = JSON.parse(localStorage.getItem("sets")) || [];
 var shortcuts;
@@ -94,6 +105,27 @@ chrome.commands.getAll((commands) => shortcuts = commands);
 chrome.commands.onCommand.addListener(ProcessCommand);
 chrome.contextMenus.onClicked.addListener((info) => ProcessCommand(info.menuItemId));
 
+chrome.runtime.onInstalled.addListener((reason) => 
+{
+	chrome.tabs.create({ url: "https://github.com/XFox111/TabsAsideExtension/releases/latest" });
+	// Adding context menu options
+	chrome.contextMenus.create(
+		{
+			id: "toggle-pane",
+			contexts: ["browser_action"],
+			title: chrome.i18n.getMessage("togglePaneContext")
+		}
+	);
+	chrome.contextMenus.create(
+		{
+			id: "set-aside",
+			contexts: ["browser_action"],
+			title: chrome.i18n.getMessage("setAside")
+		}
+	);
+});
+
+//We receive a message from the pane aside-script, which means the tabsToSave are already assigned on message reception.
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) =>
 {
 	switch (message.command)
@@ -172,48 +204,45 @@ chrome.tabs.onActivated.addListener(UpdateTheme);
 // Set current tabs aside
 function SaveCollection()
 {
-	chrome.tabs.query({ currentWindow: true }, (rawTabs) =>
+	var tabs = tabsToSave.filter(i => i.url != chrome.runtime.getURL("TabsAside.html") && !i.pinned && !i.url.includes("//newtab") && !i.url.includes("about:blank") && !i.url.includes("about:home"));
+
+	if (tabs.length < 1)
 	{
-		var tabs = rawTabs.filter(i => i.url != chrome.runtime.getURL("TabsAside.html") && !i.pinned && !i.url.includes("//newtab") && !i.url.includes("about:blank") && !i.url.includes("about:home"));
+		alert(chrome.i18n.getMessage("noTabsToSave"));
+		return;
+	}
 
-		if (tabs.length < 1)
-		{
-			alert(chrome.i18n.getMessage("noTabsToSave"));
-			return;
-		}
+	var collection =
+	{
+		timestamp: Date.now(),
+		tabsCount: tabs.length,
+		titles: tabs.map(tab => tab.title ?? ""),
+		links: tabs.map(tab => tab.url ?? ""),
+		icons: tabs.map(tab => tab.favIconUrl ?? ""),
+		thumbnails: tabs.map(tab => thumbnails.find(i => i.tabId == tab.id)?.url ?? "")
+	};
 
-		var collection =
-		{
-			timestamp: Date.now(),
-			tabsCount: tabs.length,
-			titles: tabs.map(tab => tab.title ?? ""),
-			links: tabs.map(tab => tab.url ?? ""),
-			icons: tabs.map(tab => tab.favIconUrl ?? ""),
-			thumbnails: tabs.map(tab => thumbnails.find(i => i.tabId == tab.id)?.url ?? "")
-		};
+	var rawData;
+	if (localStorage.getItem("sets") === null)
+		rawData = [collection];
+	else
+	{
+		rawData = JSON.parse(localStorage.getItem("sets"));
+		rawData.unshift(collection);
+	}
 
-		var rawData;
-		if (localStorage.getItem("sets") === null)
-			rawData = [collection];
-		else
-		{
-			rawData = JSON.parse(localStorage.getItem("sets"));
-			rawData.unshift(collection);
-		}
+	localStorage.setItem("sets", JSON.stringify(rawData));
 
-		localStorage.setItem("sets", JSON.stringify(rawData));
+	collections = JSON.parse(localStorage.getItem("sets"));
 
-		collections = JSON.parse(localStorage.getItem("sets"));
-
-		var newTabId;
-		chrome.tabs.create({}, (tab) =>
-		{
-			newTabId = tab.id;
-			chrome.tabs.remove(rawTabs.filter(i => !i.pinned && i.id != newTabId).map(tab => tab.id));
-		});
-
-		UpdateTheme();
+	var newTabId;
+	chrome.tabs.create({}, (tab) =>
+	{
+		newTabId = tab.id;
+		chrome.tabs.remove(tabsToSave.filter(i => !i.pinned && i.id != newTabId).map(tab => tab.id));
 	});
+
+	UpdateTheme();
 }
 
 function DeleteCollection(collectionIndex)
@@ -250,6 +279,10 @@ function RestoreCollection(collectionIndex, removeCollection)
 				});
 			});
 	});
+
+	//We added new tabs by restoring a collection, so we refresh the array of tabs ready to be saved.
+	GetTabsToSave((returnedTabs) => 
+	tabsToSave = returnedTabs)
 
 	if (!removeCollection)
 		return;

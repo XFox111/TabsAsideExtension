@@ -31,6 +31,7 @@ Unfortunately, in new Chromium-based Microsoft Edge, the devs decided not to imp
 - Auto Dark mode
 - Now you can restore one tab from collection without removing
 - Now you can choose if you want to load restored tabs only when you're navigating onto them
+- Set tabs you've selected aside
 - **Now available for Firefox!**
 
 ## Download
