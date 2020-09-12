@@ -98,22 +98,6 @@ chrome.browserAction.onClicked.addListener((tab) =>
 	});
 });
 
-// Adding context menu options
-chrome.contextMenus.create(
-	{
-		id: "toggle-pane",
-		contexts: ["browser_action"],
-		title: chrome.i18n.getMessage("togglePaneContext")
-	}
-);
-chrome.contextMenus.create(
-	{
-		id: "set-aside",
-		contexts: ["browser_action"],
-		title: chrome.i18n.getMessage("setAside")
-	}
-);
-
 var collections = JSON.parse(localStorage.getItem("sets")) || [];
 var shortcuts;
 chrome.commands.getAll((commands) => shortcuts = commands);
@@ -121,7 +105,25 @@ chrome.commands.getAll((commands) => shortcuts = commands);
 chrome.commands.onCommand.addListener(ProcessCommand);
 chrome.contextMenus.onClicked.addListener((info) => ProcessCommand(info.menuItemId));
 
-chrome.runtime.onInstalled.addListener((reason) => chrome.tabs.create({ url: "https://github.com/XFox111/TabsAsideExtension/releases/latest" }));
+chrome.runtime.onInstalled.addListener((reason) => 
+{
+	chrome.tabs.create({ url: "https://github.com/XFox111/TabsAsideExtension/releases/latest" });
+	// Adding context menu options
+	chrome.contextMenus.create(
+		{
+			id: "toggle-pane",
+			contexts: ["browser_action"],
+			title: chrome.i18n.getMessage("togglePaneContext")
+		}
+	);
+	chrome.contextMenus.create(
+		{
+			id: "set-aside",
+			contexts: ["browser_action"],
+			title: chrome.i18n.getMessage("setAside")
+		}
+	);
+});
 
 //We receive a message from the pane aside-script, which means the tabsToSave are already assigned on message reception.
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) =>
