@@ -151,7 +151,7 @@ chrome.storage.onChanged.addListener((changes, namespace) =>
 							collections : collections
 						}
 					);
-				break;
+					break;
 
 			//TODO : Add settings keys here as well, from aside-script.js
 
