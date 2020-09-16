@@ -190,11 +190,20 @@ function Initialize()
 				window.open(i.value, "_blank");
 		});
 
+
 	chrome.runtime.sendMessage({ command: "loadData" }, (collections) =>
 	{
-		if (document.querySelector(".tabsAside.pane section div") == null)
-			collections.forEach(i =>
-				AddCollection(i));
+		ReloadCollections(collections)
+	});
+
+	chrome.runtime.onMessage.addListener((message, sender, sendResponse) =>
+	{
+		switch (message.command)
+		{
+			case "reloadCollections":
+				ReloadCollections(message.collections);
+				break;
+		}
 	});
 
 	setTimeout(() => pane.setAttribute("opened", ""), 100);

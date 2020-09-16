@@ -99,11 +99,19 @@ chrome.browserAction.onClicked.addListener((tab) =>
 });
 
 var collections = [];
+
+function UpdateCollectionStorage() {
+	chrome.storage.sync.set({ "sets": collections });
+}
+
+/**
+ * Load the collections global variable from the storage, updates the theme and eventually sends the collections to a callback 
+ * @param {function} callback A function that will be called after the collections values are obtained. These collections are sent as an argument to the callback.
+ */
 function LoadCollectionsStorage(callback=null){
 	chrome.storage.sync.get("sets", values =>
 	{
-		collections = JSON.parse(values?.sets ?? "[]");		
-		
+		collections = values?.sets || [];		
 		UpdateTheme();
 		callback(collections)
 	});
@@ -120,15 +128,34 @@ function LoadCollectionsStorage(callback=null){
 function MergePreV2Collections(collections){
 	if (localStorage.getItem("sets"))	
 		{
-			console.log("Found legacy data");
+			console.log("Found pre-v2 data");
 			collections = collections.concat(JSON.parse(localStorage.getItem("sets")))
-			chrome.storage.sync.set({ "sets": JSON.stringify(collections) });
+			UpdateCollectionStorage()
 			localStorage.removeItem("sets");
 		}
 }
 
 LoadCollectionsStorage(MergePreV2Collections)
 
+chrome.storage.onChanged.addListener((changes, namespace) =>
+{
+	if (namespace == "sync")
+		for (key in changes)
+			switch(key){
+				case "sets":
+					collections = changes[key].newValue;
+					chrome.runtime.sendMessage(
+						{ 
+							command: "reloadCollections" ,
+							collections : collections
+						}
+					);
+				break;
+
+			//TODO : Add settings keys here as well, from aside-script.js
+
+			}
+});
 
 var shortcuts;
 chrome.commands.getAll((commands) => shortcuts = commands);
@@ -164,12 +191,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) =>
 		case "openTab":
 			chrome.tabs.create({ url: message.url });
 			break;
-		case "loadData":
-			sendResponse(collections);
-			break;
 		case "saveTabs":
 			SaveCollection();
 			break;
+		case "loadData":
+			LoadCollectionsStorage(sendResponse)//Sends the collections as a response
+			return true;//Required to indicate the answer will be sent asynchronously https://developer.chrome.com/extensions/messaging
+		break;				
 		case "restoreTabs":
 			RestoreCollection(message.collectionIndex, message.removeCollection);
 			sendResponse();
@@ -184,7 +212,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) =>
 			break;
 		case "renameCollection":
 			collections[message.collectionIndex].name = message.newName;
-			chrome.storage.sync.set({ "sets": JSON.stringify(collections) });
+			UpdateCollectionStorage()
 			break;
 		case "togglePane":
 			chrome.tabs.query(
@@ -253,7 +281,7 @@ function SaveCollection()
 	};
 
 	collections.unshift(collection);
-	chrome.storage.sync.set({ "sets": JSON.stringify(collections) })
+	UpdateCollectionStorage()
 
 	var newTabId;
 	chrome.tabs.create({}, (tab) =>
@@ -268,7 +296,7 @@ function SaveCollection()
 function DeleteCollection(collectionIndex)
 {
 	collections = collections.filter(i => i != collections[collectionIndex]);
-	chrome.storage.sync.set({ "sets": JSON.stringify(collections) })
+	UpdateCollectionStorage();
 
 	UpdateTheme();
 }
@@ -308,7 +336,7 @@ function RestoreCollection(collectionIndex, removeCollection)
 		return;
 
 	collections = collections.filter(i => i != collections[collectionIndex]);
-	chrome.storage.sync.set({ "sets": JSON.stringify(collections) })
+	UpdateCollectionStorage()
 
 	UpdateTheme();
 }
@@ -319,7 +347,7 @@ function RemoveTab(collectionIndex, tabIndex)
 	if (--set.tabsCount < 1)
 	{
 		collections = collections.filter(i => i != set);
-		chrome.storage.sync.set({ "sets": JSON.stringify(collections) })
+		UpdateCollectionStorage()
 
 		UpdateTheme();
 		return;
@@ -343,7 +371,7 @@ function RemoveTab(collectionIndex, tabIndex)
 	set.links = links;
 	set.icons = icons;
 
-	chrome.storage.sync.set({ "sets": JSON.stringify(collections) })
+	UpdateCollectionStorage()
 
 	UpdateTheme();
 }
