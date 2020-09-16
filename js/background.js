@@ -99,18 +99,36 @@ chrome.browserAction.onClicked.addListener((tab) =>
 });
 
 var collections = [];
-chrome.storage.sync.get("sets", values =>
-{
-	collections = JSON.parse(values?.sets ?? "[]");
-	if (localStorage.getItem("sets"))	// If there're any saved tabs before v1.9 it appends them to a new collection and then removes
+function LoadCollectionsStorage(callback=null){
+	chrome.storage.sync.get("sets", values =>
 	{
-		console.log("Found legacy data");
-		collections = collections.concat(JSON.parse(localStorage.getItem("sets")))
-		chrome.storage.sync.set({ "sets": JSON.stringify(collections) });
-		localStorage.removeItem("sets");
-	}
-	UpdateTheme();
-});
+		collections = JSON.parse(values?.sets ?? "[]");		
+		
+		UpdateTheme();
+		callback(collections)
+	});
+}
+
+/**
+ * Merges a provided collections array with older pre v2 collections,
+ * saving the result into the new post v2 storage. 
+ * 
+ * Allows to preserve backward compatibility with the localStorage method of storing collections in pre v2 versions
+ * 
+ * @param {Object[]} collections The array of current collections
+ */
+function MergePreV2Collections(collections){
+	if (localStorage.getItem("sets"))	
+		{
+			console.log("Found legacy data");
+			collections = collections.concat(JSON.parse(localStorage.getItem("sets")))
+			chrome.storage.sync.set({ "sets": JSON.stringify(collections) });
+			localStorage.removeItem("sets");
+		}
+}
+
+LoadCollectionsStorage(MergePreV2Collections)
+
 
 var shortcuts;
 chrome.commands.getAll((commands) => shortcuts = commands);
