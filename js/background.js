@@ -98,7 +98,7 @@ chrome.browserAction.onClicked.addListener((tab) =>
 	});
 });
 
-var collections = [];
+collections = [];
 
 function UpdateCollectionStorage() {
 	chrome.storage.sync.set({ "sets": collections });
@@ -133,6 +133,7 @@ function MergePreV2Collections(collections){
 			UpdateCollectionStorage()
 			localStorage.removeItem("sets");
 		}
+		//TODO STRIP OUT THE THUMBNAILS SOMEWHERE ELSE LOCALLY : They break the Sync storage quota !
 }
 
 LoadCollectionsStorage(MergePreV2Collections)
@@ -278,6 +279,8 @@ function SaveCollection()
 		links: tabs.map(tab => tab.url ?? ""),
 		icons: tabs.map(tab => tab.favIconUrl ?? ""),
 		thumbnails: tabs.map(tab => thumbnails.find(i => i.tabId == tab.id)?.url ?? "")
+		
+		//TODO STRIP OUT THE THUMBNAILS SOMEWHERE ELSE : They break the Sync storage quota !
 	};
 
 	collections.unshift(collection);

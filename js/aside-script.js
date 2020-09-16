@@ -100,7 +100,7 @@ function Initialize()
 			})
 	);
 
-	// Exntension browser icon action
+	// Extension browser icon action
 	var swapIconAction = document.querySelector("#swapIconAction");
 	chrome.storage.sync.get(
 		{ "setAsideOnClick": false },
