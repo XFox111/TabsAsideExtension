@@ -211,6 +211,16 @@ function UpdateLocale()
 	);
 }
 
+
+function ReloadCollections(collections){		
+				document.querySelector(".tabsAside section h2").removeAttribute("hidden");
+				document.querySelectorAll(".tabsAside section > div").forEach(i => i.remove());
+
+				if (document.querySelector(".tabsAside.pane section > div") == null)
+					collections.forEach(i =>
+						AddCollection(i));
+}
+
 function AddCollection(collection)
 {
 	var list = document.querySelector(".tabsAside section");
