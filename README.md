@@ -56,6 +56,7 @@ There are many ways in which you can participate in the project, for example:
 - Review documentation and make pull requests for anything from typos to new content
 
 If you are interested in fixing issues and contributing directly to the code base, please see the [Contribution Guidelines](https://github.com/XFox111/TabsAsideExtension/blob/master/CONTRIBUTING.md), which covers the following:
+
 - [How to deploy the extension on your browser](https://github.com/XFox111/TabsAsideExtension/blob/master/CONTRIBUTING.md#deploy-test-version-on-your-browser)
 - [The development workflow](https://github.com/XFox111/TabsAsideExtension/blob/master/CONTRIBUTING.md#development-workflow), including debugging and running tests
 - [Coding guidelines](https://github.com/XFox111/TabsAsideExtension/blob/master/CONTRIBUTING.md#coding-guidelines)

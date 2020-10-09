@@ -191,13 +191,16 @@ Use "double quotes" wherever it's possible
 
   - Wrong:
 
-    ```javascript
-    if (condition) {
+  ```javascript
+  if (condition)
+  {
       console.log("Hello, World!");
-    } else {
+  }
+  else
+  {
       return;
-    }
-    ```
+  }
+  ```
 
   - Correct
 
