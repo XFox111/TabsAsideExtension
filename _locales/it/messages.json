@@ -28,7 +28,7 @@
     "description": "Label for option"
   },
   "swapIconAction": {
-    "message": "Sposta le finestre in tabs aside al click sull'estensione (%TOGGLE_SHORTCUT% o click con il tasto destro sull'icona dell'estensione per aprire il pannello)",
+    "message": "Sposta le finestre in Tabs Aside al click sull'estensione (%TOGGLE_SHORTCUT% o click con il tasto destro sull'icona dell'estensione per aprire il pannello)",
     "description": "Label for option"
   },
   "github": {
