@@ -177,8 +177,10 @@ Use "double quotes" wherever it's possible
 
     ```javascript
     var s;
-    if (condition) s = "Life";
-    else s = "Death";
+    if (condition)
+      s = "Life";
+    else
+      s = "Death";
     ```
 
   - Correct:
@@ -205,8 +207,10 @@ Use "double quotes" wherever it's possible
   - Correct
 
     ```javascript
-    if (condition) console.log("Hello, World!");
-    else return;
+    if (condition)
+      console.log("Hello, World!");
+    else
+      return;
     ```
 
 ### Finding an issue to work on
