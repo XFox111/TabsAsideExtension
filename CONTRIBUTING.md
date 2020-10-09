@@ -149,20 +149,20 @@ Use "double quotes" wherever it's possible
 
   - Wrong:
 
-    ```javascript
-       if (condition) {
-           ...
-       }
-    ```
+  ```javascript
+  if (condition) {
+      ...
+  }
+  ```
 
   - Correct:
 
-    ```javascript
-        if (condition)
-        {
-            ...
-        }
-    ```
+  ```javascript
+  if (condition)
+  {
+      ...
+  }
+  ```
 
 - Put spaces between operators and before braces in methods declarations, conditionals and loops
   - Wrong:
@@ -190,28 +190,27 @@ Use "double quotes" wherever it's possible
     ```
 
 - Do not surround loop and conditional bodies with curly braces if they can be avoided
+    - Wrong:
 
-  - Wrong:
+        ```javascript
+        if (condition)
+        {
+            console.log("Hello, World!");
+        }
+        else
+        {
+            return;
+        }
+        ```
 
-  ```javascript
-  if (condition)
-  {
-      console.log("Hello, World!");
-  }
-  else
-  {
-      return;
-  }
-  ```
+    - Correct
 
-  - Correct
-
-    ```javascript
-    if (condition)
-      console.log("Hello, World!");
-    else
-      return;
-    ```
+        ```javascript
+        if (condition)
+            console.log("Hello, World!");
+        else
+            return;
+        ```
 
 ### Finding an issue to work on
 
