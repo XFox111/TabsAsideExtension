@@ -24,6 +24,7 @@
 	grid-row-gap: 2px;
 	grid-column-gap: 2px;
 	cursor: pointer;
+	margin: auto;
 }
 
 .listviewSwitch.tile

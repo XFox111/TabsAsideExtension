@@ -44,9 +44,9 @@
 		"message": "查看GitHub页面",
 		"description": "Link title"
 	},
-	"contributors":
+	"changelog":
 	{
-		"message": "项目贡献者",
+		"message": "变更日志",
 		"description": "Link title"
 	},
 	"feedback":

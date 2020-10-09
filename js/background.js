@@ -105,9 +105,8 @@ chrome.commands.getAll((commands) => shortcuts = commands);
 chrome.commands.onCommand.addListener(ProcessCommand);
 chrome.contextMenus.onClicked.addListener((info) => ProcessCommand(info.menuItemId));
 
-chrome.runtime.onInstalled.addListener((reason) => 
+chrome.runtime.onInstalled.addListener(() =>
 {
-	chrome.tabs.create({ url: "https://github.com/XFox111/TabsAsideExtension/releases/latest" });
 	// Adding context menu options
 	chrome.contextMenus.create(
 		{
@@ -281,7 +280,7 @@ function RestoreCollection(collectionIndex, removeCollection)
 	});
 
 	//We added new tabs by restoring a collection, so we refresh the array of tabs ready to be saved.
-	GetTabsToSave((returnedTabs) => 
+	GetTabsToSave((returnedTabs) =>
 	tabsToSave = returnedTabs)
 
 	if (!removeCollection)
