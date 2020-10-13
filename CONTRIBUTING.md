@@ -101,10 +101,10 @@ If you are interested in writing code to fix issues or implement new awesome fea
    ```
 
 2. Enable Developers mode on your browser extensions page
-3. Click the "Load unpacked" button and navigate to the extension root folder (contains `manifest.json`)
+3. Click "Load unpacked" button and navigate to the extension root folder (contains `manifest.json`)
 4. Done!
 
-Next time you make any changes to the codebase, reload the extension by toggling it off and on or by pressing the "Reload" button on the extensions list page
+Next time you make any changes to the codebase, reload the extension by toggling it off and on or by pressing "Reload" button on the extensions list page
 
 ### Development workflow
 
@@ -147,47 +147,47 @@ Use "double quotes" wherever it's possible
 - Prefer to use lambda functions
 - Put curly braces on new lines
 
-  - Wrong:
+    - Wrong:
 
-  ```javascript
-  if (condition) {
-      ...
-  }
-  ```
+      ```javascript
+      if (condition) {
+          ...
+      }
+      ```
 
-  - Correct:
+    - Correct:
 
-  ```javascript
-  if (condition)
-  {
-      ...
-  }
-  ```
+      ```javascript
+      if (condition)
+      {
+          ...
+      }
+      ```
 
 - Put spaces between operators and before braces in methods declarations, conditionals and loops
-  - Wrong:
-    - `y=k*x+b`
-    - `function FunctionName()`
-  - Correct:
-    - `y = k * x + b`
-    - `function FunctionName ()`
+    - Wrong:
+        - `y=k*x+b`
+        - `function FunctionName()`
+    - Correct:
+        - `y = k * x + b`
+        - `function FunctionName ()`
 - Use ternary conditionals wherever it's possible
 
-  - Wrong:
+    - Wrong:
 
-    ```javascript
-    var s;
-    if (condition)
-      s = "Life";
-    else
-      s = "Death";
-    ```
+        ```javascript
+        var s;
+        if (condition)
+          s = "Life";
+        else
+          s = "Death";
+        ```
 
-  - Correct:
+    - Correct:
 
-    ```javascript
-    var s = condition ? "Life" : "Death";
-    ```
+        ```javascript
+        var s = condition ? "Life" : "Death";
+       ```
 
 - Do not surround loop and conditional bodies with curly braces if they can be avoided
     - Wrong:
@@ -216,7 +216,7 @@ Use "double quotes" wherever it's possible
 
 Check out the [full issues list](https://github.com/XFox111/TabsAsideExtension/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue) for a list of all potential areas for contributions. **Note** that just because an issue exists in the repository does not mean we will accept a contribution. There are several reasons we may not accept a pull request like:
 
-- Performance - One of the Tabs Aside core values is to deliver a lightweight extension, that means it should perform well in both real and test environments.
+- Performance - One of Tabs Aside core values is to deliver a lightweight extension, that means it should perform well in both real and test environments.
 - User experience - Since we want to deliver a lightweight extension, the UX should feel lightweight as well and not be cluttered. Most changes to the UI should go through the issue owner and project owner (@XFox111).
 - Architectural - Project owner needs to agree with any architectural impact a change may make. Such things must be discussed with and agreed upon by the project owner.
 
