@@ -72,6 +72,6 @@ This project has adopted the Contributor Covenant. For more information see the 
 
 > ©2020 Michael "XFox" Gordeev
 
-Font copyrights: Microsoft Corporation ©2019 (Additional ELUA applied)
+Font copyrights: Microsoft Corporation ©2019 (Additional EULA applied)
 
 Licensed under [MIT License](https://opensource.org/licenses/MIT)
