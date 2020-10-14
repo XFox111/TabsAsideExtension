@@ -1,5 +1,4 @@
 # Tabs aside
-
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/xfox111/TabsAsideExtension)](https://github.com/xfox111/TabsAsideExtension/releases/latest)
 ![CI](https://github.com/XFox111/TabsAsideExtension/workflows/CI/badge.svg)
 
@@ -28,7 +27,6 @@ In the Edge browser, Microsoft has introduced a new feature called "Tabs aside" 
 Unfortunately, in new Chromium-based Microsoft Edge, the devs decided not to implement this must-have-feature. So I've decided to create a browser extension which replicates this awesome feature
 
 ## Features
-
 - Familiar UI inherited from legacy Microsoft Edge with some improvements
 - Auto Dark mode
 - Now you can restore one tab from collection without removing
@@ -37,26 +35,21 @@ Unfortunately, in new Chromium-based Microsoft Edge, the devs decided not to imp
 - **Now available for Firefox!**
 
 ## Download
-
 - [Google Chrome Webstore](https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin)
 - [Microsoft Edge Add-ons Webstore](https://microsoftedge.microsoft.com/addons/detail/kmnblllmalkiapkfknnlpobmjjdnlhnd)
 - [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/ms-edge-tabs-aside/)
 - [GitHub Releases](https://github.com/xfox111/TabsAsideExtension/releases/latest)
 
 ## Project roadmap
-
 You can go to the project's [roadmap kanban board](https://github.com/XFox111/TabsAsideExtension/projects/1) and see what have we planned and watch our progress in realtime
 
 ## Contributing
-
 There are many ways in which you can participate in the project, for example:
-
 - [Submit bugs and feature requests](https://github.com/xfox111/TabsAsideExtension/issues), and help us verify as they are checked in
 - Review [source code changes](https://github.com/xfox111/TabsAsideExtension/pulls)
 - Review documentation and make pull requests for anything from typos to new content
 
 If you are interested in fixing issues and contributing directly to the code base, please see the [Contribution Guidelines](https://github.com/XFox111/TabsAsideExtension/blob/master/CONTRIBUTING.md), which covers the following:
-
 - [How to deploy the extension on your browser](https://github.com/XFox111/TabsAsideExtension/blob/master/CONTRIBUTING.md#deploy-test-version-on-your-browser)
 - [The development workflow](https://github.com/XFox111/TabsAsideExtension/blob/master/CONTRIBUTING.md#development-workflow), including debugging and running tests
 - [Coding guidelines](https://github.com/XFox111/TabsAsideExtension/blob/master/CONTRIBUTING.md#coding-guidelines)
@@ -65,13 +58,9 @@ If you are interested in fixing issues and contributing directly to the code bas
 - [Contributing to translations](https://github.com/XFox111/TabsAsideExtension/blob/master/CONTRIBUTING.md#contributing-to-translations)
 
 ## Code of Conduct
-
 This project has adopted the Contributor Covenant. For more information see the [Code of Conduct](https://github.com/XFox111/TabsAsideExtension/blob/master/CODE_OF_CONDUCT.md)
 
 ## Copyrights
-
 > ©2020 Michael "XFox" Gordeev
-
-Font copyrights: Microsoft Corporation ©2019 (Additional EULA applied)
 
 Licensed under [MIT License](https://opensource.org/licenses/MIT)
