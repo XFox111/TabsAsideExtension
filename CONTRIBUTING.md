@@ -1,11 +1,9 @@
 # Contribution Guidelines
-
 Welcome, and thank you for your interest in contributing to my project!
 
 There are many ways in which you can contribute, beyond writing code. The goal of this document is to provide a high-level overview of how you can get involved.
 
 ## Table of Contents
-
 - [Contribution Guidelines](#contribution-guidelines)
   - [Table of Contents](#table-of-contents)
   - [Asking Questions](#asking-questions)
@@ -33,20 +31,16 @@ There are many ways in which you can contribute, beyond writing code. The goal o
   - [Attribution](#attribution)
 
 ## Asking Questions
-
 Have a question? Rather than opening an issue, please ask me directly on opensource@xfox111.net.
 
 ## Providing Feedback
-
 Your comments and feedback are welcome.
 You can leave your feedbak on feedback@xfox111.net or do it on [Microsoft Edge Add-ons Webstore](https://microsoftedge.microsoft.com/addons/detail/tabs-aside/kmnblllmalkiapkfknnlpobmjjdnlhnd), [Chrome Extensions Webstore](https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin) or [Mozilla Add-ons Webstore](https://addons.mozilla.org/firefox/addon/ms-edge-tabs-aside/)
 
 ## Reporting Issues
-
 Have you identified a reproducible problem in the extension? Have a feature request? I'd like to hear it! Here's how you can make reporting your issue as effective as possible.
 
 ### Look For an Existing Issue
-
 Before you create a new issue, please do a search in [open issues](https://github.com/xfox111/TabsAsideExtension/issues) to see if the issue or feature request has already been filed.
 
 Be sure to scan through the [feature requests](https://github.com/XFox111/TabsAsideExtension/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement).
@@ -59,7 +53,6 @@ If you find your issue already exists, make relevant comments and add your [reac
 If you cannot find an existing issue that describes your bug or feature, create a new issue using the guidelines below.
 
 ### Writing Good Bug Reports and Feature Requests
-
 File a single issue per problem and feature request. Do not enumerate multiple bugs or feature requests in the same issue.
 
 Do not add your issue as a comment to an existing issue unless they are the same ones. Many issues look similar, but have different causes.
@@ -67,7 +60,6 @@ Do not add your issue as a comment to an existing issue unless they are the same
 The more information you can provide, the more likely someone will be successful at reproducing the issue and finding a solution.
 
 Please include the following with each issue:
-
 - Current version of the extension
 - Your current browser and OS name
 - Reproducible steps (1... 2... 3...) that cause the issue
@@ -75,7 +67,6 @@ Please include the following with each issue:
 - Images, animations, or a link to a video showing the issue occurring
 
 ### Final Checklist
-
 Please remember to do the following:
 
 - [ ] Search the issue repository to ensure your report is a new issue
@@ -85,29 +76,26 @@ Please remember to do the following:
 Don't feel bad if the developers can't reproduce the issue right away. They will simply ask for more information!
 
 ### Follow Your Issue
-
 Once your report is submitted, be sure to stay in touch with the devs in case they need more help from you.
 
 ## Contributing to the codebase
-
 If you are interested in writing code to fix issues or implement new awesome features you can follow these guidelines to get a better result
 
 ### Deploy test version on your browser
-
 1. Clone repository to local storage using [Git](https://guides.github.com/introduction/git-handbook/)
 
    ```bash
    git clone https://github.com/xfox111/TabsAsideExtension.git
    ```
-
 2. Enable Developers mode on your browser extensions page
 3. Click "Load unpacked" button and navigate to the extension root folder (contains `manifest.json`)
 4. Done!
 
 Next time you make any changes to the codebase, reload the extension by toggling it off and on or by pressing "Reload" button on the extensions list page
 
-### Development workflow
+> **Note:** You can also check [this article](https://xfox111.net/46hsgv) to get more information about debugging web extensions
 
+### Development workflow
 This section represents how contributors should interact with codebase implementing features and fixing bugs
 
 1. Getting assigned to the issue
@@ -118,35 +106,27 @@ This section represents how contributors should interact with codebase implement
 6. Done
 
 #### Release
-
 The next stage is the release. Release performs on every push to master (which makes functional changes to the source code). Release performs manually by @XFox111 into: Chrome webstore, Edge webstore and GitHub releases
 
 ### Coding guidelines
-
 #### Indentation
-
 We use tabs, not spaces.
 
 #### Names
-
 The project naming rules inherit [.NET Naming Guidelines](https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/naming-guidelines). Nevertheless there'is some distinction with the guidelines as well as additions to the one:
 
 - Use `camelCase` for variables instead of `CamelCase` stated in [Capitalization Conventions](https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/capitalization-conventions#capitalization-rules-for-identifiers)
 - Use `snake_case` for file names
 
 #### Comments
-
 Leave as more comments as you can. Remember: the more detailed documentation your code has the less programmers will curse you in the future
 
 #### Strings
-
 Use "double quotes" wherever it's possible
 
 #### Style
-
 - Prefer to use lambda functions
 - Put curly braces on new lines
-
     - Wrong:
 
       ```javascript
@@ -163,7 +143,6 @@ Use "double quotes" wherever it's possible
           ...
       }
       ```
-
 - Put spaces between operators and before braces in methods declarations, conditionals and loops
     - Wrong:
         - `y=k*x+b`
@@ -172,9 +151,7 @@ Use "double quotes" wherever it's possible
         - `y = k * x + b`
         - `function FunctionName ()`
 - Use ternary conditionals wherever it's possible
-
     - Wrong:
-
         ```javascript
         var s;
         if (condition)
@@ -182,16 +159,13 @@ Use "double quotes" wherever it's possible
         else
           s = "Death";
         ```
-
     - Correct:
 
         ```javascript
         var s = condition ? "Life" : "Death";
        ```
-
 - Do not surround loop and conditional bodies with curly braces if they can be avoided
     - Wrong:
-
         ```javascript
         if (condition)
         {
@@ -202,7 +176,6 @@ Use "double quotes" wherever it's possible
             return;
         }
         ```
-
     - Correct
 
         ```javascript
@@ -213,7 +186,6 @@ Use "double quotes" wherever it's possible
         ```
 
 ### Finding an issue to work on
-
 Check out the [full issues list](https://github.com/XFox111/TabsAsideExtension/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue) for a list of all potential areas for contributions. **Note** that just because an issue exists in the repository does not mean we will accept a contribution. There are several reasons we may not accept a pull request like:
 
 - Performance - One of Tabs Aside core values is to deliver a lightweight extension, that means it should perform well in both real and test environments.
@@ -225,23 +197,18 @@ To improve the chances to get a pull request merged you should select an issue t
 To avoid multiple pull requests resolving the same issue, let others know you are working on it by saying so in a comment.
 
 ### Contributing to translations
-
 If you want to help us to translate this extension into other languages, please read [this article](https://developer.chrome.com/extensions/i18n)
 
 **Note** that whatever you want to contribute to the codebase, you should do it only after you got assigned on an issue
 
 ### Submitting pull requests
-
 To enable us to quickly review and accept your pull requests, always create one pull request per issue and [link the issue in the pull request](https://github.com/blog/957-introducing-issue-mentions). Never merge multiple requests in one unless they have the same root cause. Be sure to follow our [Coding Guidelines](#coding-guidelines) and keep code changes as small as possible. Avoid pure formatting changes to code that has not been modified otherwise. Pull requests should contain tests whenever possible. Fill pull request content according to its template. Deviations from template are not recommended
 
 #### Spell check errors
-
 Pull requests that fix typos are welcomed but please make sure it doesn't touch multiple feature areas, otherwise it will be difficult to review. Pull requests only fixing spell check errors in source code are not recommended.
 
 ## Thank You!
-
 Your contributions to open source, large or small, make great projects like this possible. Thank you for taking the time to contribute.
 
 ## Attribution
-
 These Contribution Guidelines are adapted from the [Contributing to VS Code](https://github.com/microsoft/vscode/blob/master/CONTRIBUTING.md)
