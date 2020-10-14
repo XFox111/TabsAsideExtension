@@ -107,7 +107,7 @@ chrome.contextMenus.onClicked.addListener((info) => ProcessCommand(info.menuItem
 
 chrome.runtime.onInstalled.addListener((reason) => 
 {
-	//chrome.tabs.create({ url: "https://github.com/XFox111/TabsAsideExtension/releases/latest" });
+	chrome.tabs.create({ url: "https://github.com/XFox111/TabsAsideExtension/releases/latest" });
 	// Adding context menu options
 	chrome.contextMenus.create(
 		{
