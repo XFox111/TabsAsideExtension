@@ -1,7 +1,7 @@
 {
   "name": 
   {
-    "message": "Tabs Aside",
+    "message": "Schede a parte",
     "description": "name of the extension. Displayed in the manifest and pane header"
   },
   "description": 
@@ -46,8 +46,8 @@
   },
   "changelog": 
   {
-    "message": "Changelog",
-    "description": "Link title COMMENT: changelog doesn't have a translation in Italian"
+    "message": "Registro dei cambiamenti",
+    "description": "Link title"
   },
   "feedback": 
   {
