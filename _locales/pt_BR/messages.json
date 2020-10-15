@@ -44,9 +44,9 @@
 		"message": "Visite a página do GitHub",
 		"description": "Link title"
 	},
-	"contributors":
+	"changelog":
 	{
-		"message": "Contribuidores do projeto",
+		"message": "Registro de mudanças",
 		"description": "Link title"
 	},
 	"feedback":
