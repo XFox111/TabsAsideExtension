@@ -1,0 +1,127 @@
+{
+	"name":
+	{
+		"message": "Reservar abas",
+		"description": "Extension name. Displayed in the manifest and pane header"
+	},
+	"description":
+	{
+		"message": "Função \"Reservar abas\" do Microsoft Edge Clássico",
+		"description": "Extension description"
+	},
+	"author":
+	{
+		"message": "Michael \"XFox\" Gordeev",
+		"description": "Author name"
+	},
+	"options":
+	{
+		"message": "Opções",
+		"description": "Alternative text for options button in the pane"
+	},
+	"closePanel":
+	{
+		"message": "Fechar",
+		"description": "Alternative text for close panel button"
+	},
+	"loadOnRestore":
+	{
+		"message": "Carregar abas ao restaurar",
+		"description": "Label for option"
+	},
+	"showDeleteDialog":
+	{
+		"message": "Mostrar diálogo de confirmação antes de deletar um item",
+		"description": "Label for option"
+	},
+	"swapIconAction":
+	{
+		"message": "Reservar abas ao apertar o ícone da extensão (%TOGGLE_SHORTCUT% ou clique-direito para abrir o painel)",
+		"description": "Label for option"
+	},
+	"github":
+	{
+		"message": "Visite a página do GitHub",
+		"description": "Link title"
+	},
+	"contributors":
+	{
+		"message": "Contribuidores do projeto",
+		"description": "Link title"
+	},
+	"feedback":
+	{
+		"message": "Deixe um comentário",
+		"description": "Link title"
+	},
+	"buyMeACoffee":
+	{
+		"message": "Me compre um café!",
+		"description": "Link title"
+	},
+	"credits":
+	{
+		"message": "Desenvolvido por Michael 'XFox' Gordeev",
+		"description": "Options menu credits"
+	},
+	"setAside":
+	{
+		"message": "Reservas as abas atuais",
+		"description": "Save collection action name. Used in the pane, extension context menu and manifest shortcuts"
+	},
+	"nothingSaved":
+	{
+		"message": "Você não tem abas reservadas",
+		"description": "Placeholder for empty pane"
+	},
+	"removeTab":
+	{
+		"message": "Remover aba da coleção",
+		"description": "Button hint on a tab card"
+	},
+	"restoreTabs":
+	{
+		"message": "Restaurar abas",
+		"description": "Collection restore action link name"
+	},
+	"more":
+	{
+		"message": "Mais...",
+		"description": "Collections' more button title"
+	},
+	"restoreNoRemove":
+	{
+		"message": "Restaurar sem remover",
+		"description": "Context action item name"
+	},
+	"removeCollection":
+	{
+		"message": "Remover coleção",
+		"description": "Collection remove action name"
+	},
+	"removeCollectionConfirm":
+	{
+		"message": "Você tem certeza que quer deletar esta coleção?",
+		"description": "Prompt dialog content on collection deletion"
+	},
+	"removeTabConfirm":
+	{
+		"message": "Você tem certeza que quer deletar esta aba?",
+		"description": "Prompt dialog content on one tab deletion"
+	},
+	"togglePaneContext":
+	{
+		"message": "Alternar painel de abas",
+		"description": "Context action name. Used in extension context menu and manifest shortcuts"
+	},
+	"noTabsToSave":
+	{
+		"message": "Não há abas disponíveis para salvar",
+		"description": "Alert dialog message when there's no tabs to save"
+	},
+	"tabs":
+	{
+		"message": "itens",
+		"description": "Collection tabs counter label (e.g. 8 items)"
+	}
+}
