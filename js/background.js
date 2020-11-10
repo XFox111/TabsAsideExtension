@@ -169,37 +169,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) =>
 	}
 });
 
-// This function updates the extension's toolbar icon
-function UpdateTheme()
-{
-	// Updating badge counter
-	chrome.browserAction.setBadgeText({ text: collections.length < 1 ? "" : collections.length.toString() });
-
-	if (chrome.theme)	// Firefox sets theme automatically
-		return;
-
-	var theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-	var iconStatus = collections.length ? "full" : "empty";
-
-	var basePath = "icons/" + theme + "/" + iconStatus + "/";
-
-	chrome.browserAction.setIcon(
-		{
-			path:
-			{
-				"128": basePath + "128.png",
-				"48": basePath + "48.png",
-				"32": basePath + "32.png",
-				"16": basePath + "16.png"
-			}
-		});
-}
-
-UpdateTheme();
-chrome.windows.onFocusChanged.addListener(UpdateTheme);
-chrome.tabs.onUpdated.addListener(UpdateTheme);
-chrome.tabs.onActivated.addListener(UpdateTheme);
-
 // Set current tabs aside
 function SaveCollection()
 {
@@ -241,7 +210,7 @@ function SaveCollection()
 		chrome.tabs.remove(tabsToSave.filter(i => !i.pinned && i.id != newTabId).map(tab => tab.id));
 	});
 
-	UpdateTheme();
+	chrome.browserAction.setBadgeText({ text: collections.length < 1 ? "" : collections.length.toString() });
 }
 
 function DeleteCollection(collectionIndex)
@@ -249,7 +218,7 @@ function DeleteCollection(collectionIndex)
 	collections = collections.filter(i => i != collections[collectionIndex]);
 	localStorage.setItem("sets", JSON.stringify(collections));
 
-	UpdateTheme();
+	chrome.browserAction.setBadgeText({ text: collections.length < 1 ? "" : collections.length.toString() });
 }
 
 function RestoreCollection(collectionIndex, removeCollection)
@@ -289,18 +258,18 @@ function RestoreCollection(collectionIndex, removeCollection)
 	collections = collections.filter(i => i != collections[collectionIndex]);
 	localStorage.setItem("sets", JSON.stringify(collections));
 
-	UpdateTheme();
+	chrome.browserAction.setBadgeText({ text: collections.length < 1 ? "" : collections.length.toString() });
 }
 
 function RemoveTab(collectionIndex, tabIndex)
 {
 	var set = collections[collectionIndex];
-	if (--set.tabsCount < 1)
+	if (set.tabsCount < 2)
 	{
 		collections = collections.filter(i => i != set);
 		localStorage.setItem("sets", JSON.stringify(collections));
 
-		UpdateTheme();
+		chrome.browserAction.setBadgeText({ text: collections.length < 1 ? "" : collections.length.toString() });
 		return;
 	}
 
@@ -323,8 +292,6 @@ function RemoveTab(collectionIndex, tabIndex)
 	set.icons = icons;
 
 	localStorage.setItem("sets", JSON.stringify(collections));
-
-	UpdateTheme();
 }
 
 var thumbnails = [];
