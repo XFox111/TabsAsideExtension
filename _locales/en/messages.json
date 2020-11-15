@@ -119,6 +119,11 @@
 		"message": "No tabs available to save",
 		"description": "Alert dialog message when there's no tabs to save"
 	},
+	"errorSavingTabs":
+	{
+		"message": "Tabs could not be set aside. You may have too many tabs set aside.",
+		"description": "Alert dialog message when there is an issue saving tabs"
+	},
 	"tabs":
 	{
 		"message": "items",

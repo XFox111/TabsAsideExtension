@@ -168,7 +168,7 @@ chrome.storage.onChanged.addListener((changes, namespace) =>
 				case "sets":
 					collections = changes[key].newValue;
 					chrome.runtime.sendMessage(
-						{ 
+						{
 							command: "reloadCollections" ,
 							collections : collections,
 							thumbnails : thumbnails
@@ -185,7 +185,7 @@ chrome.commands.getAll((commands) => shortcuts = commands);
 chrome.commands.onCommand.addListener(ProcessCommand);
 chrome.contextMenus.onClicked.addListener((info) => ProcessCommand(info.menuItemId));
 
-chrome.runtime.onInstalled.addListener((reason) => 
+chrome.runtime.onInstalled.addListener((reason) =>
 {
 	chrome.tabs.create({ url: "https://github.com/XFox111/TabsAsideExtension/releases/latest" });
 	// Adding context menu options
@@ -219,7 +219,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) =>
 		case "loadData":
 			LoadStorages(sendResponse)//Sends the collections as a response
 			return true;//Required to indicate the answer will be sent asynchronously https://developer.chrome.com/extensions/messaging
-		break;				
+		break;
 		case "restoreTabs":
 			RestoreCollection(message.collectionIndex, message.removeCollection);
 			sendResponse();
@@ -313,6 +313,9 @@ function SaveCollection()
 				var newTabId = tab.id;
 				chrome.tabs.remove(tabs.filter(i => !i.pinned && i.id != newTabId).map(tab => tab.id));
 			});
+		},(error)=>{
+			LoadStorages()//Restore the previous values without changing anything.
+			alert(chrome.i18n.getMessage("errorSavingTabs"))
 		}
 	);
 	UpdateTheme();
