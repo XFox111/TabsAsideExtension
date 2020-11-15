@@ -311,7 +311,7 @@ function SaveCollection()
 			chrome.tabs.create({}, (tab) =>
 			{
 				var newTabId = tab.id;
-				chrome.tabs.remove(tabs.filter(i => !i.pinned && i.id != newTabId).map(tab => tab.id));
+				chrome.tabs.remove(tabsToSave.filter(i => !i.pinned && i.id != newTabId).map(tab => tab.id));
 			});
 		},(error)=>{
 			LoadStorages()//Restore the previous values without changing anything.
