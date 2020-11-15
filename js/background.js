@@ -296,7 +296,7 @@ function SaveCollection()
 	{
 		timestamp: Date.now(),
 		tabsCount: tabs.length,
-		titles: tabs.map(tab => tab.title ?? ""),
+		titles: tabs.map(tab => Truncate(tab.title || "", 100)),
 		links: tabs.map(tab => tab.url ?? ""),
 		icons: tabs.map(tab => tab.favIconUrl ?? "")
 	};
@@ -399,6 +399,17 @@ function ForEachUnusedUrl(urlsToFilter,callback)
 		}
 	}
 }
+
+/**
+ * Returns a stringToTruncate by truncating it in order to keep it under n characters
+ * @param stringToTruncate
+ * @param n desired maximum length for the string
+ * @returns {string} a string of length < n, with "..."  appended if it was truncated.
+ */
+function Truncate(stringToTruncate, n){
+	return (stringToTruncate.length > n) ? stringToTruncate.substr(0, n-1-3) + '...' : stringToTruncate;
+}
+
 
 //Session thumbnails are not always used in a collection, so we keep them in a specific variable until a collection is saved.
 var sessionThumbnails = {};
