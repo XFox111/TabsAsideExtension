@@ -99,44 +99,66 @@ chrome.browserAction.onClicked.addListener((tab) =>
 });
 
 collections = [];
+thumbnails = {};
 
-function UpdateCollectionStorage() {
-	chrome.storage.sync.set({ "sets": collections });
-}
-
-/**
- * Load the collections global variable from the storage, updates the theme and eventually sends the collections to a callback 
- * @param {function} callback A function that will be called after the collections values are obtained. These collections are sent as an argument to the callback.
+/*
+	Updates the thumbnail storage, then the collection synced storage. Calls the onSuccess callback when successful, and onFailure when failed.
+	@param {function} onSuccess A function without arguments, that will be called after the collections and thumbnails values are obtained, if collections are successfully updated
+	@param {function} onFailure A function that will be called with the error, after the collections and thumbnails values are obtained, if collections are not successfully updated
  */
-function LoadCollectionsStorage(callback=null){
-	chrome.storage.sync.get("sets", values =>
+function UpdateStorages(onSuccess=()=>null,onFailure=(error)=>{throw error.message}){
+	//The collections storage is updated after the thumbnail storage, so that the thumbnails are ready when the collections are updated.
+	chrome.storage.local.set({ "thumbnails": thumbnails },
+		() => chrome.storage.sync.set({ "sets": collections }, () => {
+			if (chrome.runtime.lastError==undefined)
+				onSuccess()
+			else
+				onFailure(chrome.runtime.lastError)
+			})
+	);
+}
+/**
+ * Load the thumbnails and collections global variable from the storage, updates the theme and eventually sends the collections and thumbnails to a callback
+ * @param {function} callback A function that will be called after the collections and thumbnails values are obtained.
+ * These collections and thumbnails are sent as a data={"collections":collections,"thumbnails":thumbnails} argument to the callback.
+ */
+function LoadStorages(callback=()=>null){
+	chrome.storage.local.get("thumbnails", values =>
 	{
-		collections = values?.sets || [];		
-		UpdateTheme();
-		callback(collections)
+		thumbnails = values?.thumbnails || {};
+		chrome.storage.sync.get("sets", values =>
+		{
+			collections = values?.sets || [];
+			UpdateTheme();
+			callback({"collections":collections,"thumbnails":thumbnails})
+		});
 	});
 }
 
 /**
  * Merges a provided collections array with older pre v2 collections,
- * saving the result into the new post v2 storage. 
- * 
- * Allows to preserve backward compatibility with the localStorage method of storing collections in pre v2 versions
- * 
+ * saving the result into the new post v2 storage.
+ * Allows to preserve backward compatibility with the localStorage method of storing collections in pre v2 versions.
  * @param {Object[]} collections The array of current collections
  */
-function MergePreV2Collections(collections){
-	if (localStorage.getItem("sets"))	
+function MergePreV2Collections({collections}){
+	if (localStorage.getItem("sets"))
 		{
 			console.log("Found pre-v2 data");
-			collections = collections.concat(JSON.parse(localStorage.getItem("sets")))
-			UpdateCollectionStorage()
-			localStorage.removeItem("sets");
+			old_collections=JSON.parse(localStorage.getItem("sets"))
+			//Remove thumbnails to follow the new format .
+			old_collections.forEach(collection => {
+				for (var i = 0; i < collection.links.length; i++){
+					thumbnails[collection.links[i]]=collection.thumbnails[i]
+				}
+				delete collection.thumbnails
+			});
+			collections = collections.concat(old_collections)
+			UpdateStorages(()=>localStorage.removeItem("sets"))//Remove the older sets on success update success only.
 		}
-		//TODO STRIP OUT THE THUMBNAILS SOMEWHERE ELSE LOCALLY : They break the Sync storage quota !
 }
 
-LoadCollectionsStorage(MergePreV2Collections)
+LoadStorages(MergePreV2Collections)
 
 chrome.storage.onChanged.addListener((changes, namespace) =>
 {
@@ -148,7 +170,8 @@ chrome.storage.onChanged.addListener((changes, namespace) =>
 					chrome.runtime.sendMessage(
 						{ 
 							command: "reloadCollections" ,
-							collections : collections
+							collections : collections,
+							thumbnails : thumbnails
 						}
 					);
 					break;
@@ -196,7 +219,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) =>
 			SaveCollection();
 			break;
 		case "loadData":
-			LoadCollectionsStorage(sendResponse)//Sends the collections as a response
+			LoadStorages(sendResponse)//Sends the collections as a response
 			return true;//Required to indicate the answer will be sent asynchronously https://developer.chrome.com/extensions/messaging
 		break;				
 		case "restoreTabs":
@@ -213,7 +236,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) =>
 			break;
 		case "renameCollection":
 			collections[message.collectionIndex].name = message.newName;
-			UpdateCollectionStorage()
+			UpdateStorages()
 			break;
 		case "togglePane":
 			chrome.tabs.query(
@@ -277,30 +300,34 @@ function SaveCollection()
 		tabsCount: tabs.length,
 		titles: tabs.map(tab => tab.title ?? ""),
 		links: tabs.map(tab => tab.url ?? ""),
-		icons: tabs.map(tab => tab.favIconUrl ?? ""),
-		thumbnails: tabs.map(tab => thumbnails.find(i => i.tabId == tab.id)?.url ?? "")
-		
-		//TODO STRIP OUT THE THUMBNAILS SOMEWHERE ELSE : They break the Sync storage quota !
+		icons: tabs.map(tab => tab.favIconUrl ?? "")
 	};
+	tabs.forEach(tab => {//For each tab to save :
+		//Add relevant thumbnail in the thumbnails object if any.
+		thumbnails[tab.url]=sessionThumbnails[tab.url] || thumbnails[tab.url]
+	})
 
 	collections.unshift(collection);
-	UpdateCollectionStorage()
-
-	var newTabId;
-	chrome.tabs.create({}, (tab) =>
-	{
-		newTabId = tab.id;
-		chrome.tabs.remove(tabsToSave.filter(i => !i.pinned && i.id != newTabId).map(tab => tab.id));
-	});
-
+	UpdateStorages(()=>
+		{
+			chrome.tabs.create({}, (tab) =>
+			{
+				var newTabId = tab.id;
+				chrome.tabs.remove(tabs.filter(i => !i.pinned && i.id != newTabId).map(tab => tab.id));
+			});
+		}
+	);
 	UpdateTheme();
 }
 
 function DeleteCollection(collectionIndex)
 {
+	var deletedUrls=collections[collectionIndex].links
 	collections = collections.filter(i => i != collections[collectionIndex]);
-	UpdateCollectionStorage();
 
+	ForEachUnusedUrl(deletedUrls,(url)=>delete thumbnails[url])
+
+	UpdateStorages();
 	UpdateTheme();
 }
 
@@ -332,16 +359,12 @@ function RestoreCollection(collectionIndex, removeCollection)
 	});
 
 	//We added new tabs by restoring a collection, so we refresh the array of tabs ready to be saved.
-	GetTabsToSave((returnedTabs) =>
-	tabsToSave = returnedTabs)
+	GetTabsToSave((returnedTabs) => tabsToSave = returnedTabs)
 
 	if (!removeCollection)
 		return;
 
-	collections = collections.filter(i => i != collections[collectionIndex]);
-	UpdateCollectionStorage()
-
-	UpdateTheme();
+	DeleteCollection(collectionIndex);
 }
 
 function RemoveTab(collectionIndex, tabIndex)
@@ -349,37 +372,38 @@ function RemoveTab(collectionIndex, tabIndex)
 	var set = collections[collectionIndex];
 	if (--set.tabsCount < 1)
 	{
-		collections = collections.filter(i => i != set);
-		UpdateCollectionStorage()
-
-		UpdateTheme();
+		DeleteCollection(collectionIndex);
 		return;
 	}
 
-	var titles = [];
-	var links = [];
-	var icons = [];
+	const urlToRemove=set.links[tabIndex].url
+	set.titles.splice(tabIndex,1);
+	set.links.splice(tabIndex,1);
+	set.icons.splice(tabIndex,1);
 
-	for (var i = set.links.length - 1; i >= 0; i--)
-	{
-		if (i == tabIndex)
-			continue;
+	ForEachUnusedUrl([urlToRemove],(url)=>delete thumbnails[url]);
 
-		titles.unshift(set.titles[i]);
-		links.unshift(set.links[i]);
-		icons.unshift(set.icons[i]);
-	}
-
-	set.titles = titles;
-	set.links = links;
-	set.icons = icons;
-
-	UpdateCollectionStorage()
-
+	UpdateStorages()
 	UpdateTheme();
 }
 
-var thumbnails = [];
+/**
+ * Execute a callback for each url in urlsToFilter that is not in any collection urls
+ * @param {Array} urlsToFilter array of urls to check
+ * @param {function} callback callback to execute on an url
+ */
+function ForEachUnusedUrl(urlsToFilter,callback)
+{
+	for (var i = 0; i < urlsToFilter.length; i++) {
+		if (!collections.some(collection => collection.links.some(link=> link==urlsToFilter[i]))){
+			//If the url of the tab n°i is not present among all the collections, we call the callback on it
+			callback(urlsToFilter[i])
+		}
+	}
+}
+
+//Session thumbnails are not always used in a collection, so we keep them in a specific variable until a collection is saved.
+var sessionThumbnails = {};
 
 function AppendThumbnail(tabId, tab)
 {
@@ -391,25 +415,16 @@ function AppendThumbnail(tabId, tab)
 			format: "jpeg",
 			quality: 1
 		},
-		(dataUrl) =>
+		(image) =>
 		{
-			if (!dataUrl)
+			if (!image)
 			{
 				console.log("Failed to retrieve thumbnail");
 				return;
 			}
 
 			console.log("Thumbnail retrieved");
-			var item = thumbnails.find(i => i.tabId == tabId);
-			if (item)
-				item.url = dataUrl;
-			else
-				thumbnails.unshift(
-					{
-						tabId: tabId,
-						url: dataUrl
-					}
-				);
+			sessionThumbnails[tab.url]=image;
 		}
 	);
 }

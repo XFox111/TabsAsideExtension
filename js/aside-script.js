@@ -191,9 +191,9 @@ function Initialize()
 		});
 
 
-	chrome.runtime.sendMessage({ command: "loadData" }, (collections) =>
+	chrome.runtime.sendMessage({ command: "loadData" }, ({collections,thumbnails}) =>
 	{
-		ReloadCollections(collections)
+		ReloadCollections(collections,thumbnails)
 	});
 
 	chrome.runtime.onMessage.addListener((message, sender, sendResponse) =>
@@ -201,7 +201,7 @@ function Initialize()
 		switch (message.command)
 		{
 			case "reloadCollections":
-				ReloadCollections(message.collections);
+				ReloadCollections(message.collections,message.thumbnails);
 				break;
 		}
 	});
@@ -221,16 +221,16 @@ function UpdateLocale()
 }
 
 
-function ReloadCollections(collections){		
+function ReloadCollections(collections,thumbnails){
 				document.querySelector(".tabsAside section h2").removeAttribute("hidden");
 				document.querySelectorAll(".tabsAside section > div").forEach(i => i.remove());
 
 				if (document.querySelector(".tabsAside.pane section > div") == null)
-					collections.forEach(i =>
-						AddCollection(i));
+					collections.forEach(collection =>
+						AddCollection(collection,thumbnails));
 }
 
-function AddCollection(collection)
+function AddCollection(collection,thumbnails)
 {
 	var list = document.querySelector(".tabsAside section");
 	list.querySelector("h2").setAttribute("hidden", "");
@@ -240,7 +240,7 @@ function AddCollection(collection)
 	for (var i = 0; i < collection.links.length; i++)
 	{
 		rawTabs +=
-			"<div title='" + collection.titles[i] + "'" + ((collection.thumbnails && collection.thumbnails[i]) ? " style='background-image: url(" + collection.thumbnails[i] + ")'" : "") + " value='" + collection.links[i] + "'>" +
+			"<div title='" + collection.titles[i] + "'" + ((thumbnails && thumbnails[collection.links[i]]) ? " style='background-image: url(" + thumbnails[collection.links[i]] + ")'" : "") + " value='" + collection.links[i] + "'>" +
 				//"<span class='openTab' value='" + collection.links[i] + "'></span>" +
 				"<div>" +
 					"<div" + ((collection.icons[i] == 0 || collection.icons[i] == null) ? "" : " style='background-image: url(\"" + collection.icons[i] + "\")'") + "></div>" +
