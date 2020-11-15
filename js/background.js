@@ -174,6 +174,7 @@ chrome.storage.onChanged.addListener((changes, namespace) =>
 							thumbnails : thumbnails
 						}
 					);
+					UpdateTheme()
 					break;
 
 			//TODO : Add settings keys here as well, from aside-script.js
