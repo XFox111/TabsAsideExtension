@@ -318,7 +318,6 @@ function SaveCollection()
 			alert(chrome.i18n.getMessage("errorSavingTabs"))
 		}
 	);
-	UpdateTheme();
 }
 
 function DeleteCollection(collectionIndex)
@@ -329,7 +328,6 @@ function DeleteCollection(collectionIndex)
 	ForEachUnusedUrl(deletedUrls,(url)=>delete thumbnails[url])
 
 	UpdateStorages();
-	UpdateTheme();
 }
 
 function RestoreCollection(collectionIndex, removeCollection)
@@ -385,7 +383,6 @@ function RemoveTab(collectionIndex, tabIndex)
 	ForEachUnusedUrl([urlToRemove],(url)=>delete thumbnails[url]);
 
 	UpdateStorages()
-	UpdateTheme();
 }
 
 /**
