@@ -176,9 +176,6 @@ chrome.storage.onChanged.addListener((changes, namespace) =>
 					);
 					UpdateTheme()
 					break;
-
-			//TODO : Add settings keys here as well, from aside-script.js
-
 			}
 });
 
