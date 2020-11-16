@@ -226,8 +226,9 @@ function ReloadCollections(collections,thumbnails){
 				document.querySelectorAll(".tabsAside section > div").forEach(i => i.remove());
 
 				if (document.querySelector(".tabsAside.pane section > div") == null)
-					collections.forEach(collection =>
-						AddCollection(collection,thumbnails));
+
+					for (const collection of Object.values(collections))
+							AddCollection(collection, thumbnails);
 }
 
 function AddCollection(collection,thumbnails)
@@ -240,10 +241,10 @@ function AddCollection(collection,thumbnails)
 	for (var i = 0; i < collection.links.length; i++)
 	{
 		rawTabs +=
-			"<div title='" + collection.titles[i] + "'" + ((thumbnails && thumbnails[collection.links[i]]) ? " style='background-image: url(" + thumbnails[collection.links[i]] + ")'" : "") + " value='" + collection.links[i] + "'>" +
+			"<div title='" + collection.titles[i] + "'" + ((thumbnails[collection.links[i]] && thumbnails[collection.links[i]].pageCapture) ? " style='background-image: url(" + thumbnails[collection.links[i]].pageCapture + ")'" : "") + " value='" + collection.links[i] + "'>" +
 				//"<span class='openTab' value='" + collection.links[i] + "'></span>" +
 				"<div>" +
-					"<div" + ((collection.icons[i] == 0 || collection.icons[i] == null) ? "" : " style='background-image: url(\"" + collection.icons[i] + "\")'") + "></div>" +
+					"<div" + ((thumbnails[collection.links[i]]?.iconUrl == 0 || thumbnails[collection.links[i]]?.iconUrl == null) ? "" : " style='background-image: url(\"" + thumbnails[collection.links[i]].iconUrl + "\")'") + "></div>" +
 					"<span>" + collection.titles[i] + "</span>" +
 					"<button loc_alt='removeTab' class='btn remove' title='Remove tab from collection'></button>" +
 				"</div>" +
@@ -251,7 +252,7 @@ function AddCollection(collection,thumbnails)
 	}
 
 	list.innerHTML +=
-		"<div class='collectionSet'>" +
+		"<div class='collectionSet' id='set_"+collection.timestamp+"'>" +
 			"<div class='header'>" +
 				"<input type='text' value='" + (collection.name ?? new Date(collection.timestamp).toDateString()) + "'/>" +
 				"<a loc='restoreTabs' class='restoreCollection'>Restore tabs</a>" +
@@ -320,7 +321,7 @@ function RestoreTabs(collectionData, removeCollection = true)
 		{
 			command: "restoreTabs",
 			removeCollection: removeCollection,
-			collectionIndex: Array.prototype.slice.call(collectionData.parentElement.children).indexOf(collectionData) - 1
+			collectionKey: collectionData.id
 		},
 		() =>
 		{
@@ -340,7 +341,7 @@ function RemoveTabs(collectionData)
 		chrome.runtime.sendMessage(
 			{
 				command: "deleteTabs",
-				collectionIndex: Array.prototype.slice.call(collectionData.parentElement.children).indexOf(collectionData) - 1
+				collectionKey: collectionData.id
 			},
 			() => RemoveCollectionElement(collectionData)
 		);
@@ -357,7 +358,7 @@ function RemoveOneTab(tabData)
 		chrome.runtime.sendMessage(
 			{
 				command: "removeTab",
-				collectionIndex: Array.prototype.slice.call(tabData.parentElement.parentElement.parentElement.children).indexOf(tabData.parentElement.parentElement) - 1,
+				collectionKey: tabData.parentElement.parentElement.id,
 				tabIndex: Array.prototype.slice.call(tabData.parentElement.children).indexOf(tabData)
 			},
 			() =>

@@ -121,7 +121,7 @@
 	},
 	"errorSavingTabs":
 	{
-		"message": "Tabs could not be set aside. You may have too many tabs set aside.",
+		"message": "Tabs could not be set aside. You may be trying to set too many tabs aside at once, or have too many tabs already set aside.",
 		"description": "Alert dialog message when there is an issue saving tabs"
 	},
 	"tabs":

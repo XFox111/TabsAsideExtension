@@ -53,7 +53,7 @@
 
 	"background":
 	{
-		"scripts": [ "js/background.js" ],
+		"scripts": [ "js/lib/lzutf8.min.js","js/background.js" ],
 		"persistent": false
 	},
 
