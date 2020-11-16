@@ -311,7 +311,7 @@ function RenameCollection(collectionData, name)
 		{
 			command: "renameCollection",
 			newName: name,
-			collectionIndex: Array.prototype.slice.call(collectionData.parentElement.children).indexOf(collectionData) - 1
+			collectionKey: collectionData.id
 		});
 }
 
