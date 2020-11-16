@@ -124,6 +124,11 @@
 		"message": "Tabs could not be set aside. You may be trying to set too many tabs aside at once, or have too many tabs already set aside.",
 		"description": "Alert dialog message when there is an issue saving tabs"
 	},
+	"olderDataMigrationFailed":
+	{
+		"message": "Some tabs set aside from a previous version could not be migrated. They have been backed up as browser bookmarks.",
+		"description": "Alert dialog message when there is an issue migrating previous versions data"
+	},
 	"tabs":
 	{
 		"message": "items",

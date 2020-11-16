@@ -9,6 +9,7 @@
 	"permissions":
 	[
 		"tabs",
+		"bookmarks",
 		"unlimitedStorage",
 		"storage",
 		"<all_urls>",

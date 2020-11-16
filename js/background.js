@@ -175,7 +175,7 @@ function decompressCollectionsStorage(compressedCollections){
 
 /**
  * Merges a provided collections array with older pre v2 collections,
- * saving the result into the new post v2 storage.
+ * saving the result into the new post v2 storage, or into bookmarks on failure.
  * Allows to preserve backward compatibility with the localStorage method of storing collections in pre v2 versions.
  * @param {Object} collections The current collections object
  */
@@ -194,10 +194,29 @@ function MergePreV2Collections({collections}){
 				delete collection.thumbnails;
 				delete collection.icons;
 
-				UpdateStorages({["set_"+collection.timestamp]:collection});
+				UpdateStorages({["set_"+collection.timestamp]:collection},
+					()=> null,
+					()=> {
+						SaveCollectionAsBookmarks(collection);
+						alert(chrome.i18n.getMessage("olderDataMigrationFailed"));
+					});
 			});
 			localStorage.removeItem("sets");
 		}
+}
+
+function SaveCollectionAsBookmarks(collection)
+{
+	chrome.bookmarks.create({'parentId': "1",
+			'title': 'TabsAside ' + (collection.name ?? new Date(collection.timestamp).toISOString())
+		}, (collectionFolder) => {
+			for (var i = 0; i < collection.links.length; i++)
+				chrome.bookmarks.create(
+					{'parentId': collectionFolder.id,
+						'title': collection.titles[i],
+						'url': collection.links[i]
+					});
+		});
 }
 
 LoadStorages(MergePreV2Collections)
