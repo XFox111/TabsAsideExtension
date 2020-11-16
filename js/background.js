@@ -375,7 +375,7 @@ function RemoveTab(collectionIndex, tabIndex)
 		return;
 	}
 
-	const urlToRemove=set.links[tabIndex].url
+	const urlToRemove=set.links[tabIndex]
 	set.titles.splice(tabIndex,1);
 	set.links.splice(tabIndex,1);
 	set.icons.splice(tabIndex,1);
