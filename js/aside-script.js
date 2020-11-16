@@ -272,7 +272,8 @@ function AddCollection(collection,thumbnails)
 	UpdateLocale();
 
 	list.querySelectorAll("input").forEach(i =>
-		i.oninput = (event) => RenameCollection(i.parentElement.parentElement, event.target.value));
+		i.addEventListener("focusout",(event) => RenameCollection(i.parentElement.parentElement, event.target.value)));
+	// i.onfocusout=func has issues on some browsers and needs to be implemented with an event listener - https://www.w3schools.com/jsref/event_onfocusout.asp
 
 	list.querySelectorAll(".restoreCollection").forEach(i =>
 		i.onclick = () => RestoreTabs(i.parentElement.parentElement));
