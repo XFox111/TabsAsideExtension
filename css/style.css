@@ -99,7 +99,7 @@
 		.saveTabs
 		{
 			display: inline-grid;
-			grid-template-columns: 16px auto;
+			grid-template-columns: 16px auto 16px;
 			grid-column-gap: 15px;
 
 			margin-right: auto;
@@ -110,18 +110,24 @@
 			text-decoration: none !important;
 		}
 
-			.saveTabs:hover span:last-child
+			.saveTabs:hover span:nth-child(2)
 			{
 				text-decoration: underline;
 			}
 
-		.iconArrowRight
+		.iconArrowRight,.iconQuestionCircle
 		{
 			width: 16px;
 			height: 16px;
 			display: inline-block;
 			font-family: "Segoe MDL2 Assets";
 			margin: 2px;
+		}
+		.iconQuestionCircle
+		{
+			font-size: small;
+			padding-top: 2px;
+			margin-bottom: 0;
 		}
 
 	.tabsAside.pane section
