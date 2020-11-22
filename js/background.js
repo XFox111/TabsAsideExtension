@@ -105,9 +105,16 @@ chrome.commands.getAll((commands) => shortcuts = commands);
 chrome.commands.onCommand.addListener(ProcessCommand);
 chrome.contextMenus.onClicked.addListener((info) => ProcessCommand(info.menuItemId));
 
-chrome.runtime.onInstalled.addListener(() =>
+chrome.runtime.onInstalled.addListener(({reason}) =>
 {
-	// Adding context menu options
+	switch(reason){
+		case "update":
+			//Display changelog on update
+			chrome.tabs.create({ url: "https://github.com/XFox111/TabsAsideExtension/releases/latest" });
+			break;
+	}
+
+	// Adding context menu options, must be done on extension install and update, and probably chrome update as well.
 	chrome.contextMenus.create(
 		{
 			id: "toggle-pane",
