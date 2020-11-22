@@ -207,6 +207,7 @@ function MergePreV2Collections({collections}){
 
 function SaveCollectionAsBookmarks(collection)
 {
+	//The id 1 is the browser's bookmark bar
 	chrome.bookmarks.create({'parentId': "1",
 			'title': 'TabsAside ' + (collection.name ?? new Date(collection.timestamp).toISOString())
 		}, (collectionFolder) => {
