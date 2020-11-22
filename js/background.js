@@ -120,7 +120,7 @@ function UpdateStorages(collectionsToUpdate=collections,onSuccess=()=>null,onFai
 					onFailure(chrome.runtime.lastError)
 			})
 	);
-	//After any update happens are set, the storage listener set up later reacts, so we update the collections variable there
+	//When the collection storage is updated, a listener set up below reacts and updates the collections global variable, so we do not need to update that variable here
 }
 
 /**
