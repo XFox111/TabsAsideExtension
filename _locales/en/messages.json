@@ -34,6 +34,11 @@
 		"message": "Show confirmation dialog before deleting an item",
 		"description": "Label for option"
 	},
+	"showUpdateChangelog":
+	{
+		"message": "Open changelog page on extension update",
+		"description": "Label for option"
+	},
 	"swapIconAction":
 	{
 		"message": "Set tabs aside on extension icon click (%TOGGLE_SHORTCUT% or right-click to open the pane)",

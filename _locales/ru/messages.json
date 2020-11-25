@@ -34,6 +34,11 @@
 		"message": "Показывать окно подтверждения перед удалением элемента",
 		"description": "Label for option"
 	},
+	"showUpdateChangelog":
+	{
+		"message": "Открывать список изменений при обновлении расширения",
+		"description": "Label for option"
+	},
 	"swapIconAction":
 	{
 		"message": "Откладывать вкладки при нажатии на иконку расширения (%TOGGLE_SHORTCUT% или правая кнопка мыши для открытия панели)",
