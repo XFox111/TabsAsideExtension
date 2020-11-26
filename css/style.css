@@ -75,6 +75,13 @@
 				font-size: 24px;
 			}
 
+			.tabsAside.pane > header > button .updateBadge
+			{
+				position: absolute;
+				bottom: 2px;
+				right: 2px;
+			}
+
 			.tabsAside.pane > header > nav
 			{
 				top: 45px;

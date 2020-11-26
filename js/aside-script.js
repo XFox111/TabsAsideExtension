@@ -190,6 +190,23 @@ function Initialize()
 				window.open(i.value, "_blank");
 		});
 
+	// Showing changelog badge if updated
+	chrome.storage.local.get({ "showUpdateBadge": false }, values =>
+	{
+		if (values.showUpdateBadge)
+		{
+			pane.setAttribute("updated", "");
+			let settingsButton = document.querySelector("header .btn.more");
+			settingsButton.addEventListener("focusout", () =>
+				{
+					if (!pane.hasAttribute("updated"))
+						return;
+					pane.removeAttribute("updated");
+					chrome.storage.local.set({ "showUpdateBadge": false });
+				});
+		}
+	});
+
 	chrome.runtime.sendMessage({ command: "loadData" }, (collections) =>
 	{
 		if (document.querySelector(".tabsAside.pane section div") == null)
