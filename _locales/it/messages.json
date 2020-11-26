@@ -69,6 +69,11 @@
     "message": "Sposta le schede correnti in Tabs Aside",
     "description": "Save collection action name. Used in the pane, extension context menu and manifest shortcuts"
   },
+  "setMultipleTabsAsideTooltip":
+	{
+		"message": "Suggerimento: puoi mettere da parte schede specifiche selezionandole (tenendo premuto CTRL o MAIUSC e facendo clic sulle schede) e cliccando sull'estensione Tabs Aside.",
+		"description": "Tooltip displayed on hover in the pane to explain how to set specific tabs aside"
+	},
   "nothingSaved": 
   {
     "message": "Non hai schede da parte qua",
