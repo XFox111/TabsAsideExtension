@@ -69,6 +69,11 @@
 		"message": "Reservar las pestañas actuales",
 		"description": "Save collection action name. Used in the pane, extension context menu and manifest shortcuts"
 	},
+	"setMultipleTabsAsideTooltip":
+	{
+		"message": "Consejo: puede dejar de lado pestañas específicas seleccionándolas (manteniendo presionada la tecla CTRL o SHIFT y haciendo clic en las pestañas) antes de hacer clic en la extensión TabsAside",
+		"description": "Tooltip displayed on hover in the pane to explain how to set specific tabs aside"
+	},
 	"nothingSaved":
 	{
 		"message": "No tienes pestañas reservadas",
