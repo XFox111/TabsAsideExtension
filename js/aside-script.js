@@ -140,26 +140,6 @@ function Initialize()
 			})
 	);
 
-	// Show change log on update
-	var showUpdateChangelog = document.querySelector("#showUpdateChangelog");
-	chrome.storage.sync.get(
-		{ "showUpdateChangelog": true },
-		values => showUpdateChangelog.checked = values.showUpdateChangelog
-	);
-	chrome.storage.onChanged.addListener((changes, namespace) =>
-	{
-		if (namespace == 'sync')
-			for (key in changes)
-				if (key === 'showUpdateChangelog')
-					showUpdateChangelog.checked = changes[key].newValue
-	});
-	showUpdateChangelog.addEventListener("click", () =>
-		chrome.storage.sync.set(
-			{
-				"showUpdateChangelog": showUpdateChangelog.checked
-			})
-	);
-
 	// Collections view switch
 	chrome.storage.sync.get(
 		{ "listview": false },

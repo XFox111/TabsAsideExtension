@@ -34,11 +34,6 @@
 		"message": "Mostrar diálogo de confirmacion antes de eliminar un item",
 		"description": "Label for option"
 	},
-	"showUpdateChangelog":
-	{
-		"message": "Abrir página de registro de cambios en la actualización de la extensión",
-		"description": "Label for option"
-	},
 	"swapIconAction":
 	{
 		"message": "Reservar pestañas al apretar el icono de la extensión (%TOGGLE_SHORTCUT% o click-derecho para abrir el panel)",

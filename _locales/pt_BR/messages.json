@@ -34,11 +34,6 @@
 		"message": "Mostrar diálogo de confirmação antes de deletar um item",
 		"description": "Label for option"
 	},
-	"showUpdateChangelog":
-	{
-		"message": "Abra a página do changelog na atualização da extensão",
-		"description": "Label for option"
-	},
 	"swapIconAction":
 	{
 		"message": "Reservar abas ao apertar o ícone da extensão (%TOGGLE_SHORTCUT% ou clique-direito para abrir o painel)",
