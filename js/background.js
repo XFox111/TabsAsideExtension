@@ -247,9 +247,12 @@ chrome.commands.getAll((commands) => shortcuts = commands);
 chrome.commands.onCommand.addListener(ProcessCommand);
 chrome.contextMenus.onClicked.addListener((info) => ProcessCommand(info.menuItemId));
 
-chrome.runtime.onInstalled.addListener(() =>
+chrome.runtime.onInstalled.addListener((updateInfo) =>
 {
-	// Adding context menu options
+	if (updateInfo.reason == "update" && updateInfo.previousVersion != chrome.runtime.getManifest()["version"])
+		chrome.storage.local.set({ "showUpdateBadge": true });
+
+	// Adding context menu options, must be done on extension install and update, and probably chrome update as well.
 	chrome.contextMenus.create(
 		{
 			id: "toggle-pane",
