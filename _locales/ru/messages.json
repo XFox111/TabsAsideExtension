@@ -119,6 +119,16 @@
 		"message": "Нет доступных для сохранения вкладок",
 		"description": "Alert dialog message when there's no tabs to save"
 	},
+	"errorSavingTabs":
+	{
+		"message": "Не удается отложить вкладки. Возможно, вы пытаетесь отложить слишком много вкладок за раз или уже отложили слишком много вкладок",
+		"description": "Alert dialog message when there is an issue saving tabs"
+	},
+	"olderDataMigrationFailed":
+	{
+		"message": "Не удалось перенести отложенные вкладки, сохраненные в старой версии расширения. Они были сохранены в закладках",
+		"description": "Alert dialog message when there is an issue migrating previous versions data"
+	},
 	"tabs":
 	{
 		"message": "вкладок",
