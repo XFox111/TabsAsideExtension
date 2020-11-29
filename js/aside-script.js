@@ -225,10 +225,8 @@ function ReloadCollections(collections,thumbnails){
 				document.querySelector(".tabsAside section h2").removeAttribute("hidden");
 				document.querySelectorAll(".tabsAside section > div").forEach(i => i.remove());
 
-				if (document.querySelector(".tabsAside.pane section > div") == null)
-
-					for (const collection of Object.values(collections))
-							AddCollection(collection, thumbnails);
+				for (const collection of Object.values(collections))
+						AddCollection(collection, thumbnails);
 }
 
 function AddCollection(collection,thumbnails)
