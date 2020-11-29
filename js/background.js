@@ -149,7 +149,7 @@ function LoadStorages(callback=()=>null){
 		collectionStorage.get(null, values =>
 		{
 			collections = decompressCollectionsStorage(values);
-			UpdateBadgeCount();
+			UpdateBadgeCounter();
 			callback({"collections":collections,"thumbnails":thumbnails})
 		});
 	});
@@ -238,7 +238,7 @@ chrome.storage.onChanged.addListener((changes, namespace) =>
 				}else
 					delete collections[key]
 			}
-		UpdateBadgeCount()
+		UpdateBadgeCounter()
 });
 
 var shortcuts;
@@ -313,7 +313,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) =>
 });
 
 // This function updates the extension's toolbar icon
-function UpdateBadgeCount()
+function UpdateBadgeCounter()
 {
 	var collectionsLength=Object.keys(collections).length
 	// Updating badge counter
