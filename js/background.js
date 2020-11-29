@@ -385,8 +385,8 @@ function DeleteCollection(collectionKey)
 	delete collections[collectionKey]
 	ForEachUnusedUrl(deletedUrls,(url)=>{
 		delete thumbnails[url]
-		UpdateStorages({})//Updates the thumbnails storage only
-	})
+	})//We delete the thumbnails that are not used in any other collection.
+	UpdateStorages({})//Updates the thumbnails storage only, by providing an empty "collectionsToUpdate" object.
 	collectionStorage.remove(collectionKey)//Remove the collection from the collectionstorage
 }
 
