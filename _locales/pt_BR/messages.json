@@ -124,6 +124,16 @@
 		"message": "Não há abas disponíveis para salvar",
 		"description": "Alert dialog message when there's no tabs to save"
 	},
+	"errorSavingTabs":
+	{
+		"message": "As abas não puderam ser reservadas. Você pode ter tentado reservar muitas abas de uma vez só, ou pode ter abas demais já reservadas.",
+		"description": "Alert dialog message when there is an issue saving tabs"
+	},
+	"olderDataMigrationFailed":
+	{
+		"message": "Algumas abas reservadas de uma versão antiga não puderam ser migradas. Elas foram salvas como marcadores do navegador.",
+		"description": "Alert dialog message when there is an issue migrating previous versions data"
+	},
 	"tabs":
 	{
 		"message": "itens",
