@@ -44,9 +44,9 @@
 		"message": "Страница GitHub",
 		"description": "Link title"
 	},
-	"contributors":
+	"changelog":
 	{
-		"message": "Свой вклад вложили",
+		"message": "Список изменений",
 		"description": "Link title"
 	},
 	"feedback":

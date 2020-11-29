@@ -9,14 +9,14 @@
 	color: white;
 }
 
-	.tabsAside[darkmode] .pane header .iconArrowRight
-	{
-		filter: invert();
-	}
-
 	.tabsAside[darkmode] .pane header
 	{
 		background-color: #3b3b3b;
+	}
+
+	.tabsAside[darkmode] nav hr
+	{
+		filter: invert(1);
 	}
 
 	.tabsAside[darkmode] .saveTabs > div
@@ -25,13 +25,19 @@
 	}
 
 	/* Button style */
-	.tabsAside[darkmode] .pane button
+	.tabsAside[darkmode] button
 	{
-		filter: invert();
+		color: white;
 	}
-	.tabsAside[darkmode] .pane button:hover
+	.tabsAside[darkmode] .pane button:hover,
+	.tabsAside[darkmode] .pane .control.checkbox:hover
 	{
 		background-color: gray;
+	}
+	.tabsAside[darkmode] .pane button img,
+	.tabsAside[darkmode] .pane label > input + span
+	{
+		filter: invert();
 	}
 	.tabsAside[darkmode] .pane button:active
 	{

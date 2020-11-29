@@ -1,13 +1,10 @@
 # Tabs aside
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/xfox111/TabsAsideExtension)](https://github.com/xfox111/TabsAsideExtension/releases/latest)
 ![CI](https://github.com/XFox111/TabsAsideExtension/workflows/CI/badge.svg)
+[![Mozilla Add-on](https://img.shields.io/amo/rating/ms-edge-tabs-aside?label=Firefox%20rating)](https://addons.mozilla.org/firefox/addon/ms-edge-tabs-aside/)
 
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/users/mgmjbodjgijnebfgohlnjkegdpbdjgin?label=Chrome%20Webstore%20downloads)](https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin)
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/mgmjbodjgijnebfgohlnjkegdpbdjgin)](https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin)
-
 [![Mozilla Add-on](https://img.shields.io/amo/users/ms-edge-tabs-aside?label=Firefox%20Webstore%20downloads)](https://addons.mozilla.org/firefox/addon/ms-edge-tabs-aside/)
-[![Mozilla Add-on](https://img.shields.io/amo/rating/ms-edge-tabs-aside)](https://addons.mozilla.org/firefox/addon/ms-edge-tabs-aside/)
-[![Mozilla Add-on](https://img.shields.io/amo/dw/ms-edge-tabs-aside)](https://addons.mozilla.org/firefox/addon/ms-edge-tabs-aside/)
 
 [![GitHub issues](https://img.shields.io/github/issues/xfox111/TabsAsideExtension)](https://github.com/xfox111/TabsAsideExtension/issues)
 [![GitHub last commit](https://img.shields.io/github/last-commit/xfox111/TabsAsideExtension)](https://github.com/xfox111/TabsAsideExtension/commits/master)
@@ -23,6 +20,8 @@
 If you’re like me, you often find yourself with a bunch of open tabs. You’d like to get those tabs out of the way sometimes, but they’re maybe not worth saving as actual bookmarks.
 
 In the Edge browser, Microsoft has introduced a new feature called "Tabs aside" (or Tab groups) which lets you set tabs aside in a sort of temporary workspace so that you can call them back up later.
+
+![Tabs aside demo](https://xfox111.net/knrp7b)
 
 Unfortunately, in new Chromium-based Microsoft Edge, the devs decided not to implement this must-have-feature. So I've decided to create a browser extension which replicates this awesome feature
 
@@ -63,5 +62,7 @@ This project has adopted the Contributor Covenant. For more information see the 
 
 ## Copyrights
 > ©2020 Michael "XFox" Gordeev
+
+Font copyrights: Microsoft Corportation ©2019 (Additional ELUA applied)
 
 Licensed under [MIT License](https://opensource.org/licenses/MIT)

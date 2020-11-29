@@ -149,7 +149,7 @@ function LoadStorages(callback=()=>null){
 		collectionStorage.get(null, values =>
 		{
 			collections = decompressCollectionsStorage(values);
-			UpdateTheme();
+			UpdateBadgeCount();
 			callback({"collections":collections,"thumbnails":thumbnails})
 		});
 	});
@@ -238,7 +238,7 @@ chrome.storage.onChanged.addListener((changes, namespace) =>
 				}else
 					delete collections[key]
 			}
-		UpdateTheme()
+		UpdateBadgeCount()
 });
 
 var shortcuts;
@@ -247,9 +247,8 @@ chrome.commands.getAll((commands) => shortcuts = commands);
 chrome.commands.onCommand.addListener(ProcessCommand);
 chrome.contextMenus.onClicked.addListener((info) => ProcessCommand(info.menuItemId));
 
-chrome.runtime.onInstalled.addListener((reason) =>
+chrome.runtime.onInstalled.addListener(() =>
 {
-	chrome.tabs.create({ url: "https://github.com/XFox111/TabsAsideExtension/releases/latest" });
 	// Adding context menu options
 	chrome.contextMenus.create(
 		{
@@ -314,35 +313,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) =>
 });
 
 // This function updates the extension's toolbar icon
-function UpdateTheme()
+function UpdateBadgeCount()
 {
 	var collectionsLength=Object.keys(collections).length
 	// Updating badge counter
 	chrome.browserAction.setBadgeText({ text: collectionsLength < 1 ? "" : collectionsLength.toString() });
 
-	if (chrome.theme)	// Firefox sets theme automatically
-		return;
-
-	var theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-	var iconStatus = collectionsLength ? "full" : "empty";
-
-	var basePath = "icons/" + theme + "/" + iconStatus + "/";
-
-	chrome.browserAction.setIcon(
-		{
-			path:
-			{
-				"128": basePath + "128.png",
-				"48": basePath + "48.png",
-				"32": basePath + "32.png",
-				"16": basePath + "16.png"
-			}
-		});
 }
-
-chrome.windows.onFocusChanged.addListener(UpdateTheme);
-chrome.tabs.onUpdated.addListener(UpdateTheme);
-chrome.tabs.onActivated.addListener(UpdateTheme);
 
 // Set current tabs aside
 function SaveCollection()
@@ -418,7 +395,8 @@ function RestoreCollection(collectionKey, removeCollection)
 	});
 
 	//We added new tabs by restoring a collection, so we refresh the array of tabs ready to be saved.
-	GetTabsToSave((returnedTabs) => tabsToSave = returnedTabs)
+	GetTabsToSave((returnedTabs) =>
+	tabsToSave = returnedTabs)
 
 	if (!removeCollection)
 		return;
