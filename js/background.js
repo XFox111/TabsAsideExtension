@@ -419,8 +419,8 @@ function RemoveTab(collectionKey, tabIndex)
 
 	ForEachUnusedUrl([urlToRemove],(url)=>{
 		delete thumbnails[url];
-		UpdateStorages({[collectionKey]:set});
 	});
+	UpdateStorages({[collectionKey]:set});
 }
 
 /**
