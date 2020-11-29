@@ -99,15 +99,19 @@ chrome.browserAction.onClicked.addListener((tab) =>
 });
 
 var collections = JSON.parse(localStorage.getItem("sets")) || [];
+UpdateBadgeCounter();
 var shortcuts;
 chrome.commands.getAll((commands) => shortcuts = commands);
 
 chrome.commands.onCommand.addListener(ProcessCommand);
 chrome.contextMenus.onClicked.addListener((info) => ProcessCommand(info.menuItemId));
 
-chrome.runtime.onInstalled.addListener(() =>
+chrome.runtime.onInstalled.addListener((updateInfo) =>
 {
-	// Adding context menu options
+	if (updateInfo.reason == "update" && updateInfo.previousVersion != chrome.runtime.getManifest()["version"])
+		chrome.storage.local.set({ "showUpdateBadge": true });
+
+	// Adding context menu options, must be done on extension install and update, and probably chrome update as well.
 	chrome.contextMenus.create(
 		{
 			id: "toggle-pane",
@@ -210,7 +214,7 @@ function SaveCollection()
 		chrome.tabs.remove(tabsToSave.filter(i => !i.pinned && i.id != newTabId).map(tab => tab.id));
 	});
 
-	chrome.browserAction.setBadgeText({ text: collections.length < 1 ? "" : collections.length.toString() });
+	UpdateBadgeCounter();
 }
 
 function DeleteCollection(collectionIndex)
@@ -218,7 +222,7 @@ function DeleteCollection(collectionIndex)
 	collections = collections.filter(i => i != collections[collectionIndex]);
 	localStorage.setItem("sets", JSON.stringify(collections));
 
-	chrome.browserAction.setBadgeText({ text: collections.length < 1 ? "" : collections.length.toString() });
+	UpdateBadgeCounter();
 }
 
 function RestoreCollection(collectionIndex, removeCollection)
@@ -258,7 +262,7 @@ function RestoreCollection(collectionIndex, removeCollection)
 	collections = collections.filter(i => i != collections[collectionIndex]);
 	localStorage.setItem("sets", JSON.stringify(collections));
 
-	chrome.browserAction.setBadgeText({ text: collections.length < 1 ? "" : collections.length.toString() });
+	UpdateBadgeCounter();
 }
 
 function RemoveTab(collectionIndex, tabIndex)
@@ -269,7 +273,7 @@ function RemoveTab(collectionIndex, tabIndex)
 		collections = collections.filter(i => i != set);
 		localStorage.setItem("sets", JSON.stringify(collections));
 
-		chrome.browserAction.setBadgeText({ text: collections.length < 1 ? "" : collections.length.toString() });
+		UpdateBadgeCounter();
 		return;
 	}
 
@@ -334,3 +338,8 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) =>
 	if (changeInfo.status === "complete")
 		AppendThumbnail(tabId, tab)
 });
+
+function UpdateBadgeCounter()
+{
+	chrome.browserAction.setBadgeText({ text: collections.length < 1 ? "" : collections.length.toString() });
+}
