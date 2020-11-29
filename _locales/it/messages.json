@@ -1,0 +1,138 @@
+{
+	"name": 
+	{
+	  "message": "Schede a parte",
+	  "description": "name of the extension. Displayed in the manifest and pane header"
+	},
+	"description": 
+	{
+	  "message": "La funzione del classico Microsoft Edge \"Tabs Aside\"",
+	  "description": "Extension description"
+	},
+	"author": 
+	{
+	  "message": "Michael \"XFox\" Gordeev",
+	  "description": "Author name"
+	},
+	"options": 
+	{
+	  "message": "Opzioni",
+	  "description": "Alternative text for options button in the pane"
+	},
+	"closePanel": 
+	{
+	  "message": "Chiudi",
+	  "description": "Alternative text for close panel button"
+	},
+	"loadOnRestore": 
+	{
+	  "message": "Riapri le schede al ripristino",
+	  "description": "Label for option"
+	},
+	"showDeleteDialog": 
+	{
+	  "message": "Mostra una finestra di conferma prima di eliminare qualcosa",
+	  "description": "Label for option"
+	},
+	"swapIconAction": 
+	{
+	  "message": "Metti da parte le schede in Tabs Aside al click sull'estensione (%TOGGLE_SHORTCUT% o click con il tasto destro sull'icona dell'estensione per aprire il pannello)",
+	  "description": "Label for option"
+	},
+	"github": 
+	{
+	  "message": "Visita la pagina di GitHub",
+	  "description": "Link title"
+	},
+	"changelog": 
+	{
+	  "message": "Registro dei cambiamenti",
+	  "description": "Link title"
+	},
+	"feedback": 
+	{
+	  "message": "Lascia un feedback",
+	  "description": "Link title"
+	},
+	"buyMeACoffee": 
+	{
+	  "message": "Comprami un caffè!",
+	  "description": "Link title"
+	},
+	"credits": 
+	{
+	  "message": "Sviluppato da Michael 'XFox' Gordeev",
+	  "description": "Options menu credits"
+	},
+	"setAside": 
+	{
+	  "message": "Sposta le schede correnti in Tabs Aside",
+	  "description": "Save collection action name. Used in the pane, extension context menu and manifest shortcuts"
+	},
+	"nothingSaved": 
+	{
+	  "message": "Non hai schede da parte qua",
+	  "description": "Placeholder for empty pane"
+	},
+	"removeTab": 
+	{
+	  "message": "Rimuovi la scheda da questo gruppo di schede",
+	  "description": "Button hint on a tab card"
+	},
+	"restoreTabs": 
+	{
+	  "message": "Ripristina schede",
+	  "description": "Collection restore action link name"
+	},
+	"more": 
+	{
+	  "message": "Altro...",
+	  "description": "Collections' more button title"
+	},
+	"restoreNoRemove": 
+	{
+	  "message": "Ripristina senza rimuovere le schede da da Tabs Aside",
+	  "description": "Context action item name"
+	},
+	"removeCollection": 
+	{
+	  "message": "Rimuovi gruppo di schede",
+	  "description": "Collection remove action name"
+	},
+	"removeCollectionConfirm": 
+	{
+	  "message": "Sei sicuro di voler eliminare questo gruppo di schede?",
+	  "description": "Prompt dialog content on collection deletion"
+	},
+	"removeTabConfirm": 
+	{
+	  "message": "Sei sucuro di voler rimuovere questa scheda?",
+	  "description": "Prompt dialog content on one tab deletion"
+	},
+	"togglePaneContext": 
+	{
+	  "message": "Mostra/nascondi il pannello di Tabs Aside",
+	  "description": "Context action name. Used in extension context menu and manifest shortcuts"
+	},
+	"noTabsToSave": 
+	{
+	  "message": "Nessuna scheda da salvare",
+	  "description": "Alert dialog message when there's no tabs to save"
+	},
+	"errorSavingTabs":
+	{
+		"message": "Queste schede non possono essere messe da parte. Forse perché stai cercando di mettere da parte troppe schede o perché ce ne sono già troppe messe da parte.",
+		"description": "Alert dialog message when there is an issue saving tabs"
+	},
+	"olderDataMigrationFailed":
+	{
+		"message": "Alcune schede messe da parte in una versione precedente non potevano essere mantenute. Sono state salvate come preferiti del browser.",
+		"description": "Alert dialog message when there is an issue migrating previous versions data"
+	},
+	"tabs": 
+	{
+	  "message": "schede",
+	  "description": "Collection tabs counter label (e.g. 8 items)"
+	}
+  }
+  
