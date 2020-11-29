@@ -69,6 +69,11 @@
 		"message": "Отложить открытые вкладки",
 		"description": "Save collection action name. Used in the pane, extension context menu and manifest shortcuts"
 	},
+	"setMultipleTabsAsideTooltip":
+	{
+		"message": "Подсказка: теперь вы можете откладывать только некоторые вкладки. Просто выделите нужные вкладки с помощью Shift или Ctrl перед использованием расширения",
+		"description": "Tooltip displayed on hover in the pane to explain how to set specific tabs aside"
+	},
 	"nothingSaved":
 	{
 		"message": "У вас нет отложенных вкладок",

@@ -69,6 +69,11 @@
 		"message": "Set current tabs aside",
 		"description": "Save collection action name. Used in the pane, extension context menu and manifest shortcuts"
 	},
+	"setMultipleTabsAsideTooltip":
+	{
+		"message": "Tip : You can set aside specific tabs by selecting them (by holding CTRL or SHIFT and clicking on the tabs) before clicking on the TabsAside extension",
+		"description": "Tooltip displayed on hover in the pane to explain how to set specific tabs aside"
+	},
 	"nothingSaved":
 	{
 		"message": "You have no aside tabs",

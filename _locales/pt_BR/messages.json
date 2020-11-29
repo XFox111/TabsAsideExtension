@@ -69,6 +69,11 @@
 		"message": "Reservas as abas atuais",
 		"description": "Save collection action name. Used in the pane, extension context menu and manifest shortcuts"
 	},
+	"setMultipleTabsAsideTooltip":
+	{
+		"message": "Dica: Você pode reservar abas específicas ao selecioná-las (ao apertar CTRL ou SHIFT e clicando nas abas) antes de clicar na extensão Reservar Abas",
+		"description": "Tooltip displayed on hover in the pane to explain how to set specific tabs aside"
+	},
 	"nothingSaved":
 	{
 		"message": "Você não tem abas reservadas",

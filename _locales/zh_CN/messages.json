@@ -69,6 +69,11 @@
 		"message": "搁置当前的所有标签页",
 		"description": "Save collection action name. Used in the pane, extension context menu and manifest shortcuts"
 	},
+	"setMultipleTabsAsideTooltip":
+	{
+		"message": "提示：在单击TabsAside扩展名之前，可以通过选择特定选项卡（按住CTRL或SHIFT并单击选项卡）来搁置它们",
+		"description": "Tooltip displayed on hover in the pane to explain how to set specific tabs aside"
+	},
 	"nothingSaved":
 	{
 		"message": "你目前没有搁置的标签页",
