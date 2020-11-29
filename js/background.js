@@ -2,7 +2,7 @@
 //We can't populate it later, as selected tabs get deselected on a click inside a tab.
 var tabsToSave = [];
 
-var syncEnabled=true;//DEBUG - TODO REMOVE OR FALLBACK GRACEFULLY
+var syncEnabled=true;//This variable controls whether to use the chrome sync storage, along with its size limitations, or the much larger chrome local storage. The option is currently not exposed to the users.
 var collectionStorage= syncEnabled ? chrome.storage.sync : chrome.storage.local;
 
 //Get the tabs to save, either all the window or the selected tabs only, and pass them through a callback.
