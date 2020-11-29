@@ -2,7 +2,7 @@
 //We can't populate it later, as selected tabs get deselected on a click inside a tab.
 var tabsToSave = [];
 
-var syncEnabled = true;//This variable controls whether to use the chrome sync storage, along with its size limitations, or the much larger chrome local storage. The option is currently not exposed to the users.
+var syncEnabled = true;		//This variable controls whether to use the chrome sync storage, along with its size limitations, or the much larger chrome local storage. The option is currently not exposed to the users.
 var collectionStorage = syncEnabled ? chrome.storage.sync : chrome.storage.local;
 
 //Get the tabs to save, either all the window or the selected tabs only, and pass them through a callback.
@@ -100,8 +100,8 @@ chrome.browserAction.onClicked.addListener((tab) =>
 	});
 });
 
-collections = {};
-thumbnails = {};
+collections = { };
+thumbnails = { };
 
 /**
  *	Updates the thumbnail storage, then the collection synced storage. Calls the onSuccess callback when successful, and onFailure when failed.
@@ -109,17 +109,18 @@ thumbnails = {};
  *	@param {function} onSuccess A function without arguments, that will be called after the collections and thumbnails values are obtained, if collections are successfully updated
  *	@param {function} onFailure A function that will be called with the error, after the collections and thumbnails values are obtained, if collections are not successfully updated
  */
-function UpdateStorages (collectionsToUpdate = collections, onSuccess = () => null, onFailure = (error) => {	throw error.message; })
+function UpdateStorages (collectionsToUpdate = collections, onSuccess = () => null, onFailure = (error) => { throw error.message; })
 {
 	//The collections storage is updated after the thumbnail storage, so that the thumbnails are ready when the collections are updated.
 	chrome.storage.local.set({ "thumbnails": thumbnails },
 		() => collectionStorage.set(CompressCollectionsStorage(collectionsToUpdate),
-			() => {
-				if (chrome.runtime.lastError === undefined)
-					onSuccess();
-				else
-					onFailure(chrome.runtime.lastError);
-			})
+		() =>
+		{
+			if (!chrome.runtime.lastError)
+				onSuccess();
+			else
+				onFailure(chrome.runtime.lastError);
+		})
 	);
 	//When the collection storage is updated, a listener set up below reacts and updates the collections global variable, so we do not need to update that variable here
 }
@@ -131,11 +132,11 @@ function UpdateStorages (collectionsToUpdate = collections, onSuccess = () => nu
  */
 function CompressCollectionsStorage (collectionsToCompress)
 {
-	var compressedStorage = {};
-	for (const [key, value] of Object.entries(collectionsToCompress))
-	{//For each collection in the uncompressed collectionsToCompress
-		var cloneWithoutTimestamp = Object.assign({}, value, {timestamp: undefined});
-		compressedStorage[key] = LZUTF8.compress(JSON.stringify(cloneWithoutTimestamp), {outputEncoding: "StorageBinaryString"});
+	var compressedStorage = { };
+	for (var [key, value] of Object.entries(collectionsToCompress))		//For each collection in the uncompressed collectionsToCompress
+	{
+		var cloneWithoutTimestamp = Object.assign({ }, value, { timestamp: null });
+		compressedStorage[key] = LZUTF8.compress(JSON.stringify(cloneWithoutTimestamp), { outputEncoding: "StorageBinaryString" });
 	}
 	return compressedStorage;
 }
@@ -149,12 +150,12 @@ function LoadStorages (callback = () => null)
 {
 	chrome.storage.local.get("thumbnails", values =>
 	{
-		thumbnails = values?.thumbnails || {};
+		thumbnails = values?.thumbnails ?? { };
 		collectionStorage.get(null, values =>
 		{
 			collections = DecompressCollectionsStorage(values);
 			UpdateBadgeCounter();
-			callback({"collections": collections, "thumbnails": thumbnails});
+			callback({ "collections": collections, "thumbnails": thumbnails });
 		});
 	});
 }
@@ -167,13 +168,13 @@ function LoadStorages (callback = () => null)
  */
 function DecompressCollectionsStorage (compressedCollections)
 {
-	var decompressedStorage = {};
-	for (const [key, value] of Object.entries(compressedCollections))
+	var decompressedStorage = { };
+	for (var [key, value] of Object.entries(compressedCollections))
 	{
 		if (!key.startsWith("set_"))
 			continue;
 
-		decompressedStorage[key] = JSON.parse(LZUTF8.decompress(value, {inputEncoding: "StorageBinaryString"}));
+		decompressedStorage[key] = JSON.parse(LZUTF8.decompress(value, { inputEncoding: "StorageBinaryString" }));
 		decompressedStorage[key].timestamp = parseInt(key.substr(4));
 	}
 	return decompressedStorage;
@@ -185,7 +186,7 @@ function DecompressCollectionsStorage (compressedCollections)
  * Allows to preserve backward compatibility with the localStorage method of storing collections in pre v2 versions.
  * @param {Object} collections The current collections object
  */
-function MergePreV2Collections ({collections})
+function MergePreV2Collections ()
 {
 	if (localStorage.getItem("sets"))
 	{
@@ -195,14 +196,16 @@ function MergePreV2Collections ({collections})
 		old_collections.forEach(collection =>
 		{
 			for (var i = 0; i < collection.links.length; i++)
-				thumbnails[collection.links[i]] = {
+				thumbnails[collection.links[i]] =
+				{
 					"pageCapture": collection.thumbnails[i],
 					"iconUrl": collection.icons[i]
 				};
+
 			delete collection.thumbnails;
 			delete collection.icons;
 
-			UpdateStorages({["set_" + collection.timestamp]: collection},
+			UpdateStorages({ ["set_" + collection.timestamp]: collection },
 				() => null,
 				() =>
 				{
@@ -218,16 +221,17 @@ function SaveCollectionAsBookmarks (collection)
 {
 	//The id 1 is the browser's bookmark bar
 	chrome.bookmarks.create({
-		'parentId': "1",
-		'title': 'TabsAside ' + (collection.name ?? new Date(collection.timestamp).toISOString())
-	}, (collectionFolder) =>
+		"parentId": "1",
+		"title": "TabsAside " + (collection.name ?? new Date(collection.timestamp).toISOString())
+	},
+	(collectionFolder) =>
 	{
 		for (var i = 0; i < collection.links.length; i++)
 			chrome.bookmarks.create(
 				{
-					'parentId': collectionFolder.id,
-					'title': collection.titles[i],
-					'url': collection.links[i]
+					"parentId": collectionFolder.id,
+					"title": collection.titles[i],
+					"url": collection.links[i]
 				});
 	});
 }
@@ -242,13 +246,15 @@ chrome.storage.onChanged.addListener((changes, namespace) =>
 			{
 				if (changes[key].newValue)
 				{
-					collections[key] = DecompressCollectionsStorage({[key]: changes[key].newValue})[key];
-					chrome.runtime.sendMessage({
+					collections[key] = DecompressCollectionsStorage({ [key]: changes[key].newValue })[key];
+					chrome.runtime.sendMessage(
+						{
 							command: "reloadCollections",
 							collections: collections,
 							thumbnails: thumbnails
 						});
-				}else
+				}
+				else
 					delete collections[key];
 
 				UpdateBadgeCounter();
@@ -291,12 +297,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) =>
 		case "openTab":
 			chrome.tabs.create({ url: message.url });
 			break;
+		case "loadData":
+			LoadStorages(sendResponse);		//Sends the collections as a response
+			return true;	//Required to indicate the answer will be sent asynchronously https://developer.chrome.com/extensions/messaging
 		case "saveTabs":
 			SaveCollection();
-			break;
-		case "loadData":
-			LoadStorages(sendResponse);//Sends the collections as a response
-			return true;//Required to indicate the answer will be sent asynchronously https://developer.chrome.com/extensions/messaging
 			break;
 		case "restoreTabs":
 			RestoreCollection(message.collectionKey, message.removeCollection);
@@ -312,7 +317,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) =>
 			break;
 		case "renameCollection":
 			collections[message.collectionKey].name = message.newName;
-			UpdateStorages({[message.collectionKey]: collections[message.collectionKey]});
+			UpdateStorages({ [message.collectionKey]: collections[message.collectionKey] });
 			break;
 		case "togglePane":
 			chrome.tabs.query(
@@ -350,27 +355,29 @@ function SaveCollection ()
 	}
 
 	var collection =
+	{
+		timestamp: Date.now(),
+		tabsCount: tabs.length,
+		titles: tabs.map(tab => (tab.title ?? "").substr(0, 100)),
+		links: tabs.map(tab => tab.url ?? "")
+	};
+
+	tabs.forEach(tab =>		//For each tab to save, Add relevant thumbnails in the thumbnails object
+	{
+		thumbnails[tab.url] =
 		{
-			timestamp: Date.now(),
-			tabsCount: tabs.length,
-			titles: tabs.map(tab => Truncate(tab.title || "", 100)),
-			links: tabs.map(tab => tab.url ?? "")
-		};
-	tabs.forEach(tab =>
-	{//For each tab to save, Add relevant thumbnails in the thumbnails object
-		thumbnails[tab.url] = {
-			"pageCapture": sessionCaptures[tab.url] ?? thumbnails[tab.url]?.pageCapture ?? "",
-			"iconUrl": tab.favIconUrl ?? ""
+			"pageCapture": sessionCaptures[tab.url] ?? thumbnails[tab.url]?.pageCapture,
+			"iconUrl": tab.favIconUrl
 		};
 	});
 
 	UpdateStorages({["set_" + collection.timestamp]: collection}, () =>
-			chrome.tabs.create({}, (tab) =>
-			{
-				var newTabId = tab.id;
-				chrome.tabs.remove(tabsToSave.filter(i => !i.pinned && i.id != newTabId).map(tab => tab.id));
-			}),
-		(error) => alert(chrome.i18n.getMessage("errorSavingTabs"))
+		chrome.tabs.create({}, (tab) =>
+		{
+			var newTabId = tab.id;
+			chrome.tabs.remove(tabsToSave.filter(i => !i.pinned && i.id != newTabId).map(tab => tab.id));
+		}),
+		() => alert(chrome.i18n.getMessage("errorSavingTabs"))
 	);
 }
 
@@ -378,10 +385,7 @@ function DeleteCollection (collectionKey)
 {
 	var deletedUrls = collections[collectionKey].links;
 	delete collections[collectionKey];
-	ForEachUnusedUrl(deletedUrls, (url) =>
-	{
-		delete thumbnails[url];
-	});//We delete the thumbnails that are not used in any other collection.
+	ForEachUnusedUrl(deletedUrls, (url) => delete thumbnails[url]);		//We delete the thumbnails that are not used in any other collection.
 	UpdateStorages({});//Updates the thumbnails storage only, by providing an empty "collectionsToUpdate" object.
 	collectionStorage.remove(collectionKey);//Remove the collection from the collectionstorage
 }
@@ -434,14 +438,11 @@ function RemoveTab (collectionKey, tabIndex)
 		return;
 	}
 
-	const urlToRemove = set.links[tabIndex];
+	var urlToRemove = set.links[tabIndex];
 	set.titles.splice(tabIndex, 1);
 	set.links.splice(tabIndex, 1);
 
-	ForEachUnusedUrl([urlToRemove], (url) =>
-	{
-		delete thumbnails[url];
-	});
+	ForEachUnusedUrl([urlToRemove], (url) => delete thumbnails[url]);
 	UpdateStorages({[collectionKey]: set});
 }
 
@@ -452,27 +453,15 @@ function RemoveTab (collectionKey, tabIndex)
  */
 function ForEachUnusedUrl (urlsToFilter, callback)
 {
-	for (var i = 0; i < urlsToFilter.length; i++)//If the url of the tab n°i is not present among all the collections, we call the callback on it
+	for (var i = 0; i < urlsToFilter.length; i++)		// If the url of the tab n°i is not present among all the collections, we call the callback on it
 		if (!Object.values(collections).some(collection => collection.links.some(link => link == urlsToFilter[i])))
 			callback(urlsToFilter[i]);
 }
 
-/**
- * Returns a stringToTruncate by truncating it in order to keep it under n characters
- * @param stringToTruncate
- * @param n desired maximum length for the string
- * @returns {string} a string of length < n, with "..."  appended if it was truncated.
- */
-function Truncate (stringToTruncate, n)
-{
-	return (stringToTruncate.length > n) ? stringToTruncate.substr(0, n - 1 - 3) + '...' : stringToTruncate;
-}
+// page Captures are not always used in a collection, so we keep them in a specific variable until a collection is saved.
+var sessionCaptures = { };
 
-
-//page Captures are not always used in a collection, so we keep them in a specific variable until a collection is saved.
-var sessionCaptures = {};
-
-function AppendThumbnail (tabId, tab)
+function AppendThumbnail (tab)
 {
 	if (!tab.active || !tab.url.startsWith("http"))
 		return;
@@ -498,6 +487,6 @@ function AppendThumbnail (tabId, tab)
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) =>
 {
-	if (changeInfo.status === "complete")
-		AppendThumbnail(tabId, tab);
+	if (changeInfo.status == "complete")
+		AppendThumbnail(tab);
 });

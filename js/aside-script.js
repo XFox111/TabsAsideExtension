@@ -207,17 +207,15 @@ function Initialize()
 		}
 	});
 
-	chrome.runtime.sendMessage({ command: "loadData" }, ({collections,thumbnails}) =>
-	{
-		ReloadCollections(collections,thumbnails)
-	});
+	chrome.runtime.sendMessage({ command: "loadData" }, ({ collections, thumbnails }) =>
+		ReloadCollections(collections, thumbnails));
 
-	chrome.runtime.onMessage.addListener((message, sender, sendResponse) =>
+	chrome.runtime.onMessage.addListener((message) =>
 	{
 		switch (message.command)
 		{
 			case "reloadCollections":
-				ReloadCollections(message.collections,message.thumbnails);
+				ReloadCollections(message.collections, message.thumbnails);
 				break;
 		}
 	});
@@ -237,15 +235,16 @@ function UpdateLocale()
 }
 
 
-function ReloadCollections(collections,thumbnails){
-				document.querySelector(".tabsAside section h2").removeAttribute("hidden");
-				document.querySelectorAll(".tabsAside section > div").forEach(i => i.remove());
+function ReloadCollections(collections, thumbnails)
+{
+	document.querySelector(".tabsAside section h2").removeAttribute("hidden");
+	document.querySelectorAll(".tabsAside section > div").forEach(i => i.remove());
 
-				for (const collection of Object.values(collections))
-						AddCollection(collection, thumbnails);
+	for (var collection of Object.values(collections))
+		AddCollection(collection, thumbnails);
 }
 
-function AddCollection(collection,thumbnails)
+function AddCollection(collection, thumbnails)
 {
 	var list = document.querySelector(".tabsAside section");
 	list.querySelector("h2").setAttribute("hidden", "");
@@ -253,17 +252,14 @@ function AddCollection(collection,thumbnails)
 	var rawTabs = "";
 
 	for (var i = 0; i < collection.links.length; i++)
-	{
 		rawTabs +=
-			"<div title='" + collection.titles[i] + "'" + ((thumbnails[collection.links[i]] && thumbnails[collection.links[i]].pageCapture) ? " style='background-image: url(" + thumbnails[collection.links[i]].pageCapture + ")'" : "") + " value='" + collection.links[i] + "'>" +
-				//"<span class='openTab' value='" + collection.links[i] + "'></span>" +
+			"<div title='" + collection.titles[i] + "'" + (thumbnails[collection.links[i]]?.pageCapture ? " style='background-image: url(" + thumbnails[collection.links[i]].pageCapture + ")'" : "") + " value='" + collection.links[i] + "'>" +
 				"<div>" +
-					"<div" + ((thumbnails[collection.links[i]]?.iconUrl == 0 || thumbnails[collection.links[i]]?.iconUrl == null) ? "" : " style='background-image: url(\"" + thumbnails[collection.links[i]].iconUrl + "\")'") + "></div>" +
+					"<div" + (!thumbnails[collection.links[i]]?.iconUrl ? "" : " style='background-image: url(\"" + thumbnails[collection.links[i]].iconUrl + "\")'") + "></div>" +
 					"<span>" + collection.titles[i] + "</span>" +
 					"<button loc_alt='removeTab' class='btn remove' title='Remove tab from collection'>&#xE10A;</button>" +
 				"</div>" +
 			"</div>";
-	}
 
 	list.innerHTML +=
 		"<div class='collectionSet' id='set_"+collection.timestamp+"'>" +
@@ -287,7 +283,6 @@ function AddCollection(collection,thumbnails)
 
 	list.querySelectorAll("input").forEach(i =>
 		i.addEventListener("focusout",(event) => RenameCollection(i.parentElement.parentElement, event.target.value)));
-	// i.onfocusout=func has issues on some browsers and needs to be implemented with an event listener - https://www.w3schools.com/jsref/event_onfocusout.asp
 
 	list.querySelectorAll(".restoreCollection").forEach(i =>
 		i.onclick = () => RestoreTabs(i.parentElement.parentElement));
