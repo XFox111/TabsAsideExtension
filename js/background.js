@@ -236,9 +236,10 @@ chrome.storage.onChanged.addListener((changes, namespace) =>
 							thumbnails: thumbnails
 						});
 				}else
-					delete collections[key]
+					delete collections[key];
+
+				UpdateBadgeCounter();
 			}
-		UpdateBadgeCounter()
 });
 
 var shortcuts;
