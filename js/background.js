@@ -98,20 +98,7 @@ chrome.browserAction.onClicked.addListener((tab) =>
 	});
 });
 
-var collections = [];
-chrome.storage.sync.get("sets", values =>
-{
-	collections = JSON.parse(values?.sets ?? "[]");
-	if (localStorage.getItem("sets"))	// If there're any saved tabs before v1.9 it appends them to a new collection and then removes
-	{
-		console.log("Found legacy data");
-		collections = collections.concat(JSON.parse(localStorage.getItem("sets")))
-		chrome.storage.sync.set({ "sets": JSON.stringify(collections) });
-		localStorage.removeItem("sets");
-	}
-	UpdateTheme();
-});
-
+var collections = JSON.parse(localStorage.getItem("sets")) || [];
 var shortcuts;
 chrome.commands.getAll((commands) => shortcuts = commands);
 
@@ -166,7 +153,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) =>
 			break;
 		case "renameCollection":
 			collections[message.collectionIndex].name = message.newName;
-			chrome.storage.sync.set({ "sets": JSON.stringify(collections) });
+			localStorage.setItem("sets", JSON.stringify(collections));
 			break;
 		case "togglePane":
 			chrome.tabs.query(
@@ -209,6 +196,7 @@ function UpdateTheme()
 		});
 }
 
+UpdateTheme();
 chrome.windows.onFocusChanged.addListener(UpdateTheme);
 chrome.tabs.onUpdated.addListener(UpdateTheme);
 chrome.tabs.onActivated.addListener(UpdateTheme);
@@ -234,8 +222,18 @@ function SaveCollection()
 		thumbnails: tabs.map(tab => thumbnails.find(i => i.tabId == tab.id)?.url ?? "")
 	};
 
-	collections.unshift(collection);
-	chrome.storage.sync.set({ "sets": JSON.stringify(collections) })
+	var rawData;
+	if (localStorage.getItem("sets") === null)
+		rawData = [collection];
+	else
+	{
+		rawData = JSON.parse(localStorage.getItem("sets"));
+		rawData.unshift(collection);
+	}
+
+	localStorage.setItem("sets", JSON.stringify(rawData));
+
+	collections = JSON.parse(localStorage.getItem("sets"));
 
 	var newTabId;
 	chrome.tabs.create({}, (tab) =>
@@ -250,7 +248,7 @@ function SaveCollection()
 function DeleteCollection(collectionIndex)
 {
 	collections = collections.filter(i => i != collections[collectionIndex]);
-	chrome.storage.sync.set({ "sets": JSON.stringify(collections) })
+	localStorage.setItem("sets", JSON.stringify(collections));
 
 	UpdateTheme();
 }
@@ -283,14 +281,14 @@ function RestoreCollection(collectionIndex, removeCollection)
 	});
 
 	//We added new tabs by restoring a collection, so we refresh the array of tabs ready to be saved.
-	GetTabsToSave((returnedTabs) =>
+	GetTabsToSave((returnedTabs) => 
 	tabsToSave = returnedTabs)
 
 	if (!removeCollection)
 		return;
 
 	collections = collections.filter(i => i != collections[collectionIndex]);
-	chrome.storage.sync.set({ "sets": JSON.stringify(collections) })
+	localStorage.setItem("sets", JSON.stringify(collections));
 
 	UpdateTheme();
 }
@@ -301,7 +299,7 @@ function RemoveTab(collectionIndex, tabIndex)
 	if (--set.tabsCount < 1)
 	{
 		collections = collections.filter(i => i != set);
-		chrome.storage.sync.set({ "sets": JSON.stringify(collections) })
+		localStorage.setItem("sets", JSON.stringify(collections));
 
 		UpdateTheme();
 		return;
@@ -325,7 +323,7 @@ function RemoveTab(collectionIndex, tabIndex)
 	set.links = links;
 	set.icons = icons;
 
-	chrome.storage.sync.set({ "sets": JSON.stringify(collections) })
+	localStorage.setItem("sets", JSON.stringify(collections));
 
 	UpdateTheme();
 }
