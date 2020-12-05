@@ -126,7 +126,7 @@
 	},
 	"olderDataMigrationFailed":
 	{
-		"message": "Some tabs set aside from a previous version could not be migrated. They have been backed up as browser bookmarks.一部分搁置的标签页无法从上一个版本中迁移. 这些标签页已经作为浏览器书签被备份.",
+		"message": "一部分搁置的标签页无法从上一个版本中迁移. 这些标签页已经作为浏览器书签被备份.",
 		"description": "Alert dialog message when there is an issue migrating previous versions data"
 	},
 	"tabs":
