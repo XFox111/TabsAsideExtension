@@ -124,6 +124,16 @@
 		"message": "没有可以搁置的标签页",
 		"description": "Alert dialog message when there's no tabs to save"
 	},
+	"errorSavingTabs":
+	{
+		"message": "标签页无法被搁置. 可能是因为您尝试一次性搁置过多的标签页, 或是先前搁置的标签页过多.",
+		"description": "Alert dialog message when there is an issue saving tabs"
+	},
+	"olderDataMigrationFailed":
+	{
+		"message": "一部分搁置的标签页无法从上一个版本中迁移. 这些标签页已经作为浏览器书签被备份.",
+		"description": "Alert dialog message when there is an issue migrating previous versions data"
+	},
 	"tabs":
 	{
 		"message": "项",
