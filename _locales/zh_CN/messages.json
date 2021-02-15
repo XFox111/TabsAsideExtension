@@ -124,6 +124,16 @@
 		"message": "没有可以搁置的标签页",
 		"description": "Alert dialog message when there's no tabs to save"
 	},
+	"errorSavingTabs":
+	{
+		"message": "选项卡无法放在一边。 您可能试图一次放置太多标签，或者已经放置了太多标签。",
+		"description": "Alert dialog message when there is an issue saving tabs"
+	},
+	"olderDataMigrationFailed":
+	{
+		"message": "除先前版本以外的某些选项卡无法迁移。 它们已作为浏览器书签备份。",
+		"description": "Alert dialog message when there is an issue migrating previous versions data"
+	},
 	"tabs":
 	{
 		"message": "项",
