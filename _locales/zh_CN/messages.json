@@ -124,6 +124,16 @@
 		"message": "没有可以搁置的标签页",
 		"description": "Alert dialog message when there's no tabs to save"
 	},
+	"errorSavingTabs":
+	{
+		"message": "Las pestañas no se pueden dejar de lado. Es posible que esté intentando dejar demasiadas pestañas a un lado a la vez o que ya haya reservado demasiadas pestañas.",
+		"description": "Alert dialog message when there is an issue saving tabs"
+	},
+	"olderDataMigrationFailed":
+	{
+		"message": "Algunas pestañas apartadas de una versión anterior no se pudieron migrar. Se han respaldado como marcadores del navegador.",
+		"description": "Alert dialog message when there is an issue migrating previous versions data"
+	},
 	"tabs":
 	{
 		"message": "项",
