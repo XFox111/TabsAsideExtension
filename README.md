@@ -61,8 +61,8 @@ If you are interested in fixing issues and contributing directly to the code bas
 This project has adopted the Contributor Covenant. For more information see the [Code of Conduct](https://github.com/XFox111/TabsAsideExtension/blob/master/CODE_OF_CONDUCT.md)
 
 ## Copyrights
-> ©2020 Michael "XFox" Gordeev
+> ©2021 Michael "XFox" Gordeev
 
-Font copyrights: Microsoft Corportation ©2019 (Additional ELUA applied)
+Font copyrights: Microsoft Corportation ©2021 (Additional ELUA applied)
 
 Licensed under [MIT License](https://opensource.org/licenses/MIT)
