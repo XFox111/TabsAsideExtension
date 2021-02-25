@@ -6,14 +6,16 @@ var syncEnabled = true;		//This variable controls whether to use the chrome sync
 var collectionStorage = syncEnabled ? chrome.storage.sync : chrome.storage.local;
 
 //Get the tabs to save, either all the window or the selected tabs only, and pass them through a callback.
-function GetTabsToSave (callback)
+function GetTabsToSave (callback, ignoreSingleTab = true)
 {
-	chrome.tabs.query({ currentWindow: true }, (windowTabs) =>
+	chrome.tabs.query({currentWindow: true}, (windowTabs) =>
 	{
 		var highlightedTabs = windowTabs.filter(item => item.highlighted);
-		//If there are more than one selected tab in the window, we set only those aside.
-		// Otherwise, all the window's tabs get saved.
-		return callback((highlightedTabs.length > 1 ? highlightedTabs : windowTabs));
+		//If there are more than one selected tab in the window, or user asked for the active tab only, we set only those aside.
+		if (highlightedTabs.length > 1 || !ignoreSingleTab)
+			return callback(highlightedTabs);
+		else 		// Otherwise, all the window's tabs get saved.
+			return callback(windowTabs);
 	});
 
 }
@@ -63,25 +65,32 @@ function TogglePane (tab)
 
 function ProcessCommand (command)
 {
-	GetTabsToSave((returnedTabs) =>
+	switch(command)
 	{
-		tabsToSave = returnedTabs;
-		switch(command)
-		{
-			case "set-aside":
+		case "set-aside":
+			GetTabsToSave((returnedTabs) =>
+			{
+				tabsToSave = returnedTabs;
 				SaveCollection();
-				break;
-			case "toggle-pane":
-				chrome.tabs.query(
-					{
-						active: true,
-						currentWindow: true
-					},
-					(tabs) => TogglePane(tabs[0])
-				)
-				break;
-		}
-	});
+			});
+			break;
+		case "set-aside-only-selected":
+			GetTabsToSave((returnedTabs) =>
+			{
+				tabsToSave = returnedTabs;
+				SaveCollection();
+			},false);
+			break;
+		case "toggle-pane":
+			chrome.tabs.query(
+				{
+					active: true,
+					currentWindow: true
+				},
+				(tabs) => TogglePane(tabs[0])
+			)
+			break;
+	}
 }
 
 chrome.browserAction.onClicked.addListener((tab) =>
