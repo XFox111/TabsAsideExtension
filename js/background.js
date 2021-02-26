@@ -247,17 +247,18 @@ chrome.storage.onChanged.addListener((changes, namespace) =>
 				if (changes[key].newValue)
 				{
 					collections[key] = DecompressCollectionsStorage({ [key]: changes[key].newValue })[key];
-					chrome.runtime.sendMessage(
-						{
-							command: "reloadCollections",
-							collections: collections,
-							thumbnails: thumbnails
-						});
+
 				}
 				else
 					delete collections[key];
 
 				UpdateBadgeCounter();
+				chrome.runtime.sendMessage(
+				{
+					command: "reloadCollections",
+					collections: collections,
+					thumbnails: thumbnails
+				});
 			}
 });
 
