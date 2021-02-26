@@ -99,6 +99,16 @@
 		"message": "Восстановить без удаления",
 		"description": "Context action item name"
 	},
+	"saveCollectionAsBookmarks":
+	{
+		"message": "Сохранить в избранное",
+		"description": "Button allowing the user to save a collection in the browser bookmarks"
+	},
+	"collectionSavedAsBookmarks":
+	{
+		"message": "Коллекция добавлена в избранное",
+		"description": "Alert dialog message when a user has saved a collection in the browser bookmarks"
+	},
 	"removeCollection":
 	{
 		"message": "Удалить коллекцию",
