@@ -35,7 +35,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: 'Firefox Artefacts'
-        path: ${{ steps.web-ext-sign.outputs.target }}
+        path: ${{ steps.web-ext-build.outputs.target }}
 
   Chrome:
     runs-on: ubuntu-latest
