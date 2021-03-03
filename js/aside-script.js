@@ -240,7 +240,7 @@ function ReloadCollections(collections, thumbnails)
 	document.querySelector(".tabsAside section h2").removeAttribute("hidden");
 	document.querySelectorAll(".tabsAside section > div").forEach(i => i.remove());
 
-	for (var collection of Object.values(collections))
+	for (var collection of Object.values(collections).reverse())
 		AddCollection(collection, thumbnails);
 }
 
