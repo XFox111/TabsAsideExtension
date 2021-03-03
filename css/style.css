@@ -41,8 +41,6 @@
 	border-width: 0px 0px 0px 1px;
 	box-shadow: 6px 0px 12px black;
 
-	font-size: 13px;
-
 	transform: translateX(110%);	/* pane is hidded */
 	transition: .2s;
 }
@@ -67,14 +65,21 @@
 		display: grid;
 		grid-template-columns: 1fr auto auto;
 		grid-column-gap: 10px;
-		grid-row-gap: 30px;
+		grid-row-gap: 20px;
 	}
 
 			.tabsAside.pane > header > h1
 			{
 				margin: 0px 5px;
-				font-weight: 500;
-				font-size: 15pt;
+				font-weight: 400;
+				font-size: 24px;
+			}
+
+			.tabsAside.pane > header > button .updateBadge
+			{
+				position: absolute;
+				bottom: 2px;
+				right: 2px;
 			}
 
 			.tabsAside.pane > header > nav
@@ -93,27 +98,43 @@
 						text-decoration: none;
 					}
 
+						.tabsAside.pane > header nav > p > a:hover
+						{
+							text-decoration: underline;
+						}
+
 		.saveTabs
 		{
 			display: inline-grid;
-			grid-template-columns: 16px auto;
+			grid-template-columns: 16px auto 16px;
 			grid-column-gap: 15px;
 
-			font-weight: 600;
 			margin-right: auto;
 		}
 
-		.iconArrowRight
+		.saveTabs:hover
+		{
+			text-decoration: none !important;
+		}
+
+			.saveTabs:hover span:nth-child(2)
+			{
+				text-decoration: underline;
+			}
+
+		.iconArrowRight,.iconQuestionCircle
 		{
 			width: 16px;
 			height: 16px;
 			display: inline-block;
-			background-repeat: no-repeat;
-			background-size: 16px;
-			background-position: center;
-			background-image: url("chrome-extension://__MSG_@@extension_id__/icons/arrowRight.svg"),
-							  url("moz-extension://__MSG_@@extension_id__/icons/arrowRight.svg");
+			font-family: "Segoe MDL2 Assets";
 			margin: 2px;
+		}
+		.iconQuestionCircle
+		{
+			font-size: small;
+			padding-top: 2px;
+			margin-bottom: 0;
 		}
 
 	.tabsAside.pane section
@@ -175,7 +196,7 @@
 		{
 			margin: 0px;
 			visibility: visible !important;
-			font-weight: 500;
+			font-weight: 600;
 			border: none;
 			background: transparent;
 		}
@@ -183,11 +204,6 @@
 		.collectionSet > .header > input:hover
 		{
 			border: 1px solid black;
-		}
-
-		.collectionSet > .header > a
-		{
-			font-size: 11pt;
 		}
 
 		.collectionSet > .header > div > nav
@@ -276,6 +292,7 @@
 						overflow: hidden;
 						margin: auto 0px;
 						margin-right: 10px;
+						font-size: 12px;
 					}
 					.collectionSet > .set > div:hover > div > span
 					{

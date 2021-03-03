@@ -44,9 +44,9 @@
 		"message": "Visit GitHub page",
 		"description": "Link title"
 	},
-	"contributors":
+	"changelog":
 	{
-		"message": "Project contributors",
+		"message": "Changelog",
 		"description": "Link title"
 	},
 	"feedback":
@@ -68,6 +68,11 @@
 	{
 		"message": "Set current tabs aside",
 		"description": "Save collection action name. Used in the pane, extension context menu and manifest shortcuts"
+	},
+	"setMultipleTabsAsideTooltip":
+	{
+		"message": "Tip : You can set aside specific tabs by selecting them (by holding CTRL or SHIFT and clicking on the tabs) before clicking on the TabsAside extension",
+		"description": "Tooltip displayed on hover in the pane to explain how to set specific tabs aside"
 	},
 	"nothingSaved":
 	{
@@ -118,6 +123,16 @@
 	{
 		"message": "No tabs available to save",
 		"description": "Alert dialog message when there's no tabs to save"
+	},
+	"errorSavingTabs":
+	{
+		"message": "Tabs could not be set aside. You may be trying to set too many tabs aside at once, or have too many tabs already set aside.",
+		"description": "Alert dialog message when there is an issue saving tabs"
+	},
+	"olderDataMigrationFailed":
+	{
+		"message": "Some tabs set aside from a previous version could not be migrated. They have been backed up as browser bookmarks.",
+		"description": "Alert dialog message when there is an issue migrating previous versions data"
 	},
 	"tabs":
 	{

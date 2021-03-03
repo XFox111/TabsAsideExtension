@@ -44,9 +44,9 @@
 		"message": "Visitar la pagina de GitHub",
 		"description": "Link title"
 	},
-	"contributors":
+	"changelog":
 	{
-		"message": "Contribuidores del proyecto",
+		"message": "Registro de cambios",
 		"description": "Link title"
 	},
 	"feedback":
@@ -68,6 +68,11 @@
 	{
 		"message": "Reservar las pestañas actuales",
 		"description": "Save collection action name. Used in the pane, extension context menu and manifest shortcuts"
+	},
+	"setMultipleTabsAsideTooltip":
+	{
+		"message": "Consejo: puede dejar de lado pestañas específicas seleccionándolas (manteniendo presionada la tecla CTRL o SHIFT y haciendo clic en las pestañas) antes de hacer clic en la extensión TabsAside",
+		"description": "Tooltip displayed on hover in the pane to explain how to set specific tabs aside"
 	},
 	"nothingSaved":
 	{
@@ -118,6 +123,16 @@
 	{
 		"message": "No hay pestañas disponibles para reservar",
 		"description": "Alert dialog message when there's no tabs to save"
+	},
+	"errorSavingTabs":
+	{
+		"message": "Las pestañas no se pueden dejar de lado. Es posible que esté intentando dejar demasiadas pestañas a un lado a la vez o que ya haya reservado demasiadas pestañas.",
+		"description": "Alert dialog message when there is an issue saving tabs"
+	},
+	"olderDataMigrationFailed":
+	{
+		"message": "Algunas pestañas apartadas de una versión anterior no se pudieron migrar. Se han respaldado como marcadores del navegador.",
+		"description": "Alert dialog message when there is an issue migrating previous versions data"
 	},
 	"tabs":
 	{

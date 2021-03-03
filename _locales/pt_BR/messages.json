@@ -1,12 +1,12 @@
 {
 	"name":
 	{
-		"message": "搁置的标签页",
+		"message": "Reservar abas",
 		"description": "Extension name. Displayed in the manifest and pane header"
 	},
 	"description":
 	{
-		"message": "为Chromium浏览器提供旧版 Microsoft Edge 中的\"搁置标签页\" 功能",
+		"message": "Função \"Reservar abas\" do Microsoft Edge Clássico",
 		"description": "Extension description"
 	},
 	"author":
@@ -16,127 +16,127 @@
 	},
 	"options":
 	{
-		"message": "设置",
+		"message": "Opções",
 		"description": "Alternative text for options button in the pane"
 	},
 	"closePanel":
 	{
-		"message": "关闭",
+		"message": "Fechar",
 		"description": "Alternative text for close panel button"
 	},
 	"loadOnRestore":
 	{
-		"message": "在重新打开时加载页面",
+		"message": "Carregar abas ao restaurar",
 		"description": "Label for option"
 	},
 	"showDeleteDialog":
 	{
-		"message": "在删除项目之前显示确认对话框",
+		"message": "Mostrar diálogo de confirmação antes de deletar um item",
 		"description": "Label for option"
 	},
 	"swapIconAction":
 	{
-		"message": "点击拓展图标来搁置所有标签页 (按%TOGGLE_SHORTCUT%或右键来打开侧栏)",
+		"message": "Reservar abas ao apertar o ícone da extensão (%TOGGLE_SHORTCUT% ou clique-direito para abrir o painel)",
 		"description": "Label for option"
 	},
 	"github":
 	{
-		"message": "查看GitHub页面",
+		"message": "Visite a página do GitHub",
 		"description": "Link title"
 	},
 	"changelog":
 	{
-		"message": "变更日志",
+		"message": "Registro de mudanças",
 		"description": "Link title"
 	},
 	"feedback":
 	{
-		"message": "给我们反馈",
+		"message": "Deixe um comentário",
 		"description": "Link title"
 	},
 	"buyMeACoffee":
 	{
-		"message": "给我买杯咖啡!",
+		"message": "Me compre um café!",
 		"description": "Link title"
 	},
 	"credits":
 	{
-		"message": "由Michael 'XFox' Gordeev开发",
+		"message": "Desenvolvido por Michael 'XFox' Gordeev",
 		"description": "Options menu credits"
 	},
 	"setAside":
 	{
-		"message": "搁置当前的所有标签页",
+		"message": "Reservas as abas atuais",
 		"description": "Save collection action name. Used in the pane, extension context menu and manifest shortcuts"
 	},
 	"setMultipleTabsAsideTooltip":
 	{
-		"message": "提示：在单击TabsAside扩展名之前，可以通过选择特定选项卡（按住CTRL或SHIFT并单击选项卡）来搁置它们",
+		"message": "Dica: Você pode reservar abas específicas ao selecioná-las (ao apertar CTRL ou SHIFT e clicando nas abas) antes de clicar na extensão Reservar Abas",
 		"description": "Tooltip displayed on hover in the pane to explain how to set specific tabs aside"
 	},
 	"nothingSaved":
 	{
-		"message": "你目前没有搁置的标签页",
+		"message": "Você não tem abas reservadas",
 		"description": "Placeholder for empty pane"
 	},
 	"removeTab":
 	{
-		"message": "从标签页集中移除标签页",
+		"message": "Remover aba da coleção",
 		"description": "Button hint on a tab card"
 	},
 	"restoreTabs":
 	{
-		"message": "恢复标签页",
+		"message": "Restaurar abas",
 		"description": "Collection restore action link name"
 	},
 	"more":
 	{
-		"message": "更多...",
+		"message": "Mais...",
 		"description": "Collections' more button title"
 	},
 	"restoreNoRemove":
 	{
-		"message": "恢复但不移除标签页",
+		"message": "Restaurar sem remover",
 		"description": "Context action item name"
 	},
 	"removeCollection":
 	{
-		"message": "移除标签页集",
+		"message": "Remover coleção",
 		"description": "Collection remove action name"
 	},
 	"removeCollectionConfirm":
 	{
-		"message": "你确定要移除这个标签页集吗?",
+		"message": "Você tem certeza que quer deletar esta coleção?",
 		"description": "Prompt dialog content on collection deletion"
 	},
 	"removeTabConfirm":
 	{
-		"message": "你确定要移除这个标签页吗?",
+		"message": "Você tem certeza que quer deletar esta aba?",
 		"description": "Prompt dialog content on one tab deletion"
 	},
 	"togglePaneContext":
 	{
-		"message": "打开或关闭侧栏",
+		"message": "Alternar painel de abas",
 		"description": "Context action name. Used in extension context menu and manifest shortcuts"
 	},
 	"noTabsToSave":
 	{
-		"message": "没有可以搁置的标签页",
+		"message": "Não há abas disponíveis para salvar",
 		"description": "Alert dialog message when there's no tabs to save"
 	},
 	"errorSavingTabs":
 	{
-		"message": "标签页无法被搁置. 可能是因为您尝试一次性搁置过多的标签页, 或是先前搁置的标签页过多.",
+		"message": "As abas não puderam ser reservadas. Você pode ter tentado reservar muitas abas de uma vez só, ou pode ter abas demais já reservadas.",
 		"description": "Alert dialog message when there is an issue saving tabs"
 	},
 	"olderDataMigrationFailed":
 	{
-		"message": "一部分搁置的标签页无法从上一个版本中迁移. 这些标签页已经作为浏览器书签被备份.",
+		"message": "Algumas abas reservadas de uma versão antiga não puderam ser migradas. Elas foram salvas como marcadores do navegador.",
 		"description": "Alert dialog message when there is an issue migrating previous versions data"
 	},
 	"tabs":
 	{
-		"message": "项",
+		"message": "itens",
 		"description": "Collection tabs counter label (e.g. 8 items)"
 	}
 }

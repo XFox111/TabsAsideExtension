@@ -1,3 +1,16 @@
+.updateBadge
+{
+	display: none;
+}
+.tabsAside[updated] .updateBadge
+{
+	width: 10px;
+	height: 10px;
+	background-color: #0078d7;
+	border-radius: 5px;
+	display: block;
+}
+
 /* Custom scrollbar */
 .tabsAside ::-webkit-scrollbar
 {
@@ -17,7 +30,7 @@
 
 .tabsAside
 {
-	font-family: 'Segoe UI' ,'DefaultFont';
+	font-family: "Segoe UI", "Segoe MDL2 Assets" !important;
 	font-size: 14px;
 	user-select: none;
 }
@@ -46,6 +59,8 @@
 	background-color: transparent;
 	border: none;
 	cursor: pointer;
+	outline: none !important;
+	position: relative;
 }
 	.tabsAside button:hover
 	{
@@ -62,9 +77,10 @@
 	user-select: none;
 
 	position: absolute;
-	width: 290px;
+	width: 390px;
+	font-size: 12px;
 
-	box-shadow: 0px 0px 10px rgba(0,0,0,.5);
+	box-shadow: 0px 4px 10px rgba(0,0,0,.25);
 	background-color: white;
 	border-radius: 5px;
 
@@ -78,23 +94,47 @@
 	{
 		border: none;
 		height: 1px;
-		background-color: lightgray;
+		background-color: rgba(0, 0, 0, .1);
+		margin: 4px 0px
 	}
 
 	.tabsAside nav button
 	{
+		align-content: center;
 		text-align: start;
 
-		padding: 0px 10px;
+		padding: 0px 12px;
 		width: 100%;
 
 		height: 32px;
-		font-family: 'Segoe UI' ,'DefaultFont';
+		font-family: "Segoe UI";
+		font-size: 12px;
+
+		display: grid;
+		grid-template-columns: auto 1fr auto;
+		grid-column-gap: 14px;
 	}
 
 		.tabsAside nav button:hover
 		{
 			background-color: #eeee;
+		}
+
+		.tabsAside nav button img:first-child
+		{
+			width: 16px;
+			height: 16px;
+		}
+
+		.tabsAside nav button img:nth-child(3)
+		{
+			width: 12px;
+			height: 12px;
+		}
+
+		.tabsAside nav button *:nth-child(3)
+		{
+			align-self: center;
 		}
 
 	.tabsAside button + nav:active,
@@ -109,29 +149,75 @@
 	background-repeat: no-repeat;
 	background-size: 12px;
 	background-position: center;
+	font-family: "Segoe UI", "Segoe MDL2 Assets";
 }
 
-	.btn.more
+.control.checkbox
+{
+	display: block;
+	position: relative;
+	padding: 8px 12px 8px 42px;
+	box-sizing: border-box;
+	cursor: pointer;
+	min-height: 32px;
+}
+	.control.checkbox:hover
 	{
-		background-image: url("chrome-extension://__MSG_@@extension_id__/icons/more.svg"),
-						  url("moz-extension://__MSG_@@extension_id__/icons/more.svg");
+		background-color: #eeeeee;
 	}
+	.control.checkbox input
+	{
+		position: absolute;
+		opacity: 0;
+		width: 0;
+		height: 0;
+	}
+	.control.checkbox input + span
+	{
+		position: absolute;
+		left: 12px;
+		height: 16px;
+		width: 16px;
 
-	.btn.remove
-	{
-		background-image: url("chrome-extension://__MSG_@@extension_id__/icons/cancel.svg"),
-						  url("moz-extension://__MSG_@@extension_id__/icons/cancel.svg");
+		transition-property: background, border, border-color;
+		transition-duration: 200ms;
+		transition-timing-function: cubic-bezier(0.4, 0, 0.23, 1);
 	}
+		.control.checkbox input + span::after
+		{
+			position: absolute;
+			color: rgba(0, 0, 0, .4);
+
+			font-family: "Segoe MDL2 Assets";
+			content: "\E001";
+
+			width: 16px;
+			height: 16px;
+			font-size: 16px;
+			text-align: center;
+
+			display: none;
+		}
+			.control.checkbox input:checked + span::after
+			{
+				display: block;
+				color: black;
+			}
+			.control.checkbox:hover input + span::after
+			{
+				display: block;
+			}
 
 @font-face
 {
-	font-family: 'DefaultFont';
+	font-family: "Segoe UI";
 	src: local("Segoe UI"),
-		url("chrome-extension://__MSG_@@extension_id__/fonts/WeblySleekUI/weblysleekuisemilight.ttf") format("truetype"),
-		url("chrome-extension://__MSG_@@extension_id__/fonts/WeblySleekUI/weblysleekuisemilight.woff") format("woff"),
-		url("chrome-extension://__MSG_@@extension_id__/fonts/WeblySleekUI/weblysleekuisemilight.woff2") format("woff2"),
+		url("fonts/segoeui.ttf") format("truetype"),
+}
 
-		url("moz-extension://__MSG_@@extension_id__/fonts/WeblySleekUI/weblysleekuisemilight.ttf") format("truetype"),
-		url("moz-extension://__MSG_@@extension_id__/fonts/WeblySleekUI/weblysleekuisemilight.woff") format("woff"),
-		url("moz-extension://__MSG_@@extension_id__/fonts/WeblySleekUI/weblysleekuisemilight.woff2") format("woff2");
+@font-face
+{
+	font-family: "Segoe MDL2 Assets";
+	src: local("Segoe MDL2 Assets"),
+		url("fonts/segoemdl2.ttf") format("truetype"),
 }

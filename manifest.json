@@ -1,6 +1,6 @@
 {
 	"name": "__MSG_name__",
-	"version": "1.9.1",
+	"version": "2.0",
 	"manifest_version": 2,
 	"description": "__MSG_description__",
 	"author": "__MSG_author__",
@@ -9,6 +9,7 @@
 	"permissions":
 	[
 		"tabs",
+		"bookmarks",
 		"unlimitedStorage",
 		"storage",
 		"<all_urls>",
@@ -17,43 +18,20 @@
 
 	"icons":
 	{
-		"128": "icons/light/empty/128.png",
-		"48": "icons/light/empty/48.png",
-		"32": "icons/light/empty/32.png",
-		"16": "icons/light/empty/16.png"
+		"128": "icons/icon-128.png",
+		"48": "icons/icon-48.png",
+		"32": "icons/icon-32.png",
+		"16": "icons/icon-16.png"
 	},
 	"browser_action":
 	{
-		"default_icon": "icons/light/empty/32.png",
-		"theme_icons":
-		[
-			{
-				"size": 128,
-				"dark": "icons/light/full/128.png",
-				"light": "icons/dark/full/128.png"
-			},
-			{
-				"size": 48,
-				"dark": "icons/light/full/48.png",
-				"light": "icons/dark/full/48.png"
-			},
-			{
-				"size": 32,
-				"dark": "icons/light/full/32.png",
-				"light": "icons/dark/full/32.png"
-			},
-			{
-				"size": 16,
-				"dark": "icons/light/full/16.png",
-				"light": "icons/dark/full/16.png"
-			}
-		]
+		"default_icon": "icons/icon-32.png"
 	},
 	"web_accessible_resources": [ "*" ],
 
 	"background":
 	{
-		"scripts": [ "js/background.js" ],
+		"scripts": [ "js/lib/lzutf8.min.js","js/background.js" ],
 		"persistent": false
 	},
 

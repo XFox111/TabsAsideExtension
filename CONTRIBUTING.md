@@ -13,7 +13,7 @@ There are many ways in which you can contribute, beyond writing code. The goal o
     - [Writing Good Bug Reports and Feature Requests](#writing-good-bug-reports-and-feature-requests)
     - [Final Checklist](#final-checklist)
     - [Follow Your Issue](#follow-your-issue)
-  - [Contributing to codebase](#contributing-to-codebase)
+  - [Contributing to the codebase](#contributing-to-the-codebase)
     - [Deploy test version on your browser](#deploy-test-version-on-your-browser)
     - [Development workflow](#development-workflow)
       - [Release](#release)
@@ -47,8 +47,8 @@ Be sure to scan through the [feature requests](https://github.com/XFox111/TabsAs
 
 If you find your issue already exists, make relevant comments and add your [reaction](https://github.com/blog/2119-add-reactions-to-pull-requests-issues-and-comments). Use a reaction in place of a "+1" comment:
 
-* 👍 - upvote
-* 👎 - downvote
+- 👍 - upvote
+- 👎 - downvote
 
 If you cannot find an existing issue that describes your bug or feature, create a new issue using the guidelines below.
 
@@ -68,6 +68,7 @@ Please include the following with each issue:
 
 ### Final Checklist
 Please remember to do the following:
+
 - [ ] Search the issue repository to ensure your report is a new issue
 - [ ] Separate issues reports
 - [ ] Include as much information as you can to your report
@@ -77,31 +78,35 @@ Don't feel bad if the developers can't reproduce the issue right away. They will
 ### Follow Your Issue
 Once your report is submitted, be sure to stay in touch with the devs in case they need more help from you.
 
-## Contributing to codebase
-If you are interested in writing code to fix issues or implement new awesome features you can follow this guidelines to get a better result
+## Contributing to the codebase
+If you are interested in writing code to fix issues or implement new awesome features you can follow these guidelines to get a better result
 
 ### Deploy test version on your browser
 1. Clone repository to local storage using [Git](https://guides.github.com/introduction/git-handbook/)
-    ```
-    git clone https://github.com/xfox111/TabsAsideExtension.git
-    ```
+
+   ```bash
+   git clone https://github.com/xfox111/TabsAsideExtension.git
+   ```
 2. Enable Developers mode on your browser extensions page
 3. Click "Load unpacked" button and navigate to the extension root folder (contains `manifest.json`)
 4. Done!
 
-Next time you make any changes to the codebase, reload extension by toggling it off and on or by pressing "Reload" button on extensions list page
+Next time you make any changes to the codebase, reload the extension by toggling it off and on or by pressing "Reload" button on the extensions list page
+
+> **Note:** You can also check [this article](https://xfox111.net/46hsgv) to get more information about debugging web extensions
 
 ### Development workflow
 This section represents how contributors should interact with codebase implementing features and fixing bugs
+
 1. Getting assigned to the issue
 2. Creating a repository fork
-3. Making changes to codebase
-5. Creating a pull request to `master`
-6. Reviewing & completing PR
-7. Done
+3. Making changes to the codebase
+4. Creating a pull request to `master`
+5. Reviewing & completing PR
+6. Done
 
 #### Release
-Next stage is release. Release performs on every push to master (which makes functional changes to the source code). Release performs manually by @XFox111 into: Chrome webstore, Edge webstore and GitHub releases
+The next stage is the release. Release performs on every push to master (which makes functional changes to the source code). Release performs manually by @XFox111 into: Chrome webstore, Edge webstore and GitHub releases
 
 ### Coding guidelines
 #### Indentation
@@ -109,6 +114,7 @@ We use tabs, not spaces.
 
 #### Names
 The project naming rules inherit [.NET Naming Guidelines](https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/naming-guidelines). Nevertheless there'is some distinction with the guidelines as well as additions to the one:
+
 - Use `camelCase` for variables instead of `CamelCase` stated in [Capitalization Conventions](https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/capitalization-conventions#capitalization-rules-for-identifiers)
 - Use `snake_case` for file names
 
@@ -122,18 +128,21 @@ Use "double quotes" wherever it's possible
 - Prefer to use lambda functions
 - Put curly braces on new lines
     - Wrong:
-        ```
-        if (condition) {
-            ...
-        }
-        ```
+
+      ```javascript
+      if (condition) {
+          ...
+      }
+      ```
+
     - Correct:
-        ```
-        if (condition)
-        {
-            ...
-        }
-        ```
+
+      ```javascript
+      if (condition)
+      {
+          ...
+      }
+      ```
 - Put spaces between operators and before braces in methods declarations, conditionals and loops
     - Wrong:
         - `y=k*x+b`
@@ -143,20 +152,21 @@ Use "double quotes" wherever it's possible
         - `function FunctionName ()`
 - Use ternary conditionals wherever it's possible
     - Wrong:
-        ```
+        ```javascript
         var s;
         if (condition)
-            s = "Life";
+          s = "Life";
         else
-            s = "Death"
+          s = "Death";
         ```
     - Correct:
-        ```
-		var s = condition ? "Life" : "Death";
-		```
+
+        ```javascript
+        var s = condition ? "Life" : "Death";
+       ```
 - Do not surround loop and conditional bodies with curly braces if they can be avoided
     - Wrong:
-        ```
+        ```javascript
         if (condition)
         {
             console.log("Hello, World!");
@@ -167,7 +177,8 @@ Use "double quotes" wherever it's possible
         }
         ```
     - Correct
-        ```
+
+        ```javascript
         if (condition)
             console.log("Hello, World!");
         else
@@ -197,8 +208,7 @@ To enable us to quickly review and accept your pull requests, always create one 
 Pull requests that fix typos are welcomed but please make sure it doesn't touch multiple feature areas, otherwise it will be difficult to review. Pull requests only fixing spell check errors in source code are not recommended.
 
 ## Thank You!
-
 Your contributions to open source, large or small, make great projects like this possible. Thank you for taking the time to contribute.
 
 ## Attribution
-This Contribution Guidelines are adapted from the [Contributing to VS Code](https://github.com/microsoft/vscode/blob/master/CONTRIBUTING.md)
+These Contribution Guidelines are adapted from the [Contributing to VS Code](https://github.com/microsoft/vscode/blob/master/CONTRIBUTING.md)

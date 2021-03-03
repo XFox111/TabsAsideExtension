@@ -19,27 +19,43 @@
 		<aside class="tabsAside pane">
 			<header>
 				<h1 loc="name">Tabs aside</h1>
-				<button loc_alt="options" class="btn more" title="Options"></button>
+				<button loc_alt="options" class="btn more" title="Options">&#xE10C;<span class="updateBadge"></span></button>
 
 				<nav>
-					<p>
-						<input type="checkbox" id="loadOnRestore" />
-						<label loc="loadOnRestore" for="loadOnRestore">Load tabs on restore</label>
-					</p>
-					<p>
-						<input type="checkbox" id="swapIconAction" />
-						<label loc="swapIconAction" for="swapIconAction">Set tabs aside on extension icon click (Alt+P or right-click to open the pane)</label>
-					</p>
-					<p>
-						<input type="checkbox" id="showDeleteDialog" />
-						<label loc="showDeleteDialog" for="showDeleteDialog">Show confirmation dialog before deleting an item</label>
-					</p>
+					<label class="checkbox control">
+						<input id="loadOnRestore" type="checkbox" />
+						<span class="mark"></span>
+						<span loc="loadOnRestore">Load tabs on restore</span>
+					</label>
+					<label class="checkbox control">
+						<input id="swapIconAction" type="checkbox" />
+						<span class="mark"></span>
+						<span loc="swapIconAction">Set tabs aside on extension icon click (Alt+P or right-click to open the pane)</span>
+					</label>
+					<label class="checkbox control">
+						<input id="showDeleteDialog" type="checkbox" />
+						<span class="mark"></span>
+						<span loc="showDeleteDialog">Show confirmation dialog before deleting an item</span>
+					</label>
 					<hr />
 					<div>
-						<button loc="github" value="https://github.com/xfox111/TabsAsideExtension">Visit GitHub page</button>
-						<button loc="contributors" value="https://github.com/XFox111/TabsAsideExtension/graphs/contributors">Project contributors</button>
-						<button loc="feedback" feedback-button>Leave feedback</button>
-						<button loc="buyMeACoffee" value="https://buymeacoffee.com/xfox111">Buy me a coffee!</button>
+						<button value="https://github.com/xfox111/TabsAsideExtension">
+							<img src="icons/github.svg"/>
+							<span loc="github">Visit GitHub page</span>
+						</button>
+						<button value="https://github.com/XFox111/TabsAsideExtension/releases/latest">
+							<img src="icons/list.svg"/>
+							<span loc="changelog">Changelog</span>
+							<span class="updateBadge"></span>
+						</button>
+						<button feedback-button>
+							<img src="icons/feedback.svg"/>
+							<span loc="feedback">Leave feedback</span>
+						</button>
+						<button value="https://buymeacoffee.com/xfox111">
+							<img style="filter: none !important;" src="icons/bmc.svg"/>
+							<span loc="buyMeACoffee">Buy me a coffee!</span>
+						</button>
 					</div>
 					<hr />
 					<p>
@@ -48,8 +64,12 @@
 					</p>
 				</nav>
 
-				<button loc_alt="closePanel" class="btn remove" title="Close panel"></button>
-				<a class="saveTabs"><span class="iconArrowRight"></span> <span loc="setAside">Set current tabs aside</span></a>
+				<button loc_alt="closePanel" class="btn remove" title="Close panel">&#xE10A;</button>
+				<a class="saveTabs">
+					<span class="iconArrowRight">&#xE0AB;</span>
+					<span loc="setAside">Set current tabs aside</span>
+					<span loc_alt="setMultipleTabsAsideTooltip" class="iconQuestionCircle" title="Tip : You can set aside specific tabs by selecting them (by holding CTRL or SHIFT and clicking on the tabs) before clicking on the TabsAside extension">&#xE9CE;</span>
+				</a>
 
 				<div class="listviewSwitch tile">
 					<div></div>
