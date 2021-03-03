@@ -1,12 +1,8 @@
 name: CI
 
 on:
-  workflow_dispatch:
-  push:
-    branches: [ master ]
-    paths:
-      # Trigger deploy on manifest change
-      - 'manifest.json'
+  release:
+    types: [published]
 
 jobs:
   Firefox:
@@ -57,6 +53,15 @@ jobs:
         client-id: ${{ secrets.CHROME_CLIENT_ID }}
         client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
         refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
+
+    - name: Upload artifact
+      uses: xresloader/upload-to-github-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        file: ./TabsAside.zip
+        tags: true
+        draft: false
 
     - name: Drop artifacts
       uses: actions/upload-artifact@v2
