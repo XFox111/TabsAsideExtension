@@ -257,7 +257,7 @@ function AddCollection(collection, thumbnails)
 				"<div>" +
 					"<div" + (!thumbnails[collection.links[i]]?.iconUrl ? "" : " style='background-image: url(\"" + thumbnails[collection.links[i]].iconUrl + "\")'") + "></div>" +
 					"<span>" + collection.titles[i] + "</span>" +
-					"<button loc_alt='removeTab' class='btn remove' title='Remove tab from collection'>&#xE10A;</button>" +
+					"<button loc_alt='removeTab' class='btn remove' title='Remove tab from collection'>&#xE711;</button>" +
 				"</div>" +
 			"</div>";
 
@@ -267,12 +267,12 @@ function AddCollection(collection, thumbnails)
 				"<input type='text' value='" + (collection.name ?? new Date(collection.timestamp).toDateString()) + "'/>" +
 				"<a loc='restoreTabs' class='restoreCollection'>Restore tabs</a>" +
 				"<div>" +
-					"<button loc_alt='more' class='btn more' title='More...'>&#xE10C;</button>" +
+					"<button loc_alt='more' class='btn more' title='More...'>&#xE712;</button>" +
 					"<nav>" +
 						"<button loc='restoreNoRemove' class='restoreCollection noDelete'>Restore without removing</button>" +
 					"</nav>" +
 				"</div>" +
-				"<button loc_alt='removeCollection' class='btn remove' title='Remove collection'>&#xE10A;</button>" +
+				"<button loc_alt='removeCollection' class='btn remove' title='Remove collection'>&#xE711;</button>" +
 				"<small>" + collection.links.length + " " + chrome.i18n.getMessage("tabs") +"</small>" +
 			"</div>" +
 
