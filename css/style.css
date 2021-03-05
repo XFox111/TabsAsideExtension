@@ -127,7 +127,7 @@
 			width: 16px;
 			height: 16px;
 			display: inline-block;
-			font-family: "Segoe MDL2 Assets";
+			font-family: "SegoeMDL2Assets";
 			margin: 2px;
 		}
 		.iconQuestionCircle
@@ -238,7 +238,7 @@
 
 				background-color: #c2c2c2;
 				background-image: url("chrome-extension://__MSG_@@extension_id__/images/tab_thumbnail.png"),
-								  url("chrome-extension://__MSG_@@extension_id__/images/tab_thumbnail.png");
+								  url("moz-extension://__MSG_@@extension_id__/images/tab_thumbnail.png");
 				background-size: cover;
 				background-position-x: center;
 

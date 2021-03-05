@@ -30,7 +30,7 @@
 
 .tabsAside
 {
-	font-family: "Segoe UI", "Segoe MDL2 Assets" !important;
+	font-family: "SegoeUI", "SegoeMDL2Assets" !important;
 	font-size: 14px;
 	user-select: none;
 }
@@ -56,6 +56,7 @@
 {
 	width: 28px;
 	height: 28px;
+	font-size: 16px;
 	background-color: transparent;
 	border: none;
 	cursor: pointer;
@@ -107,7 +108,7 @@
 		width: 100%;
 
 		height: 32px;
-		font-family: "Segoe UI";
+		font-family: "SegoeUI";
 		font-size: 12px;
 
 		display: grid;
@@ -149,7 +150,7 @@
 	background-repeat: no-repeat;
 	background-size: 12px;
 	background-position: center;
-	font-family: "Segoe UI", "Segoe MDL2 Assets";
+	font-family: "SegoeUI", "SegoeMDL2Assets";
 }
 
 .control.checkbox
@@ -188,7 +189,7 @@
 			position: absolute;
 			color: rgba(0, 0, 0, .4);
 
-			font-family: "Segoe MDL2 Assets";
+			font-family: "SegoeMDL2Assets";
 			content: "\E001";
 
 			width: 16px;
@@ -210,14 +211,16 @@
 
 @font-face
 {
-	font-family: "Segoe UI";
+	font-family: "SegoeUI";
 	src: local("Segoe UI"),
-		url("fonts/segoeui.ttf") format("truetype"),
+		url("../fonts/segoeui.ttf") format("truetype"),
+		url("../fonts/segoeui.woff") format("woff")
 }
 
 @font-face
 {
-	font-family: "Segoe MDL2 Assets";
+	font-family: "SegoeMDL2Assets";
 	src: local("Segoe MDL2 Assets"),
-		url("fonts/segoemdl2.ttf") format("truetype"),
+		url("../fonts/segoemdl2.ttf") format("truetype"),
+		url("../fonts/segoemdl2.woff") format("woff")
 }
