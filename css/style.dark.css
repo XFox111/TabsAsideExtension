@@ -113,3 +113,24 @@
 	{
 		background-color: #4a4a4a;
 	}
+
+.tabsAside[darkmode] .listviewSwitch > div
+{
+	border-radius: 1px;
+	background-color: gray;
+}
+
+.tabsAside[darkmode] .tabsAside .listviewSwitch.tile > div
+{
+	background-color: #c2c2c2;
+}
+
+.tabsAside[darkmode] .tabsAside[listview] .listviewSwitch.tile > div
+{
+	background-color: gray;
+}
+
+.tabsAside[darkmode] .tabsAside[listview] .listviewSwitch.list > div
+{
+	background-color: #c2c2c2;
+}
