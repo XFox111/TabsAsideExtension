@@ -1,0 +1,142 @@
+{
+	"name":
+	{
+		"message": "Kolekcje zakładek",
+		"description": "Extension name. Displayed in the manifest and pane header"
+	},
+	"description":
+	{
+		"message": "Klasyczna funkcjonalność Microsoft Edge \"Kolekcje zakładek\"",
+		"description": "Extension description"
+	},
+	"author":
+	{
+		"message": "Michael \"XFox\" Gordeev",
+		"description": "Author name"
+	},
+	"options":
+	{
+		"message": "Opcje",
+		"description": "Alternative text for options button in the pane"
+	},
+	"closePanel":
+	{
+		"message": "Zamknij",
+		"description": "Alternative text for close panel button"
+	},
+	"loadOnRestore":
+	{
+		"message": "Przeładuj zawartość kart podczas przywracania",
+		"description": "Label for option"
+	},
+	"showDeleteDialog":
+	{
+		"message": "Pokaż potwierdzenie podczas kasowania elementu",
+		"description": "Label for option"
+	},
+	"swapIconAction":
+	{
+		"message": "Kliknięcie na ikonę zapisuje aktualne karty (%TOGGLE_SHORTCUT% lub prawy przycisk myszki, aby otworzyć panel)",
+		"description": "Label for option"
+	},
+	"github":
+	{
+		"message": "Strona GitHub",
+		"description": "Link title"
+	},
+	"changelog":
+	{
+		"message": "Historia zmian",
+		"description": "Link title"
+	},
+	"feedback":
+	{
+		"message": "Wyślij opinię",
+		"description": "Link title"
+	},
+	"buyMeACoffee":
+	{
+		"message": "Kup mi kawę!",
+		"description": "Link title"
+	},
+	"credits":
+	{
+		"message": "Opracowane przez Michael 'XFox' Gordeev",
+		"description": "Options menu credits"
+	},
+	"setAside":
+	{
+		"message": "Zapisz aktualne karty",
+		"description": "Save collection action name. Used in the pane, extension context menu and manifest shortcuts"
+	},
+	"setMultipleTabsAsideTooltip":
+	{
+		"message": "Wskazówka : możesz zaznaczyć interesujące karty używając CTRL lub SHIFT na karcie, aby tylko te później zapisać",
+		"description": "Tooltip displayed on hover in the pane to explain how to set specific tabs aside"
+	},
+	"nothingSaved":
+	{
+		"message": "Nie posiadasz żadnej kolekcji zakładek",
+		"description": "Placeholder for empty pane"
+	},
+	"removeTab":
+	{
+		"message": "Usunięcie karty z kolekcji",
+		"description": "Button hint on a tab card"
+	},
+	"restoreTabs":
+	{
+		"message": "Przywrócenie kart",
+		"description": "Collection restore action link name"
+	},
+	"more":
+	{
+		"message": "Więcej...",
+		"description": "Collections' more button title"
+	},
+	"restoreNoRemove":
+	{
+		"message": "Przywrócenie kart bez usunięcia kolekcji",
+		"description": "Context action item name"
+	},
+	"removeCollection":
+	{
+		"message": "Usunięcie kolekcji",
+		"description": "Collection remove action name"
+	},
+	"removeCollectionConfirm":
+	{
+		"message": "Jesteś pewny, że chcesz skasować kolekcję?",
+		"description": "Prompt dialog content on collection deletion"
+	},
+	"removeTabConfirm":
+	{
+		"message": "Jesteś pewny, że chcesz skasować zakładkę?",
+		"description": "Prompt dialog content on one tab deletion"
+	},
+	"togglePaneContext":
+	{
+		"message": "Przełącz panel kolekcji",
+		"description": "Context action name. Used in extension context menu and manifest shortcuts"
+	},
+	"noTabsToSave":
+	{
+		"message": "Brak zakładek do zapisu",
+		"description": "Alert dialog message when there's no tabs to save"
+	},
+	"errorSavingTabs":
+	{
+		"message": "Zakładki nie mogą zostać zapisane. Przypuszczalnie zbyt wiele zakładek lub aktualnie posiadanych kolekcji.",
+		"description": "Alert dialog message when there is an issue saving tabs"
+	},
+	"olderDataMigrationFailed":
+	{
+		"message": "Niektóre kolekcje z poprzedniej wersji nie mogły zostać przekonwertowane, w związku z czym zostały zapisane jako zwykłe zakładki w przeglądarce",
+		"description": "Alert dialog message when there is an issue migrating previous versions data"
+	},
+	"tabs":
+	{
+		"message": "elementów",
+		"description": "Collection tabs counter label (e.g. 8 items)"
+	}
+}
