@@ -219,7 +219,7 @@ function MergePreV2Collections ()
 
 function SaveCollectionAsBookmarks (collection)
 {
-	var collectionTitle = collection.name ?? new Date(collection.timestamp).toISOString();
+	var collectionTitle = (collection.name ?? "") + "(" + new Date(collection.timestamp).toLocaleString() + ")";
 	//The id 1 is the browser's bookmark bar
 	chrome.bookmarks.create({
 		"parentId": "1",
