@@ -219,21 +219,27 @@ function MergePreV2Collections ()
 
 function SaveCollectionAsBookmarks (collection)
 {
+	var collectionTitle = collection.name ?? new Date(collection.timestamp).toISOString();
 	//The id 1 is the browser's bookmark bar
 	chrome.bookmarks.create({
 		"parentId": "1",
-		"title": "TabsAside " + (collection.name ?? new Date(collection.timestamp).toISOString())
-	},
-	(collectionFolder) =>
+		"title": "Tabs aside"
+	}, (tabsAsideFolder) =>
 	{
-		for (var i = 0; i < collection.links.length; i++)
-			chrome.bookmarks.create(
-				{
-					"parentId": collectionFolder.id,
-					"title": collection.titles[i],
-					"url": collection.links[i]
-				});
-	});
+		chrome.bookmarks.create({
+			"parentId": tabsAsideFolder.id,
+			"title": collectionTitle
+		}, (collectionFolder) =>
+		{
+			for (var i = 0; i < collection.links.length; i++)
+				chrome.bookmarks.create(
+					{
+						"parentId": collectionFolder.id,
+						"title": collection.titles[i],
+						"url": collection.links[i]
+					});
+		});
+	})
 }
 
 LoadStorages(MergePreV2Collections);
