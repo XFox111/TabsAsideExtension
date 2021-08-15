@@ -297,6 +297,13 @@ chrome.runtime.onInstalled.addListener((updateInfo) =>
 			title: chrome.i18n.getMessage("setAside")
 		}
 	);
+	chrome.contextMenus.create(
+		{
+			id: "set-aside-only-selected",
+			contexts: ["browser_action"],
+			title: chrome.i18n.getMessage("setAsideSelected")
+		}
+	);
 });
 
 //We receive a message from the pane aside-script, which means the tabsToSave are already assigned on message reception.
