@@ -99,6 +99,16 @@
 	  "message": "Ripristina senza rimuovere le schede da da Tabs Aside",
 	  "description": "Context action item name"
 	},
+	"saveCollectionAsBookmarks":
+	{
+		"message":"Salva come segnalibri",
+		"description":"Button allowing the user to save a collection in the browser bookmarks"
+	},
+	"collectionSavedAsBookmarks":
+	{
+		"message":"La raccolta è stata salvata nella barra dei preferiti.",
+		"description":"Alert dialog message when a user has saved a collection in the browser bookmarks"
+	},
 	"removeCollection":
 	{
 	  "message": "Rimuovi gruppo di schede",

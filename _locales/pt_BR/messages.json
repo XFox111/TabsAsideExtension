@@ -99,6 +99,16 @@
 		"message": "Restaurar sem remover",
 		"description": "Context action item name"
 	},
+	"saveCollectionAsBookmarks":
+	{
+		"message": "Salvar como marcadores",
+		"description": "Button allowing the user to save a collection in the browser bookmarks"
+	},
+	"collectionSavedAsBookmarks":
+	{
+		"message": "A coleção foi salva na sua barra de marcadores.",
+		"description": "Alert dialog message when a user has saved a collection in the browser bookmarks"
+	},
 	"removeCollection":
 	{
 		"message": "Remover coleção",

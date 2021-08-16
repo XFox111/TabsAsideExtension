@@ -99,6 +99,16 @@
 		"message": "Restore without removing",
 		"description": "Context action item name"
 	},
+	"saveCollectionAsBookmarks":
+	{
+		"message": "Save as bookmarks",
+		"description": "Button allowing the user to save a collection in the browser bookmarks"
+	},
+	"collectionSavedAsBookmarks":
+	{
+		"message": "The collection has been saved in your bookmark bar.",
+		"description": "Alert dialog message when a user has saved a collection in the browser bookmarks"
+	},
 	"removeCollection":
 	{
 		"message": "Remove collection",
