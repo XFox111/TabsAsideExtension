@@ -266,7 +266,7 @@ function AddCollection(collection, thumbnails)
 			"<div class='header'>" +
 				"<input type='text' value='" + (collection.name ?? new Date(collection.timestamp).toDateString()) + "'/>" +
 				"<a loc='restoreTabs' class='restoreCollection'>Restore tabs</a>" +
-				"<div>" +
+				"<div class='contextContainer'>" +
 					"<button loc_alt='more' class='btn more' title='More...'>&#xE712;</button>" +
 					"<nav>" +
 						"<button loc='restoreNoRemove' class='restoreCollection noDelete'>Restore without removing</button>" +
