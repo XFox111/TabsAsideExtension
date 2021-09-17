@@ -46,7 +46,7 @@ jobs:
         exclusions: '.git/* .vscode/* .github/* *.md'
 
     - name: Publish to Chrome Webstore
-      uses: SebastienGllmt/chrome-addon@v3
+      uses: trmcnvn/chrome-addon@v2
       with:
         extension: mgmjbodjgijnebfgohlnjkegdpbdjgin
         zip: ./TabsAside.zip
