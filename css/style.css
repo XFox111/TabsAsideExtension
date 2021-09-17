@@ -209,7 +209,8 @@
 		.collectionSet > .header > div > nav
 		{
 			width: 250px;
-			right: 60px;
+			right: 0px;
+			top: 35px;
 		}
 
 		/* Tabs collection */

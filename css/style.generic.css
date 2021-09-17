@@ -73,6 +73,11 @@
 	}
 
 /* Context menus style */
+.tabsAside .contextContainer
+{
+	position: relative;
+}
+
 .tabsAside nav
 {
 	user-select: none;
