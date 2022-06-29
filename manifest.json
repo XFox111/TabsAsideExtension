@@ -42,7 +42,7 @@
 			"description": "__MSG_setAside__",
 			"suggested_key":
 			{
-				"default": "Alt+Left",
+				"default": "Shift+Alt+Left",
 				"mac": "MacCtrl+T"
 			}
 		},
