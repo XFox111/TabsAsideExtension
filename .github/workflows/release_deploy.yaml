@@ -1,0 +1,165 @@
+name: Release deploy
+
+on:
+
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Configure manifest
+      uses: Amadevus/pwsh-script@v2
+      with:
+        script: |
+          [PSCustomObject] $package = Get-Content "package.json" | ConvertFrom-Json;
+          [PSCustomObject] $manifest = Get-Content "public/manifest.json" | ConvertFrom-Json;
+          $manifest.version = $package.version;
+          $manifest | ConvertTo-Json -Depth 10 | Out-File "public/manifest.json"
+          $manifest = Get-Content "public/manifest.firefox.json" | ConvertFrom-Json;
+          $manifest.version = $package.version;
+          $manifest | ConvertTo-Json -Depth 10 | Out-File "public/manifest.firefox.json"
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16.x'
+        cache: yarn
+
+    - run: yarn install
+    - run: yarn build
+
+    - name: Drop artifacts (build)
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        name: build
+        path: build
+
+  Pack-Chromium:
+    needs: Build
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/download-artifact@v3
+      with:
+        name: build
+
+    - name: Configure manifest
+      uses: Amadevus/pwsh-script@v2
+      with:
+        script: Remove-Item "manifest.firefox.json"
+
+    - name: Pack extension
+      uses: TheDoctor0/zip-release@0.6.2
+      with:
+        filename: TabsAside-Chromium.zip
+
+    - name: Drop artifacts (Chromium)
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        name: Chromium
+        path: TabsAside-Chromium.zip
+
+    - name: Attach build to release
+      uses: xresloader/upload-to-github-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        file: TabsAside-Chromium.zip
+        draft: false
+        update_latest_release: true
+
+  Pack-Firefox:
+    needs: Build
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/download-artifact@v3
+      with:
+        name: build
+
+    - name: Configure manifest
+      uses: Amadevus/pwsh-script@v2
+      with:
+        script: |
+          Remove-Item "manifest.json"
+          Rename-Item "manifest.firefox.json" "manifest.json"
+    - name: Pack extension
+      uses: TheDoctor0/zip-release@0.6.2
+      with:
+        filename: TabsAside-Firefox.zip
+
+    - name: Drop artifacts (Firefox)
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        name: Firefox
+        path: TabsAside-Firefox.zip
+
+    - name: Attach build to release
+      uses: xresloader/upload-to-github-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        file: TabsAside-Firefox.zip
+        draft: false
+        update_latest_release: true
+
+  Chrome:
+    needs: Pack-Chromium
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download artifacts (Chromium)
+      uses: actions/download-artifact@v3
+      with:
+        name: Chromium
+
+    - name: Publish to Chrome Web Store
+      uses: wdzeng/chrome-extension@v1
+      with:
+        extension-id: mgmjbodjgijnebfgohlnjkegdpbdjgin
+        zip-path: TabsAside-Chromium.zip
+        client-id: ${{ secrets.CHROME_CLIENT_ID }}
+        client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
+        refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
+
+  Edge:
+    needs: Pack-Chromium
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download artifacts (Chromium)
+      uses: actions/download-artifact@v3
+      with:
+        name: Chromium
+
+    - name: Publish to Edge Addons
+      uses: wdzeng/edge-addon@v1
+      with:
+        product-id: ${{ secrets.EDGE_PRODUCT_ID }}
+        zip-path: TabsAside-Chromium.zip
+        client-id: ${{ secrets.EDGE_CLIENT_ID }}
+        client-secret: ${{ secrets.EDGE_CLIENT_SECRET }}
+        access-token-url: ${{ secrets.EDGE_ACCESS_TOKEN_URL }}
+
+  Firefox:
+    needs: Pack-Firefox
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download artifacts (Firefox)
+      uses: actions/download-artifact@v3
+      with:
+        name: Firefox
+
+    - name: Publish to Firefox
+      uses: wdzeng/firefox-addon@v1
+      with:
+        addon-guid: ${{ secrets.FIREFOX_EXT_UUID }}
+        xpi-path: TabsAside-Firefox.zip
+        jwt-issuer: ${{ secrets.FIREFOX_API_KEY }}
+        jwt-secret: ${{ secrets.FIREFOX_CLIENT_SECRET }}

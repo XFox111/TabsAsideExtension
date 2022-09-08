@@ -1,0 +1,36 @@
+name: PR check build
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+      - 'LICENSE'
+      - 'PRIVACY'
+      - '**/cd_pipeline.yaml'
+      - '**/dependabot.yml'
+      - '**/codeql-analysis.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16.x'
+        cache: 'yarn'
+
+    - run: yarn install
+    - run: yarn build
+
+    - name: 'Drop artifacts'
+      uses: actions/upload-artifact@v3
+      with:
+        name: 'Package'
+        path: 'build'
