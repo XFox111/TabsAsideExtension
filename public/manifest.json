@@ -1,0 +1,45 @@
+{
+	"manifest_version": 3,
+
+	"name": "Tabs Aside",
+	"description": "Save your tabs for later",
+	"author": "Eugene Fox",
+
+	"version": "3.0.0",
+
+	"permissions": [
+		"storage",
+		"contextMenus",
+		"unlimitedStorage"
+	],
+
+	"background":
+	{
+		"service_worker": "./static/js/background.js",
+		"type": "module"
+	},
+	"content_scripts":
+	[
+		{
+			"matches": [ "<all_urls>" ],
+			"js": [ "./static/js/contentScript.js" ],
+			"run_at": "document_idle",
+			"all_frames": true
+		}
+	],
+
+	"action":
+	{
+		"default_popup": "index.html",
+		"default_title": "__MSG_name__"
+	},
+
+	"options_page": "options.html",
+
+	"icons": {
+		"128": "icons/icon-128.png",
+		"48": "icons/icon-48.png",
+		"32": "icons/icon-32.png",
+		"16": "icons/icon-16.png"
+	}
+}

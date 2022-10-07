@@ -1,0 +1,60 @@
+div.TabView
+{
+	display: grid;
+	width: 160px;
+	height: 120px;
+	border-radius: 5px;
+	border: 1px solid var(--colorNeutralStroke3);
+	overflow: hidden;
+	position: relative;
+	margin-bottom: 6px;
+
+	svg#PagePlaceholder
+	{
+		position: absolute;
+		z-index: 0;
+		width: 100%;
+		height: 100%;
+
+		rect.background
+		{
+			fill: var(--colorNeutralBackground3);
+		}
+
+		g.pageElements
+		{
+			fill: var(--colorNeutralStroke1);
+		}
+	}
+
+	> header
+	{
+		z-index: 1;
+		align-self: flex-end;
+		align-items: center;
+		display: grid;
+		grid-template-columns: auto 1fr auto;
+		gap: 6px;
+		padding-left: 8px;
+		height: 32px;
+		background-color: var(--colorSubtleBackgroundLightAlphaHover);
+
+		> span
+		{
+			white-space: nowrap;
+			overflow: hidden;
+		}
+
+		> .IconPlaceholder
+		{
+			width: 20px;
+			height: 20px;
+		}
+	}
+
+	&:hover
+	{
+		cursor: pointer;
+		box-shadow: var(--shadow4);
+	}
+}

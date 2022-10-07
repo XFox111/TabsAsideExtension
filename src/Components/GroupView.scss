@@ -1,0 +1,124 @@
+div.GroupView
+{
+	border-radius: 6px;
+	padding: 6px;
+	padding-bottom: 0;
+
+	&:hover
+	{
+		background-color: var(--colorSubtleBackgroundInvertedHover);
+	}
+
+	> header
+	{
+		display: flex;
+		flex-direction: row;
+		gap: 10px;
+		justify-content: space-between;
+		border-radius: 0 6px;
+
+		border-bottom: 2px solid var(--border);
+
+		> div
+		{
+			display: flex;
+			flex-direction: row;
+			gap: 4px;
+			border-radius: 6px 6px 0 4px;
+			padding: 2px 8px;
+
+			border: 2px solid var(--border);
+			border-bottom: none;
+			background-color: var(--border);
+			color: var(--color);
+
+			> svg
+			{
+				display: none;
+			}
+		}
+
+		> a
+		{
+			-webkit-user-select: none;
+			user-select: none;
+			border: none !important;
+		}
+	}
+
+	> .TabsCollection
+	{
+		padding-bottom: 0;
+		border-color: var(--border);
+	}
+
+	&.grey
+	{
+		--border: var(--colorPalettePlatinumBorderActive);
+		--color: var(--colorNeutralBackground1);
+	}
+
+	&.blue
+	{
+		--border: var(--colorPaletteBlueBorderActive);
+		--color: var(--colorNeutralBackground1);
+	}
+
+	&.red
+	{
+		--border: var(--colorPaletteRedBackground3);
+		--color: white;
+	}
+
+	&.yellow
+	{
+		--border: var(--colorPaletteYellowBackground3);
+		--color: var(--colorNeutralForeground1Static);
+	}
+
+	&.green
+	{
+		--border: var(--colorPaletteLightGreenBackground3);
+		--color: white;
+	}
+
+	&.pink
+	{
+		--border: var(--colorPalettePinkBackground2);
+		--color: var(--colorNeutralForeground1);
+	}
+
+	&.purple
+	{
+		--border: var(--colorPaletteGrapeBorderActive);
+		--color: white;
+	}
+
+	&.cyan
+	{
+		--border: var(--colorPaletteTealBorderActive);
+		--color: var(--colorNeutralBackground1);
+	}
+
+	&.orange
+	{
+		--border: var(--colorPalettePeachBorderActive);
+		--color: var(--colorNeutralBackground1);
+	}
+
+	&.pinned
+	{
+		--border: var(--colorNeutralStrokeAccessible);
+		--color: var(--colorNeutralForeground1);
+
+		header > div
+		{
+			background-color: transparent;
+
+			svg
+			{
+				display: inline;
+			}
+		}
+	}
+}

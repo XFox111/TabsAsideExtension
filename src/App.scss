@@ -1,0 +1,97 @@
+html, body, #root, .App, .App > .fui-FluentProvider, main
+{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	overflow: hidden;
+	-webkit-user-select: none;
+	user-select: none;
+	height: 100vh;
+	width: 100%;
+}
+
+.hoverHost
+{
+	.hover
+	{
+		display: none;
+		@media (pointer: coarse)
+		{
+			display: inherit;
+		}
+	}
+
+	&:hover > * > .hover
+	{
+		display: inherit;
+	}
+}
+
+.App main
+{
+	overflow-y: auto;
+
+	&.FaqView
+	{
+		margin: 10px;
+	}
+}
+
+.stack
+{
+	display: flex;
+	flex-direction: column;
+
+	&.horizontal
+	{
+		flex-direction: row;
+		align-items: flex-start;
+	}
+
+	&.gap
+	{
+		gap: 10px;
+	}
+
+	&.center
+	{
+		align-items: center;
+	}
+
+	&.wrap
+	{
+		flex-wrap: wrap;
+	}
+}
+
+// Overrides for default FluentUI styles
+a.fui-Button
+{
+	text-decoration: none;
+
+	&.bmc
+	{
+		background-color: var(--colorPaletteDarkOrangeBorder2) !important;
+
+		&:hover
+		{
+			background-color: var(--colorPaletteDarkOrangeForeground1) !important;
+		}
+
+		&:active
+		{
+			background-color: var(--colorPaletteDarkOrangeBackground2) !important;
+		}
+	}
+}
+
+.fui-AccordionPanel
+{
+	padding: 20px;
+	padding-top: 10px;
+}
+
+h1, h2, h3, h4, h5, h6, p
+{
+	margin: 0;
+}

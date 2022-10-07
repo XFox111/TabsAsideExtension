@@ -1,0 +1,61 @@
+{
+	"name": "Tabs aside",
+	"version": "2.0.6",
+	"manifest_version": 2,
+	"description": "Tabs aside",
+	"author": "Eugene Fox",
+
+	"permissions":
+	[
+		"tabs",
+		"bookmarks",
+		"unlimitedStorage",
+		"storage",
+		"<all_urls>",
+		"contextMenus"
+	],
+
+	"icons":
+	{
+		"128": "icons/icon-128.png",
+		"48": "icons/icon-48.png",
+		"32": "icons/icon-32.png",
+		"16": "icons/icon-16.png"
+	},
+	"browser_action":
+	{
+		"default_icon": "icons/icon-32.png",
+		"default_popup": "index.html"
+	},
+	"web_accessible_resources": [ "*" ],
+
+	"background":
+	{
+		"scripts": [ "static/js/background.js" ],
+		"persistent": false
+	},
+
+	"options_ui":
+	{
+		"page": "options.html",
+		"chrome_style": true,
+		"open_in_tab": true
+	},
+
+	"content_scripts": [
+		{
+			"matches": [ "<all_urls>" ],
+			"js": [ "static/js/contentScript.js" ],
+			"run_at": "document_idle"
+		}
+	],
+
+	"browser_specific_settings":
+	{
+		"gecko":
+		{
+			"id": "tabsaside@xfox111.net",
+			"strict_min_version": "58.0"
+		}
+	}
+}

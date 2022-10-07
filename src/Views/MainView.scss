@@ -1,0 +1,88 @@
+main.MainView
+{
+	height: 100vh;
+	display: grid;
+	grid-template-rows: auto auto 1fr;
+	box-sizing: border-box;
+	min-height: 600px;
+
+	> header
+	{
+		display: grid;
+		grid-template-columns: 1fr auto;
+		grid-template-rows: auto auto;
+		gap: 10px;
+		padding: 10px;
+
+		nav
+		{
+			text-align: end;
+		}
+	}
+
+	.emptyPlaceholder
+	{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		gap: 10px;
+		font-size: 1.5em;
+
+		p
+		{
+			text-align: center;
+		}
+	}
+
+	> article
+	{
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		padding: 10px;
+		overflow-y: auto;
+
+		nav
+		{
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+		}
+	}
+
+	.donationCta
+	{
+		padding: 10px;
+		display: grid;
+		grid-template-columns: auto 1fr auto;
+		min-height: unset;
+	}
+
+	/* width */
+	::-webkit-scrollbar
+	{
+		width: 6px;
+		height: 6px;
+	}
+
+	/* Track */
+	::-webkit-scrollbar-track
+	{
+		background: transparent;
+	}
+
+	/* Handle */
+	::-webkit-scrollbar-thumb
+	{
+		background: var(--colorScrollbarOverlay);
+		border-radius: 3px;
+	}
+
+	/* Handle on hover */
+	::-webkit-scrollbar-thumb:hover
+	{
+		background: var(--colorNeutralForeground3Hover);
+	}
+}

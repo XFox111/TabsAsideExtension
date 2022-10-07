@@ -1,0 +1,28 @@
+.progress-bar
+{
+	.progress-bar__bar
+	{
+		width: 100%;
+		overflow: hidden;
+		background-color: var(--colorNeutralBackground1Selected);
+
+		&, > div
+		{
+			height: 6px;
+			border-radius: 3px;
+		}
+
+		.progress-bar__fill
+		{
+			background-color: var(--colorBrandForeground1);
+			transition-duration: 1s;
+			transition-timing-function: var(--curveDecelerateMid);
+		}
+	}
+
+	.secondary-labels
+	{
+		display: flex;
+		justify-content: space-between;
+	}
+}
