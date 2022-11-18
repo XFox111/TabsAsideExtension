@@ -18,12 +18,15 @@ jobs:
       with:
         script: |
           [PSCustomObject] $package = Get-Content "package.json" | ConvertFrom-Json;
+
           [PSCustomObject] $manifest = Get-Content "public/manifest.json" | ConvertFrom-Json;
           $manifest.version = $package.version;
           $manifest | ConvertTo-Json -Depth 10 | Out-File "public/manifest.json"
-          $manifest = Get-Content "public/manifest.firefox.json" | ConvertFrom-Json;
+
+          $manifest = Get-Content "public/manifest.v2.json" | ConvertFrom-Json;
           $manifest.version = $package.version;
-          $manifest | ConvertTo-Json -Depth 10 | Out-File "public/manifest.firefox.json"
+          $manifest | ConvertTo-Json -Depth 10 | Out-File "public/manifest.v2.json"
+
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
@@ -34,7 +37,7 @@ jobs:
     - run: yarn build
 
     - name: Drop artifacts (build)
-      uses: actions/upload-artifact@v3.1.0
+      uses: actions/upload-artifact@v3.1.1
       with:
         name: build
         path: build
@@ -51,7 +54,7 @@ jobs:
     - name: Configure manifest
       uses: Amadevus/pwsh-script@v2
       with:
-        script: Remove-Item "manifest.firefox.json"
+        script: Remove-Item "manifest.v2.json"
 
     - name: Pack extension
       uses: TheDoctor0/zip-release@0.6.2
@@ -87,7 +90,8 @@ jobs:
       with:
         script: |
           Remove-Item "manifest.json"
-          Rename-Item "manifest.firefox.json" "manifest.json"
+          Rename-Item "manifest.v2.json" "manifest.json"
+
     - name: Pack extension
       uses: TheDoctor0/zip-release@0.6.2
       with:

@@ -7,8 +7,7 @@ on:
     paths-ignore:
       - '**.md'
       - 'LICENSE'
-      - 'PRIVACY'
-      - '**/cd_pipeline.yaml'
+      - '**/release_deploy.yaml'
       - '**/dependabot.yml'
       - '**/codeql-analysis.yml'
   workflow_dispatch:
@@ -20,17 +19,65 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Configure manifest
+      uses: Amadevus/pwsh-script@v2
+      with:
+        script: |
+          [PSCustomObject] $package = Get-Content "package.json" | ConvertFrom-Json;
+
+          [PSCustomObject] $manifest = Get-Content "public/manifest.json" | ConvertFrom-Json;
+          $manifest.version = $package.version;
+          $manifest | ConvertTo-Json -Depth 10 | Out-File "public/manifest.json"
+
+          $manifest = Get-Content "public/manifest.v2.json" | ConvertFrom-Json;
+          $manifest.version = $package.version;
+          $manifest | ConvertTo-Json -Depth 10 | Out-File "public/manifest.v2.json"
+
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '16.x'
-        cache: 'yarn'
+        cache: yarn
 
     - run: yarn install
     - run: yarn build
 
-    - name: 'Drop artifacts'
-      uses: actions/upload-artifact@v3
+    - name: Drop artifacts (build)
+      uses: actions/upload-artifact@v3.1.1
       with:
-        name: 'Package'
-        path: 'build'
+        name: build
+        path: build
+
+  firefox-check:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/download-artifact@v3
+      with:
+        name: build
+
+    - name: Configure manifest
+      uses: Amadevus/pwsh-script@v2
+      with:
+        script: |
+          Remove-Item "manifest.json"
+          Rename-Item "manifest.v2.json" "manifest.json"
+
+    - name: "web-ext lint"
+      uses: kewisch/action-web-ext@e0ea88d527a8a90bc10d600f80ac667d219e6bf1
+      with:
+        cmd: lint
+        source: .
+        channel: listed
+
+    - name: Pack extension
+      uses: TheDoctor0/zip-release@0.6.2
+      with:
+        filename: TabsAside-Firefox.zip
+
+    - name: Drop artifacts (Firefox)
+      uses: actions/upload-artifact@v3.1.1
+      with:
+        name: Firefox
+        path: TabsAside-Firefox.zip
