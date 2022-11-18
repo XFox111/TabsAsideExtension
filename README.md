@@ -1,6 +1,6 @@
 # Tabs aside
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/xfox111/TabsAsideExtension)](https://github.com/xfox111/TabsAsideExtension/releases/latest)
-[![GitHub last commit](https://img.shields.io/github/last-commit/xfox111/TabsAsideExtension?label=Last+update)](https://github.com/xfox111/TabsAsideExtension/commits/master)
+[![GitHub last commit](https://img.shields.io/github/last-commit/xfox111/TabsAsideExtension)](https://github.com/xfox111/TabsAsideExtension/commits/master)
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/xfox111?style=social)](https://twitter.com/xfox111)
 [![GitHub followers](https://img.shields.io/github/followers/xfox111?label=Follow%20@xfox111&style=social)](https://github.com/xfox111)
@@ -27,9 +27,8 @@ Unfortunately, in new Chromium-based Microsoft Edge, the devs decided not to imp
 - **Now available for Firefox!**
 
 ## Download
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/users/mgmjbodjgijnebfgohlnjkegdpbdjgin?label=Chrome%20Webstore%20downloads)](https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin)
-[![Mozilla Add-on](https://img.shields.io/amo/users/ms-edge-tabs-aside?label=Firefox%20Webstore%20downloads)](https://addons.mozilla.org/firefox/addon/ms-edge-tabs-aside/)
-[![Mozilla Add-on](https://img.shields.io/amo/rating/ms-edge-tabs-aside?label=Firefox%20rating)](https://addons.mozilla.org/firefox/addon/ms-edge-tabs-aside/)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/users/mgmjbodjgijnebfgohlnjkegdpbdjgin?label=chrome)](https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/mgmjbodjgijnebfgohlnjkegdpbdjgin)](https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin)
 
 - [Google Chrome Webstore](https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin)
 - [Microsoft Edge Add-ons Webstore](https://microsoftedge.microsoft.com/addons/detail/kmnblllmalkiapkfknnlpobmjjdnlhnd)
