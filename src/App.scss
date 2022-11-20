@@ -1,40 +1,9 @@
-html, body, #root, .App, .App > .fui-FluentProvider, main
+html, body, #root
 {
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box;
-	overflow: hidden;
 	-webkit-user-select: none;
 	user-select: none;
-	height: 100vh;
-	width: 100%;
-}
-
-.hoverHost
-{
-	.hover
-	{
-		display: none;
-		@media (pointer: coarse)
-		{
-			display: inherit;
-		}
-	}
-
-	&:hover > * > .hover
-	{
-		display: inherit;
-	}
-}
-
-.App main
-{
-	overflow-y: auto;
-
-	&.FaqView
-	{
-		margin: 10px;
-	}
 }
 
 .stack
@@ -83,12 +52,6 @@ a.fui-Button
 			background-color: var(--colorPaletteDarkOrangeBackground2) !important;
 		}
 	}
-}
-
-.fui-AccordionPanel
-{
-	padding: 20px;
-	padding-top: 10px;
 }
 
 h1, h2, h3, h4, h5, h6, p

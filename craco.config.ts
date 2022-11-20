@@ -7,8 +7,8 @@ const extensionBuildConfig : IExtensionBuildConfig =
 {
 	useOptionsPage: true,
 	optionsTemplate: null,	// public/index.html will be used as default template
-	backgroundScript: "./src/Services/BackgroundService.ts",
-	contentScript: "./src/Services/ContentService.ts",
+	backgroundScript: "./src/Services/Extension/BackgroundService.ts",
+	contentScript: "./src/Services/Extension/ContentService.ts",
 }
 
 // Craco config file

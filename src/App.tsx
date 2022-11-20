@@ -3,13 +3,6 @@ import React from "react";
 
 import "./App.scss";
 
-// chrome.storage.local - 5 MiB
-// chrome.storage.sync - 100 KiB
-
-// 1024 * 5 = 5120 KiB
-// 5120 + 100 = 5220 KiB
-// 100 / 5220 = 1.9%
-
 interface IStates
 {
 	theme: Theme;
