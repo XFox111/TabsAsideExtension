@@ -1,5 +1,6 @@
 import CollectionModel from "./CollectionModel";
 import GroupModel from "./GroupModel";
 import TabModel from "./TabModel";
+import SettingsModel from "./SettingsModel";
 
-export { CollectionModel, GroupModel, TabModel };
+export { SettingsModel, CollectionModel, GroupModel, TabModel };
