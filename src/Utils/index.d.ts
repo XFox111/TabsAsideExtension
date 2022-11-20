@@ -1,3 +1,4 @@
 import ext from "./ext";
+import Event, { EventHandler } from "./Event";
 
-export { ext };
+export { ext, Event, EventHandler };

@@ -2540,14 +2540,6 @@
   dependencies:
     browserslist "*"
 
-"@types/chrome@^0.0.196":
-  version "0.0.196"
-  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.196.tgz#9e0196a6fcdf3c0e12cfbcd086cd28feb5206990"
-  integrity sha512-LAjGIQYC0wyiYu6lVT03dBrHBfYTMsM8EmNfQ+UdZipGZe8OUiir6weoa9oQoBw3T3RLzBCp9m904T+rFtpPAg==
-  dependencies:
-    "@types/filesystem" "*"
-    "@types/har-format" "*"
-
 "@types/connect-history-api-fallback@*", "@types/connect-history-api-fallback@^1.3.5":
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/@types/connect-history-api-fallback/-/connect-history-api-fallback-1.3.5.tgz#d1f7a8a09d0ed5a57aee5ae9c18ab9b803205dae"
@@ -2625,29 +2617,12 @@
     "@types/qs" "*"
     "@types/serve-static" "*"
 
-"@types/filesystem@*":
-  version "0.0.32"
-  resolved "https://registry.yarnpkg.com/@types/filesystem/-/filesystem-0.0.32.tgz#307df7cc084a2293c3c1a31151b178063e0a8edf"
-  integrity sha512-Yuf4jR5YYMR2DVgwuCiP11s0xuVRyPKmz8vo6HBY3CGdeMj8af93CFZX+T82+VD1+UqHOxTq31lO7MI7lepBtQ==
-  dependencies:
-    "@types/filewriter" "*"
-
-"@types/filewriter@*":
-  version "0.0.29"
-  resolved "https://registry.yarnpkg.com/@types/filewriter/-/filewriter-0.0.29.tgz#a48795ecadf957f6c0d10e0c34af86c098fa5bee"
-  integrity sha512-BsPXH/irW0ht0Ji6iw/jJaK8Lj3FJemon2gvEqHKpCdDCeemHa+rI3WBGq5z7cDMZgoLjY40oninGxqk+8NzNQ==
-
 "@types/graceful-fs@^4.1.2":
   version "4.1.5"
   resolved "https://registry.yarnpkg.com/@types/graceful-fs/-/graceful-fs-4.1.5.tgz#21ffba0d98da4350db64891f92a9e5db3cdb4e15"
   integrity sha512-anKkLmZZ+xm4p8JWBf4hElkM4XR+EZeA2M9BAkkTldmcyDY4mbdIJnRghDJH3Ov5ooY7/UAoENtmdMSkaAd7Cw==
   dependencies:
     "@types/node" "*"
-
-"@types/har-format@*":
-  version "1.2.8"
-  resolved "https://registry.yarnpkg.com/@types/har-format/-/har-format-1.2.8.tgz#e6908b76d4c88be3db642846bb8b455f0bfb1c4e"
-  integrity sha512-OP6L9VuZNdskgNN3zFQQ54ceYD8OLq5IbqO4VK91ORLfOm7WdT/CiT/pHEBSQEqCInJ2y3O6iCm/zGtPElpgJQ==
 
 "@types/html-minifier-terser@^6.0.0":
   version "6.1.0"
