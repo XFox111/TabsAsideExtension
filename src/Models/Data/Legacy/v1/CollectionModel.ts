@@ -8,5 +8,5 @@ export default class CollectionModel
 	public titles: string[];
 	public links: string[];
 	public icons: string[];
-	public thumbnails: string[];
+	public thumbnails?: string[];
 }
