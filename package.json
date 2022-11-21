@@ -5,6 +5,7 @@
 	"dependencies": {
 		"@fluentui/react-components": "^9.7.0",
 		"@fluentui/react-icons": "^2.0.186",
+		"lzutf8": "^0.6.3",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"sass": "^1.54.9",
