@@ -1,4 +1,4 @@
-import SettingsService from "./SettingsService";
-import CollectionService from "./CollectionService";
+import SettingsRepository from "./SettingsRepository";
+import CollectionsRepository from "./CollectionsRepository";
 
-export { SettingsService, CollectionService };
+export { SettingsRepository, CollectionsRepository as CollectionService };
