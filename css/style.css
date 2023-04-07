@@ -106,7 +106,7 @@
 		.saveTabs
 		{
 			display: inline-grid;
-			grid-template-columns: 16px auto 16px;
+			grid-template-columns: 16px auto;
 			grid-column-gap: 15px;
 
 			margin-right: auto;
