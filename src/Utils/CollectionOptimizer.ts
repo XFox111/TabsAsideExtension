@@ -1,4 +1,6 @@
-import { CollectionModel, GroupModel, TabModel } from "../Models/Data";
+import CollectionModel from "../Models/Data/CollectionModel";
+import GroupModel from "../Models/Data/GroupModel";
+import TabModel from "../Models/Data/TabModel";
 import ext from "./ext";
 
 /**
@@ -141,8 +143,7 @@ export default class CollectionOptimizer
 	{
 		return new TabModel(
 			data.match(/(?<=t.*\|).*(?=\|)/).toString(),
-			data.match(/(?<=t.*\|.*\|).+/)?.toString(),
-			parseFloat(data.match(/(?<=t\/)[0-9,.]+(?=\|.*)/)?.toString() ?? "0")
+			data.match(/(?<=t.*\|.*\|).+/)?.toString()
 		);
 	}
 	// #endregion
@@ -188,9 +189,6 @@ export default class CollectionOptimizer
 	private static GetTabString(tab: TabModel): string
 	{
 		let data: string = "\tt";
-
-		if (tab.ScrollPosition)
-			data += `/${tab.ScrollPosition}`;
 
 		data += `|${tab.Url}|`;
 

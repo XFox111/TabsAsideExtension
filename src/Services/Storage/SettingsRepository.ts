@@ -1,6 +1,6 @@
 import { Storage } from "webextension-polyfill";
-import { SettingsModel } from "../../Models/Data";
-import { ext } from "../../Utils";
+import SettingsModel from "../../Models/Data/SettingsModel";
+import ext from "../../Utils/ext";
 
 /**
  * Data repository that provides access to saved settings.
@@ -45,10 +45,10 @@ export default class SettingsRepository
 			this.ItemsChanged(changes);
 	}
 
-	private OnStorageChanged(changes: { [key: string]: Storage.StorageChange }): void
+	private OnStorageChanged(changes: Record<string, Storage.StorageChange>): void
 	{
 		let propsList: string[] = Object.keys(new SettingsRepository());
-		let settings: { [key: string]: any; } = {};
+		let settings: Record<string, any> = {};
 
 		Object.entries(changes)
 			.filter(i => propsList.includes(i[0]))

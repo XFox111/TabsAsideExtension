@@ -1,4 +1,4 @@
-export default class CollectionModel
+export class CollectionModel
 {
 	public static readonly KEY: string = "sets";
 
@@ -9,4 +9,11 @@ export default class CollectionModel
 	public links: string[];
 	public icons: string[];
 	public thumbnails?: string[];
+}
+
+export class SettingsModel
+{
+	public loadOnRestore: boolean = true;
+	public setAsideOnClick: boolean = false;
+	public showDeleteDialog: boolean = true;
 }

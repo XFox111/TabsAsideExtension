@@ -1,5 +1,5 @@
-import { IGraphics } from "../../Models/Data";
-import { ext } from "../../Utils";
+import IGraphics from "../../Models/Data/IGraphics";
+import ext from "../../Utils/ext";
 
 /**
  * Provides access to saved graphics (icons and thumbnails).

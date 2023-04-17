@@ -14,11 +14,6 @@ export default class TabModel
 	public Title?: string;
 
 	/**
-	 * Tab's scroll position (optional)
-	 */
-	public ScrollPosition?: number;
-
-	/**
 	 * @param uri Tab's URL
 	 */
 	constructor(uri: string);
@@ -27,22 +22,9 @@ export default class TabModel
 	 * @param title Tab's title
 	 */
 	constructor(uri: string, title: string);
-	/**
-	 * @param uri Tab's URL
-	 * @param title Tab's title
-	 * @param scrollPoisition Tab's scroll position
-	 */
-	constructor(uri: string, title: string, scrollPoisition: number);
-	/**
-	 * @param uri Tab's URL
-	 * @param title Tab's title
-	 * @param scrollPoisition Tab's scroll position
-	 */
-	constructor(uri: string, title: string, scrollPoisition: number);
-	constructor(uri: string, title?: string, scrollPosition?: number)
+	constructor(uri: string, title?: string)
 	{
 		this.Url = uri;
 		this.Title = title;
-		this.ScrollPosition = scrollPosition;
 	}
 }
