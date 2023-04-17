@@ -10,7 +10,14 @@
 	"permissions": [
 		"storage",
 		"contextMenus",
-		"unlimitedStorage"
+		"unlimitedStorage",
+		"tabs",
+		"activeTab",
+		"tabGroups"
+	],
+
+	"host_permissions": [
+		"<all_urls>"
 	],
 
 	"background":
@@ -24,14 +31,14 @@
 			"matches": [ "<all_urls>" ],
 			"js": [ "./static/js/contentScript.js" ],
 			"run_at": "document_idle",
-			"all_frames": true
+			"all_frames": false
 		}
 	],
 
 	"action":
 	{
 		"default_popup": "index.html",
-		"default_title": "__MSG_name__"
+		"default_title": "Tabs aside"
 	},
 
 	"options_page": "options.html",

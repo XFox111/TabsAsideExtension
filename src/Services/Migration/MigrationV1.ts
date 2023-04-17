@@ -1,15 +1,18 @@
 import IMigration from "./IMigration";
-import { CollectionModel as LegacyCollection, SettingsModel as LegacySettings } from "../../Models/Data/Legacy/v1";
-import { CollectionModel, IGraphics, SettingsModel, TabModel } from "../../Models/Data";
-import { ext } from "../../Utils";
+import CollectionModel from "../../Models/Data/CollectionModel";
+import IGraphics from "../../Models/Data/IGraphics";
+import SettingsModel from "../../Models/Data/SettingsModel";
+import TabModel from "../../Models/Data/TabModel";
+import * as Legacy from "../../Models/Data/Legacy/v1";
+import ext from "../../Utils/ext";
 
 export default class MigrationV1 implements IMigration
 {
 	public async RecoverGraphicsAsync(): Promise<Record<string, IGraphics>>
 	{
-		let legacyCollections: LegacyCollection[];
+		let legacyCollections: Legacy.CollectionModel[];
 
-		try { legacyCollections = JSON.parse(localStorage.getItem(LegacyCollection.KEY)); }
+		try { legacyCollections = JSON.parse(localStorage.getItem(Legacy.CollectionModel.KEY)); }
 		catch { return null; }
 
 		if (!legacyCollections)
@@ -44,9 +47,9 @@ export default class MigrationV1 implements IMigration
 
 	public async RecoverCollectionsAsync(): Promise<CollectionModel[]>
 	{
-		let legacyCollections: LegacyCollection[];
+		let legacyCollections: Legacy.CollectionModel[];
 
-		try { legacyCollections = JSON.parse(localStorage.getItem(LegacyCollection.KEY)); }
+		try { legacyCollections = JSON.parse(localStorage.getItem(Legacy.CollectionModel.KEY)); }
 		catch { return null; }
 
 		if (!legacyCollections)
@@ -87,7 +90,7 @@ export default class MigrationV1 implements IMigration
 		if (!ext)
 			return null;
 
-		let legacySettings: Partial<LegacySettings> = await ext.storage.sync.get(new LegacySettings());
+		let legacySettings: Partial<Legacy.SettingsModel> = await ext.storage.sync.get(new Legacy.SettingsModel());
 		let settings: SettingsModel = new SettingsModel();
 
 		if (legacySettings.loadOnRestore === false)

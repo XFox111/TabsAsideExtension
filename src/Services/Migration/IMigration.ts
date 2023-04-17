@@ -1,4 +1,6 @@
-import { CollectionModel, IGraphics, SettingsModel } from "../../Models/Data";
+import CollectionModel from "../../Models/Data/CollectionModel";
+import SettingsModel from "../../Models/Data/SettingsModel";
+import IGraphics from "../../Models/Data/IGraphics";
 
 /**
  * Migration interface

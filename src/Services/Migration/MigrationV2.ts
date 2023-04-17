@@ -1,7 +1,9 @@
-import { CollectionModel, SettingsModel, IGraphics, TabModel } from "../../Models/Data";
-import { SettingsModel as LegacySettings, CollectionModel as LegacyCollection } from "../../Models/Data/Legacy/v2";
-import GraphicsModel from "../../Models/Data/Legacy/v2/GraphicsModel";
-import { ext } from "../../Utils";
+import CollectionModel from "../../Models/Data/CollectionModel";
+import SettingsModel from "../../Models/Data/SettingsModel";
+import TabModel from "../../Models/Data/TabModel";
+import IGraphics from "../../Models/Data/IGraphics";
+import * as Legacy from "../../Models/Data/Legacy/v2";
+import ext from "../../Utils/ext";
 import IMigration from "./IMigration";
 
 export default class MigrationV2 implements IMigration
@@ -11,7 +13,7 @@ export default class MigrationV2 implements IMigration
 		if (!ext)
 			return null;
 
-		let legacyCollections: Record<string, LegacyCollection> = await this.GetLegacyCollectionsAsync();
+		let legacyCollections: Record<string, Legacy.CollectionModel> = await this.GetLegacyCollectionsAsync();
 
 		let collections: CollectionModel[] = [];
 
@@ -19,7 +21,7 @@ export default class MigrationV2 implements IMigration
 		{
 			let collection: CollectionModel = new CollectionModel();
 
-			collection.Timestamp = legacyCollections[key].timestamp ?? parseInt(key.replace(LegacyCollection.PREFIX, ""));
+			collection.Timestamp = legacyCollections[key].timestamp ?? parseInt(key.replace(Legacy.CollectionModel.PREFIX, ""));
 
 			if (legacyCollections[key].name)
 				collection.Title = legacyCollections[key].name;
@@ -45,7 +47,7 @@ export default class MigrationV2 implements IMigration
 		if (!ext)
 			return null;
 
-		let legacySettings: Partial<LegacySettings> = await ext.storage.sync.get(new LegacySettings());
+		let legacySettings: Partial<Legacy.SettingsModel> = await ext.storage.sync.get(new Legacy.SettingsModel());
 		let settings: SettingsModel = new SettingsModel();
 
 		if (legacySettings.loadOnRestore === false)
@@ -65,7 +67,7 @@ export default class MigrationV2 implements IMigration
 		if (!ext)
 			return null;
 
-		let legacyGraphics: Record<string, GraphicsModel> = await ext.storage.sync.get(null);
+		let legacyGraphics: Record<string, Legacy.GraphicsModel> = await ext.storage.sync.get(null);
 		let graphics: Record<string, IGraphics> = {};
 
 		for (let key in legacyGraphics)
@@ -88,7 +90,7 @@ export default class MigrationV2 implements IMigration
 		return graphics;
 	}
 
-	private async GetLegacyCollectionsAsync(): Promise<Record<string, LegacyCollection>>
+	private async GetLegacyCollectionsAsync(): Promise<Record<string, Legacy.CollectionModel>>
 	{
 		if (!ext)
 			return null;
@@ -96,7 +98,7 @@ export default class MigrationV2 implements IMigration
 		let legacyCollections: Record<string, any> = await ext.storage.sync.get(null);
 
 		for (let key in legacyCollections)
-			if (!key.startsWith(LegacyCollection.PREFIX))
+			if (!key.startsWith(Legacy.CollectionModel.PREFIX))
 				delete legacyCollections[key]
 
 		return legacyCollections;

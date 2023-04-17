@@ -7,6 +7,7 @@
 		"@fluentui/react-icons": "^2.0.186",
 		"lzutf8": "^0.6.3",
 		"react": "^18.2.0",
+		"react-device-detect": "^2.2.3",
 		"react-dom": "^18.2.0",
 		"sass": "^1.54.9",
 		"typescript": "^4.4.2",
@@ -14,6 +15,7 @@
 	},
 	"devDependencies": {
 		"@craco/craco": "^6.4.5",
+		"@types/chrome": "^0.0.225",
 		"@types/craco__craco": "^6.4.0",
 		"@types/node": "^18.7.16",
 		"@types/react": "^18.0.18",
