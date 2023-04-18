@@ -3,8 +3,8 @@
 	"version": "3.0.0",
 	"private": true,
 	"dependencies": {
-		"@fluentui/react-components": "^9.7.0",
-		"@fluentui/react-icons": "^2.0.186",
+		"@fluentui/react-components": "^9.18.9",
+		"@fluentui/react-icons": "^2.0.200",
 		"lzutf8": "^0.6.3",
 		"react": "^18.2.0",
 		"react-device-detect": "^2.2.3",

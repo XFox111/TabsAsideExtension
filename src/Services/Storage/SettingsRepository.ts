@@ -14,7 +14,7 @@ export default class SettingsRepository
 
 	public constructor()
 	{
-		ext?.storage.sync.onChanged.addListener(this.OnStorageChanged);
+		ext?.storage.sync.onChanged.addListener(e => this.OnStorageChanged(e));
 	}
 
 	/**
@@ -47,7 +47,7 @@ export default class SettingsRepository
 
 	private OnStorageChanged(changes: Record<string, Storage.StorageChange>): void
 	{
-		let propsList: string[] = Object.keys(new SettingsRepository());
+		let propsList: string[] = Object.keys(new SettingsModel());
 		let settings: Record<string, any> = {};
 
 		Object.entries(changes)

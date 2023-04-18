@@ -1,7 +1,9 @@
 export type BehaviorMode = "popup" | "tab" | "contextmenu";
 export type ViewMode = "list" | "grid";
-export type GroupingPolicy = "separate" | "preserve" | "omit";
+export type GroupingPolicy = "preserve" | "separate" | "omit";
 export type ActionBehavior = "quckaciton" | "contextmenu";
+export type RestoreAction = "restore" | "open";
+export type GroupRestorePolicy = "preserve" | "join" | "omit";
 
 export enum SaveActions
 {

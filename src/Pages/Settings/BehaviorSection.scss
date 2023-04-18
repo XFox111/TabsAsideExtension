@@ -1,0 +1,26 @@
+.fui-AccordionItem.BehaviorSection
+{
+	.fui-AccordionPanel.behaviorLayout
+	{
+		display: grid;
+		column-gap: 16px;
+		row-gap: 24px;
+		grid-template-columns: 1fr auto;
+		align-items: start;
+
+		.fui-Divider
+		{
+			grid-column: 1 / span 2;
+		}
+
+		@media (max-width: 860px)
+		{
+			grid-template-columns: 1fr;
+
+			.fui-Divider
+			{
+				grid-column: 1 / span 1;
+			}
+		}
+	}
+}

@@ -29,7 +29,7 @@ async function Init(): Promise<void>
 	}
 	catch (ex)
 	{
-		console.error(`[${LOG_PREFIX}.Init(GetThumbnailFromMeta)]`, (ex as Error).message);
+		console.log(`[${LOG_PREFIX}.Init(GetThumbnailFromMeta)]`, (ex as Error).message);
 	}
 
 

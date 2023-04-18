@@ -1,4 +1,4 @@
-import { ActionBehavior, BehaviorMode, GroupingPolicy, SaveActions, ViewMode } from "./SettingsTypes";
+import { ActionBehavior, BehaviorMode, GroupRestorePolicy, GroupingPolicy, RestoreAction, SaveActions, ViewMode } from "./SettingsTypes";
 
 export default class SettingsModel
 {
@@ -11,6 +11,9 @@ export default class SettingsModel
 	public GroupingPolicy: GroupingPolicy = "preserve";
 	public ActionBehavior: ActionBehavior = "quckaciton";
 	public DefaultSaveAction: SaveActions = SaveActions.SetAsideAll;
+	public DefaultRestoreAction: RestoreAction = "restore";
+	public GroupRestorePolicy: GroupRestorePolicy = "preserve";
+	public EnableSearchPromos: boolean = false;
 
 	public constructor();
 	public constructor(storageData: Record<string, any>);
@@ -28,5 +31,7 @@ export default class SettingsModel
 		this.GroupingPolicy = storageData.GroupingPolicy;
 		this.ActionBehavior = storageData.ActionBehavior;
 		this.DefaultSaveAction = storageData.DefaultSaveAction;
+		this.GroupRestorePolicy = storageData.GroupRestorePolicy;
+		this.EnableSearchPromos = storageData.EnableSearchPromos;
 	}
 }
