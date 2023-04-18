@@ -31,26 +31,25 @@ html, body, #root
 	{
 		flex-wrap: wrap;
 	}
+
+	&.end
+	{
+		align-self: flex-end;
+	}
 }
 
-// Overrides for default FluentUI styles
-a.fui-Button
+a.fui-Button.bmc
 {
-	text-decoration: none;
+	background-color: var(--colorPaletteDarkOrangeBorder2) !important;
 
-	&.bmc
+	&:hover
 	{
-		background-color: var(--colorPaletteDarkOrangeBorder2) !important;
+		background-color: var(--colorPaletteDarkOrangeForeground1) !important;
+	}
 
-		&:hover
-		{
-			background-color: var(--colorPaletteDarkOrangeForeground1) !important;
-		}
-
-		&:active
-		{
-			background-color: var(--colorPaletteDarkOrangeBackground2) !important;
-		}
+	&:active
+	{
+		background-color: var(--colorPaletteDarkOrangeBackground2) !important;
 	}
 }
 
