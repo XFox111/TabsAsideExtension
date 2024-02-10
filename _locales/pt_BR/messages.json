@@ -51,17 +51,17 @@
 	},
 	"feedback":
 	{
-		"message": "Deixe um comentário",
+		"message": "Enviar comentários",
 		"description": "Link title"
 	},
 	"buyMeACoffee":
 	{
-		"message": "Me compre um café!",
+		"message": "Pague um café!",
 		"description": "Link title"
 	},
 	"credits":
 	{
-		"message": "Desenvolvido por Michael 'XFox' Gordeev",
+		"message": "Desenvolvido por Eugene Fox",
 		"description": "Options menu credits"
 	},
 	"setAside":
