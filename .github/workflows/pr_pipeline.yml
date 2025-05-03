@@ -1,0 +1,57 @@
+name: PR check pipeline
+
+on:
+  pull_request:
+    branches: [ "main", "next" ]
+    paths-ignore:
+      - '**.md'
+      - 'LICENSE'
+      - 'PRIVACY'
+      - '**/cd_pipeline.yaml'
+      - '**/dependabot.yml'
+      - '**/codeql-analysis.yml'
+      - '**/pr_next.yaml'
+      - '.vscode/*'
+      - '.devcontainer/*'
+  workflow_dispatch:
+    inputs:
+      targets:
+        description: Targets
+        required: true
+        default: '["chrome","firefox"]'
+        type: choice
+        options:
+          - '["chrome","firefox"]'
+          - '["chrome"]'
+          - '["firefox"]'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: node:23
+    strategy:
+      fail-fast: false
+      matrix:
+        target: ${{ fromJSON(github.event.inputs.targets || '["chrome","firefox"]') }}
+
+    steps:
+      - uses: actions/checkout@main
+
+      - run: yarn install
+      - run: yarn zip -b ${{ matrix.target }}
+
+      - name: Drop artifacts (${{ matrix.target }})
+        uses: actions/upload-artifact@main
+        with:
+          name: ${{ matrix.target }}
+          path: ./.output/tabs-aside-*-${{ matrix.target }}.zip
+          include-hidden-files: true
+
+      - name: web-ext lint
+        if: ${{ matrix.target == 'firefox' }}
+        uses: freaktechnik/web-ext-lint@main
+        with:
+          extension-root: ./.output/firefox-mv3
+          self-hosted: false
+
+      - run: yarn audit

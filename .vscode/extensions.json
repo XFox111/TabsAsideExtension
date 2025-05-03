@@ -1,0 +1,12 @@
+{
+	"recommendations": [
+		"bierner.github-markdown-preview",
+		"dbaeumer.vscode-eslint",
+		"github.vscode-github-actions",
+		"Gruntfuggly.todo-tree",
+		"jock.svg",
+		"ms-azuretools.vscode-docker",
+		"saeris.markdown-github-alerts",
+		"zardoy.disable-ts-errors"
+	]
+}

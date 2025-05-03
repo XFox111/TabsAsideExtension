@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-issue-config.json
+
+blank_issues_enabled: true
+contact_links:
+  - name: Questions & Discussions
+    url: https://github.com/XFox111/TabsAsideExtension/discussions
+    about: Use GitHub discussions for message-board style questions and discussions.

@@ -1,0 +1,26 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
+{
+	"name": "TabsAsideExtension",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"dbaeumer.vscode-eslint",
+				"zardoy.disable-ts-errors",
+				"github.vscode-github-actions",
+				"GitHub.vscode-pull-request-github",
+				"bierner.github-markdown-preview",
+				"mrmlnc.vscode-scss",
+				"Gruntfuggly.todo-tree",
+				"redhat.vscode-yaml"
+			]
+		}
+	},
+
+	"postCreateCommand": "yarn install"
+}

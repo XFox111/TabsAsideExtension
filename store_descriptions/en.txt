@@ -1,0 +1,49 @@
+<!-- Plaintext version (Chrome/Edge) -->
+
+Stemming its roots from the original Microsoft Edge browser feature, this extension has grown much bigger than just a temporary storage for tabs.
+
+It allows you to save and manage your tabs in a convenient way, providing a range of features that make it easy to organize and access your saved tabs.
+
+## Features
+- Save tabs: Save all your open tabs in a single click, and restore them later
+- Organize tabs: Create collections and subgroups to organize your saved tabs
+- Search tabs: Quickly find the tabs you need using the search feature
+- Sync across devices: Access your saved tabs from any device with your account
+- Go dark: Dark mode support for a more comfortable browsing experience
+- Personalize: Change the appearance and behavior of the extension to suit your needs
+
+Check out our blog post regarding all the new features and improvements in Tabs aside 3.0 at:
+https://at.xfox111.net/tabs-aside-3-0
+
+## Hey, it's an open-source software!
+If you know how to improve this extension you can check its GitHub Repository at:
+https://github.com/xfox111/TabsAsideExtension
+
+Check out release changelog on:
+https://github.com/xfox111/TabsAsideExtension/releases/latest
+
+
+
+
+<!-- Rich text version (Firefox) -->
+
+Stemming its roots from the original Microsoft Edge browser feature, this extension has grown much bigger than just a temporary storage for tabs.
+
+It allows you to save and manage your tabs in a convenient way, providing a range of features that make it easy to organize and access your saved tabs.
+
+<b>Features</b>
+<ul>
+	<li><b>Save tabs</b>: Save all your open tabs in a single click, and restore them later</li>
+	<li><b>Organize tabs</b>: Create collections and subgroups to organize your saved tabs</li>
+	<li><b>Search tabs</b>: Quickly find the tabs you need using the search feature</li>
+	<li><b>Sync across devices</b>: Access your saved tabs from any device with your account</li>
+	<li><b>Go dark</b>: Dark mode support for a more comfortable browsing experience</li>
+	<li><b>Personalize</b>: Change the appearance and behavior of the extension to suit your needs</li>
+</ul>
+
+Check out our <a href="https://at.xfox111.net/tabs-aside-3-0">blog post</a> regarding all the new features and improvements in Tabs aside 3.0
+
+<b>Hey, it's an open-source software!</b>
+If you know how to improve this extension you can check <a href="https://github.com/xfox111/TabsAsideExtension">its GitHub Repository</a>
+
+Check out <a href="https://github.com/xfox111/TabsAsideExtension/releases/latest">release changelog</a>

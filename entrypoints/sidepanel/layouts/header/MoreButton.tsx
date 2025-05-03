@@ -1,0 +1,85 @@
+import { BuyMeACoffee20Filled, BuyMeACoffee20Regular } from "@/assets/BuyMeACoffee20";
+import { buyMeACoffeeLink, githubLinks, storeLink } from "@/data/links";
+import useSettings from "@/hooks/useSettings";
+import extLink from "@/utils/extLink";
+import sendNotification from "@/utils/sendNotification";
+import * as fui from "@fluentui/react-components";
+import * as ic from "@fluentui/react-icons";
+import { ReactElement } from "react";
+
+export default function MoreButton(): ReactElement
+{
+	const [tilesView, setTilesView] = useSettings("tilesView");
+
+	const SettingsIcon: ic.FluentIcon = ic.bundleIcon(ic.Settings20Filled, ic.Settings20Regular);
+	const ViewIcon: ic.FluentIcon = ic.bundleIcon(ic.GridKanban20Filled, ic.GridKanban20Regular);
+	const FeedbackIcon: ic.FluentIcon = ic.bundleIcon(ic.PersonFeedback20Filled, ic.PersonFeedback20Regular);
+	const LearnIcon: ic.FluentIcon = ic.bundleIcon(ic.QuestionCircle20Filled, ic.QuestionCircle20Regular);
+	const BmcIcon: ic.FluentIcon = ic.bundleIcon(BuyMeACoffee20Filled, BuyMeACoffee20Regular);
+
+	return (
+		<fui.Menu
+			hasIcons hasCheckmarks
+			checkedValues={ { tilesView: tilesView ? ["true"] : [] } }
+			onCheckedValueChange={ (_, e) => setTilesView(e.checkedItems.length > 0) }
+		>
+			<fui.Tooltip relationship="label" content={ i18n.t("common.tooltips.more") }>
+				<fui.MenuTrigger disableButtonEnhancement>
+					<fui.Button appearance="subtle" icon={ <ic.MoreVerticalRegular /> } />
+				</fui.MenuTrigger>
+			</fui.Tooltip>
+
+			<fui.MenuPopover>
+				<fui.MenuList>
+
+					<fui.MenuItem icon={ <SettingsIcon /> } onClick={ () => browser.runtime.openOptionsPage() }>
+						{ i18n.t("options_page.title") }
+					</fui.MenuItem>
+					<fui.MenuItemCheckbox name="tilesView" value="true" icon={ <ViewIcon /> }>
+						{ i18n.t("main.header.menu.tiles_view") }
+					</fui.MenuItemCheckbox>
+
+					<fui.MenuDivider />
+
+					<fui.MenuItemLink icon={ <BmcIcon /> } { ...extLink(buyMeACoffeeLink) }>
+						{ i18n.t("common.cta.sponsor") }
+					</fui.MenuItemLink>
+					<fui.MenuItemLink icon={ <FeedbackIcon /> } { ...extLink(storeLink) } >
+						{ i18n.t("common.cta.feedback") }
+					</fui.MenuItemLink>
+					<fui.MenuItemLink icon={ <LearnIcon /> } { ...extLink(githubLinks.release) } >
+						{ i18n.t("main.header.menu.changelog") }
+					</fui.MenuItemLink>
+
+					{ import.meta.env.DEV &&
+						<fui.MenuGroup>
+							<fui.MenuGroupHeader>Dev tools</fui.MenuGroupHeader>
+							<fui.MenuItem
+								icon={ <ic.ArrowClockwise20Regular /> }
+								onClick={ () => document.location.reload() }
+							>
+								Reload page
+							</fui.MenuItem>
+							<fui.MenuItem
+								icon={ <ic.Open20Regular /> }
+								onClick={ () => browser.tabs.create({ url: browser.runtime.getURL("/sidepanel.html"), active: true }) }
+							>
+								Open in tab
+							</fui.MenuItem>
+							<fui.MenuItem
+								icon={ <ic.Alert20Regular /> }
+								onClick={ async () => await sendNotification({
+									icon: "/notification_icons/cloud_error.png",
+									message: "Notification message",
+									title: "Notification title"
+								}) }
+							>
+								Show test notification
+							</fui.MenuItem>
+						</fui.MenuGroup>
+					}
+				</fui.MenuList>
+			</fui.MenuPopover>
+		</fui.Menu>
+	);
+}

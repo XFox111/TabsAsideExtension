@@ -1,0 +1,62 @@
+name: "🚀 New feature proposal"
+description: Suggest a feature idea for this project
+title: "[Feature]: "
+labels: ["feature", "needs-triage"]
+assignees:
+  - xfox111
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for your interest in the project and taking the time to fill out this feature report!
+
+  - type: textarea
+    id: proposition
+    attributes:
+      label: Proposed solution
+      description: Describe the solution you'd like
+    validations:
+      required: true
+
+  - type: textarea
+    id: justification
+    attributes:
+      label: Justification
+      description: Is your feature request related to a problem? Please describe.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alts
+    attributes:
+      label: Alternatives
+      description: Describe alternatives you've considered.
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add any other context or screenshots about the feature request here.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: requested-help
+    attributes:
+      label: Are you willing to submit a PR for this issue?
+      options:
+        - "yes"
+        - "no"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checkboxes
+    attributes:
+      label: Validations
+      description: Before submitting the issue, please make sure you do the following
+      options:
+        - label: Check that there isn't already an issue that request the same feature to avoid creating a duplicate.
+          required: true
