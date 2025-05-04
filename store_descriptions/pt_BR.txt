@@ -1,0 +1,23 @@
+<!-- Versão em texto simples (Chrome/Edge) -->
+
+Inspirada no recurso original do navegador Microsoft Edge, esta extensão cresceu e se tornou muito mais do que apenas um armazenamento temporário de guias.
+
+Ela permite que você salve e gerencie suas guias de forma conveniente, oferecendo uma variedade de recursos que facilitam a organização e o acesso às suas guias salvas.
+
+## Recursos
+- **Salvar guias**: Salve todas as suas guias abertas com um único clique e restaure-as depois  
+- **Organizar guias**: Crie coleções e subgrupos para organizar suas guias salvas  
+- **Buscar guias**: Encontre rapidamente as guias que precisa usando o recurso de busca  
+- **Sincronizar entre dispositivos**: Acesse suas guias salvas de qualquer dispositivo com sua conta  
+- **Modo escuro**: Suporte ao modo escuro para uma experiência de navegação mais confortável  
+- **Personalizar**: Altere a aparência e o comportamento da extensão de acordo com suas preferências  
+
+Confira nossa postagem no blog com todos os novos recursos e melhorias do Tabs Aside 3.0 em:  
+https://at.xfox111.net/tabs-aside-3-0
+
+## Ei, este é um software de código aberto!
+Se você sabe como melhorar esta extensão, confira o repositório no GitHub:  
+https://github.com/xfox111/TabsAsideExtension
+
+Confira o changelog da versão em:  
+https://github.com/xfox111/TabsAsideExtension/releases/latest
