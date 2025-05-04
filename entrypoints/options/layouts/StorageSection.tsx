@@ -1,4 +1,6 @@
 import { useDialog } from "@/contexts/DialogProvider";
+import { cloudDisabled, setCloudStorage } from "@/features/collectionStorage";
+import { useDangerStyles } from "@/hooks/useDangerStyles";
 import useStorageInfo from "@/hooks/useStorageInfo";
 import { Button, Field, MessageBar, MessageBarBody, MessageBarTitle, ProgressBar } from "@fluentui/react-components";
 import { ArrowDownload20Regular, ArrowUpload20Regular } from "@fluentui/react-icons";
@@ -10,9 +12,17 @@ export default function StorageSection(): React.ReactElement
 {
 	const { bytesInUse, storageQuota, usedStorageRatio } = useStorageInfo();
 	const [importResult, setImportResult] = useState<boolean | null>(null);
+	const [isCloudDisabled, setCloudDisabled] = useState<boolean>(null!);
 
 	const dialog = useDialog();
 	const cls = useOptionsStyles();
+	const dangerCls = useDangerStyles();
+
+	useEffect(() =>
+	{
+		cloudDisabled.getValue().then(setCloudDisabled);
+		return cloudDisabled.watch(setCloudDisabled);
+	}, []);
 
 	const handleImport = (): void =>
 		dialog.pushPrompt({
@@ -30,15 +40,32 @@ export default function StorageSection(): React.ReactElement
 			)
 		});
 
+	const handleDisableCloud = (): void =>
+		dialog.pushPrompt({
+			title: i18n.t("options_page.storage.disable"),
+			content: i18n.t("options_page.storage.disable_prompt.text"),
+			confirmText: i18n.t("options_page.storage.disable_prompt.action"),
+			destructive: true,
+			onConfirm: () => setCloudStorage(false)
+		});
+
 	return (
 		<>
-			<Field
-				label={ i18n.t("options_page.storage.capacity.title") }
-				hint={ i18n.t("options_page.storage.capacity.description", [(bytesInUse / 1024).toFixed(1), storageQuota / 1024]) }
-				validationState={ usedStorageRatio >= 0.8 ? "error" : undefined }
-			>
-				<ProgressBar value={ usedStorageRatio } thickness="large" />
-			</Field>
+			{ isCloudDisabled === false &&
+				<Field
+					label={ i18n.t("options_page.storage.capacity.title") }
+					hint={ i18n.t("options_page.storage.capacity.description", [(bytesInUse / 1024).toFixed(1), storageQuota / 1024]) }
+					validationState={ usedStorageRatio >= 0.8 ? "error" : undefined }
+				>
+					<ProgressBar value={ usedStorageRatio } thickness="large" />
+				</Field>
+			}
+
+			{ isCloudDisabled === true &&
+				<Button appearance="primary" onClick={ () => setCloudStorage(true) }>
+					{ i18n.t("options_page.storage.enable") }
+				</Button>
+			}
 
 			<div className={ cls.horizontalButtons }>
 				<Button icon={ <ArrowDownload20Regular /> } onClick={ exportData }>
@@ -58,6 +85,17 @@ export default function StorageSection(): React.ReactElement
 						}
 					</MessageBarBody>
 				</MessageBar>
+			}
+
+			{ isCloudDisabled === false &&
+				<div className={ cls.horizontalButtons }>
+					<Button
+						appearance="subtle" className={ dangerCls.buttonSubtle }
+						onClick={ handleDisableCloud }
+					>
+						{ i18n.t("options_page.storage.disable") }
+					</Button>
+				</div>
 			}
 		</>
 	);

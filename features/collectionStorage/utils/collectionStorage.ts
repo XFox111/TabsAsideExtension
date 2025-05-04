@@ -8,5 +8,6 @@ export const collectionStorage =
 	localCollections: storage.defineItem<CollectionItem[]>("local:collections", { fallback: [] }),
 	count: storage.defineItem<number>("local:count", { fallback: 0 }),
 	graphics: storage.defineItem<GraphicsStorage>("local:graphics", { fallback: {} }),
+	disableCloud: storage.defineItem<boolean>("sync:disableCloud", { fallback: false }),
 	maxChunkCount: 12
 };

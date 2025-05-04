@@ -1,14 +1,17 @@
 import { CollectionItem } from "@/models/CollectionModels";
+import getLogger from "@/utils/getLogger";
 import { collectionStorage } from "./collectionStorage";
 import getCollectionsFromCloud from "./getCollectionsFromCloud";
 import getCollectionsFromLocal from "./getCollectionsFromLocal";
 import saveCollectionsToLocal from "./saveCollectionsToLocal";
-import getLogger from "@/utils/getLogger";
 
 const logger = getLogger("getCollections");
 
 export default async function getCollections(): Promise<[CollectionItem[], CloudStorageIssueType | null]>
 {
+	if (await collectionStorage.disableCloud.getValue() === true)
+		return [await getCollectionsFromLocal(), null];
+
 	const lastUpdatedLocal: number = await collectionStorage.localLastUpdated.getValue();
 	const lastUpdatedSync: number = await collectionStorage.syncLastUpdated.getValue();
 

@@ -1,6 +1,7 @@
 import { CollectionItem, GraphicsStorage } from "@/models/CollectionModels";
 import getLogger from "@/utils/getLogger";
 import sendNotification from "@/utils/sendNotification";
+import { collectionStorage } from "./collectionStorage";
 import saveCollectionsToCloud from "./saveCollectionsToCloud";
 import saveCollectionsToLocal from "./saveCollectionsToLocal";
 import updateGraphics from "./updateGraphics";
@@ -16,7 +17,7 @@ export default async function saveCollections(
 	const timestamp: number = Date.now();
 	await saveCollectionsToLocal(collections, timestamp);
 
-	if (updateCloud)
+	if (updateCloud && await collectionStorage.disableCloud.getValue() !== true)
 		try
 		{
 			await saveCollectionsToCloud(collections, timestamp);

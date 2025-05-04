@@ -24,5 +24,19 @@ export const useDangerStyles = makeStyles({
 				backgroundColor: tokens.colorStatusDangerBackground3Pressed
 			}
 		}
+	},
+	buttonSubtle:
+	{
+		color: tokens.colorStatusDangerForeground1,
+
+		"&:hover":
+		{
+			color: tokens.colorStatusDangerForeground2,
+
+			"&:active":
+			{
+				color: tokens.colorStatusDangerForeground3
+			}
+		}
 	}
 });

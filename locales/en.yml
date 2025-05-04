@@ -116,6 +116,11 @@ options_page:
       warning_title: "This is an irreversible action"
       warning_text: "This will overwrite all your data. Make sure you picked a correct file, otherwise data corruption or loss may occur. It is recommended to export data first."
       proceed: "Pick a file"
+    enable: "Enable cloud storage"
+    disable: "Disable cloud storage"
+    disable_prompt:
+      text: "This action will disable collection synchronization between your devices. Extension's settings will still be synchronized."
+      action: "Disable and reload the extension"
   about:
     title: "About"
     developed_by: "Developed by Eugene Fox"
