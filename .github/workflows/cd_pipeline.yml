@@ -54,7 +54,7 @@ jobs:
         uses: actions/upload-artifact@main
         with:
           name: ${{ matrix.target }}
-          path: ./.output/tabs-aside-*-${{ matrix.target }}.zip
+          path: ./.output/tabs-aside-*.zip
           include-hidden-files: true
 
       - name: web-ext lint
@@ -65,7 +65,7 @@ jobs:
           self-hosted: false
 
       - run: yarn audit
-        if: ${{ github.event_name == 'release' || github.event.inputs.bypass_audit == 'false' }}
+        continue-on-error: ${{ github.event_name != 'release' && github.event.inputs.bypass_audit == 'true' }}
 
   publish-github:
     needs: build
@@ -103,7 +103,7 @@ jobs:
 
       - uses: wdzeng/chrome-extension@v1.3.0
         with:
-          extension-id: mgmjbodjgijnebfgohlnjkegdpbdjgin
+          extension-id: ${{ secrets.CHROME_EXT_ID }}
           zip-path: tabs-aside-*-chrome.zip
           client-id: ${{ secrets.CHROME_CLIENT_ID }}
           client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
@@ -136,9 +136,10 @@ jobs:
         with:
           name: firefox
 
-      - uses: wdzeng/firefox-addon@v1.1.2
+      - uses: wdzeng/firefox-addon@v1.2.0
         with:
           addon-guid: ${{ secrets.FIREFOX_EXT_UUID }}
           xpi-path: tabs-aside-*-firefox.zip
+          source-file-path: tabs-aside-*-sources.zip
           jwt-issuer: ${{ secrets.FIREFOX_API_KEY }}
           jwt-secret: ${{ secrets.FIREFOX_CLIENT_SECRET }}
