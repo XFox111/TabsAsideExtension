@@ -87,7 +87,8 @@ export default defineConfig([
 			"@stylistic/no-mixed-spaces-and-tabs": ["warn"],
 			"@typescript-eslint/no-unused-vars": ["warn"],
 			"prefer-const": ["warn"],
-			"@stylistic/padded-blocks": ["warn"]
+			"@stylistic/padded-blocks": ["warn"],
+			"no-empty": ["off"]
 		}
 	},
 	{

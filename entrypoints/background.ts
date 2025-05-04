@@ -48,6 +48,7 @@ export default defineBackground(() =>
 
 			graphicsCache[tab.url] = {
 				preview: graphicsCache[tab.url]?.preview,
+				capture: graphicsCache[tab.url]?.capture,
 				icon: tab.favIconUrl ?? graphicsCache[tab.url]?.icon
 			};
 		});
@@ -61,9 +62,45 @@ export default defineBackground(() =>
 		{
 			graphicsCache[data.url] = {
 				preview: data.thumbnail,
+				capture: graphicsCache[data.url]?.capture,
 				icon: graphicsCache[data.url]?.icon
 			};
 		});
+
+		setupTabCaputre();
+		async function setupTabCaputre(): Promise<void>
+		{
+			const tryCaptureTab = async (tab: Tabs.Tab): Promise<void> =>
+			{
+				if (!tab.url || tab.status !== "complete" || !tab.active)
+					return;
+
+				try
+				{
+					// We use chrome here because polyfill throws uncatchable errors for some reason
+					// It's a compatible API anyway
+					const capture: string = await chrome.tabs.captureVisibleTab(tab.windowId!, { format: "jpeg", quality: 1 });
+
+					if (capture)
+					{
+						graphicsCache[tab.url] = {
+							capture,
+							preview: graphicsCache[tab.url]?.preview,
+							icon: graphicsCache[tab.url]?.icon
+						};
+
+						logger("Captured tab", tab.url);
+					}
+				}
+				catch (ex) { logger(ex); }
+			};
+
+			setInterval(() =>
+			{
+				browser.tabs.query({ active: true })
+					.then(tabs => tabs.forEach(tab => tryCaptureTab(tab)));
+			}, 1000);
+		}
 
 		setupContextMenu();
 		async function setupContextMenu(): Promise<void>

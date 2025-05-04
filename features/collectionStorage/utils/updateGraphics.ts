@@ -13,6 +13,7 @@ export default async function updateGraphics(
 	function getGraphics(url: string): GraphicsItem | null
 	{
 		const preview = tempGraphics[url]?.preview ?? localGraphics[url]?.preview;
+		const capture = tempGraphics[url]?.capture ?? localGraphics[url]?.capture;
 		const icon = tempGraphics[url]?.icon ?? localGraphics[url]?.icon;
 
 		const graphics: GraphicsItem = {};
@@ -21,6 +22,8 @@ export default async function updateGraphics(
 			graphics.preview = preview;
 		if (icon)
 			graphics.icon = icon;
+		if (capture)
+			graphics.capture = capture;
 
 		return preview || icon ? graphics : null;
 	}

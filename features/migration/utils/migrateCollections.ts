@@ -13,12 +13,12 @@ export default function migrateCollections(legacyCollections: LegacyCollection[]
 		{
 			const title: string | undefined = legacyCollection.titles[index];
 			const icon: string | undefined = legacyCollection.icons?.[index];
-			const preview: string | undefined = legacyCollection.thumbnails?.[index];
+			const capture: string | undefined = legacyCollection.thumbnails?.[index];
 
 			if (!graphics[url])
-				graphics[url] = { icon, preview };
+				graphics[url] = { icon, capture };
 			else
-				graphics[url] = { icon: graphics[url].icon ?? icon, preview: graphics[url].preview ?? preview };
+				graphics[url] = { icon: graphics[url].icon ?? icon, capture: graphics[url].preview ?? capture };
 
 			return {
 				type: "tab",

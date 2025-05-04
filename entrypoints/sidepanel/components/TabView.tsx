@@ -69,7 +69,7 @@ export default function TabView({ tab, indices, dragOverlay }: TabViewProps): Re
 		>
 			{ tilesView &&
 				<img
-					src={ graphics[tab.url]?.preview ?? pagePlaceholder }
+					src={ graphics[tab.url]?.preview ?? graphics[tab.url]?.capture ?? pagePlaceholder }
 					onError={ e => e.currentTarget.src = pagePlaceholder }
 					className={ cls.image } draggable={ false } />
 			}

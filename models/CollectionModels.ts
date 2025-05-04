@@ -37,5 +37,6 @@ export type GraphicsStorage = Record<string, GraphicsItem>;
 export type GraphicsItem =
 	{
 		preview?: string;
+		capture?: string;
 		icon?: string;
 	};

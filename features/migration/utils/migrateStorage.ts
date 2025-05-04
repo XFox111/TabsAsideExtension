@@ -38,11 +38,11 @@ export default async function migrateStorage(): Promise<void>
 	for (const [key, record] of Object.entries(v2Graphics))
 	{
 		if (!graphics[key])
-			graphics[key] = { icon: record.iconUrl, preview: record.pageCapture };
+			graphics[key] = { icon: record.iconUrl, capture: record.pageCapture };
 		else
 		{
 			graphics[key].icon ??= record.iconUrl;
-			graphics[key].preview ??= record.pageCapture;
+			graphics[key].capture ??= record.pageCapture;
 		}
 	}
 
