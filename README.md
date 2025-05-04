@@ -70,7 +70,7 @@ Check out our [latest blog post](https://at.xfox111.net/tabs-aside-3-0) regardin
 
 > **Important!**
 This will _replace_ officialy installed version if you have one.
-If you want to sideload it without replacing to run both versions at the same time - before loading add-on, open `manifest.json` in a text editor and change `id` key (it's `passwordgenerator@xfox111.net` by default) to something else
+If you want to sideload it without replacing to run both versions at the same time - before loading add-on, open `manifest.json` in a text editor and change `id` key (it's `tabsaside@xfox111.net` by default) to something else
 
 </details>
 

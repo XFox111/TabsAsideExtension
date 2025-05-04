@@ -71,7 +71,7 @@ export default defineConfig({
 			manifest.browser_specific_settings = {
 				gecko:
 				{
-					id: "tabs-aside@xfox111.net",
+					id: "tabsaside@xfox111.net",
 					strict_min_version: "109.0"
 				}
 			};
