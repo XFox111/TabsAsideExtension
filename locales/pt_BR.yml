@@ -1,0 +1,250 @@
+manifest:
+  name: "Tabs aside"
+  description: "Salve e organize suas abas para depois. Continue de onde parou"
+  author: "Eugene Fox"
+
+shortcuts:
+  toggle_sidebar: "Abrir lista de coleções"
+  set_aside: "Colocar abas de lado"
+  save_tabs: "Salvar abas sem fechar"
+
+common:
+  actions:
+    cancel: "Cancelar"
+    save: "Salvar"
+    close: "Fechar"
+    delete: "Excluir"
+    reset_filters: "Limpar filtros"
+  cta:
+    feedback: "Deixar feedback"
+    sponsor: "Me pague um café"
+  tooltips:
+    more: "Mais"
+  delete_prompt: "Tem certeza? Esta ação não pode ser desfeita."
+
+features:
+  v3welcome:
+    title: "Bem-vindo ao Tabs aside 3.0"
+    text1: "Estamos felizes em anunciar nossa nova grande atualização para a extensão Tabs aside!"
+    text2: "Esta atualização traz uma nova interface e muitos novos recursos, incluindo:"
+    list:
+      item1: "Suporte a grupos de abas"
+      item2: "Personalização de coleções"
+      item3: "Reordenação e organização por arrastar e soltar"
+      item4: "Criação manual de coleções do zero"
+      item5: "E mais!"
+    text3: "Visite nosso blog de desenvolvimento para saber mais sobre esta atualização e todos os seus recursos!"
+    actions:
+      visit_blog: "Ler blog de desenvolvimento"
+
+notifications:
+  tabs_saved:
+    title: "Nova coleção criada"
+    message: "Suas abas foram salvas em uma nova coleção"
+  error_quota_exceeded:
+    title: "Limite máximo de operações na nuvem excedido"
+    message: "Salvamos suas abas no armazenamento local. Você precisará atualizar o armazenamento na nuvem manualmente"
+  error_storage_full:
+    title: "Seu armazenamento na nuvem está cheio"
+    message: "Salvamos suas abas no armazenamento local. Por favor, libere espaço na nuvem"
+  bookmark_saved:
+    title: "Exportado para favoritos"
+    message: "Sua coleção foi exportada para os favoritos"
+  partial_save:
+    title: "Algumas abas não puderam ser salvas"
+    message: "Algumas abas eram abas do sistema que não pudemos acessar. Elas foram ignoradas"
+
+actions:
+  save:
+    all: "Salvar todas as abas"
+    selected: "Salvar abas selecionadas"
+  set_aside:
+    all: "Colocar todas as abas de lado"
+    selected: "Colocar abas selecionadas de lado"
+  show_collections: "Mostrar coleções"
+
+options_page:
+  title: "Configurações"
+  general:
+    title: "Geral"
+    options:
+      always_show_toolbars: "Sempre mostrar barras de ferramentas"
+      include_pinned: "Incluir abas fixadas ao salvar todas as abas"
+      show_delete_prompt: "Pedir confirmação ao excluir um item"
+      show_badge: "Mostrar contador no ícone"
+      show_notification: "Mostrar notificação ao salvar abas pelo menu de contexto"
+      unload_tabs: "Não carregar abas após abrir"
+      list_locations:
+        title: "Abrir lista de coleções em:"
+        options:
+          sidebar: "Barra lateral"
+          popup: "Popup"
+          tab: "Aba separada"
+          pinned: "Aba fixada separada"
+      icon_action:
+        title: "Ao clicar no ícone da extensão:"
+        options:
+          action: "Executar ação padrão de salvar"
+          context: "Mostrar menu de contexto"
+          open: "Abrir lista de coleções"
+          change_shortcuts: "Alterar atalhos da extensão"
+  actions:
+    title: "Ações padrão"
+    options:
+      save_actions:
+        title: "Ação padrão ao salvar abas"
+        options:
+          set_aside: "Salvar e fechar abas"
+          save: "Salvar abas sem fechar"
+      restore_actions:
+        title: "Ação padrão ao abrir coleções"
+        options:
+          open: "Apenas abrir abas"
+          restore: "Abrir abas e remover a coleção"
+  storage:
+    title: "Armazenamento"
+    capacity:
+      title: "Capacidade de armazenamento na nuvem"
+      description: "$1 de $2 KiB"
+    import: "Importar dados"
+    export: "Exportar dados"
+    import_results:
+      success: "Dados importados com sucesso"
+      error: "O arquivo fornecido parece estar corrompido. Nada foi importado"
+    import_prompt:
+      title: "Importar dados"
+      warning_title: "Esta é uma ação irreversível"
+      warning_text: "Isso irá sobrescrever todos os seus dados. Certifique-se de ter escolhido o arquivo correto, caso contrário pode ocorrer corrupção ou perda de dados. Recomenda-se exportar os dados antes."
+      proceed: "Escolher um arquivo"
+    enable: "Ativar armazenamento na nuvem"
+    disable: "Desativar armazenamento na nuvem"
+    disable_prompt:
+      text: "Esta ação desativará a sincronização de coleções entre seus dispositivos. As configurações da extensão ainda serão sincronizadas."
+      action: "Desativar e recarregar a extensão"
+  about:
+    title: "Sobre"
+    developed_by: "Desenvolvido por Eugene Fox"
+    licensed_under: "Licenciado sob"
+    mit_license: "Licença MIT"
+    translation_cta:
+      text: "Encontrou um erro ou quer uma tradução para seu idioma?"
+      button: "Comece aqui"
+    links:
+      website: "Meu site"
+      source: "Código-fonte"
+      changelog: "Registro de alterações"
+
+collections:
+  empty: "Esta coleção está vazia"
+  tabs_count: "$1 abas"
+  actions:
+    open: "Abrir todas"
+    restore: "Restaurar todas"
+    new_window: "Abrir todas em nova janela"
+    incognito:
+      edge: "Abrir todas em nova janela InPrivate"
+      firefox: "Abrir todas em nova janela privativa"
+      chrome: "Abrir todas em janela anônima"
+  incognito_check:
+    title: "Permissões necessárias"
+    message:
+      edge:
+        p1: "A extensão precisa de permissão para abrir abas em janela InPrivate"
+        p2: "Para isso, clique em \"Configurações\" e marque a opção \"Permitir em InPrivate\""
+      firefox:
+        p1: "A extensão precisa de permissão para abrir abas em janela privativa"
+        p2: "Para isso, clique em \"Configurações\", vá em \"Detalhes\" e defina \"Executar em janelas privadas\" como \"Permitir\""
+      chrome:
+        p1: "A extensão precisa de permissão para abrir abas em janela anônima"
+        p2: "Para isso, clique em \"Configurações\" e marque a opção \"Permitir em modo anônimo\""
+    action: "Configurações"
+  menu:
+    delete: "Excluir coleção"
+    add_selected: "Adicionar abas selecionadas"
+    add_group: "Adicionar grupo vazio"
+    add_pinned: "Adicionar grupo fixado"
+    export_bookmarks: "Exportar para favoritos"
+    edit: "Editar coleção"
+
+groups:
+  title: "Grupo"
+  pinned: "Fixado"
+  open: "Abrir todas"
+  empty: "Este grupo está vazio"
+  menu:
+    new_window: "Abrir em nova janela"
+    add_selected: "Adicionar abas selecionadas"
+    edit: "Editar grupo"
+    ungroup: "Desagrupar"
+    delete: "Excluir grupo"
+
+tabs:
+  delete: "Excluir aba"
+
+colors:
+  none: "Sem cor"
+  any: "Qualquer cor"
+  grey: "Cinza"
+  blue: "Azul"
+  red: "Vermelho"
+  yellow: "Amarelo"
+  green: "Verde"
+  pink: "Rosa"
+  purple: "Roxo"
+  cyan: "Ciano"
+  orange: "Laranja"
+
+dialogs:
+  edit:
+    title:
+      edit_collection: "Editar coleção"
+      edit_group: "Editar grupo"
+      new_group: "Novo grupo"
+      new_collection: "Nova coleção"
+    collection_title: "Título"
+    color: "Cor"
+
+main:
+  header:
+    create_collection: "Criar nova coleção"
+    menu:
+      tiles_view: "Visualização em blocos"
+      changelog: "O que há de novo?"
+  list:
+    searchbar:
+      title: "Pesquisar"
+      filter: "Filtrar"
+      sort:
+        title: "Ordenar"
+        options:
+          newest: "Mais recentes primeiro"
+          oldest: "Mais antigas primeiro"
+          ascending: "De A a Z"
+          descending: "De Z a A"
+          custom: "Personalizado"
+    empty:
+      title: "Nada para mostrar aqui ainda"
+      message: "Coloque suas abas atuais de lado ou crie uma nova coleção"
+    empty_search:
+      title: "Nada encontrado"
+      message: "Tente alterar sua busca"
+
+cta_message:
+  title: "Gostou desta extensão?"
+  message: "Considere apoiar o autor com uma doação ou"
+  feedback: "deixando um feedback"
+
+storage_full_message:
+  title: "Seu armazenamento na nuvem está quase cheio ($1%)"
+  message: "Você pode liberar espaço excluindo coleções não utilizadas."
+
+parse_error_message:
+  title: "Não foi possível obter coleções do seu armazenamento na nuvem."
+  message: "Seu armazenamento na nuvem parece estar corrompido. Você pode corrigir isso substituindo pela sua cópia local."
+  action: "Corrigir com cópia local"
+
+merge_conflict_message:
+  title: "Seu armazenamento local e na nuvem possuem alterações conflitantes."
+  message: "Para corrigir, você pode enviar sua cópia local para a nuvem ou aceitar as alterações da nuvem."
+  accept_local: "Substituir pela local"
+  accept_cloud: "Aceitar alterações da nuvem"
