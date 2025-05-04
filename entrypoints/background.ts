@@ -150,13 +150,16 @@ export default defineBackground(() =>
 				await browser.action.setTitle({ title: i18n.t(`actions.${defaultAction}.${selection}`) });
 			};
 
+			const toggleSidebarFirefox = async (): Promise<void> =>
+				await browser.sidebarAction.toggle();
+
 			const updateButton = async (action: SettingsValue<"contextAction">): Promise<void> =>
 			{
 				logger("updateButton", action);
 
 				// Cleanup any existing behavior
 				browser.action.onClicked.removeListener(onClickAction);
-				browser.action.onClicked.removeListener(browser?.sidebarAction?.toggle);
+				browser.action.onClicked.removeListener(toggleSidebarFirefox);
 				browser.action.onClicked.removeListener(openCollectionsInTab);
 
 				await browser.action.disable();
@@ -181,7 +184,7 @@ export default defineBackground(() =>
 					if (location === "sidebar")
 					{
 						if (import.meta.env.FIREFOX)
-							browser.action.onClicked.addListener(browser.sidebarAction.toggle);
+							browser.action.onClicked.addListener(toggleSidebarFirefox);
 						else
 							chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true });
 					}
