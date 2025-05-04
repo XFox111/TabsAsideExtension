@@ -5,12 +5,11 @@
 	"type": "module",
 	"scripts": {
 		"dev": "wxt",
-		"build": "wxt build",
-		"zip": "wxt zip",
-		"lint": "npm run compile && eslint . -c eslint.config.js",
-		"prebuild": "npm run lint",
-		"prezip": "npm run build",
-		"compile": "tsc --noEmit",
+		"build": "wxt build --mv3",
+		"zip": "wxt zip --mv3",
+		"lint": "tsc --noEmit && eslint . -c eslint.config.js",
+		"prebuild": "yarn lint",
+		"prezip": "yarn lint",
 		"postinstall": "wxt prepare"
 	},
 	"dependencies": {
