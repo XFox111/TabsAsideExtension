@@ -113,7 +113,7 @@ export default defineBackground(() =>
 
 			if (import.meta.env.FIREFOX)
 			{
-				await browser.action.setBadgeBackgroundColor({ color: "0f6cbd" });
+				await browser.action.setBadgeBackgroundColor({ color: "#0f6cbd" });
 				await browser.action.setBadgeTextColor({ color: "white" });
 			}
 
