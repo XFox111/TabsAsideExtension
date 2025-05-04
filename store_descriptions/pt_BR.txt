@@ -1,23 +1,49 @@
 <!-- Versão em texto simples (Chrome/Edge) -->
 
-Inspirada no recurso original do navegador Microsoft Edge, esta extensão cresceu e se tornou muito mais do que apenas um armazenamento temporário de guias.
+Originando-se do recurso original do navegador Microsoft Edge, esta extensão cresceu muito além de apenas um armazenamento temporário para abas.
 
-Ela permite que você salve e gerencie suas guias de forma conveniente, oferecendo uma variedade de recursos que facilitam a organização e o acesso às suas guias salvas.
+Ela permite que você salve e gerencie suas abas de forma conveniente, oferecendo uma variedade de recursos que facilitam a organização e o acesso às abas salvas.
 
 ## Recursos
-- **Salvar guias**: Salve todas as suas guias abertas com um único clique e restaure-as depois  
-- **Organizar guias**: Crie coleções e subgrupos para organizar suas guias salvas  
-- **Buscar guias**: Encontre rapidamente as guias que precisa usando o recurso de busca  
-- **Sincronizar entre dispositivos**: Acesse suas guias salvas de qualquer dispositivo com sua conta  
-- **Modo escuro**: Suporte ao modo escuro para uma experiência de navegação mais confortável  
-- **Personalizar**: Altere a aparência e o comportamento da extensão de acordo com suas preferências  
+- Salvar abas: Salve todas as suas abas abertas com um único clique e restaure-as depois
+- Organizar abas: Crie coleções e subgrupos para organizar suas abas salvas
+- Pesquisar abas: Encontre rapidamente as abas que você precisa usando o recurso de pesquisa
+- Sincronizar entre dispositivos: Acesse suas abas salvas de qualquer dispositivo com sua conta
+- Modo escuro: Suporte ao modo escuro para uma experiência de navegação mais confortável
+- Personalizar: Altere a aparência e o comportamento da extensão conforme suas necessidades
 
-Confira nossa postagem no blog com todos os novos recursos e melhorias do Tabs Aside 3.0 em:  
+Confira nossa postagem no blog sobre todos os novos recursos e melhorias do Tabs Aside 3.0 em:
 https://at.xfox111.net/tabs-aside-3-0
 
-## Ei, este é um software de código aberto!
-Se você sabe como melhorar esta extensão, confira o repositório no GitHub:  
+## Ei, é um software de código aberto!
+Se você sabe como melhorar esta extensão, confira seu repositório no GitHub em:
 https://github.com/xfox111/TabsAsideExtension
 
-Confira o changelog da versão em:  
+Veja o changelog das versões em:
 https://github.com/xfox111/TabsAsideExtension/releases/latest
+
+
+
+
+<!-- Versão rich text (Firefox) -->
+
+Originando-se do recurso original do navegador Microsoft Edge, esta extensão cresceu muito além de apenas um armazenamento temporário para abas.
+
+Ela permite que você salve e gerencie suas abas de forma conveniente, oferecendo uma variedade de recursos que facilitam a organização e o acesso às abas salvas.
+
+<b>Recursos</b>
+<ul>
+	<li><b>Salvar abas</b>: Salve todas as suas abas abertas com um único clique e restaure-as depois</li>
+	<li><b>Organizar abas</b>: Crie coleções e subgrupos para organizar suas abas salvas</li>
+	<li><b>Pesquisar abas</b>: Encontre rapidamente as abas que você precisa usando o recurso de pesquisa</li>
+	<li><b>Sincronizar entre dispositivos</b>: Acesse suas abas salvas de qualquer dispositivo com sua conta</li>
+	<li><b>Modo escuro</b>: Suporte ao modo escuro para uma experiência de navegação mais confortável</li>
+	<li><b>Personalizar</b>: Altere a aparência e o comportamento da extensão conforme suas necessidades</li>
+</ul>
+
+Confira nossa <a href="https://at.xfox111.net/tabs-aside-3-0">postagem no blog</a> sobre todos os novos recursos e melhorias do Tabs Aside 3.0
+
+<b>Ei, é um software de código aberto!</b>
+Se você sabe como melhorar esta extensão, confira <a href="https://github.com/xfox111/TabsAsideExtension">seu repositório no GitHub</a>
+
+Veja o <a href="https://github.com/xfox111/TabsAsideExtension/releases/latest">changelog das versões</a>
