@@ -80,7 +80,7 @@ export default defineBackground(() =>
 			Object.entries(items).forEach(([id, title]) => browser.contextMenus.create({
 				id, title,
 				visible: true,
-				contexts: ["action", "page"]
+				contexts: ["action"]
 			}));
 
 			watchTabSelection(async selection =>
