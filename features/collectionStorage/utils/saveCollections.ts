@@ -1,3 +1,4 @@
+import { trackError } from "@/features/analytics";
 import { CollectionItem, GraphicsStorage } from "@/models/CollectionModels";
 import getLogger from "@/utils/getLogger";
 import sendNotification from "@/utils/sendNotification";
@@ -26,6 +27,7 @@ export default async function saveCollections(
 		{
 			logger("Failed to save cloud storage");
 			console.error(ex);
+			trackError("cloud_save_error", ex as Error);
 
 			if ((ex as Error).message.includes("MAX_WRITE_OPERATIONS_PER_MINUTE"))
 				await sendNotification({

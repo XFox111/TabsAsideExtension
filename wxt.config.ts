@@ -2,7 +2,7 @@ import { ConfigEnv, defineConfig, UserManifest } from "wxt";
 
 // See https://wxt.dev/api/config.html
 export default defineConfig({
-	modules: ["@wxt-dev/module-react", "@wxt-dev/i18n/module"],
+	modules: ["@wxt-dev/module-react", "@wxt-dev/i18n/module", "@wxt-dev/analytics/module"],
 	imports: {
 		dirsScanOptions:
 		{

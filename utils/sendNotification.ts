@@ -1,3 +1,4 @@
+import { trackError } from "@/features/analytics";
 import { PublicPath } from "wxt/browser";
 
 export default async function sendNotification(props: NotificationProps): Promise<void>
@@ -13,8 +14,9 @@ export default async function sendNotification(props: NotificationProps): Promis
 	}
 	catch (ex)
 	{
-		console.error("Error while showing cloud error notification (probably because of user restrictions)");
+		console.error("Error while showing notification (probably because of user restrictions)");
 		console.error(ex);
+		trackError("notification_error", ex as Error);
 	}
 }
 

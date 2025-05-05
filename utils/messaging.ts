@@ -1,3 +1,4 @@
+import { trackError } from "@/features/analytics";
 import { GraphicsStorage } from "@/models/CollectionModels";
 import { defineExtensionMessaging, ExtensionMessenger } from "@webext-core/messaging";
 
@@ -21,6 +22,7 @@ export const sendMessage: ExtensionMessenger<ProtocolMap>["sendMessage"] = async
 	catch (ex)
 	{
 		console.error(ex);
+		trackError("messaging_error", ex as Error);
 		return undefined!;
 	}
 };

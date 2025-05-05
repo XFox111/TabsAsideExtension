@@ -1,3 +1,4 @@
+import { trackError } from "@/features/analytics";
 import { CollectionItem } from "@/models/CollectionModels";
 import getLogger from "@/utils/getLogger";
 import { collectionStorage } from "./collectionStorage";
@@ -32,6 +33,7 @@ export default async function getCollections(): Promise<[CollectionItem[], Cloud
 	{
 		logger("Failed to get cloud storage");
 		console.error(ex);
+		trackError("cloud_get_error", ex as Error);
 		return [await getCollectionsFromLocal(), "parse_error"];
 	}
 }

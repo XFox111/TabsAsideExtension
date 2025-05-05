@@ -27,6 +27,11 @@ export default function CtaMessage(props: MessageBarProps): ReactElement
 	{
 		await ctaCounter.setValue(counter);
 		setCounter(counter);
+
+		if (counter === -1)
+			analytics.track("bmc_clicked");
+		else
+			analytics.track("cta_dismissed");
 	};
 
 	if (counter < 50)
@@ -36,7 +41,7 @@ export default function CtaMessage(props: MessageBarProps): ReactElement
 		<MessageBar layout="multiline" icon={ <HeartFilled color="red" /> } { ...props }>
 			<MessageBarBody>
 				<MessageBarTitle>{ i18n.t("cta_message.title") }</MessageBarTitle>
-				{ i18n.t("cta_message.message") } <Link { ...extLink(storeLink) }>{ i18n.t("cta_message.feedback") }</Link>
+				{ i18n.t("cta_message.message") } <Link { ...extLink(storeLink) } onClick={ () => analytics.track("feedback_clicked") }>{ i18n.t("cta_message.feedback") }</Link>
 			</MessageBarBody>
 			<MessageBarActions
 				containerAction={

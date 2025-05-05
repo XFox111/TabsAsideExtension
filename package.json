@@ -1,7 +1,7 @@
 {
 	"name": "tabs-aside",
 	"private": true,
-	"version": "3.0.0-rc1",
+	"version": "3.0.0-rc2",
 	"type": "module",
 	"scripts": {
 		"dev": "wxt",
@@ -20,6 +20,7 @@
 		"@fluentui/react-components": "^9.63.0",
 		"@fluentui/react-icons": "^2.0.298",
 		"@webext-core/messaging": "^2.2.0",
+		"@wxt-dev/analytics": "^0.4.1",
 		"@wxt-dev/i18n": "^0.2.3",
 		"lzutf8": "^0.6.3",
 		"react": "^18.3.1",

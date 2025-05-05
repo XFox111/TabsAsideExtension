@@ -15,6 +15,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 );
 
 document.title = i18n.t("manifest.name");
+analytics.page("collection_list");
 
 function MainPage(): React.ReactElement
 {

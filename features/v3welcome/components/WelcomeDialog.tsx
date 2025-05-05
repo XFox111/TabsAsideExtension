@@ -39,7 +39,10 @@ export default function WelcomeDialog(): React.ReactElement
 
 				<fui.DialogActions>
 					<fui.DialogTrigger disableButtonEnhancement>
-						<fui.Button appearance="primary" as="a" { ...extLink(v3blogPost) }>
+						<fui.Button
+							appearance="primary" as="a" { ...extLink(v3blogPost) }
+							onClick={ () => analytics.track("visit_blog_button_click") }
+						>
 							{ i18n.t("features.v3welcome.actions.visit_blog") }
 						</fui.Button>
 					</fui.DialogTrigger>

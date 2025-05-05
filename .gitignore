@@ -26,3 +26,5 @@ web-ext.config.ts
 *.sw?
 
 web-ext.config.js
+
+.env*

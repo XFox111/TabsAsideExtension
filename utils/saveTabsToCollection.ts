@@ -24,6 +24,8 @@ export default async function saveTabsToCollection(closeTabs: boolean): Promise<
 	if (closeTabs)
 		await browser.tabs.remove(tabsToClose.map(i => i.id!));
 
+	analytics.track(closeTabs ? "set_aside" : "save");
+
 	return collection;
 }
 

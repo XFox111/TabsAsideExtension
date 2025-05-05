@@ -14,6 +14,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 	</App>
 );
 
+analytics.page("options_page");
+
 function OptionsPage(): React.ReactElement
 {
 	const [selection, setSelection] = useState<SelectionType>("general");

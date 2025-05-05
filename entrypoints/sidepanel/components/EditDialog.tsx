@@ -26,6 +26,11 @@ export default function EditDialog(props: GroupEditDialogProps): ReactElement
 
 	const handleSave = () =>
 	{
+		if (props.type === "collection" ? props.collection !== null : props.group !== null)
+			analytics.track("item_edited", { type: props.type });
+		else
+			analytics.track("item_created", { type: props.type });
+
 		if (props.type === "collection")
 			props.onSave({
 				type: "collection",

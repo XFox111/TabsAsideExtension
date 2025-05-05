@@ -41,10 +41,10 @@ export default function MoreButton(): ReactElement
 
 					<fui.MenuDivider />
 
-					<fui.MenuItemLink icon={ <BmcIcon /> } { ...extLink(buyMeACoffeeLink) }>
+					<fui.MenuItemLink icon={ <BmcIcon /> } { ...extLink(buyMeACoffeeLink) } onClick={ () => analytics.track("feedback_clicked") }>
 						{ i18n.t("common.cta.sponsor") }
 					</fui.MenuItemLink>
-					<fui.MenuItemLink icon={ <FeedbackIcon /> } { ...extLink(storeLink) } >
+					<fui.MenuItemLink icon={ <FeedbackIcon /> } { ...extLink(storeLink) } onClick={ () => analytics.track("bmc_clicked") }>
 						{ i18n.t("common.cta.feedback") }
 					</fui.MenuItemLink>
 					<fui.MenuItemLink icon={ <LearnIcon /> } { ...extLink(githubLinks.release) } >

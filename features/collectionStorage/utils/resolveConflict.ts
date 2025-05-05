@@ -1,3 +1,4 @@
+import { trackError } from "@/features/analytics";
 import { CollectionItem } from "@/models/CollectionModels";
 import getLogger from "@/utils/getLogger";
 import { collectionStorage } from "./collectionStorage";
@@ -37,5 +38,6 @@ async function replaceLocalWithCloud(): Promise<void>
 	{
 		logger("Failed to get cloud storage");
 		console.error(ex);
+		trackError("conflict_resolve_with_cloud_error", ex as Error);
 	}
 }

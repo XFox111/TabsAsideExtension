@@ -88,7 +88,8 @@ export default defineConfig([
 			"@typescript-eslint/no-unused-vars": ["warn"],
 			"prefer-const": ["warn"],
 			"@stylistic/padded-blocks": ["warn"],
-			"no-empty": ["off"]
+			"no-empty": ["off"],
+			"@stylistic/eol-last": ["warn"]
 		}
 	},
 	{

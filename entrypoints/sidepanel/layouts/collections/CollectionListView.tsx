@@ -64,6 +64,8 @@ export default function CollectionListView(): ReactElement
 			updateCollections(result);
 			if (sortMode !== "custom")
 				setSortMode("custom");
+
+			analytics.track("used_drag_and_drop");
 		}
 	};
 
