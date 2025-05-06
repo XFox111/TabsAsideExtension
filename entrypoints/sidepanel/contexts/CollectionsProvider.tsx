@@ -2,7 +2,7 @@ import { CloudStorageIssueType, getCollections, graphics as graphicsStorage, sav
 import useSettings from "@/hooks/useSettings";
 import { CollectionItem, GraphicsStorage, GroupItem } from "@/models/CollectionModels";
 import getLogger from "@/utils/getLogger";
-import { onMessage } from "@/utils/messaging";
+import { onMessage, sendMessage } from "@/utils/messaging";
 import { createContext } from "react";
 import mergePinnedGroups from "../utils/mergePinnedGroups";
 
@@ -40,6 +40,7 @@ export default function CollectionsProvider({ children }: React.PropsWithChildre
 		setCollections([...collectionList]);
 		await saveCollections(collectionList, cloudIssue === null);
 		setGraphics(await graphicsStorage.getValue());
+		sendMessage("refreshCollections", undefined);
 	};
 
 	const addCollection = (collection: CollectionItem): void =>
