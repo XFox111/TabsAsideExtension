@@ -1,16 +1,19 @@
 import { getCollectionTitle } from "@/entrypoints/sidepanel/utils/getCollectionTitle";
 import getSelectedTabs from "@/entrypoints/sidepanel/utils/getSelectedTabs";
 import useSettings from "@/hooks/useSettings";
-import { TabItem } from "@/models/CollectionModels";
+import { GroupItem, TabItem } from "@/models/CollectionModels";
 import { Button, Caption1, makeStyles, mergeClasses, Subtitle2, tokens, Tooltip } from "@fluentui/react-components";
 import { Add20Filled, Add20Regular, bundleIcon } from "@fluentui/react-icons";
 import CollectionContext, { CollectionContextType } from "../../contexts/CollectionContext";
 import { useCollections } from "../../contexts/CollectionsProvider";
 import CollectionMoreButton from "./CollectionMoreButton";
 import OpenCollectionButton from "./OpenCollectionButton";
+import saveTabsToCollection from "@/utils/saveTabsToCollection";
 
 export default function CollectionHeader({ dragHandleRef, dragHandleProps }: CollectionHeaderProps): React.ReactElement
 {
+	const [listLocation] = useSettings("listLocation");
+	const isTab: boolean = listLocation === "tab" || listLocation === "pinned";
 	const { updateCollection } = useCollections();
 	const { tabCount, collection, collectionIndex } = useContext<CollectionContextType>(CollectionContext);
 	const [alwaysShowToolbars] = useSettings("alwaysShowToolbars");
@@ -19,7 +22,9 @@ export default function CollectionHeader({ dragHandleRef, dragHandleProps }: Col
 
 	const handleAddSelected = async () =>
 	{
-		const newTabs: TabItem[] = await getSelectedTabs();
+		const newTabs: (TabItem | GroupItem)[] = isTab ?
+			(await saveTabsToCollection(false)).items :
+			await getSelectedTabs();
 		updateCollection({ ...collection, items: [...collection.items, ...newTabs] }, collectionIndex);
 	};
 
@@ -53,7 +58,7 @@ export default function CollectionHeader({ dragHandleRef, dragHandleProps }: Col
 			>
 				{ tabCount < 1 ?
 					<Button icon={ <AddIcon /> } appearance="subtle" onClick={ handleAddSelected }>
-						{ i18n.t("collections.menu.add_selected") }
+						{ isTab ? i18n.t("collections.menu.add_all") : i18n.t("collections.menu.add_selected") }
 					</Button>
 					:
 					<OpenCollectionButton />

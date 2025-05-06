@@ -10,6 +10,8 @@ import EditDialog from "../EditDialog";
 
 export default function CollectionMoreButton({ onAddSelected }: CollectionMoreButtonProps): React.ReactElement
 {
+	const [listLocation] = useSettings("listLocation");
+	const isTab: boolean = listLocation === "tab" || listLocation === "pinned";
 	const { removeItem, updateCollection } = useCollections();
 	const { tabCount, hasPinnedGroup, collection, collectionIndex } = useContext<CollectionContextType>(CollectionContext);
 	const dialog = useDialog();
@@ -65,7 +67,7 @@ export default function CollectionMoreButton({ onAddSelected }: CollectionMoreBu
 				<MenuList>
 					{ tabCount > 0 &&
 						<MenuItem icon={ <AddIcon /> } onClick={ () => onAddSelected?.() }>
-							{ i18n.t("collections.menu.add_selected") }
+							{ isTab ? i18n.t("collections.menu.add_all") : i18n.t("collections.menu.add_selected") }
 						</MenuItem>
 					}
 					<MenuItem icon={ <GroupIcon /> } onClick={ handleCreateGroup }>

@@ -11,9 +11,12 @@ import { Button, Menu, MenuItem, MenuList, MenuPopover, MenuTrigger, Tooltip } f
 import * as ic from "@fluentui/react-icons";
 import { ReactElement } from "react";
 import { openGroup } from "../../utils/opener";
+import saveTabsToCollection from "@/utils/saveTabsToCollection";
 
 export default function GroupMoreMenu(): ReactElement
 {
+	const [listLocation] = useSettings("listLocation");
+	const isTab: boolean = listLocation === "tab" || listLocation === "pinned";
 	const { group, indices } = useContext<GroupContextType>(GroupContext);
 	const { hasPinnedGroup } = useContext<CollectionContextType>(CollectionContext);
 	const [deletePrompt] = useSettings("deletePrompt");
@@ -53,7 +56,9 @@ export default function GroupMoreMenu(): ReactElement
 
 	const handleAddSelected = async () =>
 	{
-		const newTabs: TabItem[] = await getSelectedTabs();
+		const newTabs: TabItem[] = isTab ?
+			(await saveTabsToCollection(false)).items.flatMap(i => i.type === "tab" ? i : i.items) :
+			await getSelectedTabs();
 		updateGroup({ ...group, items: [...group.items, ...newTabs] }, indices[0], indices[1]);
 	};
 
@@ -74,7 +79,7 @@ export default function GroupMoreMenu(): ReactElement
 					}
 
 					<MenuItem icon={ <AddIcon /> } onClick={ handleAddSelected }>
-						{ i18n.t("groups.menu.add_selected") }
+						{ isTab ? i18n.t("groups.menu.add_all") : i18n.t("groups.menu.add_selected") }
 					</MenuItem>
 
 					<MenuItem icon={ <EditIcon /> } onClick={ handleEdit }>

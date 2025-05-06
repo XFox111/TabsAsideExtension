@@ -161,6 +161,7 @@ collections:
   menu:
     delete: "Excluir coleção"
     add_selected: "Adicionar abas selecionadas"
+    add_all: "Adicionar todas as abas"
     add_group: "Adicionar grupo vazio"
     export_bookmarks: "Exportar para favoritos"
     edit: "Editar coleção"
@@ -173,6 +174,7 @@ groups:
   menu:
     new_window: "Abrir em nova janela"
     add_selected: "Adicionar abas selecionadas"
+    add_all: "Adicionar todas as abas"
     edit: "Editar grupo"
     ungroup: "Desagrupar"
     delete: "Excluir grupo"
