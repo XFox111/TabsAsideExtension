@@ -39,10 +39,18 @@ async function createCollectionFromTabs(tabs: Tabs.Tab[]): Promise<[CollectionIt
 
 	tabs = tabs.filter(i =>
 		i.url
-		&& !i.url.startsWith(browser.runtime.getURL("/"))
 		&& new URL(i.url).protocol !== "about:"
 		&& new URL(i.url).hostname !== "newtab"
 	);
+
+	if (tabs.length < tabCount)
+		await sendNotification({
+			title: i18n.t("notifications.partial_save.title"),
+			message: i18n.t("notifications.partial_save.message"),
+			icon: "/notification_icons/save_warning.png"
+		});
+
+	tabs = tabs.filter(i => !i.url!.startsWith(browser.runtime.getURL("/")));
 
 	const collection: CollectionItem = {
 		type: "collection",
@@ -51,13 +59,6 @@ async function createCollectionFromTabs(tabs: Tabs.Tab[]): Promise<[CollectionIt
 	};
 
 	let tabIndex: number = 0;
-
-	if (tabs.length < tabCount)
-		await sendNotification({
-			title: i18n.t("notifications.partial_save.title"),
-			message: i18n.t("notifications.partial_save.message"),
-			icon: "/notification_icons/save_warning.png"
-		});
 
 	if (tabs[tabIndex].pinned)
 	{
