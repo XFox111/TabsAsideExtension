@@ -1,5 +1,6 @@
 import { BuyMeACoffee20Filled, BuyMeACoffee20Regular } from "@/assets/BuyMeACoffee20";
 import { buyMeACoffeeLink, githubLinks, storeLink } from "@/data/links";
+import { track } from "@/features/analytics";
 import useSettings from "@/hooks/useSettings";
 import extLink from "@/utils/extLink";
 import sendNotification from "@/utils/sendNotification";
@@ -41,10 +42,10 @@ export default function MoreButton(): ReactElement
 
 					<fui.MenuDivider />
 
-					<fui.MenuItemLink icon={ <BmcIcon /> } { ...extLink(buyMeACoffeeLink) } onClick={ () => analytics.track("feedback_clicked") }>
+					<fui.MenuItemLink icon={ <BmcIcon /> } { ...extLink(buyMeACoffeeLink) } onClick={ () => track("feedback_clicked") }>
 						{ i18n.t("common.cta.sponsor") }
 					</fui.MenuItemLink>
-					<fui.MenuItemLink icon={ <FeedbackIcon /> } { ...extLink(storeLink) } onClick={ () => analytics.track("bmc_clicked") }>
+					<fui.MenuItemLink icon={ <FeedbackIcon /> } { ...extLink(storeLink) } onClick={ () => track("bmc_clicked") }>
 						{ i18n.t("common.cta.feedback") }
 					</fui.MenuItemLink>
 					<fui.MenuItemLink icon={ <LearnIcon /> } { ...extLink(githubLinks.release) } >

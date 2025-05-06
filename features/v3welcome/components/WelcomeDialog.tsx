@@ -1,5 +1,6 @@
 import { useTheme } from "@/contexts/ThemeProvider";
 import { v3blogPost } from "@/data/links";
+import { track } from "@/features/analytics";
 import extLink from "@/utils/extLink";
 import * as fui from "@fluentui/react-components";
 
@@ -41,7 +42,7 @@ export default function WelcomeDialog(): React.ReactElement
 					<fui.DialogTrigger disableButtonEnhancement>
 						<fui.Button
 							appearance="primary" as="a" { ...extLink(v3blogPost) }
-							onClick={ () => analytics.track("visit_blog_button_click") }
+							onClick={ () => track("visit_blog_button_click") }
 						>
 							{ i18n.t("features.v3welcome.actions.visit_blog") }
 						</fui.Button>

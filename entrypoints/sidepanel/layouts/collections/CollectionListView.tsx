@@ -5,6 +5,7 @@ import CloudIssueMessages from "@/entrypoints/sidepanel/layouts/collections/mess
 import CtaMessage from "@/entrypoints/sidepanel/layouts/collections/messages/CtaMessage";
 import filterCollections, { CollectionFilterType } from "@/entrypoints/sidepanel/utils/filterCollections";
 import sortCollections from "@/entrypoints/sidepanel/utils/sortCollections";
+import { track } from "@/features/analytics";
 import useSettings from "@/hooks/useSettings";
 import { CollectionItem } from "@/models/CollectionModels";
 import { DndContext, DragEndEvent, DragOverlay, DragStartEvent, MouseSensor, TouchSensor, useSensor, useSensors } from "@dnd-kit/core";
@@ -65,7 +66,7 @@ export default function CollectionListView(): ReactElement
 			if (sortMode !== "custom")
 				setSortMode("custom");
 
-			analytics.track("used_drag_and_drop");
+			track("used_drag_and_drop");
 		}
 	};
 

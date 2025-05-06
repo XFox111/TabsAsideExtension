@@ -1,7 +1,8 @@
+import { track } from "@/features/analytics";
 import { CollectionItem, GroupItem } from "@/models/CollectionModels";
 import { Tabs } from "wxt/browser";
-import { settings } from "./settings";
 import sendNotification from "./sendNotification";
+import { settings } from "./settings";
 
 export default async function saveTabsToCollection(closeTabs: boolean): Promise<CollectionItem>
 {
@@ -24,7 +25,7 @@ export default async function saveTabsToCollection(closeTabs: boolean): Promise<
 	if (closeTabs)
 		await browser.tabs.remove(tabsToClose.map(i => i.id!));
 
-	analytics.track(closeTabs ? "set_aside" : "save");
+	track(closeTabs ? "set_aside" : "save");
 
 	return collection;
 }

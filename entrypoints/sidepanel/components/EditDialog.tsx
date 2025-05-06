@@ -1,4 +1,5 @@
 import { getCollectionTitle } from "@/entrypoints/sidepanel/utils/getCollectionTitle";
+import { track } from "@/features/analytics";
 import { useGroupColors } from "@/hooks/useGroupColors";
 import { CollectionItem, GroupItem } from "@/models/CollectionModels";
 import * as fui from "@fluentui/react-components";
@@ -27,9 +28,9 @@ export default function EditDialog(props: GroupEditDialogProps): ReactElement
 	const handleSave = () =>
 	{
 		if (props.type === "collection" ? props.collection !== null : props.group !== null)
-			analytics.track("item_edited", { type: props.type });
+			track("item_edited", { type: props.type });
 		else
-			analytics.track("item_created", { type: props.type });
+			track("item_created", { type: props.type });
 
 		if (props.type === "collection")
 			props.onSave({

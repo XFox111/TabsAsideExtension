@@ -1,4 +1,4 @@
-import { trackError } from "@/features/analytics";
+import { track, trackError } from "@/features/analytics";
 import { collectionCount, getCollections, saveCollections } from "@/features/collectionStorage";
 import { migrateStorage } from "@/features/migration";
 import { showWelcomeDialog } from "@/features/v3welcome/utils/showWelcomeDialog";
@@ -31,7 +31,7 @@ export default defineBackground(() =>
 		browser.runtime.onInstalled.addListener(async ({ reason, previousVersion }) =>
 		{
 			logger("onInstalled", reason, previousVersion);
-			analytics.track("extension_installed", { reason, previousVersion: previousVersion ?? "none" });
+			track("extension_installed", { reason, previousVersion: previousVersion ?? "none" });
 
 			const previousMajor: number = previousVersion ? parseInt(previousVersion.split(".")[0]) : 0;
 
