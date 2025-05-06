@@ -1,6 +1,6 @@
 import { trackError } from "@/features/analytics";
 import { GraphicsStorage } from "@/models/CollectionModels";
-import { defineExtensionMessaging, ExtensionMessenger } from "@webext-core/messaging";
+import { defineExtensionMessaging, ExtensionMessagingConfig, ExtensionMessenger } from "@webext-core/messaging";
 
 type ProtocolMap =
 	{
@@ -9,20 +9,27 @@ type ProtocolMap =
 		refreshCollections(): void;
 	};
 
-const protocol: ExtensionMessenger<ProtocolMap> = defineExtensionMessaging<ProtocolMap>();
-
-export const onMessage = protocol.onMessage;
-
-export const sendMessage: ExtensionMessenger<ProtocolMap>["sendMessage"] = async (...args) =>
+function defineMessaging(config?: ExtensionMessagingConfig): ExtensionMessenger<ProtocolMap>
 {
-	try
-	{
-		return await protocol.sendMessage(...args);
-	}
-	catch (ex)
-	{
-		console.error(ex);
-		trackError("messaging_error", ex as Error);
-		return undefined!;
-	}
-};
+	const { onMessage, sendMessage, removeAllListeners } = defineExtensionMessaging<ProtocolMap>(config);
+
+	return {
+		onMessage,
+		removeAllListeners,
+		sendMessage: async (type, data, args): Promise<any> =>
+		{
+			try
+			{
+				return await sendMessage(type, data, args);
+			}
+			catch (ex)
+			{
+				console.error(ex);
+				trackError("messaging_error", ex as Error);
+				return undefined!;
+			}
+		}
+	};
+}
+
+export const { onMessage, sendMessage } = defineMessaging({ logger: console });
