@@ -68,12 +68,7 @@ export const useStyles_GroupView = makeStyles({
 	{
 		display: "flex",
 		gap: tokens.spacingHorizontalS,
-		visibility: "hidden",
-
-		"@media (pointer: coarse)":
-		{
-			visibility: "visible"
-		}
+		visibility: "hidden"
 	},
 	showToolbar:
 	{

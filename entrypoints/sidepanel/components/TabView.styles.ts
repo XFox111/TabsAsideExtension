@@ -86,12 +86,7 @@ export const useStyles_TabView = makeStyles({
 	},
 	deleteButton:
 	{
-		display: "none",
-
-		"@media (pointer: coarse)":
-		{
-			display: "inline-flex"
-		}
+		display: "none"
 	},
 	showDeleteButton:
 	{

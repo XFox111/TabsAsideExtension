@@ -95,12 +95,7 @@ const useStyles = makeStyles({
 	{
 		display: "none",
 		gap: tokens.spacingHorizontalS,
-		alignItems: "flex-start",
-
-		"@media (pointer: coarse)":
-		{
-			display: "flex"
-		}
+		alignItems: "flex-start"
 	},
 	showToolbar:
 	{
