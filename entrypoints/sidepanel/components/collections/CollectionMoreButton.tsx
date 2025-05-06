@@ -19,7 +19,6 @@ export default function CollectionMoreButton({ onAddSelected }: CollectionMoreBu
 	const GroupIcon = ic.bundleIcon(ic.GroupList20Filled, ic.GroupList20Regular);
 	const EditIcon = ic.bundleIcon(ic.Edit20Filled, ic.Edit20Regular);
 	const DeleteIcon = ic.bundleIcon(ic.Delete20Filled, ic.Delete20Regular);
-	const PinnedIcon = ic.bundleIcon(ic.Pin20Filled, ic.Pin20Regular);
 	const BookmarkIcon = ic.bundleIcon(ic.BookmarkAdd20Filled, ic.BookmarkAdd20Regular);
 
 	const dangerCls = useDangerStyles();
@@ -54,17 +53,6 @@ export default function CollectionMoreButton({ onAddSelected }: CollectionMoreBu
 				onSave={ group => updateCollection({ ...collection, items: [...collection.items, group] }, collectionIndex) } />
 		);
 
-	const handleAddPinnedGroup = () =>
-	{
-		updateCollection({
-			...collection,
-			items: [
-				{ type: "group", pinned: true, items: [] },
-				...collection.items
-			]
-		}, collectionIndex);
-	};
-
 	return (
 		<Menu>
 			<Tooltip relationship="label" content={ i18n.t("common.tooltips.more") }>
@@ -80,16 +68,9 @@ export default function CollectionMoreButton({ onAddSelected }: CollectionMoreBu
 							{ i18n.t("collections.menu.add_selected") }
 						</MenuItem>
 					}
-					{ !import.meta.env.FIREFOX &&
-						<MenuItem icon={ <GroupIcon /> } onClick={ handleCreateGroup }>
-							{ i18n.t("collections.menu.add_group") }
-						</MenuItem>
-					}
-					{ (import.meta.env.FIREFOX && !hasPinnedGroup) &&
-						<MenuItem icon={ <PinnedIcon /> } onClick={ handleAddPinnedGroup }>
-							{ i18n.t("collections.menu.add_pinned") }
-						</MenuItem>
-					}
+					<MenuItem icon={ <GroupIcon /> } onClick={ handleCreateGroup }>
+						{ i18n.t("collections.menu.add_group") }
+					</MenuItem>
 					{ tabCount > 0 &&
 						<MenuItem icon={ <BookmarkIcon /> } onClick={ () => exportCollectionToBookmarks(collection) }>
 							{ i18n.t("collections.menu.export_bookmarks") }

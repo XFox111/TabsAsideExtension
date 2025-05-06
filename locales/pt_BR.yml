@@ -162,7 +162,6 @@ collections:
     delete: "Excluir coleção"
     add_selected: "Adicionar abas selecionadas"
     add_group: "Adicionar grupo vazio"
-    add_pinned: "Adicionar grupo fixado"
     export_bookmarks: "Exportar para favoritos"
     edit: "Editar coleção"
 

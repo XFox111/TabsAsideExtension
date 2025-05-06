@@ -77,11 +77,9 @@ export default function GroupMoreMenu(): ReactElement
 						{ i18n.t("groups.menu.add_selected") }
 					</MenuItem>
 
-					{ (!import.meta.env.FIREFOX || group.pinned !== true) &&
-						<MenuItem icon={ <EditIcon /> } onClick={ handleEdit }>
-							{ i18n.t("groups.menu.edit") }
-						</MenuItem>
-					}
+					<MenuItem icon={ <EditIcon /> } onClick={ handleEdit }>
+						{ i18n.t("groups.menu.edit") }
+					</MenuItem>
 					{ group.items.length > 0 &&
 						<MenuItem
 							className={ dangerCls.menuItem }

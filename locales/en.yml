@@ -162,7 +162,6 @@ collections:
     delete: "Delete collection"
     add_selected: "Add selected tabs"
     add_group: "Add empty group"
-    add_pinned: "Add pinned group"
     export_bookmarks: "Export to bookmarks"
     edit: "Edit collection"
 
