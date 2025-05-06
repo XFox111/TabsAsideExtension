@@ -238,24 +238,35 @@ export default defineBackground(() =>
 		setupCollectionView();
 		async function setupCollectionView(): Promise<void>
 		{
-			const enforcePinnedTab = async (info: Tabs.OnHighlightedHighlightInfoType): Promise<void> =>
+			const enforcePinnedTab = async (): Promise<void> =>
 			{
-				logger("enforcePinnedTab", info);
+				logger("enforcePinnedTab");
 
-				const activeWindow: Windows.Window = await browser.windows.getCurrent({ populate: true });
+				const openWindows: Windows.Window[] = await browser.windows.getAll({ populate: true });
 
-				if (activeWindow.incognito)
-					return;
+				for (const openWindow of openWindows)
+				{
+					if (openWindow.incognito)
+						continue;
 
-				if (!activeWindow.tabs!.some(tab =>
-					[tab.url, tab.pendingUrl].includes(browser.runtime.getURL("/sidepanel.html")))
-				)
-					await browser.tabs.create({
-						url: browser.runtime.getURL("/sidepanel.html"),
-						windowId: activeWindow.id,
-						active: false,
-						pinned: true
-					});
+					const activeTabs: Tabs.Tab[] = openWindow.tabs!.filter(tab =>
+						tab.url === browser.runtime.getURL("/sidepanel.html"));
+
+					const targetTab: Tabs.Tab | undefined = activeTabs.find(tab => tab.pinned);
+
+					if (!targetTab)
+						await browser.tabs.create({
+							url: browser.runtime.getURL("/sidepanel.html"),
+							windowId: openWindow.id,
+							active: false,
+							pinned: true
+						});
+
+					const tabsToClose: Tabs.Tab[] = activeTabs.filter(tab => tab.id !== targetTab?.id);
+
+					if (tabsToClose.length > 0)
+						await browser.tabs.remove(tabsToClose.map(tab => tab.id!));
+				}
 			};
 
 			const updateView = async (viewLocation: SettingsValue<"listLocation">): Promise<void> =>
@@ -264,7 +275,6 @@ export default defineBackground(() =>
 
 				browser.tabs.onHighlighted.removeListener(enforcePinnedTab);
 				const tabs: Tabs.Tab[] = await browser.tabs.query({
-					currentWindow: true,
 					url: browser.runtime.getURL("/sidepanel.html")
 				});
 				await browser.tabs.remove(tabs.map(tab => tab.id!));
@@ -282,11 +292,7 @@ export default defineBackground(() =>
 
 				if (viewLocation === "pinned")
 				{
-					await browser.tabs.create({
-						url: browser.runtime.getURL("/sidepanel.html"),
-						active: false,
-						pinned: true
-					});
+					enforcePinnedTab();
 					browser.tabs.onHighlighted.addListener(enforcePinnedTab);
 				}
 			};
@@ -329,6 +335,25 @@ export default defineBackground(() =>
 
 			if (currentWindow.incognito)
 			{
+				let availableWindows: Windows.Window[] = await browser.windows.getAll({ populate: true });
+
+				availableWindows = availableWindows.filter(window =>
+					!window.incognito &&
+					window.tabs?.some(i => i.url === browser.runtime.getURL("/sidepanel.html"))
+				);
+
+				if (availableWindows.length > 0)
+				{
+					const availableTab: Tabs.Tab = availableWindows[0].tabs!.find(
+						tab => tab.url === browser.runtime.getURL("/sidepanel.html")
+					)!;
+
+					await browser.tabs.update(availableTab.id, { active: true });
+					await browser.windows.update(availableWindows[0].id!, { focused: true });
+
+					return;
+				}
+
 				await browser.windows.create({
 					url: browser.runtime.getURL("/sidepanel.html"),
 					focused: true
