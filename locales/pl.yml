@@ -1,0 +1,251 @@
+manifest:
+  name: "Odłożone karty"
+  description: "Odkładaj i organizuj swoje karty. Kontynuuj tam, gdzie przerwałeś"
+  author: "Eugeniusz Lis"
+
+shortcuts:
+  toggle_sidebar: "Otwórz listę kolekcji"
+  set_aside: "Odłóż karty"
+  save_tabs: "Zapisz karty"
+
+common:
+  actions:
+    cancel: "Anuluj"
+    save: "Zapisz"
+    close: "Zamknij"
+    delete: "Usuń"
+    reset_filters: "Resetuj filtry"
+  cta:
+    feedback: "Zostaw opinię"
+    sponsor: "Wesprzyj"
+  tooltips:
+    more: "Więcej"
+  delete_prompt: "Czy jesteś pewien? Tej akcji nie można cofnąć."
+
+features:
+  v3welcome:
+    title: "Witamy w Odłożonych kartach 3.0"
+    text1: "Z radością przedstawiamy nową dużą aktualizację rozszerzenia!"
+    text2: "Ta aktualizacja zawiera zupełnie nowy interfejs i wiele nowych funkcji, takich jak:"
+    list:
+      item1: "Obsługa grupowania kart"
+      item2: "Personalizacja kolekcji"
+      item3: "Przeciąganie kolekcji i elementów"
+      item4: "Tworzenie kolekcji od zera"
+      item5: "I wiele więcej!"
+    text3: "Odwiedź blog dewelopera (tylko w języku angielskim), aby dowiedzieć się więcej o tej aktualizacji i wszystkich jej funkcjach!"
+    actions:
+      visit_blog: "Czytaj blog"
+
+notifications:
+  tabs_saved:
+    title: "Utworzono nową kolekcję"
+    message: "Twoje karty zostały zapisane w nowej kolekcji"
+  error_quota_exceeded:
+    title: "Przekroczono limit operacji zapisu w chmurze"
+    message: "Twoje karty zostały zapisane w lokalnym magazynie. Musisz ręcznie zaktualizować magazyn w chmurze"
+  error_storage_full:
+    title: "Magazyn w chmurze jest pełny"
+    message: "Twoje karty zostały zapisane w lokalnym magazynie. Proszę zwolnić miejsce w magazynie w chmurze"
+  bookmark_saved:
+    title: "Wyeksportowano do zakładek"
+    message: "Twoja kolekcja została wyeksportowana do zakładek"
+  partial_save:
+    title: "Niektóre karty nie zostały zapisane"
+    message: "Niektóre z kart są systemowe i nie mogą być zapisane"
+
+actions:
+  save:
+    all: "Zapisz wszystkie karty"
+    selected: "Zapisz wybrane karty"
+  set_aside:
+    all: "Odłóż wszystkie karty"
+    selected: "Odłóż wybrane karty"
+  show_collections: "Pokaż listę kolekcji"
+
+options_page:
+  title: "Ustawienia"
+  general:
+    title: "Ogólne"
+    options:
+      always_show_toolbars: "Zawsze pokazuj paski narzędzi"
+      include_pinned: "Zapisuj przypięte karty przy zapisywaniu wszystkich kart"
+      show_delete_prompt: "Pytaj o potwierdzenie przy usuwaniu elementów"
+      show_badge: "Pokaż licznik"
+      show_notification: "Pokaż powiadomienie przy zapisywaniu przez menu kontekstowe"
+      unload_tabs: "Nie ładuj kart po otwarciu"
+      list_locations:
+        title: "Otwieraj listę kolekcji w:"
+        options:
+          sidebar: "Panel boczny"
+          popup: "Okno popup"
+          tab: "Osobna karta"
+          pinned: "Przypięta karta"
+      icon_action:
+        title: "Po kliknięciu ikony rozszerzenia:"
+        options:
+          action: "Wykonaj domyślną akcję"
+          context: "Pokaż menu kontekstowe"
+          open: "Otwórz listę kolekcji"
+      change_shortcuts: "Zmień skróty klawiszowe"
+  actions:
+    title: "Akcje"
+    options:
+      save_actions:
+        title: "Domyślna akcja przy zapisywaniu kart"
+        options:
+          set_aside: "Zapisz i zamknij karty"
+          save: "Zapisz karty bez ich zamykania"
+      restore_actions:
+        title: "Domyślna akcja przy otwieraniu kolekcji"
+        options:
+          open: "Po prostu otwórz karty"
+          restore: "Otwórz karty i usuń kolekcję"
+  storage:
+    title: "Magazyn"
+    capacity:
+      title: "Magazyn w chmurze"
+      description: "$1 z $2 KiB"
+    import: "Importuj dane"
+    export: "Eksportuj dane"
+    import_results:
+      success: "Dane zostały pomyślnie zaimportowane"
+      error: "Wygląda na to, że wybrany plik jest uszkodzony. Nic nie zostało zaimportowane"
+    import_prompt:
+      title: "Import danych"
+      warning_title: "To jest nieodwracalna akcja!"
+      warning_text: "Zastąpi wszystkie twoje dane. Upewnij się, że wybrałeś właściwy plik, w przeciwnym razie może to prowadzić do uszkodzenia lub utraty danych. Zaleca się najpierw wyeksportować dane."
+      proceed: "Wybierz plik"
+    disable: "Wyłącz magazyn w chmurze"
+    enable: "Włącz magazyn w chmurze"
+    disable_prompt:
+      text: "Ta akcja wyłączy synchronizację kolekcji między twoimi urządzeniami. Ustawienia nadal będą przechowywane w chmurze."
+      action: "Wyłącz i przeładuj rozszerzenie"
+  about:
+    title: "O rozszerzeniu"
+    developed_by: "Wywoływacz: Eugeniusz Lis"
+    licensed_under: ""
+    mit_license: "Licencja MIT"
+    translation_cta:
+      text: "Znalazłeś błąd lub chcesz tłumaczenie na swój język?"
+      button: "Zacznij tutaj"
+    links:
+      website: "Moja strona internetowa"
+      source: "Kod źródłowy"
+      changelog: "Lista zmian"
+
+collections:
+  empty: "Ta kolekcja jest pusta"
+  tabs_count: "Karty: $1"
+  actions:
+    open: "Otwórz wszystkie"
+    restore: "Przywróć wszystkie"
+    new_window: "Otwórz w nowym oknie"
+    incognito:
+      edge: "Otwórz w oknie InPrivate"
+      firefox: "Otwórz w nowym oknie w trybie prywatnym"
+      chrome: "Otwórz w oknie incognito"
+  incognito_check:
+    title: "Wymagane uprawnienie"
+    message:
+      edge:
+        p1: "Rozszerzenie wymaga dodatkowego uprawnienia, aby otworzyć karty w oknie InPrivate"
+        p2: "Aby to zrobić, kliknij \"Ustawienia\" i zaznacz opcję \"Zezwalaj w trybie InPrivate\""
+      firefox:
+        p1: "Rozszerzenie wymaga dodatkowego uprawnienia, aby otworzyć karty w trybie prywatnym"
+        p2: "Aby to zrobić, kliknij \"Ustawienia\", przejdź do \"Szczegóły\" i zezwól na \"Działanie w oknach prywatnych\""
+      chrome:
+        p1: "Rozszerzenie wymaga dodatkowego uprawnienia, aby otworzyć karty w oknie incognito"
+        p2: "Aby to zrobić, kliknij \"Ustawienia\" i zaznacz opcję \"Zezwalaj w trybie incognito\""
+    action: "Ustawienia"
+  menu:
+    delete: "Usuń kolekcję"
+    add_selected: "Dodaj wybrane karty"
+    add_all: "Dodaj wszystkie karty"
+    add_group: "Dodaj pustą grupę"
+    export_bookmarks: "Eksportuj do zakładek"
+    edit: "Edytuj kolekcję"
+
+groups:
+  title: "Grupa"
+  pinned: "Przypięte"
+  open: "Otwórz"
+  empty: "Ta grupa jest pusta"
+  menu:
+    new_window: "Otwórz w nowym oknie"
+    add_selected: "Dodaj wybrane karty"
+    add_all: "Dodaj wszystkie karty"
+    edit: "Edytuj grupę"
+    ungroup: "Rozgrupuj"
+    delete: "Usuń grupę"
+
+tabs:
+  delete: "Usuń zakładkę"
+
+colors:
+  none: "Bez koloru"
+  any: "Dowolny kolor"
+  grey: "Szary"
+  blue: "Niebieski"
+  red: "Czerwony"
+  yellow: "Żółty"
+  green: "Zielony"
+  pink: "Różowy"
+  purple: "Purpurowy"
+  cyan: "Cyjan"
+  orange: "Pomarańczowy"
+
+dialogs:
+  edit:
+    title:
+      edit_collection: "Edytuj kolekcję"
+      edit_group: "Edytuj grupę"
+      new_group: "Nowa grupa"
+      new_collection: "Nowa kolekcja"
+    collection_title: "Nazwij"
+    color: "Kolor"
+
+main:
+  header:
+    create_collection: "Utwórz nową kolekcję"
+    menu:
+      tiles_view: "Kafelki"
+      changelog: "Co nowego?"
+  list:
+    searchbar:
+      title: "Szukaj"
+      filter: "Filtr"
+      sort:
+        title: "Sortowanie"
+        options:
+          newest: "Najpierw nowe"
+          oldest: "Najpierw stare"
+          ascending: "Od A do Z"
+          descending: "Od Z do A"
+          custom: "Niestandardowe"
+    empty:
+      title: "Na razie nic tu nie ma"
+      message: "Odłóż bieżące zakładki lub utwórz nową kolekcję"
+    empty_search:
+      title: "Nic nie znaleziono"
+      message: "Spróbuj zmienić zapytanie wyszukiwania"
+
+cta_message:
+  title: "Podoba Ci się rozszerzenie?"
+  message: "Wesprzyj autora darowizną lub"
+  feedback: "zostaw opinię"
+
+storage_full_message:
+  title: "Magazyn w chmurze prawie pełny ($1%)"
+  message: "Możesz zwolnić miejsce, usuwając nieużywane kolekcje."
+
+parse_error_message:
+  title: "Nie udało się pobrać kolekcji z magazynu w chmurze."
+  message: "Wygląda na to, że magazyn w chmurze jest uszkodzony. Aby to naprawić, możesz zastąpić go lokalną kopią."
+  action: "Użyj lokalnej kopii"
+
+merge_conflict_message:
+  title: "W lokalnym i chmurowym magazynie są konfliktujące zmiany."
+  message: "Aby to naprawić, możesz zapisać lokalną kopię w chmurze lub zaakceptować zmiany z chmury."
+  accept_local: "Zastąp lokalną"
+  accept_cloud: "Zaakceptuj zmiany z chmury"
