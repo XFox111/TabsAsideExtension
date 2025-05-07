@@ -1,0 +1,251 @@
+manifest:
+  name: "Schede a parte"
+  description: "Salva e organizza le tue schede per dopo. Riprendi da dove avevi lasciato"
+  author: "Eugene Fox"
+
+shortcuts:
+  toggle_sidebar: "Apri elenco delle collezioni"
+  set_aside: "Metti da parte le schede"
+  save_tabs: "Salva le schede senza chiuderle"
+
+common:
+  actions:
+    cancel: "Annulla"
+    save: "Salva"
+    close: "Chiudi"
+    delete: "Elimina"
+    reset_filters: "Reimposta filtri"
+  cta:
+    feedback: "Lascia un feedback"
+    sponsor: "Offrimi un caffè"
+  tooltips:
+    more: "Altro"
+  delete_prompt: "Sei sicuro? Questa azione non può essere annullata."
+
+features:
+  v3welcome:
+    title: "Benvenuto in Schede a parte 3.0"
+    text1: "Siamo felici di annunciare il nostro nuovo aggiornamento principale per l'estensione Schede a parte!"
+    text2: "Questo aggiornamento porta una nuova interfaccia utente e molte nuove funzionalità, tra cui:"
+    list:
+      item1: "Supporto per gruppi di schede"
+      item2: "Personalizzazione delle collezioni"
+      item3: "Riordino e organizzazione tramite drag and drop"
+      item4: "Creazione manuale di collezioni da zero"
+      item5: "E altro ancora!"
+    text3: "Visita il nostro blog per saperne di più su questo aggiornamento e tutte le sue funzionalità!"
+    actions:
+      visit_blog: "Leggi il blog degli sviluppatori"
+
+notifications:
+  tabs_saved:
+    title: "Nuova collezione creata"
+    message: "Le tue schede sono state salvate in una nuova collezione"
+  error_quota_exceeded:
+    title: "Superato il limite massimo di operazioni di scrittura sul cloud"
+    message: "Abbiamo salvato le tue schede nella memoria locale. Dovrai aggiornare manualmente il tuo spazio cloud"
+  error_storage_full:
+    title: "Il tuo spazio cloud è pieno"
+    message: "Abbiamo salvato le tue schede nella memoria locale. Libera spazio nel tuo cloud storage"
+  bookmark_saved:
+    title: "Esportato nei segnalibri"
+    message: "La tua collezione è stata esportata nei segnalibri"
+  partial_save:
+    title: "Alcune schede non sono state salvate"
+    message: "Alcune schede erano schede di sistema a cui non potevamo accedere. Sono state saltate"
+
+actions:
+  save:
+    all: "Salva tutte le schede"
+    selected: "Salva le schede selezionate"
+  set_aside:
+    all: "Metti da parte tutte le schede"
+    selected: "Metti da parte le schede selezionate"
+  show_collections: "Mostra collezioni"
+
+options_page:
+  title: "Impostazioni"
+  general:
+    title: "Generale"
+    options:
+      always_show_toolbars: "Mostra sempre le barre degli strumenti"
+      include_pinned: "Includi schede bloccate quando salvi tutte le schede"
+      show_delete_prompt: "Chiedi conferma quando elimini un elemento"
+      show_badge: "Mostra il badge del contatore"
+      show_notification: "Mostra notifica quando salvi le schede usando il menu contestuale"
+      unload_tabs: "Non caricare le schede dopo l'apertura"
+      list_locations:
+        title: "Apri elenco delle collezioni in:"
+        options:
+          sidebar: "Barra laterale"
+          popup: "Popup"
+          tab: "Scheda separata"
+          pinned: "Scheda separata bloccata"
+      icon_action:
+        title: "Quando clicchi sull'icona dell'estensione:"
+        options:
+          action: "Esegui l'azione di salvataggio predefinita"
+          context: "Mostra menu contestuale"
+          open: "Apri elenco delle collezioni"
+      change_shortcuts: "Modifica le scorciatoie dell'estensione"
+  actions:
+    title: "Azioni predefinite"
+    options:
+      save_actions:
+        title: "Azione predefinita quando salvi le schede"
+        options:
+          set_aside: "Salva e chiudi le schede"
+          save: "Salva le schede senza chiuderle"
+      restore_actions:
+        title: "Azione predefinita quando apri le collezioni"
+        options:
+          open: "Apri solo le schede"
+          restore: "Apri le schede e rimuovi la collezione"
+  storage:
+    title: "Archiviazione"
+    capacity:
+      title: "Capacità di archiviazione cloud"
+      description: "$1 di $2 KiB"
+    import: "Importa dati"
+    export: "Esporta dati"
+    import_results:
+      success: "Dati importati con successo"
+      error: "Il file fornito sembra essere corrotto. Non è stato importato nulla"
+    import_prompt:
+      title: "Importa dati"
+      warning_title: "Questa è un'azione irreversibile"
+      warning_text: "Questo sovrascriverà tutti i tuoi dati. Assicurati di aver scelto il file corretto, altrimenti potrebbero verificarsi corruzioni o perdite di dati. Si consiglia di esportare prima i dati."
+      proceed: "Scegli un file"
+    enable: "Abilita archiviazione cloud"
+    disable: "Disabilita archiviazione cloud"
+    disable_prompt:
+      text: "Questa azione disabiliterà la sincronizzazione delle collezioni tra i tuoi dispositivi. Le impostazioni dell'estensione saranno comunque sincronizzate."
+      action: "Disabilita e ricarica l'estensione"
+  about:
+    title: "Informazioni"
+    developed_by: "Sviluppato da Eugene Fox"
+    licensed_under: "Concesso in licenza sotto"
+    mit_license: "Licenza MIT"
+    translation_cta:
+      text: "Hai trovato un errore di battitura o vuoi una traduzione per la tua lingua?"
+      button: "Inizia qui"
+    links:
+      website: "Il mio sito web"
+      source: "Codice sorgente"
+      changelog: "Registro delle modifiche"
+
+collections:
+  empty: "Questa collezione è vuota"
+  tabs_count: "$1 schede"
+  actions:
+    open: "Apri tutto"
+    restore: "Ripristina tutto"
+    new_window: "Apri tutto in una nova finestra"
+    incognito:
+      edge: "Apri tutto in una nuova finestra InPrivate"
+      firefox: "Apri tutto in nuova finestra anonima"
+      chrome: "Apri tutto in finestra di navigazione in incognito"
+  incognito_check:
+    title: "Permessi richiesti"
+    message:
+      edge:
+        p1: "L'estensione necessita del permesso per aprire schede in finestra InPrivate"
+        p2: "Per farlo, clicca su \"Impostazioni\" e poi seleziona l'opzione \"Consenti in InPrivate\""
+      firefox:
+        p1: "L'estensione necessita del permesso per aprire schede in finestra anonima"
+        p2: "Per farlo, clicca su \"Impostazioni\", vai su \"Dettagli\" e imposta \"Funzionamento in finestre anonime\" su \"Consenti\""
+      chrome:
+        p1: "L'estensione necessita del permesso per aprire schede in finestra di navigazione in incognito"
+        p2: "Per farlo, clicca su \"Impostazioni\" e poi seleziona l'opzione \"Consenti modalità di navigazione in incognito\""
+    action: "Impostazioni"
+  menu:
+    delete: "Elimina collezione"
+    add_selected: "Aggiungi schede selezionate"
+    add_all: "Aggiungi tutte le schede"
+    add_group: "Aggiungi gruppo vuoto"
+    export_bookmarks: "Esporta nei segnalibri"
+    edit: "Modifica collezione"
+
+groups:
+  title: "Gruppo"
+  pinned: "Bloccato"
+  open: "Apri tutto"
+  empty: "Questo gruppo è vuoto"
+  menu:
+    new_window: "Apri in una nuova finestra"
+    add_selected: "Aggiungi schede selezionate"
+    add_all: "Aggiungi tutte le schede"
+    edit: "Modifica gruppo"
+    ungroup: "Rimuovi dal gruppo"
+    delete: "Elimina gruppo"
+
+tabs:
+  delete: "Elimina scheda"
+
+colors:
+  none: "Nessun colore"
+  any: "Qualsiasi colore"
+  grey: "Grigio"
+  blue: "Blu"
+  red: "Rosso"
+  yellow: "Giallo"
+  green: "Verde"
+  pink: "Rosa"
+  purple: "Viola"
+  cyan: "Ciano"
+  orange: "Arancione"
+
+dialogs:
+  edit:
+    title:
+      edit_collection: "Modifica collezione"
+      edit_group: "Modifica gruppo"
+      new_group: "Nuovo gruppo"
+      new_collection: "Nuova collezione"
+    collection_title: "Titolo"
+    color: "Colore"
+
+main:
+  header:
+    create_collection: "Crea nuova collezione"
+    menu:
+      tiles_view: "Vista a riquadri"
+      changelog: "Cosa c'è di nuovo?"
+  list:
+    searchbar:
+      title: "Cerca"
+      filter: "Filtra"
+      sort:
+        title: "Ordina"
+        options:
+          newest: "Più recenti prima"
+          oldest: "Più vecchi prima"
+          ascending: "Dalla A alla Z"
+          descending: "Dalla Z alla A"
+          custom: "Personalizzato"
+    empty:
+      title: "Niente da mostrare qui per ora"
+      message: "Metti da parte le tue schede attuali o crea una nuova collezione"
+    empty_search:
+      title: "Non è stato trovato nulla"
+      message: "Prova a cambiare la tua query di ricerca"
+
+cta_message:
+  title: "Ti piace questa estensione?"
+  message: "Considera di supportare l'autore con una donazione o"
+  feedback: "lasciando un feedback"
+
+storage_full_message:
+  title: "Il tuo spazio cloud è quasi pieno ($1%)"
+  message: "Puoi liberare spazio eliminando collezioni inutilizzate."
+
+parse_error_message:
+  title: "Non siamo riusciti a ottenere le collezioni dal tuo spazio cloud."
+  message: "Il tuo spazio cloud sembra essere corrotto. Puoi risolvere sostituendolo con la tua copia locale."
+  action: "Risolvere con copia locale"
+
+merge_conflict_message:
+  title: "Le tue memorie locali e cloud hanno modifiche in conflitto."
+  message: "Per risolvere, puoi caricare la tua copia locale nel cloud o accettare le modifiche del cloud."
+  accept_local: "Sostituisci con locale"
+  accept_cloud: "Accetta modifiche del cloud"
