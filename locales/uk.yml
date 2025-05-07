@@ -191,9 +191,9 @@ colors:
   yellow: "Жовтий"
   green: "Зелений"
   pink: "Рожевий"
-  purple: "Фіолетовий"
-  cyan: "Голубий"
-  orange: "Помаранчевий"
+  purple: "Пурпуровий"
+  cyan: "Бірюзовий"
+  orange: "Оранжевий"
 
 dialogs:
   edit:

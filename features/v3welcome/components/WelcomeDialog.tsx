@@ -24,9 +24,7 @@ export default function WelcomeDialog(): React.ReactElement
 						{ i18n.t("features.v3welcome.text2") }
 					</fui.Body1>
 					<ul>
-						{ !import.meta.env.FIREFOX &&
-							<li>{ i18n.t("features.v3welcome.list.item1") }</li>
-						}
+						<li>{ i18n.t("features.v3welcome.list.item1") }</li>
 						<li>{ i18n.t("features.v3welcome.list.item2") }</li>
 						<li>{ i18n.t("features.v3welcome.list.item3") }</li>
 						<li>{ i18n.t("features.v3welcome.list.item4") }</li>
