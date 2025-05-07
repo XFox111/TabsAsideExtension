@@ -84,7 +84,7 @@ export default function OpenCollectionButton(): React.ReactElement
 							{ i18n.t("collections.actions.restore") }
 						</MenuItem>
 					}
-					<MenuItem icon={ <NewWindowIcon /> } onClick={ () => handleOpen("new") }>
+					<MenuItem icon={ <NewWindowIcon /> } onClick={ handleOpen("new") }>
 						{ i18n.t("collections.actions.new_window") }
 					</MenuItem>
 					<MenuItem icon={ <InPrivateIcon /> } onClick={ handleIncognito }>
