@@ -21,4 +21,4 @@ export const storeLink: string =
 		? "https://addons.mozilla.org/en-US/firefox/addon/ms-edge-tabs-aside/" :
 		chrome.runtime.getManifest().update_url?.startsWith("https://edge.microsoft.com/") ?
 			"https://microsoftedge.microsoft.com/addons/detail/tabs-aside/kmnblllmalkiapkfknnlpobmjjdnlhnd" :
-			"https://chrome.google.com/webstore/detail/mgmjbodjgijnebfgohlnjkegdbdjgin";
+			"https://chromewebstore.google.com/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin";
