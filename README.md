@@ -26,7 +26,7 @@ Check out our [latest blog post](https://at.xfox111.net/tabs-aside-3-0) regardin
 - English
 - Italian
 - Polish
-- Portuguese (Brazil) by @maisondasilva
+- Portuguese (Brazil) by [@maisondasilva](https://github.com/maisondasilva)
 - Russian
 - Spanish
 - Ukrainian
