@@ -1,7 +1,7 @@
 {
 	"name": "tabs-aside",
 	"private": true,
-	"version": "3.0.0-rc2",
+	"version": "3.0.0-rc3",
 	"type": "module",
 	"scripts": {
 		"dev": "wxt",
