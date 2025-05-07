@@ -74,7 +74,7 @@ export default function EditDialog(props: GroupEditDialogProps): ReactElement
 								contentBefore={ <Rename20Regular /> }
 								disabled={ color === "pinned" }
 								placeholder={
-									props.type === "collection" ? getCollectionTitle(props.collection) : ""
+									props.type === "collection" ? getCollectionTitle(props.collection, true) : ""
 								}
 								value={ color === "pinned" ? i18n.t("groups.pinned") : title }
 								onChange={ (_, e) => setTitle(e.value) } />

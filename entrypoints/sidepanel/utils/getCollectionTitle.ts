@@ -1,8 +1,10 @@
 import { CollectionItem } from "@/models/CollectionModels";
 
-export function getCollectionTitle(collection?: CollectionItem): string
+export function getCollectionTitle(collection?: CollectionItem, useTimestamp?: boolean): string
 {
-	return collection?.title
-		|| new Date(collection?.timestamp ?? Date.now())
-			.toLocaleDateString(browser.i18n.getUILanguage(), { year: "numeric", month: "short", day: "numeric" });
+	if (collection?.title !== undefined && useTimestamp !== true)
+		return collection.title;
+
+	return new Date(collection?.timestamp ?? Date.now())
+		.toLocaleDateString(browser.i18n.getUILanguage(), { year: "numeric", month: "short", day: "numeric" });
 }
