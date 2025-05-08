@@ -55,8 +55,8 @@ export async function openGroup(group: GroupItem, newWindow: boolean = false): P
 async function createGroup(group: GroupItem, windowId: number, discard?: boolean): Promise<void>
 {
 	discard ??= await settings.dismissOnLoad.getValue();
-	const tabIds: number[] = await Promise.all(group.items.map(async i =>
-		(await createTab(i.url, windowId, discard, group.pinned)).id!
+	const tabs: Tabs.Tab[] = await Promise.all(group.items.map(async i =>
+		await createTab(i.url, windowId, discard, group.pinned)
 	));
 
 	// "Pinned" group is technically not a group, so not much else to do here
@@ -65,9 +65,8 @@ async function createGroup(group: GroupItem, windowId: number, discard?: boolean
 		return;
 
 	const groupId: number = await chrome.tabs.group({
-		tabIds, createProperties: {
-			windowId
-		}
+		tabIds: tabs.filter(i => i.windowId === windowId).map(i => i.id!),
+		createProperties: { windowId }
 	});
 
 	await chrome.tabGroups.update(groupId, {
@@ -79,11 +78,13 @@ async function createGroup(group: GroupItem, windowId: number, discard?: boolean
 async function manageWindow(handle: (windowId: number) => Promise<void>, windowProps?: Windows.CreateCreateDataType): Promise<void>
 {
 	const currentWindow: Windows.Window = windowProps ?
-		await browser.windows.create({ url: "about:blank", focused: true, ...windowProps }) :
+		await browser.windows.create({ url: "about:blank", focused: false, ...windowProps }) :
 		await browser.windows.getCurrent();
 	const windowId: number = currentWindow.id!;
 
 	await handle(windowId);
+
+	await browser.windows.update(windowId, { focused: true });
 
 	if (windowProps)
 		// Close "about:blank" tab
