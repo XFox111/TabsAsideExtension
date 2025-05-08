@@ -83,22 +83,22 @@ async function createCollectionFromTabs(tabs: Tabs.Tab[]): Promise<[CollectionIt
 		}
 	}
 
-	if (import.meta.env.FIREFOX)
-	{
-		for (; tabIndex < tabs.length; tabIndex++)
-			collection.items.push({ type: "tab", url: tabs[tabIndex].url!, title: tabs[tabIndex].title });
-
-		return [collection, tabs];
-	}
-
 	// Special case, if all tabs are in the same group, create a collection with the group title
-	if (tabs[0].groupId && tabs[0].groupId !== chrome.tabGroups.TAB_GROUP_ID_NONE &&
+	if (tabs[0].groupId && tabs[0].groupId !== -1 &&
 		tabs.every(i => i.groupId === tabs[0].groupId)
 	)
 	{
-		const group = await browser.tabGroups!.get(tabs[0].groupId);
-		collection.title = group.title;
-		collection.color = group.color;
+		// TODO: Remove the check when Firefox 139 is out
+		if (!import.meta.env.FIREFOX)
+		{
+			const group = await browser.tabGroups!.get(tabs[0].groupId);
+			collection.title = group.title;
+			collection.color = group.color;
+		}
+		else
+		{
+			collection.color = "blue";
+		}
 
 		tabs.forEach(i =>
 			collection.items.push({ type: "tab", url: i.url!, title: i.title })
@@ -113,7 +113,7 @@ async function createCollectionFromTabs(tabs: Tabs.Tab[]): Promise<[CollectionIt
 	{
 		const tab = tabs[tabIndex];
 
-		if (!tab.groupId || tab.groupId === chrome.tabGroups.TAB_GROUP_ID_NONE)
+		if (!tab.groupId || tab.groupId === -1)
 		{
 			collection.items.push({ type: "tab", url: tab.url!, title: tab.title });
 			activeGroup = null;
@@ -123,14 +123,27 @@ async function createCollectionFromTabs(tabs: Tabs.Tab[]): Promise<[CollectionIt
 		if (!activeGroup || activeGroup !== tab.groupId)
 		{
 			activeGroup = tab.groupId;
-			const group = await browser.tabGroups!.get(activeGroup);
 
-			collection.items.push({
-				type: "group",
-				color: group.color,
-				title: group.title,
-				items: []
-			});
+			// TODO: Remove the check when Firefox 139 is out
+			if (import.meta.env.FIREFOX)
+			{
+				collection.items.push({
+					type: "group",
+					color: "blue",
+					items: []
+				});
+			}
+			else
+			{
+				const group = await browser.tabGroups!.get(activeGroup);
+
+				collection.items.push({
+					type: "group",
+					color: group.color,
+					title: group.title,
+					items: []
+				});
+			}
 		}
 
 		(collection.items[collection.items.length - 1] as GroupItem).items.push({

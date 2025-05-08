@@ -78,7 +78,7 @@ export default defineConfig({
 				gecko:
 				{
 					id: "tabsaside@xfox111.net",
-					strict_min_version: "109.0"
+					strict_min_version: "138.0"
 				}
 			};
 

@@ -60,8 +60,7 @@ async function createGroup(group: GroupItem, windowId: number, discard?: boolean
 	));
 
 	// "Pinned" group is technically not a group, so not much else to do here
-	// and Firefox doesn't even support tab groups
-	if (group.pinned === true || import.meta.env.FIREFOX)
+	if (group.pinned === true)
 		return;
 
 	const groupId: number = await chrome.tabs.group({
@@ -69,10 +68,13 @@ async function createGroup(group: GroupItem, windowId: number, discard?: boolean
 		createProperties: { windowId }
 	});
 
-	await chrome.tabGroups.update(groupId, {
-		title: group.title,
-		color: group.color
-	});
+	// Grouping support came in 138, tabGroups is expected to be in 139
+	// TODO: Remove this check once the API is available
+	if (!import.meta.env.FIREFOX)
+		await chrome.tabGroups.update(groupId, {
+			title: group.title,
+			color: group.color
+		});
 }
 
 async function manageWindow(handle: (windowId: number) => Promise<void>, windowProps?: Windows.CreateCreateDataType): Promise<void>
