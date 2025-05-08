@@ -77,6 +77,9 @@ export default defineBackground(() =>
 				if (!tab.url || tab.status !== "complete" || !tab.active)
 					return;
 
+				if (graphicsCache[tab.url]?.capture || graphicsCache[tab.url]?.capture === null)
+					return;
+
 				try
 				{
 					// We use chrome here because polyfill throws uncatchable errors for some reason
@@ -92,7 +95,14 @@ export default defineBackground(() =>
 						};
 					}
 				}
-				catch { }
+				catch
+				{
+					graphicsCache[tab.url] = {
+						capture: null!,
+						preview: graphicsCache[tab.url]?.preview,
+						icon: graphicsCache[tab.url]?.icon
+					};
+				}
 			};
 
 			setInterval(() =>
