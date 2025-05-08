@@ -37,7 +37,7 @@ export default function EditDialog(props: GroupEditDialogProps): ReactElement
 				type: "collection",
 				timestamp: props.collection?.timestamp ?? Date.now(),
 				color: (color === "pinned") ? undefined : color!,
-				title,
+				title: title ? title : undefined,
 				items: props.collection?.items ?? []
 			});
 		else if (color === "pinned")
@@ -51,7 +51,7 @@ export default function EditDialog(props: GroupEditDialogProps): ReactElement
 				type: "group",
 				pinned: false,
 				color: color!,
-				title,
+				title: title ? title : undefined,
 				items: props.group?.items ?? []
 			});
 	};
