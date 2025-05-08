@@ -9,10 +9,12 @@ import { Button, Caption1, Link, mergeClasses, Tooltip } from "@fluentui/react-c
 import { Dismiss20Regular } from "@fluentui/react-icons";
 import { MouseEventHandler, ReactElement } from "react";
 import { useStyles_TabView } from "./TabView.styles";
+import CollectionContext, { CollectionContextType } from "../contexts/CollectionContext";
 
 export default function TabView({ tab, indices, dragOverlay }: TabViewProps): ReactElement
 {
 	const { removeItem, graphics, tilesView } = useCollections();
+	const { collection } = useContext<CollectionContextType>(CollectionContext);
 	const {
 		setNodeRef, setActivatorNodeRef,
 		nodeProps, activatorProps, isBeingDragged
@@ -29,16 +31,18 @@ export default function TabView({ tab, indices, dragOverlay }: TabViewProps): Re
 		args.preventDefault();
 		args.stopPropagation();
 
+		const removeIndex: number[] = [collection.timestamp, ...indices.slice(1)];
+
 		if (deletePrompt)
 			dialog.pushPrompt({
 				title: i18n.t("tabs.delete"),
 				content: i18n.t("common.delete_prompt"),
 				destructive: true,
 				confirmText: i18n.t("common.actions.delete"),
-				onConfirm: () => removeItem(...indices)
+				onConfirm: () => removeItem(...removeIndex)
 			});
 		else
-			removeItem(...indices);
+			removeItem(...removeIndex);
 	};
 
 	const handleClick: MouseEventHandler<HTMLAnchorElement> = (args) =>

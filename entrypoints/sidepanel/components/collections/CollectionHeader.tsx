@@ -15,7 +15,7 @@ export default function CollectionHeader({ dragHandleRef, dragHandleProps }: Col
 	const [listLocation] = useSettings("listLocation");
 	const isTab: boolean = listLocation === "tab" || listLocation === "pinned";
 	const { updateCollection } = useCollections();
-	const { tabCount, collection, collectionIndex } = useContext<CollectionContextType>(CollectionContext);
+	const { tabCount, collection } = useContext<CollectionContextType>(CollectionContext);
 	const [alwaysShowToolbars] = useSettings("alwaysShowToolbars");
 
 	const AddIcon = bundleIcon(Add20Filled, Add20Regular);
@@ -25,7 +25,7 @@ export default function CollectionHeader({ dragHandleRef, dragHandleProps }: Col
 		const newTabs: (TabItem | GroupItem)[] = isTab ?
 			(await saveTabsToCollection(false)).items :
 			await getSelectedTabs();
-		updateCollection({ ...collection, items: [...collection.items, ...newTabs] }, collectionIndex);
+		updateCollection({ ...collection, items: [...collection.items, ...newTabs] }, collection.timestamp);
 	};
 
 	const cls = useStyles();

@@ -12,7 +12,7 @@ export default function OpenCollectionButton(): React.ReactElement
 	const [defaultAction] = useSettings("defaultRestoreAction");
 	const { removeItem } = useCollections();
 	const dialog = useDialog();
-	const { collection, collectionIndex } = useContext<CollectionContextType>(CollectionContext);
+	const { collection } = useContext<CollectionContextType>(CollectionContext);
 
 	const OpenIcon = ic.bundleIcon(ic.Open20Filled, ic.Open20Regular);
 	const RestoreIcon = ic.bundleIcon(ic.ArrowExportRtl20Filled, ic.ArrowExportRtl20Regular);
@@ -50,7 +50,7 @@ export default function OpenCollectionButton(): React.ReactElement
 	const handleRestore = async () =>
 	{
 		await openCollection(collection);
-		removeItem(collectionIndex);
+		removeItem(collection.timestamp);
 	};
 
 	return (

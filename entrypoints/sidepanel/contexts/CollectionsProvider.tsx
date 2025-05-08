@@ -50,12 +50,14 @@ export default function CollectionsProvider({ children }: React.PropsWithChildre
 
 	const removeItem = (...indices: number[]): void =>
 	{
+		const collectionIndex: number = collections.findIndex(i => i.timestamp === indices[0]);
+
 		if (indices.length > 2)
-			(collections[indices[0]].items[indices[1]] as GroupItem).items.splice(indices[2], 1);
+			(collections[collectionIndex].items[indices[1]] as GroupItem).items.splice(indices[2], 1);
 		else if (indices.length > 1)
-			collections[indices[0]].items.splice(indices[1], 1);
+			collections[collectionIndex].items.splice(indices[1], 1);
 		else
-			collections.splice(indices[0], 1);
+			collections.splice(collectionIndex, 1);
 
 		updateStorage(collections);
 	};
@@ -65,20 +67,23 @@ export default function CollectionsProvider({ children }: React.PropsWithChildre
 		updateStorage(collectionList);
 	};
 
-	const updateCollection = (collection: CollectionItem, index: number): void =>
+	const updateCollection = (collection: CollectionItem, id: number): void =>
 	{
+		const index: number = collections.findIndex(i => i.timestamp === id);
 		collections[index] = collection;
 		updateStorage(collections);
 	};
 
-	const updateGroup = (group: GroupItem, collectionIndex: number, groupIndex: number): void =>
+	const updateGroup = (group: GroupItem, collectionId: number, groupIndex: number): void =>
 	{
+		const collectionIndex: number = collections.findIndex(i => i.timestamp === collectionId);
 		collections[collectionIndex].items[groupIndex] = group;
 		updateStorage(collections);
 	};
 
-	const ungroup = (collectionIndex: number, groupIndex: number): void =>
+	const ungroup = (collectionId: number, groupIndex: number): void =>
 	{
+		const collectionIndex: number = collections.findIndex(i => i.timestamp === collectionId);
 		const group = collections[collectionIndex].items[groupIndex] as GroupItem;
 		collections[collectionIndex].items.splice(groupIndex, 1, ...group.items);
 		updateStorage(collections);
@@ -108,9 +113,9 @@ export type CollectionsContextType =
 		addCollection: (collection: CollectionItem) => void;
 
 		updateCollections: (collections: CollectionItem[]) => void;
-		updateCollection: (collection: CollectionItem, index: number) => void;
-		updateGroup: (group: GroupItem, collectionIndex: number, groupIndex: number) => void;
-		ungroup: (collectionIndex: number, groupIndex: number) => void;
+		updateCollection: (collection: CollectionItem, id: number) => void;
+		updateGroup: (group: GroupItem, collectionId: number, groupIndex: number) => void;
+		ungroup: (collectionId: number, groupIndex: number) => void;
 
 		removeItem: (...indices: number[]) => void;
 	};

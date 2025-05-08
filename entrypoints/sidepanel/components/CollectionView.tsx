@@ -33,7 +33,7 @@ export default function CollectionView({ collection, index: collectionIndex, dra
 	const colorCls = useGroupColors();
 
 	return (
-		<CollectionContext.Provider value={ { collection, collectionIndex, tabCount, hasPinnedGroup } }>
+		<CollectionContext.Provider value={ { collection, tabCount, hasPinnedGroup } }>
 			<div
 				ref={ setNodeRef } { ...nodeProps }
 				className={ mergeClasses(

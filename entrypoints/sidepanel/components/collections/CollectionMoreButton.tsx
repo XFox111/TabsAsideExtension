@@ -13,7 +13,7 @@ export default function CollectionMoreButton({ onAddSelected }: CollectionMoreBu
 	const [listLocation] = useSettings("listLocation");
 	const isTab: boolean = listLocation === "tab" || listLocation === "pinned";
 	const { removeItem, updateCollection } = useCollections();
-	const { tabCount, hasPinnedGroup, collection, collectionIndex } = useContext<CollectionContextType>(CollectionContext);
+	const { tabCount, hasPinnedGroup, collection } = useContext<CollectionContextType>(CollectionContext);
 	const dialog = useDialog();
 	const [deletePrompt] = useSettings("deletePrompt");
 
@@ -33,10 +33,10 @@ export default function CollectionMoreButton({ onAddSelected }: CollectionMoreBu
 				content: i18n.t("common.delete_prompt"),
 				destructive: true,
 				confirmText: i18n.t("common.actions.delete"),
-				onConfirm: () => removeItem(collectionIndex)
+				onConfirm: () => removeItem(collection.timestamp)
 			});
 		else
-			removeItem(collectionIndex);
+			removeItem(collection.timestamp);
 	};
 
 	const handleEdit = () =>
@@ -44,7 +44,7 @@ export default function CollectionMoreButton({ onAddSelected }: CollectionMoreBu
 			<EditDialog
 				type="collection"
 				collection={ collection }
-				onSave={ item => updateCollection(item, collectionIndex) } />
+				onSave={ item => updateCollection(item, collection.timestamp) } />
 		);
 
 	const handleCreateGroup = () =>
@@ -52,7 +52,7 @@ export default function CollectionMoreButton({ onAddSelected }: CollectionMoreBu
 			<EditDialog
 				type="group"
 				hidePinned={ hasPinnedGroup }
-				onSave={ group => updateCollection({ ...collection, items: [...collection.items, group] }, collectionIndex) } />
+				onSave={ group => updateCollection({ ...collection, items: [...collection.items, group] }, collection.timestamp) } />
 		);
 
 	return (

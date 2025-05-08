@@ -8,7 +8,6 @@ export default CollectionContext;
 export type CollectionContextType =
 	{
 		collection: CollectionItem;
-		collectionIndex: number;
 		tabCount: number;
 		hasPinnedGroup: boolean;
 	};

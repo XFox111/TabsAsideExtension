@@ -121,27 +121,25 @@ export default function CollectionListView(): ReactElement
 						</SortableContext>
 
 						<DragOverlay dropAnimation={ null }>
-							{ active &&
-								<>
-									{ active.item.type === "collection" &&
-										<CollectionView collection={ active.item } index={ -1 } dragOverlay />
-									}
-									{ active.item.type === "group" &&
-										<CollectionContext.Provider
-											value={ {
-												tabCount: 0,
-												collectionIndex: active.indices[0],
-												collection: resultList[active.indices[0]],
-												hasPinnedGroup: true
-											} }
-										>
+							{ active !== null ?
+								active.item.type === "collection" ?
+									<CollectionView collection={ active.item } index={ -1 } dragOverlay />
+									:
+									<CollectionContext.Provider
+										value={ {
+											tabCount: 0,
+											collection: resultList[active.indices[0]],
+											hasPinnedGroup: true
+										} }
+									>
+										{ active.item.type === "group" ?
 											<GroupView group={ active.item } indices={ [-1] } dragOverlay />
-										</CollectionContext.Provider>
-									}
-									{ active.item.type === "tab" &&
-										<TabView tab={ active.item } indices={ [-1] } dragOverlay />
-									}
-								</>
+											:
+											<TabView tab={ active.item } indices={ [-1] } dragOverlay />
+										}
+									</CollectionContext.Provider>
+								:
+								<></>
 							}
 						</DragOverlay>
 					</DndContext>

@@ -18,7 +18,7 @@ export default function GroupMoreMenu(): ReactElement
 	const [listLocation] = useSettings("listLocation");
 	const isTab: boolean = listLocation === "tab" || listLocation === "pinned";
 	const { group, indices } = useContext<GroupContextType>(GroupContext);
-	const { hasPinnedGroup } = useContext<CollectionContextType>(CollectionContext);
+	const { hasPinnedGroup, collection } = useContext<CollectionContextType>(CollectionContext);
 	const [deletePrompt] = useSettings("deletePrompt");
 	const dialog = useDialog();
 	const { updateGroup, removeItem, ungroup } = useCollections();
@@ -33,16 +33,18 @@ export default function GroupMoreMenu(): ReactElement
 
 	const handleDelete = () =>
 	{
+		const removeIndex: number[] = [collection.timestamp, ...indices.slice(1)];
+
 		if (deletePrompt)
 			dialog.pushPrompt({
 				title: i18n.t("groups.menu.delete"),
 				content: i18n.t("common.delete_prompt"),
 				confirmText: i18n.t("common.actions.delete"),
 				destructive: true,
-				onConfirm: () => removeItem(...indices)
+				onConfirm: () => removeItem(...removeIndex)
 			});
 		else
-			removeItem(...indices);
+			removeItem(...removeIndex);
 	};
 
 	const handleEdit = () =>
@@ -51,7 +53,7 @@ export default function GroupMoreMenu(): ReactElement
 				type="group"
 				group={ group }
 				hidePinned={ hasPinnedGroup }
-				onSave={ item => updateGroup(item, indices[0], indices[1]) } />
+				onSave={ item => updateGroup(item, collection.timestamp, indices[1]) } />
 		);
 
 	const handleAddSelected = async () =>
@@ -59,7 +61,7 @@ export default function GroupMoreMenu(): ReactElement
 		const newTabs: TabItem[] = isTab ?
 			(await saveTabsToCollection(false)).items.flatMap(i => i.type === "tab" ? i : i.items) :
 			await getSelectedTabs();
-		updateGroup({ ...group, items: [...group.items, ...newTabs] }, indices[0], indices[1]);
+		updateGroup({ ...group, items: [...group.items, ...newTabs] }, collection.timestamp, indices[1]);
 	};
 
 	return (
@@ -89,7 +91,7 @@ export default function GroupMoreMenu(): ReactElement
 						<MenuItem
 							className={ dangerCls.menuItem }
 							icon={ <UngroupIcon /> }
-							onClick={ () => ungroup(indices[0], indices[1]) }
+							onClick={ () => ungroup(collection.timestamp, indices[1]) }
 						>
 							{ i18n.t("groups.menu.ungroup") }
 						</MenuItem>
