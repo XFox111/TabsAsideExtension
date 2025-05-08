@@ -161,7 +161,7 @@ collections:
   menu:
     delete: "Delete collection"
     add_selected: "Add selected tabs"
-    add_all: "Add selected tabs"
+    add_all: "Add all tabs"
     add_group: "Add empty group"
     export_bookmarks: "Export to bookmarks"
     edit: "Edit collection"
@@ -174,7 +174,7 @@ groups:
   menu:
     new_window: "Open in new window"
     add_selected: "Add selected tabs"
-    add_all: "Add selected tabs"
+    add_all: "Add all tabs"
     edit: "Edit group"
     ungroup: "Ungroup"
     delete: "Delete group"
