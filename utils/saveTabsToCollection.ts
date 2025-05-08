@@ -23,7 +23,13 @@ export default async function saveTabsToCollection(closeTabs: boolean): Promise<
 	const [collection, tabsToClose] = await createCollectionFromTabs(tabs);
 
 	if (closeTabs)
+	{
+		await browser.tabs.create({
+			active: true,
+			windowId: tabs[0].windowId
+		});
 		await browser.tabs.remove(tabsToClose.map(i => i.id!));
+	}
 
 	track(closeTabs ? "set_aside" : "save");
 
