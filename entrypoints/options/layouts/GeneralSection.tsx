@@ -27,6 +27,9 @@ export default function GeneralSection(): React.ReactElement
 		if (e.optionValue === "popup" && contextAction !== "open")
 			setContextAction("open");
 
+		if (import.meta.env.FIREFOX && e.optionValue !== "sidebar")
+			browser.sidebarAction.close();
+
 		setListLocation(e.optionValue as ListLocationType);
 	};
 
