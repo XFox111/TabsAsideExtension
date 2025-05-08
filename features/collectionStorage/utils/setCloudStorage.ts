@@ -1,3 +1,4 @@
+import { sendMessage } from "@/utils/messaging";
 import { collectionStorage } from "./collectionStorage";
 import saveCollectionsToCloud from "./saveCollectionsToCloud";
 
@@ -14,6 +15,6 @@ export default async function setCloudStorage(enable: boolean): Promise<void>
 	{
 		await collectionStorage.disableCloud.setValue(true);
 		await saveCollectionsToCloud([], 0);
-		browser.runtime.reload();
+		await sendMessage("refreshCollections", undefined);
 	}
 }

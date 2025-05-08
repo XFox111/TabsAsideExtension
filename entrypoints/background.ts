@@ -68,6 +68,7 @@ export default defineBackground(() =>
 				icon: graphicsCache[data.url]?.icon
 			};
 		});
+		onMessage("refreshCollections", () => {});
 
 		setupTabCaputre();
 		async function setupTabCaputre(): Promise<void>
