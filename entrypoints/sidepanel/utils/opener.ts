@@ -68,13 +68,10 @@ async function createGroup(group: GroupItem, windowId: number, discard?: boolean
 		createProperties: { windowId }
 	});
 
-	// Grouping support came in 138, tabGroups is expected to be in 139
-	// TODO: Remove this check once the API is available
-	if (!import.meta.env.FIREFOX)
-		await chrome.tabGroups.update(groupId, {
-			title: group.title,
-			color: group.color
-		});
+	await chrome.tabGroups.update(groupId, {
+		title: group.title,
+		color: group.color
+	});
 }
 
 async function manageWindow(handle: (windowId: number) => Promise<void>, windowProps?: Windows.CreateCreateDataType): Promise<void>

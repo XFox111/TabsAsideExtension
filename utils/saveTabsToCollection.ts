@@ -88,17 +88,9 @@ async function createCollectionFromTabs(tabs: Tabs.Tab[]): Promise<[CollectionIt
 		tabs.every(i => i.groupId === tabs[0].groupId)
 	)
 	{
-		// TODO: Remove the check when Firefox 139 is out
-		if (!import.meta.env.FIREFOX)
-		{
-			const group = await browser.tabGroups!.get(tabs[0].groupId);
-			collection.title = group.title;
-			collection.color = group.color;
-		}
-		else
-		{
-			collection.color = "blue";
-		}
+		const group = await chrome.tabGroups.get(tabs[0].groupId);
+		collection.title = group.title;
+		collection.color = group.color;
 
 		tabs.forEach(i =>
 			collection.items.push({ type: "tab", url: i.url!, title: i.title })
@@ -123,27 +115,14 @@ async function createCollectionFromTabs(tabs: Tabs.Tab[]): Promise<[CollectionIt
 		if (!activeGroup || activeGroup !== tab.groupId)
 		{
 			activeGroup = tab.groupId;
+			const group = await chrome.tabGroups.get(activeGroup);
 
-			// TODO: Remove the check when Firefox 139 is out
-			if (import.meta.env.FIREFOX)
-			{
-				collection.items.push({
-					type: "group",
-					color: "blue",
-					items: []
-				});
-			}
-			else
-			{
-				const group = await browser.tabGroups!.get(activeGroup);
-
-				collection.items.push({
-					type: "group",
-					color: group.color,
-					title: group.title,
-					items: []
-				});
-			}
+			collection.items.push({
+				type: "group",
+				color: group.color,
+				title: group.title,
+				items: []
+			});
 		}
 
 		(collection.items[collection.items.length - 1] as GroupItem).items.push({

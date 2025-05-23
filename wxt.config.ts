@@ -24,7 +24,8 @@ export default defineConfig({
 			description: "__MSG_manifest_description__",
 			homepage_url: "https://github.com/xfox111/TabsAsideExtension/",
 
-			action: {
+			action:
+			{
 				default_title: "__MSG_manifest_name__"
 			},
 
@@ -36,7 +37,8 @@ export default defineConfig({
 					"tabs",
 					"notifications",
 					"contextMenus",
-					"bookmarks"
+					"bookmarks",
+					"tabGroups"
 				],
 
 			commands:
@@ -78,16 +80,12 @@ export default defineConfig({
 				gecko:
 				{
 					id: "tabsaside@xfox111.net",
-					strict_min_version: "138.0"
+					strict_min_version: "139.0"
 				}
 			};
 
 			// @ts-expect-error author key in Firefox has a different format
 			manifest.author = "__MSG_manifest_author__";
-		}
-		else
-		{
-			manifest.permissions!.push("tabGroups");
 		}
 
 		return manifest;
