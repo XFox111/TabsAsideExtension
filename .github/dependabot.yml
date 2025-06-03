@@ -12,9 +12,7 @@ updates:
     directory: "/" # Location of package manifests
     target-branch: "next"
     assignees:
-      - "xfox111"
-    reviewers:
-      - "xfox111"
+      - "XFox111"
     schedule:
       interval: monthly
     rebase-strategy: disabled
@@ -24,9 +22,7 @@ updates:
     directory: "/"
     target-branch: "next"
     assignees:
-      - "xfox111"
-    reviewers:
-      - "xfox111"
+      - "XFox111"
     schedule:
       interval: monthly
     rebase-strategy: disabled
@@ -36,9 +32,7 @@ updates:
     directory: "/"
     target-branch: "next"
     assignees:
-      - "xfox111"
-    reviewers:
-      - "xfox111"
+      - "XFox111"
     schedule:
       interval: monthly
     rebase-strategy: disabled
