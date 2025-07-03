@@ -84,7 +84,7 @@ options_page:
       icon_action:
         title: "Po kliknięciu ikony rozszerzenia:"
         options:
-          action: "Wykonaj domyślną akcję"
+          action: "Zapisz karty (domyślna akcja)"
           context: "Pokaż menu kontekstowe"
           open: "Otwórz listę kolekcji"
       change_shortcuts: "Zmień skróty klawiszowe"
