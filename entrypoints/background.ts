@@ -257,7 +257,7 @@ export default defineBackground(() =>
 
 				for (const openWindow of openWindows)
 				{
-					if (openWindow.incognito)
+					if (openWindow.incognito || openWindow.type !== "normal")
 						continue;
 
 					const activeTabs: Tabs.Tab[] = openWindow.tabs!.filter(tab =>
