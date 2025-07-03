@@ -58,8 +58,6 @@ export const useStyles_TabView = makeStyles({
 		display: "grid",
 		gridTemplateColumns: "auto 1fr auto",
 		alignItems: "center",
-		gap: tokens.spacingHorizontalSNudge,
-		paddingLeft: tokens.spacingHorizontalS,
 
 		borderBottomLeftRadius: tokens.borderRadiusMedium,
 		borderBottomRightRadius: tokens.borderRadiusMedium,
@@ -72,6 +70,9 @@ export const useStyles_TabView = makeStyles({
 	icon:
 	{
 		cursor: "grab",
+		padding: `${tokens.spacingVerticalSNudge} ${tokens.spacingHorizontalSNudge}`,
+		height: "32px",
+		boxSizing: "border-box",
 
 		"&:active":
 		{

@@ -83,7 +83,6 @@ export default function TabView({ tab, indices, dragOverlay }: TabViewProps): Re
 					ref={ setActivatorNodeRef } { ...activatorProps }
 					src={ graphics[tab.url]?.icon ?? faviconPlaceholder }
 					onError={ e => e.currentTarget.src = faviconPlaceholder }
-					height={ 20 } width={ 20 }
 					className={ cls.icon } draggable={ false } />
 
 				<Tooltip relationship="description" content={ tab.title ?? tab.url }>
