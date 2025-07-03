@@ -27,7 +27,7 @@ export const useStyles_CollectionView = makeStyles({
 	},
 	verticalRoot:
 	{
-		height: "560px"
+		maxHeight: "560px"
 	},
 	empty:
 	{
@@ -84,11 +84,15 @@ export const useStyles_CollectionView = makeStyles({
 		"& > div":
 		{
 			pointerEvents: "none"
-		}
+		},
+		height: "54px",
+		overflow: "hidden"
 	},
 	sorting:
 	{
-		pointerEvents: "none"
+		pointerEvents: "none",
+		height: "54px",
+		overflow: "hidden"
 	},
 	dragging:
 	{
