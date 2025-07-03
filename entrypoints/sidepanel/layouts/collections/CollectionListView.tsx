@@ -33,7 +33,7 @@ export default function CollectionListView(): ReactElement
 	const [active, setActive] = useState<DndItem | null>(null);
 
 	const sensors = useSensors(
-		useSensor(MouseSensor, { activationConstraint: { delay: 100, tolerance: 0 } }),
+		useSensor(MouseSensor, { activationConstraint: { delay: 10, tolerance: 20 } }),
 		useSensor(TouchSensor, { activationConstraint: { delay: 300, tolerance: 20 } })
 	);
 
