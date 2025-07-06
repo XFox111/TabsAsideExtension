@@ -50,26 +50,30 @@ export default function CollectionView({ collection, index: collectionIndex, dra
 
 				<CollectionHeader dragHandleProps={ activatorProps } dragHandleRef={ setActivatorNodeRef } />
 
-				{ collection.items.length < 1 ?
-					<div className={ cls.empty }>
-						<CollectionsRegular fontSize={ 32 } />
-						<Body1Strong>{ i18n.t("collections.empty") }</Body1Strong>
-					</div>
-					:
-					<div className={ mergeClasses(cls.list, !tilesView && cls.verticalList) }>
-						<SortableContext
-							items={ collection.items.map((_, index) => [collectionIndex, index].join("/")) }
-							strategy={ tilesView ? horizontalListSortingStrategy : verticalListSortingStrategy }
-						>
-							{ collection.items.map((i, index) =>
-								i.type === "group" ?
-									<GroupView
-										key={ index } group={ i } indices={ [collectionIndex, index] } />
-									:
-									<TabView key={ index } tab={ i } indices={ [collectionIndex, index] } />
-							) }
-						</SortableContext>
-					</div>
+				{ (!activeItem || activeItem.item.type !== "collection") && !dragOverlay &&
+					<>
+						{ collection.items.length < 1 ?
+							<div className={ cls.empty }>
+								<CollectionsRegular fontSize={ 32 } />
+								<Body1Strong>{ i18n.t("collections.empty") }</Body1Strong>
+							</div>
+							:
+							<div className={ mergeClasses(cls.list, !tilesView && cls.verticalList) }>
+								<SortableContext
+									items={ collection.items.map((_, index) => [collectionIndex, index].join("/")) }
+									strategy={ tilesView ? horizontalListSortingStrategy : verticalListSortingStrategy }
+								>
+									{ collection.items.map((i, index) =>
+										i.type === "group" ?
+											<GroupView
+												key={ index } group={ i } indices={ [collectionIndex, index] } />
+											:
+											<TabView key={ index } tab={ i } indices={ [collectionIndex, index] } />
+									) }
+								</SortableContext>
+							</div>
+						}
+					</>
 				}
 			</div >
 		</CollectionContext.Provider>

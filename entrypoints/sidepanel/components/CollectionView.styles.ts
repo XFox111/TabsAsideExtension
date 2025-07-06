@@ -84,15 +84,11 @@ export const useStyles_CollectionView = makeStyles({
 		"& > div":
 		{
 			pointerEvents: "none"
-		},
-		height: "54px",
-		overflow: "hidden"
+		}
 	},
 	sorting:
 	{
-		pointerEvents: "none",
-		height: "54px",
-		overflow: "hidden"
+		pointerEvents: "none"
 	},
 	dragging:
 	{
