@@ -14,7 +14,7 @@ export default async function saveCollectionsToCloud(collections: CollectionItem
 		return;
 	}
 
-	const data: string = compress(serializeCollections(collections), { outputEncoding: "StorageBinaryString" });
+	const data: string = compress(serializeCollections(collections), { outputEncoding: "Base64" });
 	const chunks: string[] = splitIntoChunks(data);
 
 	if (chunks.length > collectionStorage.maxChunkCount)

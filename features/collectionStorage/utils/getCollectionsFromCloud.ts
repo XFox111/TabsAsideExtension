@@ -14,7 +14,7 @@ export default async function getCollectionsFromCloud(): Promise<CollectionItem[
 	const chunks: Record<string, string> =
 		await browser.storage.sync.get(getChunkKeys(0, chunkCount)) as Record<string, string>;
 
-	const data: string = decompress(Object.values(chunks).join(), { inputEncoding: "StorageBinaryString" });
+	const data: string = decompress(Object.values(chunks).join(), { inputEncoding: "Base64" });
 
 	return parseCollections(data);
 }
