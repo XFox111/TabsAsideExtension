@@ -46,6 +46,10 @@ export const useStyles_CollectionListView = makeStyles({
 	listView:
 	{
 		display: "grid",
-		gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))"
+
+		"@media screen and (min-width: 360px)":
+		{
+			gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))"
+		}
 	}
 });
