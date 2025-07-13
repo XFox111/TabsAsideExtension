@@ -1,14 +1,14 @@
 import { useDialog } from "@/contexts/DialogProvider";
 import { useDangerStyles } from "@/hooks/useDangerStyles";
 import useSettings from "@/hooks/useSettings";
-import { Button, Menu, MenuDivider, MenuItem, MenuList, MenuPopover, MenuTrigger, Tooltip } from "@fluentui/react-components";
+import { Button, Menu, MenuDivider, MenuItem, MenuList, MenuOpenChangeData, MenuOpenEvent, MenuPopover, MenuTrigger, Tooltip } from "@fluentui/react-components";
 import * as ic from "@fluentui/react-icons";
 import CollectionContext, { CollectionContextType } from "../../contexts/CollectionContext";
 import { useCollections } from "../../contexts/CollectionsProvider";
 import exportCollectionToBookmarks from "../../utils/exportCollectionToBookmarks";
 import EditDialog from "../EditDialog";
 
-export default function CollectionMoreButton({ onAddSelected }: CollectionMoreButtonProps): React.ReactElement
+export default function CollectionMoreButton({ onAddSelected, onOpenChange }: CollectionMoreButtonProps): React.ReactElement
 {
 	const [listLocation] = useSettings("listLocation");
 	const isTab: boolean = listLocation === "tab" || listLocation === "pinned";
@@ -56,7 +56,7 @@ export default function CollectionMoreButton({ onAddSelected }: CollectionMoreBu
 		);
 
 	return (
-		<Menu>
+		<Menu onOpenChange={ onOpenChange }>
 			<Tooltip relationship="label" content={ i18n.t("common.tooltips.more") }>
 				<MenuTrigger>
 					<Button appearance="subtle" icon={ <ic.MoreVertical20Regular /> } />
@@ -94,4 +94,5 @@ export default function CollectionMoreButton({ onAddSelected }: CollectionMoreBu
 export type CollectionMoreButtonProps =
 	{
 		onAddSelected?: () => void;
+		onOpenChange?: (e: MenuOpenEvent, data: MenuOpenChangeData) => void;
 	};

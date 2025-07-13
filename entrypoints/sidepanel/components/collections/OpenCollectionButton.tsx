@@ -1,13 +1,13 @@
 import { useDialog } from "@/contexts/DialogProvider";
 import useSettings from "@/hooks/useSettings";
 import browserLocaleKey from "@/utils/browserLocaleKey";
-import { Menu, MenuButtonProps, MenuItem, MenuList, MenuPopover, MenuTrigger, SplitButton } from "@fluentui/react-components";
+import { Menu, MenuButtonProps, MenuItem, MenuList, MenuOpenChangeData, MenuOpenEvent, MenuPopover, MenuTrigger, SplitButton } from "@fluentui/react-components";
 import * as ic from "@fluentui/react-icons";
 import CollectionContext, { CollectionContextType } from "../../contexts/CollectionContext";
 import { useCollections } from "../../contexts/CollectionsProvider";
 import { openCollection } from "../../utils/opener";
 
-export default function OpenCollectionButton(): React.ReactElement
+export default function OpenCollectionButton({ onOpenChange }: OpenCollectionButtonProps): React.ReactElement
 {
 	const [defaultAction] = useSettings("defaultRestoreAction");
 	const { removeItem } = useCollections();
@@ -54,7 +54,7 @@ export default function OpenCollectionButton(): React.ReactElement
 	};
 
 	return (
-		<Menu>
+		<Menu onOpenChange={ onOpenChange }>
 			<MenuTrigger disableButtonEnhancement>
 				{ (triggerProps: MenuButtonProps) => defaultAction === "restore" ?
 					<SplitButton
@@ -95,3 +95,8 @@ export default function OpenCollectionButton(): React.ReactElement
 		</Menu>
 	);
 }
+
+export type OpenCollectionButtonProps =
+	{
+		onOpenChange?: (e: MenuOpenEvent, data: MenuOpenChangeData) => void;
+	};

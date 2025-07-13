@@ -12,6 +12,7 @@ import saveTabsToCollection from "@/utils/saveTabsToCollection";
 
 export default function CollectionHeader({ dragHandleRef, dragHandleProps }: CollectionHeaderProps): React.ReactElement
 {
+	const [contextOpen, setContextOpen] = useState<boolean>(false);
 	const [listLocation] = useSettings("listLocation");
 	const isTab: boolean = listLocation === "tab" || listLocation === "pinned";
 	const { updateCollection } = useCollections();
@@ -53,7 +54,7 @@ export default function CollectionHeader({ dragHandleRef, dragHandleProps }: Col
 					mergeClasses(
 						cls.toolbar,
 						"CollectionView__toolbar",
-						alwaysShowToolbars === true && cls.showToolbar
+						(alwaysShowToolbars === true || contextOpen) && cls.showToolbar
 					) }
 			>
 				{ tabCount < 1 ?
@@ -61,10 +62,10 @@ export default function CollectionHeader({ dragHandleRef, dragHandleProps }: Col
 						{ isTab ? i18n.t("collections.menu.add_all") : i18n.t("collections.menu.add_selected") }
 					</Button>
 					:
-					<OpenCollectionButton />
+					<OpenCollectionButton onOpenChange={ (_, e) => setContextOpen(e.open) } />
 				}
 
-				<CollectionMoreButton onAddSelected={ handleAddSelected } />
+				<CollectionMoreButton onAddSelected={ handleAddSelected } onOpenChange={ (_, e) => setContextOpen(e.open) } />
 			</div>
 		</div>
 	);
