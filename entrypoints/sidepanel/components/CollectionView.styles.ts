@@ -74,7 +74,8 @@ export const useStyles_CollectionView = makeStyles({
 	{
 		gridAutoFlow: "row",
 		width: "100%",
-		paddingBottom: tokens.spacingVerticalS
+		paddingBottom: tokens.spacingVerticalS,
+		gridAutoRows: import.meta.env.FIREFOX ? "min-content" : undefined
 	},
 	dragOverlay:
 	{
