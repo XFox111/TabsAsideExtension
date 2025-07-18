@@ -5,12 +5,11 @@
 	"type": "module",
 	"scripts": {
 		"dev": "wxt",
-		"build": "wxt build --mv3",
-		"zip": "wxt zip --mv3",
+		"build": "yarn lint && wxt build --mv3",
+		"zip": "yarn lint && wxt zip --mv3",
 		"lint": "tsc --noEmit && eslint . -c eslint.config.js",
-		"prebuild": "yarn lint",
-		"prezip": "yarn lint",
-		"postinstall": "wxt prepare"
+		"prepare": "wxt prepare",
+		"postinstall": "yarn prepare"
 	},
 	"dependencies": {
 		"@dnd-kit/core": "^6.3.1",
@@ -33,6 +32,7 @@
 		"@stylistic/eslint-plugin": "^5.2.0",
 		"@types/react": "^18.3.1",
 		"@types/react-dom": "^18.3.1",
+		"@types/scheduler": "^0",
 		"@wxt-dev/module-react": "^1.1.3",
 		"eslint": "^9.31.0",
 		"eslint-plugin-react": "^7.37.5",
@@ -43,5 +43,5 @@
 		"vite": "^6.3.5",
 		"wxt": "~0.19.29"
 	},
-	"packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+	"packageManager": "yarn@4.9.2"
 }

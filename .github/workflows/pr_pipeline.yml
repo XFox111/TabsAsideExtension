@@ -66,4 +66,4 @@ jobs:
           extension-root: ./.output/firefox-mv3
           self-hosted: false
 
-      - run: yarn audit
+      - run: yarn npm audit
