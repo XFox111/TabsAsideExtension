@@ -99,11 +99,22 @@ export const useStyles_GroupView = makeStyles({
 		display: "flex",
 		columnGap: tokens.spacingHorizontalS,
 		rowGap: tokens.spacingHorizontalSNudge,
-		height: "100%"
+		height: "100%",
+		position: "relative"
 	},
 	verticalList:
 	{
 		flexFlow: "column"
+	},
+	verticalListCollapsed:
+	{
+		maxHeight: "136px",
+		overflow: "clip"
+	},
+	horizontalListCollapsed:
+	{
+		maxWidth: "400px",
+		overflow: "clip"
 	},
 	listContainer:
 	{

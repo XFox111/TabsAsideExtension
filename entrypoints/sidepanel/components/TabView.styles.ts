@@ -8,6 +8,7 @@ export const useStyles_TabView = makeStyles({
 
 		width: "160px",
 		height: "120px",
+		flexShrink: 0,
 		marginBottom: tokens.spacingVerticalSNudge,
 
 		border: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke3}`,

@@ -88,7 +88,13 @@ export default function GroupView({ group, indices, dragOverlay }: GroupViewProp
 							<Caption1Strong>{ i18n.t("groups.empty") }</Caption1Strong>
 						</div>
 						:
-						<div className={ mergeClasses(cls.list, !tilesView && cls.verticalList) }>
+						<div
+							className={ mergeClasses(
+								cls.list,
+								!tilesView && cls.verticalList,
+								((active?.item.type === "group" && active?.indices[0] === indices[0]) || dragOverlay) && (tilesView ? cls.horizontalListCollapsed : cls.verticalListCollapsed)
+							) }
+						>
 							<SortableContext
 								items={ group.items.map((_, index) => [...indices, index].join("/")) }
 								disabled={ disableSorting }
