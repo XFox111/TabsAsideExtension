@@ -1,6 +1,6 @@
 import { trackError } from "@/features/analytics";
 import { GraphicsStorage } from "@/models/CollectionModels";
-import { defineExtensionMessaging, ExtensionMessagingConfig, ExtensionMessenger } from "@webext-core/messaging";
+import { defineExtensionMessaging, ExtensionMessagingConfig, ExtensionMessenger, ExtensionSendMessageArgs, GetDataType, GetReturnType } from "@webext-core/messaging";
 
 type ProtocolMap =
 	{
@@ -11,16 +11,20 @@ type ProtocolMap =
 
 function defineMessaging(config?: ExtensionMessagingConfig): ExtensionMessenger<ProtocolMap>
 {
-	const { onMessage, sendMessage, removeAllListeners } = defineExtensionMessaging<ProtocolMap>(config);
+	const { onMessage, sendMessage, removeAllListeners }: ExtensionMessenger<ProtocolMap> = defineExtensionMessaging<ProtocolMap>(config);
 
 	return {
 		onMessage,
 		removeAllListeners,
-		sendMessage: async (type, data, args): Promise<any> =>
+		async sendMessage<TType extends keyof ProtocolMap>(
+			type: TType,
+			data: GetDataType<ProtocolMap[TType]>,
+			...args: ExtensionSendMessageArgs
+		): Promise<GetReturnType<ProtocolMap[TType]>>
 		{
 			try
 			{
-				return await sendMessage(type, data, args);
+				return await sendMessage(type, data, ...args);
 			}
 			catch (ex)
 			{

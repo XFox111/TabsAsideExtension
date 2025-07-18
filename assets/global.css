@@ -39,16 +39,19 @@ body
 /* Handle */
 ::-webkit-scrollbar-thumb
 {
+	/* eslint-disable-next-line css/no-invalid-properties */
 	background-color: var(--colorNeutralStroke1);
 	border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover
 {
+	/* eslint-disable-next-line css/no-invalid-properties */
 	background-color: var(--colorNeutralStroke1Hover);
 }
 
 ::-webkit-scrollbar-thumb:hover:active
 {
+	/* eslint-disable-next-line css/no-invalid-properties */
 	background-color: var(--colorNeutralStroke1Pressed);
 }
