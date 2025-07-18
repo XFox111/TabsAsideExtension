@@ -38,7 +38,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: node:20
+    container: node:24
     strategy:
       fail-fast: false
       matrix:
@@ -51,6 +51,7 @@ jobs:
           echo "WXT_GA4_API_SECRET=${{ secrets.GA4_SECRET }}" >> .env
           echo "WXT_GA4_MEASUREMENT_ID=${{ secrets.GA4_MEASUREMENT_ID }}" >> .env
 
+      - run: corepack enable
       - run: yarn install
 
       # Patch for firefox dnd popup (see https://github.com/clauderic/dnd-kit/issues/1043)
