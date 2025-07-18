@@ -21,6 +21,7 @@ import { collisionDetector } from "../../utils/dnd/collisionDetector";
 import { useStyles_CollectionListView } from "./CollectionListView.styles";
 import SearchBar from "./SearchBar";
 import StorageCapacityIssueMessage from "./messages/StorageCapacityIssueMessage";
+import { snapHandleToCursor } from "../../utils/dnd/snapHandleToCursor";
 
 export default function CollectionListView(): ReactElement
 {
@@ -110,6 +111,7 @@ export default function CollectionListView(): ReactElement
 						collisionDetection={ collisionDetector(!tilesView) }
 						onDragStart={ handleDragStart }
 						onDragEnd={ handleDragEnd }
+						modifiers={ [snapHandleToCursor] }
 					>
 						<SortableContext
 							items={ resultList.map((_, index) => index.toString()) }
