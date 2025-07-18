@@ -47,7 +47,7 @@ jobs:
       - run: yarn install
 
       # Patch for firefox dnd popup (see https://github.com/clauderic/dnd-kit/issues/1043)
-      - run: grep -v "this.windowListeners.add(EventName.Resize, this.handleCancel);" core.esm.js > core.esm.js
+      - run: grep -v "this.windowListeners.add(EventName.Resize, this.handleCancel);" core.esm.js > core.esm.js.tmp && mv core.esm.js.tmp core.esm.js
         working-directory: ./node_modules/@dnd-kit/core/dist
         if: ${{ matrix.target == 'firefox' }}
 
