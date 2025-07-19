@@ -37,7 +37,12 @@ export default async function importData(): Promise<boolean | null>
 			await browser.storage.local.set(data.local);
 
 		if (data.sync)
+		{
+			if (import.meta.env.FIREFOX && data.sync.contextAction === "context")
+				data.sync.contextAction = "open";
+
 			await browser.storage.sync.set(data.sync);
+		}
 	}
 	catch (error)
 	{
