@@ -15,13 +15,13 @@
 [![GitHub followers](https://img.shields.io/github/followers/xfox111?label=Follow%20@xfox111&style=social)](https://github.com/xfox111)
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-%40xfox111-orange)](https://buymeacoffee.com/xfox111)
 
-![Tabs aside](https://xfox111.net/y7xk3z)
+![Tabs aside](https://raw.githubusercontent.com/maisondasilva/TabsAsideExtension/refs/heads/main/img_readme/tabs.webp)
 
 If you’re like me, you often find yourself with a bunch of open tabs. You’d like to get those tabs out of the way sometimes, but they’re maybe not worth saving as actual bookmarks.
 
 In the Edge browser, Microsoft has introduced a new feature called "Tabs aside" (or Tab groups) which lets you set tabs aside in a sort of temporary workspace so that you can call them back up later.
 
-![Tabs aside demo](https://xfox111.net/knrp7b)
+![Tabs aside demo](https://raw.githubusercontent.com/maisondasilva/TabsAsideExtension/refs/heads/main/img_readme/tabs-aside.webp)
 
 Unfortunately, in new Chromium-based Microsoft Edge, the devs decided not to implement this must-have-feature. So I've decided to create a browser extension which replicates this awesome feature
 
