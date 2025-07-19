@@ -1,6 +1,7 @@
 import { useDialog } from "@/contexts/DialogProvider";
 import useSettings from "@/hooks/useSettings";
 import browserLocaleKey from "@/utils/browserLocaleKey";
+import { sendMessage } from "@/utils/messaging";
 import { Menu, MenuButtonProps, MenuItem, MenuList, MenuOpenChangeData, MenuOpenEvent, MenuPopover, MenuTrigger, SplitButton } from "@fluentui/react-components";
 import * as ic from "@fluentui/react-icons";
 import CollectionContext, { CollectionContextType } from "../../contexts/CollectionContext";
@@ -10,6 +11,7 @@ import { openCollection } from "../../utils/opener";
 export default function OpenCollectionButton({ onOpenChange }: OpenCollectionButtonProps): React.ReactElement
 {
 	const [defaultAction] = useSettings("defaultRestoreAction");
+	const [listLocation] = useSettings("listLocation");
 	const { removeItem } = useCollections();
 	const dialog = useDialog();
 	const { collection } = useContext<CollectionContextType>(CollectionContext);
@@ -22,7 +24,12 @@ export default function OpenCollectionButton({ onOpenChange }: OpenCollectionBut
 	const handleIncognito = async () =>
 	{
 		if (await browser.extension.isAllowedIncognitoAccess())
-			openCollection(collection, "incognito");
+		{
+			if (import.meta.env.FIREFOX && listLocation === "popup")
+				sendMessage("openCollection", { collection, targetWindow: "incognito" });
+			else
+				openCollection(collection, "incognito");
+		}
 		else
 			dialog.pushPrompt({
 				title: i18n.t("collections.incognito_check.title"),
@@ -45,7 +52,9 @@ export default function OpenCollectionButton({ onOpenChange }: OpenCollectionBut
 	};
 
 	const handleOpen = (mode: "current" | "new") =>
-		() => openCollection(collection, mode);
+		import.meta.env.FIREFOX && listLocation === "popup" && mode === "new" ?
+			() => sendMessage("openCollection", { collection, targetWindow: "new" }) :
+			() => openCollection(collection, mode);
 
 	const handleRestore = async () =>
 	{

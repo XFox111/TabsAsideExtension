@@ -1,5 +1,5 @@
 import { trackError } from "@/features/analytics";
-import { GraphicsStorage } from "@/models/CollectionModels";
+import { CollectionItem, GraphicsStorage, GroupItem } from "@/models/CollectionModels";
 import { defineExtensionMessaging, ExtensionMessagingConfig, ExtensionMessenger, ExtensionSendMessageArgs, GetDataType, GetReturnType } from "@webext-core/messaging";
 
 type ProtocolMap =
@@ -7,6 +7,9 @@ type ProtocolMap =
 		addThumbnail(data: { url: string; thumbnail: string; }): void;
 		getGraphicsCache(): GraphicsStorage;
 		refreshCollections(): void;
+
+		openCollection(data: { collection: CollectionItem; targetWindow: "new" | "incognito"; }): void;
+		openGroup(data: { group: GroupItem; newWindow: boolean; }): void;
 	};
 
 function defineMessaging(config?: ExtensionMessagingConfig): ExtensionMessenger<ProtocolMap>

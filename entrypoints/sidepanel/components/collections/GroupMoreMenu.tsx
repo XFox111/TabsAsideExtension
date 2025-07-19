@@ -7,11 +7,12 @@ import getSelectedTabs from "@/entrypoints/sidepanel/utils/getSelectedTabs";
 import { useDangerStyles } from "@/hooks/useDangerStyles";
 import useSettings from "@/hooks/useSettings";
 import { TabItem } from "@/models/CollectionModels";
+import { sendMessage } from "@/utils/messaging";
+import saveTabsToCollection from "@/utils/saveTabsToCollection";
 import { Button, Menu, MenuItem, MenuList, MenuPopover, MenuTrigger, Tooltip } from "@fluentui/react-components";
 import * as ic from "@fluentui/react-icons";
 import { ReactElement } from "react";
 import { openGroup } from "../../utils/opener";
-import saveTabsToCollection from "@/utils/saveTabsToCollection";
 
 export default function GroupMoreMenu(): ReactElement
 {
@@ -56,6 +57,14 @@ export default function GroupMoreMenu(): ReactElement
 				onSave={ item => updateGroup(item, collection.timestamp, indices[1]) } />
 		);
 
+	const openGroupInNewWindow = () =>
+	{
+		if (import.meta.env.FIREFOX && listLocation === "popup")
+			sendMessage("openGroup", { group, newWindow: true });
+		else
+			openGroup(group, true);
+	};
+
 	const handleAddSelected = async () =>
 	{
 		const newTabs: TabItem[] = isTab ?
@@ -75,7 +84,7 @@ export default function GroupMoreMenu(): ReactElement
 			<MenuPopover>
 				<MenuList>
 					{ group.items.length > 0 &&
-						<MenuItem icon={ <NewWindowIcon /> } onClick={ () => openGroup(group, true) }>
+						<MenuItem icon={ <NewWindowIcon /> } onClick={ openGroupInNewWindow }>
 							{ i18n.t("groups.menu.new_window") }
 						</MenuItem>
 					}

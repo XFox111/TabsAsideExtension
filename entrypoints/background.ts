@@ -12,6 +12,7 @@ import { settings } from "@/utils/settings";
 import watchTabSelection from "@/utils/watchTabSelection";
 import { Tabs, Windows } from "wxt/browser";
 import { Unwatch } from "wxt/storage";
+import { openCollection, openGroup } from "./sidepanel/utils/opener";
 
 export default defineBackground(() =>
 {
@@ -68,7 +69,13 @@ export default defineBackground(() =>
 				icon: graphicsCache[data.url]?.icon
 			};
 		});
-		onMessage("refreshCollections", () => {});
+		onMessage("refreshCollections", () => { });
+
+		if (import.meta.env.FIREFOX)
+		{
+			onMessage("openCollection", ({ data }) => openCollection(data.collection, data.targetWindow));
+			onMessage("openGroup", ({ data }) => openGroup(data.group, data.newWindow));
+		}
 
 		setupTabCaputre();
 		async function setupTabCaputre(): Promise<void>
