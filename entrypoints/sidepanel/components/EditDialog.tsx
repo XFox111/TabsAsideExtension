@@ -24,6 +24,13 @@ export default function EditDialog(props: GroupEditDialogProps): ReactElement
 
 	const cls = useStyles_EditDialog();
 	const colorCls = useGroupColors();
+	const horizontalNavigationAttributes = fui.useArrowNavigationGroup({ axis: "horizontal" });
+
+	const onSubmit = (e: React.FormEvent<HTMLFormElement>) =>
+	{
+		e.preventDefault();
+		handleSave();
+	};
 
 	const handleSave = () =>
 	{
@@ -58,78 +65,80 @@ export default function EditDialog(props: GroupEditDialogProps): ReactElement
 
 	return (
 		<fui.DialogSurface className={ fui.mergeClasses(cls.surface, (color && color !== "pinned") && colorCls[color]) }>
-			<fui.DialogBody>
-				<fui.DialogTitle>
-					{
-						props.type === "collection" ?
-							i18n.t(`dialogs.edit.title.${props.collection ? "edit" : "new"}_collection`) :
-							i18n.t(`dialogs.edit.title.${props.group ? "edit" : "new"}_group`)
-					}
-				</fui.DialogTitle>
+			<form onSubmit={ onSubmit }>
+				<fui.DialogBody>
+					<fui.DialogTitle>
+						{
+							props.type === "collection" ?
+								i18n.t(`dialogs.edit.title.${props.collection ? "edit" : "new"}_collection`) :
+								i18n.t(`dialogs.edit.title.${props.group ? "edit" : "new"}_group`)
+						}
+					</fui.DialogTitle>
 
-				<fui.DialogContent>
-					<form className={ cls.content }>
-						<fui.Field label={ i18n.t("dialogs.edit.collection_title") }>
-							<fui.Input
-								contentBefore={ <Rename20Regular /> }
-								disabled={ color === "pinned" }
-								placeholder={
-									props.type === "collection" ? getCollectionTitle(props.collection, true) : ""
-								}
-								value={ color === "pinned" ? i18n.t("groups.pinned") : title }
-								onChange={ (_, e) => setTitle(e.value) } />
-						</fui.Field>
-						<fui.Field label="Color">
-							<div className={ cls.colorPicker }>
-								{ (props.type === "group" && (!props.hidePinned || props.group?.pinned)) &&
-									<fui.ToggleButton
-										checked={ color === "pinned" }
-										onClick={ () => setColor("pinned") }
-										icon={ <Pin20Filled /> }
-										shape="circular"
-									>
-										{ i18n.t("groups.pinned") }
-									</fui.ToggleButton>
-								}
-								{ props.type === "collection" &&
-									<fui.ToggleButton
-										checked={ color === undefined }
-										onClick={ () => setColor(undefined) }
-										icon={ <CircleOff20Regular /> }
-										shape="circular"
-									>
-										{ i18n.t("colors.none") }
-									</fui.ToggleButton>
-								}
-								{ Object.keys(colorCls).map(i =>
-									<fui.ToggleButton
-										checked={ color === i }
-										onClick={ () => setColor(i as chrome.tabGroups.ColorEnum) }
-										className={ fui.mergeClasses(cls.colorButton, colorCls[i as chrome.tabGroups.ColorEnum]) }
-										icon={ {
-											className: cls.colorButton_icon,
-											children: <Circle20Filled />
-										} }
-										key={ i }
-										shape="circular"
-									>
-										{ i18n.t(`colors.${i as chrome.tabGroups.ColorEnum}`) }
-									</fui.ToggleButton>
-								) }
-							</div>
-						</fui.Field>
-					</form>
-				</fui.DialogContent>
+					<fui.DialogContent>
+						<div className={ cls.content }>
+							<fui.Field label={ i18n.t("dialogs.edit.collection_title") }>
+								<fui.Input
+									contentBefore={ <Rename20Regular /> }
+									disabled={ color === "pinned" }
+									placeholder={
+										props.type === "collection" ? getCollectionTitle(props.collection, true) : ""
+									}
+									value={ color === "pinned" ? i18n.t("groups.pinned") : title }
+									onChange={ (_, e) => setTitle(e.value) } />
+							</fui.Field>
+							<fui.Field label="Color">
+								<div className={ cls.colorPicker } { ...horizontalNavigationAttributes }>
+									{ (props.type === "group" && (!props.hidePinned || props.group?.pinned)) &&
+										<fui.ToggleButton
+											checked={ color === "pinned" }
+											onClick={ () => setColor("pinned") }
+											icon={ <Pin20Filled /> }
+											shape="circular"
+										>
+											{ i18n.t("groups.pinned") }
+										</fui.ToggleButton>
+									}
+									{ props.type === "collection" &&
+										<fui.ToggleButton
+											checked={ color === undefined }
+											onClick={ () => setColor(undefined) }
+											icon={ <CircleOff20Regular /> }
+											shape="circular"
+										>
+											{ i18n.t("colors.none") }
+										</fui.ToggleButton>
+									}
+									{ Object.keys(colorCls).map(i =>
+										<fui.ToggleButton
+											checked={ color === i }
+											onClick={ () => setColor(i as chrome.tabGroups.ColorEnum) }
+											className={ fui.mergeClasses(cls.colorButton, colorCls[i as chrome.tabGroups.ColorEnum]) }
+											icon={ {
+												className: cls.colorButton_icon,
+												children: <Circle20Filled />
+											} }
+											key={ i }
+											shape="circular"
+										>
+											{ i18n.t(`colors.${i as chrome.tabGroups.ColorEnum}`) }
+										</fui.ToggleButton>
+									) }
+								</div>
+							</fui.Field>
+						</div>
+					</fui.DialogContent>
 
-				<fui.DialogActions>
-					<fui.DialogTrigger disableButtonEnhancement>
-						<fui.Button appearance="primary" onClick={ handleSave }>{ i18n.t("common.actions.save") }</fui.Button>
-					</fui.DialogTrigger>
-					<fui.DialogTrigger disableButtonEnhancement>
-						<fui.Button appearance="subtle">{ i18n.t("common.actions.cancel") }</fui.Button>
-					</fui.DialogTrigger>
-				</fui.DialogActions>
-			</fui.DialogBody>
+					<fui.DialogActions>
+						<fui.DialogTrigger disableButtonEnhancement>
+							<fui.Button appearance="primary" as="button" type="submit">{ i18n.t("common.actions.save") }</fui.Button>
+						</fui.DialogTrigger>
+						<fui.DialogTrigger disableButtonEnhancement>
+							<fui.Button appearance="subtle">{ i18n.t("common.actions.cancel") }</fui.Button>
+						</fui.DialogTrigger>
+					</fui.DialogActions>
+				</fui.DialogBody>
+			</form>
 		</fui.DialogSurface>
 	);
 }
