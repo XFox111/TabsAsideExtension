@@ -81,7 +81,7 @@ If you want to sideload it without replacing to run both versions at the same ti
 
 ## Contributing
 [![GitHub issues](https://img.shields.io/github/issues/xfox111/TabsAsideExtension)](https://github.com/xfox111/TabsAsideExtension/issues)
-[![CI](https://github.com/XFox111/TabsAsideExtension/actions/workflows/cd_pipeline.yaml/badge.svg)](https://github.com/XFox111/TabsAsideExtension/actions/workflows/cd_pipeline.yaml)
+[![CI](https://github.com/XFox111/TabsAsideExtension/actions/workflows/cd_pipeline.yml/badge.svg)](https://github.com/XFox111/TabsAsideExtension/actions/workflows/cd_pipeline.yml)
 [![GitHub repo size](https://img.shields.io/github/repo-size/xfox111/TabsAsideExtension?label=repo%20size)](https://github.com/xfox111/TabsAsideExtension)
 
 There are many ways in which you can participate in the project, for example:
