@@ -30,19 +30,17 @@ https://github.com/xfox111/TabsAsideExtension/releases/latest
 
 它允许您以方便的方式保存和管理标签，提供一系列功能，使您可以轻松组织和访问已保存的标签。
 
-<b>功能</b>
-<ul>
-	<li><b>保存标签</b>：一键保存所有打开的标签，并稍后恢复</li>
-	<li><b>组织标签</b>：创建收藏和子组以组织已保存的标签</li>
-	<li><b>搜索标签</b>：使用搜索功能快速找到所需的标签</li>
-	<li><b>跨设备同步</b>：使用您的帐户从任何设备访问已保存的标签</li>
-	<li><b>深色模式</b>：支持深色模式，提供更舒适的浏览体验</li>
-	<li><b>个性化</b>：更改扩展的外观和行为以满足您的需求</li>
-</ul>
+**功能**
+- **保存标签：** 一键保存所有打开的标签，并稍后恢复
+- **组织标签：** 创建收藏和子组以组织已保存的标签
+- **搜索标签：** 使用搜索功能快速找到所需的标签
+- **跨设备同步：** 使用您的帐户从任何设备访问已保存的标签
+- **深色模式：** 支持深色模式，提供更舒适的浏览体验
+- **个性化：** 更改扩展的外观和行为以满足您的需求
 
-查看我们关于 <a href="https://at.xfox111.net/tabs-aside-3-0">搁置的标签页 3.0</a> 的所有新功能和改进的<a href="https://at.xfox111.net/tabs-aside-3-0">博客文章</a>
+查看我们关于 搁置的标签页 3.0 的所有新功能和改进的[博客文章](https://at.xfox111.net/tabs-aside-3-0)
 
-<b>嘿，这是一个开源软件！</b>
-如果您知道如何改进此扩展，可以查看<a href="https://github.com/xfox111/TabsAsideExtension">其 GitHub 仓库</a>
+**嘿，这是一个开源软件！**
+如果您知道如何改进此扩展，可以查看[其 GitHub 仓库](https://github.com/xfox111/TabsAsideExtension)
 
-查看<a href="https://github.com/xfox111/TabsAsideExtension/releases/latest">发布更新日志</a>
+查看[发布更新日志](https://github.com/xfox111/TabsAsideExtension/releases/latest)

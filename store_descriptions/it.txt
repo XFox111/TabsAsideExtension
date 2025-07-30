@@ -30,19 +30,17 @@ Radicata nella funzionalità originale del browser Microsoft Edge, questa estens
 
 Ti consente di salvare e gestire le tue schede in modo conveniente, fornendo una gamma di funzionalità che rendono facile organizzare e accedere alle tue schede salvate.
 
-<b>Funzionalità</b>
-<ul>
-	<li><b>Salva schede</b>: Salva tutte le tue schede aperte con un solo clic e ripristinale in seguito</li>
-	<li><b>Organizza schede</b>: Crea collezioni e sottogruppi per organizzare le tue schede salvate</li>
-	<li><b>Cerca schede</b>: Trova rapidamente le schede di cui hai bisogno utilizzando la funzione di ricerca</li>
-	<li><b>Sincronizza tra dispositivi</b>: Accedi alle tue schede salvate da qualsiasi dispositivo con il tuo account</li>
-	<li><b>Modalità scura</b>: Supporto per la modalità scura per un'esperienza di navigazione più confortevole</li>
-	<li><b>Personalizza</b>: Cambia l'aspetto e il comportamento dell'estensione per soddisfare le tue esigenze</li>
-</ul>
+**Funzionalità**
+- **Salva schede:** Salva tutte le tue schede aperte con un solo clic e ripristinale in seguito
+- **Organizza schede:** Crea collezioni e sottogruppi per organizzare le tue schede salvate
+- **Cerca schede:** Trova rapidamente le schede di cui hai bisogno utilizzando la funzione di ricerca
+- **Sincronizza tra dispositivi:** Accedi alle tue schede salvate da qualsiasi dispositivo con il tuo account
+- **Modalità scura:** Supporto per la modalità scura per un'esperienza di navigazione più confortevole
+- **Personalizza:** Cambia l'aspetto e il comportamento dell'estensione per soddisfare le tue esigenze
 
-Dai un'occhiata al nostro <a href="https://at.xfox111.net/tabs-aside-3-0">post sul blog</a> riguardante tutte le nuove funzionalità e miglioramenti in Schede a parte 3.0
+Dai un'occhiata al nostro [post sul blog](https://at.xfox111.net/tabs-aside-3-0) riguardante tutte le nuove funzionalità e miglioramenti in Schede a parte 3.0
 
-<b>Ehi, è un software open-source!</b>
-Se sai come migliorare questa estensione, puoi controllare <a href="https://github.com/xfox111/TabsAsideExtension">il suo repository GitHub</a>
+**Ehi, è un software open-source!**
+Se sai come migliorare questa estensione, puoi controllare [il suo repository GitHub](https://github.com/xfox111/TabsAsideExtension)
 
-Consulta il <a href="https://github.com/xfox111/TabsAsideExtension/releases/latest">registro delle modifiche</a>
+Consulta il [registro delle modifiche](https://github.com/xfox111/TabsAsideExtension/releases/latest)
