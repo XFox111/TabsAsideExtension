@@ -1,0 +1,48 @@
+<!-- Plaintext version (Chrome/Edge) -->
+
+Zainspirowane funkcją z pierwszych wersji Microsoft Edge, to rozszerzenie stało się czymś więcej niż tylko tymczasowym magazynem kart.
+
+Pozwala wygodnie zapisywać i zarządzać kartami, oferując wiele funkcji, które ułatwiają organizację i dostęp do zapisanych kart.
+
+## Funkcje
+- Zapisywanie kart: Zapisz wszystkie otwarte karty jednym kliknięciem i przywróć je później
+- Organizacja kart: Twórz kolekcje i podgrupy, aby organizować zapisane karty
+- Wyszukiwanie kart: Szybko znajdź potrzebne karty za pomocą funkcji wyszukiwania
+- Synchronizacja między urządzeniami: Dostęp do zapisanych kart z dowolnego urządzenia za pomocą swojego konta
+- Tryb ciemny: Obsługa trybu ciemnego dla bardziej komfortowego użytkowania
+- Personalizacja: Dostosuj wygląd i działanie rozszerzenia do swoich potrzeb
+
+Odwiedź naszego bloga, aby dowiedzieć się więcej o wszystkich nowych funkcjach i ulepszeniach w Odłożonych kartach 3.0 pod adresem:
+https://at.xfox111.net/tabs-aside-3-0
+
+## Przy okazji, to rozszerzenie open-source!
+Jeśli wiesz, jak ulepszyć to rozszerzenie, możesz odwiedzić jego repozytorium na GitHubie:
+https://github.com/xfox111/TabsAsideExtension
+
+Lista zmian w najnowszej wersji:
+https://github.com/xfox111/TabsAsideExtension/releases/latest
+
+
+
+<!-- Rich text version (Firefox) -->
+
+Zainspirowane funkcją z pierwszych wersji Microsoft Edge, to rozszerzenie stało się czymś więcej niż tylko tymczasowym magazynem kart.
+
+Pozwala wygodnie zapisywać i zarządzać kartami, oferując wiele funkcji, które ułatwiają organizację i dostęp do zapisanych kart.
+
+<b>Funkcje</b>
+<ul>
+	<li><b>Zapisywanie kart</b>: Zapisz wszystkie otwarte karty jednym kliknięciem i przywróć je później</li>
+	<li><b>Organizacja kart</b>: Twórz kolekcje i podgrupy, aby organizować zapisane karty</li>
+	<li><b>Wyszukiwanie kart</b>: Szybko znajdź potrzebne karty za pomocą funkcji wyszukiwania</li>
+	<li><b>Synchronizacja między urządzeniami</b>: Dostęp do zapisanych kart z dowolnego urządzenia za pomocą swojego konta</li>
+	<li><b>Tryb ciemny</b>: Obsługa trybu ciemnego dla bardziej komfortowego użytkowania</li>
+	<li><b>Personalizacja</b>: Dostosuj wygląd i działanie rozszerzenia do swoich potrzeb</li>
+</ul>
+
+Odwiedź <a href="https://at.xfox111.net/tabs-aside-3-0">naszego bloga</a>, aby dowiedzieć się więcej o wszystkich nowych funkcjach i ulepszeniach w Odłożonych kartach 3.0
+
+<b>Przy okazji, to rozszerzenie open-source!</b>
+Jeśli wiesz, jak ulepszyć to rozszerzenie, możesz odwiedzić <a href="https://github.com/xfox111/TabsAsideExtension">jego repozytorium na GitHubie</a>
+
+<a href="https://github.com/xfox111/TabsAsideExtension/releases/latest">Lista zmian w najnowszej wersji</a>

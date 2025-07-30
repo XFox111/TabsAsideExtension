@@ -1,0 +1,251 @@
+manifest:
+  name: "Tabs aside"
+  description: "Save and organize your tabs for later. Pick up where you left off"
+  author: "Eugene Fox"
+
+shortcuts:
+  toggle_sidebar: "Open collection list"
+  set_aside: "Set tabs aside"
+  save_tabs: "Save tabs without closing"
+
+common:
+  actions:
+    cancel: "Cancel"
+    save: "Save"
+    close: "Close"
+    delete: "Delete"
+    reset_filters: "Reset filters"
+  cta:
+    feedback: "Leave feedback"
+    sponsor: "Buy me a coffee"
+  tooltips:
+    more: "More"
+  delete_prompt: "Are you sure? This action cannot be undone."
+
+features:
+  v3welcome:
+    title: "Welcome to Tabs aside 3.0"
+    text1: "We are happy to announce our new major update for Tabs aside extension!"
+    text2: "This update brings a brand new UI, and a lot of new features, including:"
+    list:
+      item1: "Tab groups support"
+      item2: "Collection customization"
+      item3: "Drag and drop reordering and organizing"
+      item4: "Manual collection creation from scratch"
+      item5: "And more!"
+    text3: "Visit our dev blog to learn more about this update and all of its features!"
+    actions:
+      visit_blog: "Read dev blog"
+
+notifications:
+  tabs_saved:
+    title: "New collection created"
+    message: "Your tabs have been saved to a new collection"
+  error_quota_exceeded:
+    title: "Maximum cloud write operations exceeded"
+    message: "We saved your tabs in local storage. You will have to manually update your cloud storage"
+  error_storage_full:
+    title: "Your cloud storage is full"
+    message: "We saved your tabs in local storage. Please clear some space in your cloud storage"
+  bookmark_saved:
+    title: "Exported to bookmarks"
+    message: "Your collection has been exported to bookmarks"
+  partial_save:
+    title: "Some tabs couldn't be saved"
+    message: "Some of the tabs were system tabs we could not access. They were skipped"
+
+actions:
+  save:
+    all: "Save all tabs"
+    selected: "Save selected tabs"
+  set_aside:
+    all: "Set all tabs aside"
+    selected: "Set selected tabs aside"
+  show_collections: "Show collections"
+
+options_page:
+  title: "Settings"
+  general:
+    title: "General"
+    options:
+      always_show_toolbars: "Always show toolbars"
+      include_pinned: "Include pinned tabs when saving all tabs"
+      show_delete_prompt: "Ask for confirmation when deleting an item"
+      show_badge: "Show counter badge"
+      show_notification: "Show notification when saving tabs using context menu"
+      unload_tabs: "Do not load tabs after opening"
+      list_locations:
+        title: "Open collection list in:"
+        options:
+          sidebar: "Sidebar"
+          popup: "Popup"
+          tab: "Separate tab"
+          pinned: "Separate pinned tab"
+      icon_action:
+        title: "When clicking on the extension icon:"
+        options:
+          action: "Perform default save action"
+          context: "Show context menu"
+          open: "Open collection list"
+      change_shortcuts: "Change extension shortcuts"
+  actions:
+    title: "Default actions"
+    options:
+      save_actions:
+        title: "Default action when saving tabs"
+        options:
+          set_aside: "Save and close tabs"
+          save: "Save tabs without closing"
+      restore_actions:
+        title: "Default action when opening collections"
+        options:
+          open: "Just open the tabs"
+          restore: "Open tabs and remove the collection"
+  storage:
+    title: "Storage"
+    capacity:
+      title: "Cloud storage capacity"
+      description: "$1 of $2 KiB"
+    import: "Import data"
+    export: "Export data"
+    import_results:
+      success: "Data successfully imported"
+      error: "Provided file appears to be corrupted. Nothing was imported"
+    import_prompt:
+      title: "Import data"
+      warning_title: "This is an irreversible action"
+      warning_text: "This will overwrite all your data. Make sure you picked a correct file, otherwise data corruption or loss may occur. It is recommended to export data first."
+      proceed: "Pick a file"
+    enable: "Enable cloud storage"
+    disable: "Disable cloud storage"
+    disable_prompt:
+      text: "This action will disable collection synchronization between your devices. Extension's settings will still be synchronized."
+      action: "Disable and reload the extension"
+  about:
+    title: "About"
+    developed_by: "Developed by Eugene Fox"
+    licensed_under: "Licensed under"
+    mit_license: "MIT License"
+    translation_cta:
+      text: "Found a typo or want a translation for your language?"
+      button: "Get started here"
+    links:
+      website: "My website"
+      source: "Source code"
+      changelog: "Changelog"
+
+collections:
+  empty: "This collection is empty"
+  tabs_count: "$1 tabs"
+  actions:
+    open: "Open all"
+    restore: "Restore all"
+    new_window: "Open all in new window"
+    incognito:
+      edge: "Open all in new InPrivate window"
+      firefox: "Open all in new private window"
+      chrome: "Open all in incognito window"
+  incognito_check:
+    title: "Permissions required"
+    message:
+      edge:
+        p1: "The extension needs permission to open tabs in InPrivate window"
+        p2: "To do this, click \"Settings\" and then check \"Allow in InPrivate\" option"
+      firefox:
+        p1: "The extension needs permission to open tabs in private window"
+        p2: "To do this, click \"Settings\", go to \"Details\" and set \"Run in Private Windows\" to \"Allow\""
+      chrome:
+        p1: "The extension needs permission to open tabs in incognito window"
+        p2: "To do this, click \"Settings\" and then check \"Allow in Incognito\" option"
+    action: "Settings"
+  menu:
+    delete: "Delete collection"
+    add_selected: "Add selected tabs"
+    add_all: "Add all tabs"
+    add_group: "Add empty group"
+    export_bookmarks: "Export to bookmarks"
+    edit: "Edit collection"
+
+groups:
+  title: "Group"
+  pinned: "Pinned"
+  open: "Open all"
+  empty: "This group is empty"
+  menu:
+    new_window: "Open in new window"
+    add_selected: "Add selected tabs"
+    add_all: "Add all tabs"
+    edit: "Edit group"
+    ungroup: "Ungroup"
+    delete: "Delete group"
+
+tabs:
+  delete: "Delete tab"
+
+colors:
+  none: "No color"
+  any: "Any color"
+  grey: "Grey"
+  blue: "Blue"
+  red: "Red"
+  yellow: "Yellow"
+  green: "Green"
+  pink: "Pink"
+  purple: "Purple"
+  cyan: "Cyan"
+  orange: "Orange"
+
+dialogs:
+  edit:
+    title:
+      edit_collection: "Edit collection"
+      edit_group: "Edit group"
+      new_group: "New group"
+      new_collection: "New collection"
+    collection_title: "Title"
+    color: "Color"
+
+main:
+  header:
+    create_collection: "Create new collection"
+    menu:
+      tiles_view: "Tiles view"
+      changelog: "What's new?"
+  list:
+    searchbar:
+      title: "Search"
+      filter: "Filter"
+      sort:
+        title: "Sort"
+        options:
+          newest: "Newest first"
+          oldest: "Oldest first"
+          ascending: "From A to Z"
+          descending: "From Z to A"
+          custom: "Custom"
+    empty:
+      title: "Nothing to show here yet"
+      message: "Set aside your current tabs, or create a new collection"
+    empty_search:
+      title: "Couldn't find anything"
+      message: "Try to change your search query"
+
+cta_message:
+  title: "Like this extension?"
+  message: "Consider supporting the author with a donation, or"
+  feedback: "leaving a feedback"
+
+storage_full_message:
+  title: "Your cloud storage is almost full ($1%)"
+  message: "You can free up some space by deleting unused collections."
+
+parse_error_message:
+  title: "We couldn't get collections from your cloud storage."
+  message: "Your cloud storage appears to be corrupted. You can fix it by replacing it with your local copy."
+  action: "Fix with local copy"
+
+merge_conflict_message:
+  title: "Your local and cloud storages have conflicting changes."
+  message: "To fix this, you can either upload your local copy to the cloud, or accept the cloud changes."
+  accept_local: "Replace with local"
+  accept_cloud: "Accept cloud changes"

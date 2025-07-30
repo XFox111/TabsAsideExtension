@@ -1,0 +1,251 @@
+manifest:
+  name: "Pestañas a un lado"
+  description: "Guarda y organiza tus pestañas para más tarde. Retoma donde lo dejaste"
+  author: "Eugene Fox"
+
+shortcuts:
+  toggle_sidebar: "Abrir lista de colecciones"
+  set_aside: "Apartar pestañas"
+  save_tabs: "Guardar pestañas sin cerrar"
+
+common:
+  actions:
+    cancel: "Cancelar"
+    save: "Guardar"
+    close: "Cerrar"
+    delete: "Eliminar"
+    reset_filters: "Restablecer filtros"
+  cta:
+    feedback: "Dejar comentarios"
+    sponsor: "Invítame un café"
+  tooltips:
+    more: "Más"
+  delete_prompt: "¿Estás seguro? Esta acción no se puede deshacer."
+
+features:
+  v3welcome:
+    title: "Bienvenido a Pestañas a un lado 3.0"
+    text1: "¡Estamos felices de anunciar nuestra nueva actualización principal para la extensión Pestañas a un lado!"
+    text2: "Esta actualización trae una nueva interfaz de usuario y muchas características nuevas, incluyendo:"
+    list:
+      item1: "Soporte para grupos de pestañas"
+      item2: "Personalización de colecciones"
+      item3: "Reordenamiento y organización mediante arrastrar y soltar"
+      item4: "Creación manual de colecciones desde cero"
+      item5: "¡Y más!"
+    text3: "¡Visita nuestro blog de desarrollo para aprender más sobre esta actualización y todas sus características!"
+    actions:
+      visit_blog: "Leer el blog de desarrollo"
+
+notifications:
+  tabs_saved:
+    title: "Nueva colección creada"
+    message: "Tus pestañas se han guardado en una nueva colección"
+  error_quota_exceeded:
+    title: "Se excedió el máximo de operaciones de escritura en la nube"
+    message: "Guardamos tus pestañas en el almacenamiento local. Tendrás que actualizar manualmente tu almacenamiento en la nube"
+  error_storage_full:
+    title: "Tu almacenamiento en la nube está lleno"
+    message: "Guardamos tus pestañas en el almacenamiento local. Por favor, libera espacio en tu almacenamiento en la nube"
+  bookmark_saved:
+    title: "Exportado a marcadores"
+    message: "Tu colección ha sido exportada a marcadores"
+  partial_save:
+    title: "Algunas pestañas no se pudieron guardar"
+    message: "Algunas de las pestañas eran pestañas del sistema a las que no pudimos acceder. Fueron omitidas"
+
+actions:
+  save:
+    all: "Guardar todas las pestañas"
+    selected: "Guardar pestañas seleccionadas"
+  set_aside:
+    all: "Apartar todas las pestañas"
+    selected: "Apartar pestañas seleccionadas"
+  show_collections: "Mostrar colecciones"
+
+options_page:
+  title: "Configuración"
+  general:
+    title: "General"
+    options:
+      always_show_toolbars: "Mostrar siempre las barras de herramientas"
+      include_pinned: "Incluir pestañas fijadas al guardar todas las pestañas"
+      show_delete_prompt: "Pedir confirmación al eliminar un elemento"
+      show_badge: "Mostrar insignia de contador"
+      show_notification: "Mostrar notificación al guardar pestañas usando el menú contextual"
+      unload_tabs: "No cargar pestañas después de abrir"
+      list_locations:
+        title: "Abrir lista de colecciones en:"
+        options:
+          sidebar: "Barra lateral"
+          popup: "Ventana emergente"
+          tab: "Pestaña separada"
+          pinned: "Pestaña separada fijada"
+      icon_action:
+        title: "Al hacer clic en el icono de la extensión:"
+        options:
+          action: "Realizar la acción de guardado predeterminada"
+          context: "Mostrar menú contextual"
+          open: "Abrir lista de colecciones"
+      change_shortcuts: "Cambiar atajos de la extensión"
+  actions:
+    title: "Acciones predeterminadas"
+    options:
+      save_actions:
+        title: "Acción predeterminada al guardar pestañas"
+        options:
+          set_aside: "Guardar y cerrar pestañas"
+          save: "Guardar pestañas sin cerrar"
+      restore_actions:
+        title: "Acción predeterminada al abrir colecciones"
+        options:
+          open: "Solo abrir las pestañas"
+          restore: "Abrir pestañas y eliminar la colección"
+  storage:
+    title: "Almacenamiento"
+    capacity:
+      title: "Capacidad de almacenamiento en la nube"
+      description: "$1 de $2 KiB"
+    import: "Importar datos"
+    export: "Exportar datos"
+    import_results:
+      success: "Datos importados con éxito"
+      error: "El archivo proporcionado parece estar corrupto. No se importó nada"
+    import_prompt:
+      title: "Importar datos"
+      warning_title: "Esta es una acción irreversible"
+      warning_text: "Esto sobrescribirá todos tus datos. Asegúrate de haber elegido el archivo correcto, de lo contrario, podría ocurrir corrupción o pérdida de datos. Se recomienda exportar los datos primero."
+      proceed: "Seleccionar un archivo"
+    enable: "Habilitar almacenamiento en la nube"
+    disable: "Deshabilitar almacenamiento en la nube"
+    disable_prompt:
+      text: "Esta acción deshabilitará la sincronización de colecciones entre tus dispositivos. La configuración de la extensión seguirá sincronizándose."
+      action: "Deshabilitar y recargar la extensión"
+  about:
+    title: "Acerca de"
+    developed_by: "Desarrollado por Eugene Fox"
+    licensed_under: "Licenciado bajo"
+    mit_license: "Licencia MIT"
+    translation_cta:
+      text: "¿Encontraste un error tipográfico o quieres una traducción para tu idioma?"
+      button: "Comienza aquí"
+    links:
+      website: "Mi sitio web"
+      source: "Código fuente"
+      changelog: "Registro de cambios"
+
+collections:
+  empty: "Esta colección está vacía"
+  tabs_count: "$1 pestañas"
+  actions:
+    open: "Abrir todo"
+    restore: "Restaurar todo"
+    new_window: "Abrir todo en una ventana nueva"
+    incognito:
+      edge: "Abrir todo en ventana InPrivate"
+      firefox: "Abrir todo en una nueva ventana privada"
+      chrome: "Abrir todo en una ventana de incógnito"
+  incognito_check:
+    title: "Permisos requeridos"
+    message:
+      edge:
+        p1: "La extensión necesita permiso para abrir pestañas en ventana InPrivate"
+        p2: "Para hacerlo, haz clic en \"Configuración\" y luego selecciona la opción \"Permitir en InPrivate\""
+      firefox:
+        p1: "La extensión necesita permiso para abrir pestañas en una ventana privada"
+        p2: "Para hacerlo, haz clic en \"Configuración\", ve a \"Detalles\" y configura \"Ejecutar en ventana privada\" en \"Permitir\""
+      chrome:
+        p1: "La extensión necesita permiso para abrir pestañas en una ventana de incógnito"
+        p2: "Para hacerlo, haz clic en \"Configuración\" y luego selecciona la opción \"Permitir en incógnito\""
+    action: "Configuración"
+  menu:
+    delete: "Eliminar colección"
+    add_selected: "Agregar pestañas seleccionadas"
+    add_all: "Agregar todas las pestañas"
+    add_group: "Agregar grupo vacío"
+    export_bookmarks: "Exportar a marcadores"
+    edit: "Editar colección"
+
+groups:
+  title: "Grupo"
+  pinned: "Fijado"
+  open: "Abrir todo"
+  empty: "Este grupo está vacío"
+  menu:
+    new_window: "Abrir en una nueva ventana"
+    add_selected: "Agregar pestañas seleccionadas"
+    add_all: "Agregar todas las pestañas"
+    edit: "Editar grupo"
+    ungroup: "Desagrupar"
+    delete: "Eliminar grupo"
+
+tabs:
+  delete: "Eliminar pestaña"
+
+colors:
+  none: "Sin color"
+  any: "Cualquier color"
+  grey: "Gris"
+  blue: "Azul"
+  red: "Rojo"
+  yellow: "Amarillo"
+  green: "Verde"
+  pink: "Rosa"
+  purple: "Morado"
+  cyan: "Cian"
+  orange: "Naranja"
+
+dialogs:
+  edit:
+    title:
+      edit_collection: "Editar colección"
+      edit_group: "Editar grupo"
+      new_group: "Nuevo grupo"
+      new_collection: "Nueva colección"
+    collection_title: "Título"
+    color: "Color"
+
+main:
+  header:
+    create_collection: "Crear nueva colección"
+    menu:
+      tiles_view: "Vista de mosaicos"
+      changelog: "¿Qué hay de nuevo?"
+  list:
+    searchbar:
+      title: "Buscar"
+      filter: "Filtrar"
+      sort:
+        title: "Ordenar"
+        options:
+          newest: "Más recientes primero"
+          oldest: "Más antiguos primero"
+          ascending: "De la A a la Z"
+          descending: "De la Z a la A"
+          custom: "Personalizado"
+    empty:
+      title: "Nada que mostrar aquí todavía"
+      message: "Aparta tus pestañas actuales o crea una nueva colección"
+    empty_search:
+      title: "No se encontró nada"
+      message: "Intenta cambiar tu consulta de búsqueda"
+
+cta_message:
+  title: "¿Te gusta esta extensión?"
+  message: "Considera apoyar al autor con una donación o"
+  feedback: "dejando un comentario"
+
+storage_full_message:
+  title: "Tu almacenamiento en la nube está casi lleno ($1%)"
+  message: "Puedes liberar espacio eliminando colecciones no utilizadas."
+
+parse_error_message:
+  title: "No pudimos obtener colecciones de tu almacenamiento en la nube."
+  message: "Tu almacenamiento en la nube parece estar corrupto. Puedes solucionarlo reemplazándolo con tu copia local."
+  action: "Solucionar con copia local"
+
+merge_conflict_message:
+  title: "Tus almacenamientos local y en la nube tienen cambios en conflicto."
+  message: "Para solucionarlo, puedes cargar tu copia local en la nube o aceptar los cambios de la nube."
+  accept_local: "Reemplazar con local"
+  accept_cloud: "Aceptar cambios de la nube"

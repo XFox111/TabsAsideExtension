@@ -1,68 +1,100 @@
-# Tabs aside
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/xfox111/TabsAsideExtension)](https://github.com/xfox111/TabsAsideExtension/releases/latest)
-![CI](https://github.com/XFox111/TabsAsideExtension/workflows/CI/badge.svg)
-[![Mozilla Add-on](https://img.shields.io/amo/rating/ms-edge-tabs-aside?label=Firefox%20rating)](https://addons.mozilla.org/firefox/addon/ms-edge-tabs-aside/)
+[![GitHub last commit](https://img.shields.io/github/last-commit/xfox111/TabsAsideExtension?label=Last+update)](https://github.com/XFox111/TabsAsideExtension/commits/main)
 
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/users/mgmjbodjgijnebfgohlnjkegdpbdjgin?label=Chrome%20Webstore%20downloads)](https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin)
-[![Mozilla Add-on](https://img.shields.io/amo/users/ms-edge-tabs-aside?label=Firefox%20Webstore%20downloads)](https://addons.mozilla.org/firefox/addon/ms-edge-tabs-aside/)
+<picture>
+	<source media="(prefers-color-scheme: dark)" srcset="https://cdn.xfox111.net/projects/tabs-aside/dark.webp">
+	<source media="(prefers-color-scheme: light)" srcset="https://cdn.xfox111.net/projects/tabs-aside/light.webp">
+	<img alt="Password generator">
+</picture>
 
-[![GitHub issues](https://img.shields.io/github/issues/xfox111/TabsAsideExtension)](https://github.com/xfox111/TabsAsideExtension/issues)
-[![GitHub last commit](https://img.shields.io/github/last-commit/xfox111/TabsAsideExtension)](https://github.com/xfox111/TabsAsideExtension/commits/master)
-[![GitHub repo size](https://img.shields.io/github/repo-size/xfox111/TabsAsideExtension?label=repo%20size)](https://github.com/xfox111/TabsAsideExtension)
-[![MIT License](https://img.shields.io/github/license/xfox111/TabsAsideExtension)](https://opensource.org/licenses/MIT)
+Stemming its roots from the original Microsoft Edge browser feature, this extension has grown much bigger than just a temporary storage for tabs.
 
-[![Twitter Follow](https://img.shields.io/twitter/follow/xfox111?style=social)](https://twitter.com/xfox111)
-[![GitHub followers](https://img.shields.io/github/followers/xfox111?label=Follow%20@xfox111&style=social)](https://github.com/xfox111)
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-%40xfox111-orange)](https://buymeacoffee.com/xfox111)
-
-![Tabs aside](https://xfox111.net/y7xk3z)
-
-If you’re like me, you often find yourself with a bunch of open tabs. You’d like to get those tabs out of the way sometimes, but they’re maybe not worth saving as actual bookmarks.
-
-In the Edge browser, Microsoft has introduced a new feature called "Tabs aside" (or Tab groups) which lets you set tabs aside in a sort of temporary workspace so that you can call them back up later.
-
-![Tabs aside demo](https://xfox111.net/knrp7b)
-
-Unfortunately, in new Chromium-based Microsoft Edge, the devs decided not to implement this must-have-feature. So I've decided to create a browser extension which replicates this awesome feature
+It allows you to save and manage your tabs in a convenient way, providing a range of features that make it easy to organize and access your saved tabs.
 
 ## Features
-- Familiar UI inherited from legacy Microsoft Edge with some improvements
-- Auto Dark mode
-- Now you can restore one tab from collection without removing
-- Now you can choose if you want to load restored tabs only when you're navigating onto them
-- Set tabs you've selected aside
-- Sync your saved tabs between different PCs
-- **Now available for Firefox!**
+- **Save tabs**: Save all your open tabs in a single click, and restore them later
+- **Organize tabs**: Create collections and subgroups to organize your saved tabs
+- **Search tabs**: Quickly find the tabs you need using the search feature
+- **Sync across devices**: Access your saved tabs from any device with your account
+- **Go dark**: Dark mode support for a more comfortable browsing experience
+- **Personalize**: Change the appearance and behavior of the extension to suit your needs
+
+Check out our [latest blog post](https://at.xfox111.net/tabs-aside-3-0) regarding all the new features and improvements in Tabs aside 3.0
+
+## Languages
+- Chinese (Simplified)
+- English
+- Italian
+- Polish
+- Portuguese (Brazil) by [@maisondasilva](https://github.com/maisondasilva)
+- Russian
+- Spanish
+- Ukrainian
 
 ## Download
-- [Google Chrome Webstore](https://chrome.google.com/webstore/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/users/mgmjbodjgijnebfgohlnjkegdpbdjgin?label=Chrome%20Webstore%20downloads)](https://chrome.google.com/webstore/detail/mgmjbodjgijnebfgohlnjkegdpbdjgin)
+[![Mozilla Add-on](https://img.shields.io/amo/users/ms-edge-tabs-aside?label=Firefox%20Webstore%20downloads)](https://addons.mozilla.org/firefox/addon/ms-edge-tabs-aside/)
+
+- [Google Chrome Webstore](https://chrome.google.com/webstore/detail/mgmjbodjgijnebfgohlnjkegdpbdjgin)
 - [Microsoft Edge Add-ons Webstore](https://microsoftedge.microsoft.com/addons/detail/kmnblllmalkiapkfknnlpobmjjdnlhnd)
-- [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/ms-edge-tabs-aside/)
+- [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/ms-edge-tabs-aside/)
 - [GitHub Releases](https://github.com/xfox111/TabsAsideExtension/releases/latest)
 
-## Project roadmap
-You can go to the project's [roadmap kanban board](https://github.com/XFox111/TabsAsideExtension/projects/1) and see what have we planned and watch our progress in realtime
+### Sideloading (for testing purposes only)
+
+<details>
+	<summary>Click to expand</summary>
+
+---
+
+<details>
+	<summary><b>Chromium-based browsers (Edge, Chrome, etc.)</b></summary>
+
+> 1. Go to [Releases](https://github.com/XFox111/TabsAsideExtension/releases) and select a release to download
+> 2. Download attached archive for Chromium and unpack it
+> 3. Go to `chrome://extensions`
+> 4. Enable "Developer mode"
+> 5. Click the "Load unpacked" button and navigate to the extension's root folder (contains `manifest.json`)
+> 6. Done!
+
+</details>
+
+<details>
+	<summary><b>Firefox</b></summary>
+
+> 1. Go to [Releases](https://github.com/XFox111/TabsAsideExtension/releases) and select a release to download
+> 2. Download attached archive for Firefox and unpack it
+> 3. Go to `about:debugging#/runtime/this-firefox`
+> 4. Click the "Load Temporary Add-on..." button and select `manifest.json` file in the root folder
+> 5. Done!
+
+> **Important!**
+This will _replace_ officialy installed version if you have one.
+If you want to sideload it without replacing to run both versions at the same time - before loading add-on, open `manifest.json` in a text editor and change `id` key (it's `tabsaside@xfox111.net` by default) to something else
+
+</details>
+
+> **Note:** If you delete the extension folder it will disappear from your browser
+---
+
+</details>
 
 ## Contributing
+[![GitHub issues](https://img.shields.io/github/issues/xfox111/TabsAsideExtension)](https://github.com/xfox111/TabsAsideExtension/issues)
+[![CI](https://github.com/XFox111/TabsAsideExtension/actions/workflows/cd_pipeline.yaml/badge.svg)](https://github.com/XFox111/TabsAsideExtension/actions/workflows/cd_pipeline.yaml)
+[![GitHub repo size](https://img.shields.io/github/repo-size/xfox111/TabsAsideExtension?label=repo%20size)](https://github.com/xfox111/TabsAsideExtension)
+
 There are many ways in which you can participate in the project, for example:
 - [Submit bugs and feature requests](https://github.com/xfox111/TabsAsideExtension/issues), and help us verify as they are checked in
 - Review [source code changes](https://github.com/xfox111/TabsAsideExtension/pulls)
 - Review documentation and make pull requests for anything from typos to new content
 
-If you are interested in fixing issues and contributing directly to the code base, please see the [Contribution Guidelines](https://github.com/XFox111/TabsAsideExtension/blob/master/CONTRIBUTING.md), which covers the following:
-- [How to deploy the extension on your browser](https://github.com/XFox111/TabsAsideExtension/blob/master/CONTRIBUTING.md#deploy-test-version-on-your-browser)
-- [The development workflow](https://github.com/XFox111/TabsAsideExtension/blob/master/CONTRIBUTING.md#development-workflow), including debugging and running tests
-- [Coding guidelines](https://github.com/XFox111/TabsAsideExtension/blob/master/CONTRIBUTING.md#coding-guidelines)
-- [Submitting pull requests](https://github.com/XFox111/TabsAsideExtension/blob/master/CONTRIBUTING.md#submitting-pull-requests)
-- [Finding an issue to work on](https://github.com/XFox111/TabsAsideExtension/blob/master/CONTRIBUTING.md#finding-an-issue-to-work-on)
-- [Contributing to translations](https://github.com/XFox111/TabsAsideExtension/blob/master/CONTRIBUTING.md#contributing-to-translations)
+If you are interested in fixing issues and contributing directly to the code base, please refer to the [Contribution Guidelines](https://github.com/XFox111/TabsAsideExtension/wiki/Contribution-Guidelines)
 
-## Code of Conduct
-This project has adopted the Contributor Covenant. For more information see the [Code of Conduct](https://github.com/XFox111/TabsAsideExtension/blob/master/CODE_OF_CONDUCT.md)
+---
 
-## Copyrights
-> ©2021 Michael "XFox" Gordeev
+[![Bluesky](https://img.shields.io/badge/%40xfox111.net-BSky?logo=bluesky&logoColor=%230285FF&label=Bluesky&labelColor=white&color=%230285FF)](https://bsky.app/profile/xfox111.net)
+[![GitHub](https://img.shields.io/badge/%40xfox111-GitHub?logo=github&logoColor=%23181717&label=GitHub&labelColor=white&color=%23181717)](https://github.com/xfox111)
+[![Buy Me a Coffee](https://img.shields.io/badge/%40xfox111-BMC?logo=buymeacoffee&logoColor=black&label=Buy%20me%20a%20coffee&labelColor=white&color=%23FFDD00)](https://buymeacoffee.com/xfox111)
 
-Font copyrights: Microsoft Corportation ©2021 (Additional ELUA applied)
-
-Licensed under [MIT License](https://opensource.org/licenses/MIT)
+> ©2025 Eugene Fox. Licensed under [MIT license](https://github.com/XFox111/TabsAsideExtension/blob/main/LICENSE)

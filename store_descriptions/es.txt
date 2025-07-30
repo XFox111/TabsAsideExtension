@@ -1,0 +1,48 @@
+<!-- Versión en texto plano (Chrome/Edge) -->
+
+Basada en la funcionalidad original del navegador Microsoft Edge, esta extensión ha crecido mucho más allá de ser solo un almacenamiento temporal para pestañas.
+
+Te permite guardar y gestionar tus pestañas de manera conveniente, proporcionando una gama de características que facilitan organizar y acceder a tus pestañas guardadas.
+
+## Características
+- Guardar pestañas: Guarda todas tus pestañas abiertas con un solo clic y restáuralas más tarde
+- Organizar pestañas: Crea colecciones y subgrupos para organizar tus pestañas guardadas
+- Buscar pestañas: Encuentra rápidamente las pestañas que necesitas usando la función de búsqueda
+- Sincronizar entre dispositivos: Accede a tus pestañas guardadas desde cualquier dispositivo con tu cuenta
+- Modo oscuro: Soporte para modo oscuro para una experiencia de navegación más cómoda
+- Personalizar: Cambia la apariencia y el comportamiento de la extensión para adaptarla a tus necesidades
+
+Consulta nuestra publicación en el blog sobre todas las nuevas características y mejoras en Pestañas a un lado 3.0 en:
+https://at.xfox111.net/tabs-aside-3-0
+
+## ¡Oye, es un software de código abierto!
+Si sabes cómo mejorar esta extensión, puedes revisar su repositorio de GitHub en:
+https://github.com/xfox111/TabsAsideExtension
+
+Consulta el registro de cambios en:
+https://github.com/xfox111/TabsAsideExtension/releases/latest
+
+
+
+<!-- Versión en texto enriquecido (Firefox) -->
+
+Basada en la funcionalidad original del navegador Microsoft Edge, esta extensión ha crecido mucho más allá de ser solo un almacenamiento temporal para pestañas.
+
+Te permite guardar y gestionar tus pestañas de manera conveniente, proporcionando una gama de características que facilitan organizar y acceder a tus pestañas guardadas.
+
+<b>Características</b>
+<ul>
+	<li><b>Guardar pestañas</b>: Guarda todas tus pestañas abiertas con un solo clic y restáuralas más tarde</li>
+	<li><b>Organizar pestañas</b>: Crea colecciones y subgrupos para organizar tus pestañas guardadas</li>
+	<li><b>Buscar pestañas</b>: Encuentra rápidamente las pestañas que necesitas usando la función de búsqueda</li>
+	<li><b>Sincronizar entre dispositivos</b>: Accede a tus pestañas guardadas desde cualquier dispositivo con tu cuenta</li>
+	<li><b>Modo oscuro</b>: Soporte para modo oscuro para una experiencia de navegación más cómoda</li>
+	<li><b>Personalizar</b>: Cambia la apariencia y el comportamiento de la extensión para adaptarla a tus necesidades</li>
+</ul>
+
+Consulta nuestra <a href="https://at.xfox111.net/tabs-aside-3-0">publicación en el blog</a> sobre todas las nuevas características y mejoras en Pestañas a un lado 3.0
+
+<b>¡Oye, es un software de código abierto!</b>
+Si sabes cómo mejorar esta extensión, puedes revisar <a href="https://github.com/xfox111/TabsAsideExtension">su repositorio de GitHub</a>
+
+Consulta el <a href="https://github.com/xfox111/TabsAsideExtension/releases/latest">registro de cambios</a>
