@@ -3087,10 +3087,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/scheduler@npm:0.23.0":
-  version: 0.23.0
-  resolution: "@types/scheduler@npm:0.23.0"
-  checksum: 10c0/5cf7f2ba3732b74877559eb20b19f95fcd0a20c17dcb20e75a7ca7c7369cd455aeb2d406b3ff5a38168a9750da3bad78dd20d96d11118468b78f4959b8e56090
+"@types/scheduler@npm:0.26.0":
+  version: 0.26.0
+  resolution: "@types/scheduler@npm:0.26.0"
+  checksum: 10c0/84626b06551ab7e1247412a2588430da5cd75263a353f1fd70593ca7331d43797937b89fe587089c6b3613d0658986087c5f0b2debef5bae831cdc1104a432ef
   languageName: node
   linkType: hard
 
@@ -8325,12 +8325,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:0.23.0":
-  version: 0.23.0
-  resolution: "scheduler@npm:0.23.0"
-  dependencies:
-    loose-envify: "npm:^1.1.0"
-  checksum: 10c0/b777f7ca0115e6d93e126ac490dbd82642d14983b3079f58f35519d992fa46260be7d6e6cede433a92db70306310c6f5f06e144f0e40c484199e09c1f7be53dd
+"scheduler@npm:0.26.0":
+  version: 0.26.0
+  resolution: "scheduler@npm:0.26.0"
+  checksum: 10c0/5b8d5bfddaae3513410eda54f2268e98a376a429931921a81b5c3a2873aab7ca4d775a8caac5498f8cbc7d0daeab947cf923dbd8e215d61671f9f4e392d34356
   languageName: node
   linkType: hard
 
@@ -8921,7 +8919,7 @@ __metadata:
     "@stylistic/eslint-plugin": "npm:^5.2.2"
     "@types/react": "npm:^18.3.1"
     "@types/react-dom": "npm:^18.3.1"
-    "@types/scheduler": "npm:0.23.0"
+    "@types/scheduler": "npm:0.26.0"
     "@webext-core/messaging": "npm:^2.3.0"
     "@wxt-dev/analytics": "npm:^0.4.1"
     "@wxt-dev/i18n": "npm:^0.2.4"
@@ -8932,7 +8930,7 @@ __metadata:
     lzutf8: "npm:^0.6.3"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
-    scheduler: "npm:0.23.0"
+    scheduler: "npm:0.26.0"
     typescript: "npm:^5.8.3"
     typescript-eslint: "npm:^8.38.0"
     vite: "npm:^7.0.6"
