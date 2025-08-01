@@ -22,7 +22,7 @@
 		"@wxt-dev/analytics": "^0.4.1",
 		"@wxt-dev/i18n": "^0.2.4",
 		"lzutf8": "^0.6.3",
-		"react": "^18.3.1",
+		"react": "^19.1.1",
 		"react-dom": "^18.3.1"
 	},
 	"devDependencies": {
@@ -30,7 +30,7 @@
 		"@eslint/js": "^9.32.0",
 		"@eslint/json": "^0.13.1",
 		"@stylistic/eslint-plugin": "^5.2.2",
-		"@types/react": "^18.3.1",
+		"@types/react": "^19.1.9",
 		"@types/react-dom": "^18.3.1",
 		"@types/scheduler": "0.23.0",
 		"@wxt-dev/module-react": "^1.1.3",
