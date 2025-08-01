@@ -22,7 +22,7 @@ jobs:
           extver=`jq -r ".version" package.json`
           echo "version=$extver" >> "$GITHUB_OUTPUT"
 
-      - uses: dev-build-deploy/release-me@v0.18.0
+      - uses: dev-build-deploy/release-me@v0.18.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           prefix: v
