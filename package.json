@@ -17,7 +17,7 @@
 		"@dnd-kit/sortable": "^10.0.0",
 		"@dnd-kit/utilities": "^3.2.2",
 		"@fluentui/react-components": "^9.68.1",
-		"@fluentui/react-icons": "^2.0.307",
+		"@fluentui/react-icons": "^2.0.309",
 		"@webext-core/messaging": "^2.3.0",
 		"@wxt-dev/analytics": "^0.4.1",
 		"@wxt-dev/i18n": "^0.2.4",
