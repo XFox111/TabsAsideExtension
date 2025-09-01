@@ -645,10 +645,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/js@npm:9.32.0, @eslint/js@npm:^9.32.0":
+"@eslint/js@npm:9.32.0":
   version: 9.32.0
   resolution: "@eslint/js@npm:9.32.0"
   checksum: 10c0/f71e8f9146638d11fb15238279feff98801120a4d4130f1c587c4f09b024ff5ec01af1ba88e97ba6b7013488868898a668f77091300cc3d4394c7a8ed32d2667
+  languageName: node
+  linkType: hard
+
+"@eslint/js@npm:^9.34.0":
+  version: 9.34.0
+  resolution: "@eslint/js@npm:9.34.0"
+  checksum: 10c0/53f1bfd2a374683d9382a6850354555f6e89a88416c34a5d34e9fbbaf717e97c2b06300e8f93e5eddba8bda8951ccab7f93a680e56ded1a3d21d526019e69bab
   languageName: node
   linkType: hard
 
@@ -8914,7 +8921,7 @@ __metadata:
     "@dnd-kit/sortable": "npm:^10.0.0"
     "@dnd-kit/utilities": "npm:^3.2.2"
     "@eslint/css": "npm:^0.10.0"
-    "@eslint/js": "npm:^9.32.0"
+    "@eslint/js": "npm:^9.34.0"
     "@eslint/json": "npm:^0.13.1"
     "@fluentui/react-components": "npm:^9.68.1"
     "@fluentui/react-icons": "npm:^2.0.307"
