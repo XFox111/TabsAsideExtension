@@ -607,6 +607,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@eslint/core@npm:^0.15.2":
+  version: 0.15.2
+  resolution: "@eslint/core@npm:0.15.2"
+  dependencies:
+    "@types/json-schema": "npm:^7.0.15"
+  checksum: 10c0/c17a6dc4f5a6006ecb60165cc38bcd21fefb4a10c7a2578a0cfe5813bbd442531a87ed741da5adab5eb678e8e693fda2e2b14555b035355537e32bcec367ea17
+  languageName: node
+  linkType: hard
+
 "@eslint/css-tree@npm:^3.6.1":
   version: 3.6.1
   resolution: "@eslint/css-tree@npm:3.6.1"
@@ -652,15 +661,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/json@npm:^0.13.1":
-  version: 0.13.1
-  resolution: "@eslint/json@npm:0.13.1"
+"@eslint/json@npm:^0.13.2":
+  version: 0.13.2
+  resolution: "@eslint/json@npm:0.13.2"
   dependencies:
-    "@eslint/core": "npm:^0.15.1"
-    "@eslint/plugin-kit": "npm:^0.3.4"
-    "@humanwhocodes/momoa": "npm:^3.3.8"
+    "@eslint/core": "npm:^0.15.2"
+    "@eslint/plugin-kit": "npm:^0.3.5"
+    "@humanwhocodes/momoa": "npm:^3.3.9"
     natural-compare: "npm:^1.4.0"
-  checksum: 10c0/8dae443777aa2d6cc8d24e3185fb718c527cecd33af65a776ebc1e2a6f7856cac6238daff03d57bbcd31c8c0ede4fa3e9f8dd69531b5eedd61d53517fe65502d
+  checksum: 10c0/1e024e33687a2cb26261856f0c5d459d06100b2e09718d6b1e8b63f6595e879fea6a7944f97abd07309b937773fc75c7dc4d61f4fc070422a0c8740c40334774
   languageName: node
   linkType: hard
 
@@ -688,6 +697,16 @@ __metadata:
     "@eslint/core": "npm:^0.15.1"
     levn: "npm:^0.4.1"
   checksum: 10c0/64331ca100f62a0115d10419a28059d0f377e390192163b867b9019517433d5073d10b4ec21f754fa01faf832aceb34178745924baab2957486f8bf95fd628d2
+  languageName: node
+  linkType: hard
+
+"@eslint/plugin-kit@npm:^0.3.5":
+  version: 0.3.5
+  resolution: "@eslint/plugin-kit@npm:0.3.5"
+  dependencies:
+    "@eslint/core": "npm:^0.15.2"
+    levn: "npm:^0.4.1"
+  checksum: 10c0/c178c1b58c574200c0fd125af3e4bc775daba7ce434ba6d1eeaf9bcb64b2e9fea75efabffb3ed3ab28858e55a016a5efa95f509994ee4341b341199ca630b89e
   languageName: node
   linkType: hard
 
@@ -2578,7 +2597,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@humanwhocodes/momoa@npm:^3.3.8":
+"@humanwhocodes/momoa@npm:^3.3.9":
   version: 3.3.9
   resolution: "@humanwhocodes/momoa@npm:3.3.9"
   checksum: 10c0/591e1ef6b6e299a57006a052199a0b5f854dfbd0016c7862eb21fe7441a1426ef2ea75c006863693eb98fc46d4a60a82319546adb0277df2814b543a8dad7a7b
@@ -8915,7 +8934,7 @@ __metadata:
     "@dnd-kit/utilities": "npm:^3.2.2"
     "@eslint/css": "npm:^0.10.0"
     "@eslint/js": "npm:^9.32.0"
-    "@eslint/json": "npm:^0.13.1"
+    "@eslint/json": "npm:^0.13.2"
     "@fluentui/react-components": "npm:^9.68.1"
     "@fluentui/react-icons": "npm:^2.0.307"
     "@stylistic/eslint-plugin": "npm:^5.2.2"
