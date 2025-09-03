@@ -37,8 +37,12 @@ export default defineConfig({
 					"tabs",
 					"notifications",
 					"contextMenus",
-					"bookmarks",
 					"tabGroups"
+				],
+
+			optional_permissions:
+				[
+					"bookmarks"
 				],
 
 			commands:

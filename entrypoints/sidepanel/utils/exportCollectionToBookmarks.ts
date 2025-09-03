@@ -1,10 +1,20 @@
 import { CollectionItem, TabItem } from "@/models/CollectionModels";
 import sendNotification from "@/utils/sendNotification";
-import { Bookmarks } from "wxt/browser";
+import { Bookmarks, Permissions } from "wxt/browser";
 import { getCollectionTitle } from "./getCollectionTitle";
 
 export default async function exportCollectionToBookmarks(collection: CollectionItem)
 {
+	const permissions: Permissions.AnyPermissions = await browser.permissions.getAll();
+
+	if (!permissions.permissions?.includes("bookmarks"))
+	{
+		const granted: boolean = await browser.permissions.request({ permissions: ["bookmarks"] });
+
+		if (!granted)
+			return;
+	}
+
 	const rootFolder: Bookmarks.BookmarkTreeNode = await browser.bookmarks.create({
 		title: getCollectionTitle(collection)
 	});
