@@ -2,6 +2,7 @@ import { CollectionItem, TabItem } from "@/models/CollectionModels";
 import sendNotification from "@/utils/sendNotification";
 import { Bookmarks, Permissions } from "wxt/browser";
 import { getCollectionTitle } from "./getCollectionTitle";
+import { track } from "@/features/analytics";
 
 export default async function exportCollectionToBookmarks(collection: CollectionItem)
 {
@@ -40,6 +41,8 @@ export default async function exportCollectionToBookmarks(collection: Collection
 				await createTabBookmark(tab, groupFolder.id);
 		}
 	}
+
+	track("bookmarks_saved");
 
 	await sendNotification({
 		title: i18n.t("notifications.bookmark_saved.title"),
