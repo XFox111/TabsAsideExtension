@@ -133,6 +133,7 @@ options_page:
       website: "Мій веб-сайт"
       source: "Вихідний код"
       changelog: "Список змін"
+      privacy: "Політика конфіденційності"
 
 collections:
   empty: "Ця колекція пуста"

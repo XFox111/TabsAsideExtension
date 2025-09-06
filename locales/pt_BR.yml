@@ -133,6 +133,7 @@ options_page:
       website: "Meu site"
       source: "Código-fonte"
       changelog: "Registro de alterações"
+      privacy: "Política de Privacidade"
 
 collections:
   empty: "Esta coleção está vazia"

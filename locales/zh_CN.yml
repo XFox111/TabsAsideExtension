@@ -133,6 +133,7 @@ options_page:
       website: "我的网站"
       source: "源代码"
       changelog: "更新日志"
+      privacy: "隐私政策"
 
 collections:
   empty: "此收藏为空"

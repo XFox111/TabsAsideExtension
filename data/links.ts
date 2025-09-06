@@ -13,7 +13,8 @@ export const githubLinks =
 	repo: githubLink(),
 	release: githubLink(`releases/tag/v${Package.version}`),
 	license: githubLink("blob/main/LICENSE"),
-	translationGuide: githubLink("wiki/Contribution-Guidelines#contributing-to-translations")
+	translationGuide: githubLink("wiki/Contribution-Guidelines#contributing-to-translations"),
+	privacy: githubLink("blob/main/PRIVACY.md")
 };
 
 export const storeLink: string =

@@ -133,6 +133,7 @@ options_page:
       website: "Мой веб-сайт"
       source: "Исходный код"
       changelog: "Список изменений"
+      privacy: "Политика конфиденциальности"
 
 collections:
   empty: "Эта коллекция пуста"

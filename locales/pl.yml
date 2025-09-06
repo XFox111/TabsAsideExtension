@@ -133,6 +133,7 @@ options_page:
       website: "Moja strona internetowa"
       source: "Kod źródłowy"
       changelog: "Lista zmian"
+      privacy: "Polityka prywatności"
 
 collections:
   empty: "Ta kolekcja jest pusta"
