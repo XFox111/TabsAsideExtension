@@ -59,6 +59,11 @@ jobs:
         working-directory: ./node_modules/@dnd-kit/core/dist
         if: ${{ matrix.target == 'firefox' }}
 
+      # Patch for firefox analytics (see https://github.com/wxt-dev/wxt/pull/1808)
+      - run: ed -i 's|if (location.pathname === "/background.js")|if (location.pathname === "/background.js" \|\| location.pathname === "/_generated_background_page.html")|' index.mjs
+        working-directory: ./node_modules/@wxt-dev/analytics/dist
+        if: ${{ matrix.target == 'firefox' }}
+
       - run: yarn zip -b ${{ matrix.target }}
 
       - name: Drop build artifacts (${{ matrix.target }})
