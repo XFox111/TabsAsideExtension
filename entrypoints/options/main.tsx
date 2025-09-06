@@ -1,5 +1,6 @@
 import App from "@/App.tsx";
 import "@/assets/global.css";
+import { trackPage } from "@/features/analytics";
 import { Tab, TabList } from "@fluentui/react-components";
 import ReactDOM from "react-dom/client";
 import { useOptionsStyles } from "./hooks/useOptionsStyles.ts";
@@ -14,7 +15,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 	</App>
 );
 
-analytics.page("options_page");
+trackPage("options_page");
 
 function OptionsPage(): React.ReactElement
 {

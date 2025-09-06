@@ -1,5 +1,6 @@
 import App from "@/App.tsx";
 import "@/assets/global.css";
+import { trackPage } from "@/features/analytics";
 import { useLocalMigration } from "@/features/migration";
 import useWelcomeDialog from "@/features/v3welcome/hooks/useWelcomeDialog";
 import { Divider, makeStyles } from "@fluentui/react-components";
@@ -15,7 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 );
 
 document.title = i18n.t("manifest.name");
-analytics.page("collection_list");
+trackPage("collection_list");
 
 function MainPage(): React.ReactElement
 {
