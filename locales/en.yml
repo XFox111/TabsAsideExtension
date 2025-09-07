@@ -36,6 +36,15 @@ features:
     text3: "Visit our dev blog to learn more about this update and all of its features!"
     actions:
       visit_blog: "Read dev blog"
+  settingsReview:
+    title: "Review your settings"
+    action: "All settings"
+    analytics:
+      title: "These statistics will help us improve the extension"
+      p1: "We only collect usage statistics (number of collections, used features, etc.)"
+      p2: "We do not collect any of your data!"
+      p3_text: "See the full list of what we collect"
+      p3_link: "here"
 
 notifications:
   tabs_saved:

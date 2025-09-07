@@ -36,6 +36,15 @@ features:
     text3: "Visite nosso blog de desenvolvimento para saber mais sobre esta atualização e todos os seus recursos!"
     actions:
       visit_blog: "Ler blog de desenvolvimento"
+  settingsReview:
+    title: "Revise suas configurações"
+    action: "Todas as configurações"
+    analytics:
+      title: "Estas estatísticas nos ajudarão a melhorar a extensão"
+      p1: "Nós coletamos apenas estatísticas de uso (número de coleções, recursos usados, etc.)"
+      p2: "Nós não coletamos nenhum dos seus dados!"
+      p3_text: "Veja a lista completa do que coletamos"
+      p3_link: "aqui"
 
 notifications:
   tabs_saved:

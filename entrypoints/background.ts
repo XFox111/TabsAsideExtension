@@ -13,6 +13,7 @@ import watchTabSelection from "@/utils/watchTabSelection";
 import { Tabs, Windows } from "wxt/browser";
 import { Unwatch } from "wxt/storage";
 import { openCollection, openGroup } from "./sidepanel/utils/opener";
+import { setSettingsReviewNeeded } from "@/features/settingsReview";
 
 export default defineBackground(() =>
 {
@@ -35,6 +36,8 @@ export default defineBackground(() =>
 			track("extension_installed", { reason, previousVersion: previousVersion ?? "none" });
 
 			const previousMajor: number = previousVersion ? parseInt(previousVersion.split(".")[0]) : 0;
+
+			await setSettingsReviewNeeded(reason, previousVersion);
 
 			if (reason === "update" && previousMajor < 3)
 			{
