@@ -74,6 +74,7 @@ options_page:
       show_badge: "Mostra il badge del contatore"
       show_notification: "Mostra notifica quando salvi le schede usando il menu contestuale"
       unload_tabs: "Non caricare le schede dopo l'apertura"
+      allow_analytics: "Consenti la raccolta di statistiche anonime"
       list_locations:
         title: "Apri elenco delle collezioni in:"
         options:

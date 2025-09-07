@@ -74,6 +74,7 @@ options_page:
       show_badge: "Mostrar insignia de contador"
       show_notification: "Mostrar notificación al guardar pestañas usando el menú contextual"
       unload_tabs: "No cargar pestañas después de abrir"
+      allow_analytics: "Permitir la recopilación de estadísticas anónimas"
       list_locations:
         title: "Abrir lista de colecciones en:"
         options:

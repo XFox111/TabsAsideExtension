@@ -74,6 +74,7 @@ options_page:
       show_badge: "显示计数徽章"
       show_notification: "使用上下文菜单保存标签时显示通知"
       unload_tabs: "打开后不加载标签"
+      allow_analytics: "允许收集匿名统计数据"
       list_locations:
         title: "在以下位置打开收藏列表："
         options:

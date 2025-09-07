@@ -77,7 +77,7 @@ export default function GeneralSection(): React.ReactElement
 					onChange={ (_, e) => setDismissOnLoad(e.checked as boolean) } />
 
 				<Checkbox
-					label="Allow collection of anonymous statistics"
+					label={ i18n.t("options_page.general.options.allow_analytics") }
 					checked={ allowAnalytics ?? true }
 					disabled={ allowAnalytics === null }
 					onChange={ (_, e) => updateAnalytics(e.checked as boolean) } />

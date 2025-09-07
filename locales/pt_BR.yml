@@ -74,6 +74,7 @@ options_page:
       show_badge: "Mostrar contador no ícone"
       show_notification: "Mostrar notificação ao salvar abas pelo menu de contexto"
       unload_tabs: "Não carregar abas após abrir"
+      allow_analytics: "Permitir coleta de estatísticas anônimas"
       list_locations:
         title: "Abrir lista de coleções em:"
         options:

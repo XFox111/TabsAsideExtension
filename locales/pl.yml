@@ -74,6 +74,7 @@ options_page:
       show_badge: "Pokaż licznik"
       show_notification: "Pokaż powiadomienie przy zapisywaniu przez menu kontekstowe"
       unload_tabs: "Nie ładuj kart po otwarciu"
+      allow_analytics: "Zezwól na zbieranie anonimowej statystyki"
       list_locations:
         title: "Otwieraj listę kolekcji w:"
         options:

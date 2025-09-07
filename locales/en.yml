@@ -74,6 +74,7 @@ options_page:
       show_badge: "Show counter badge"
       show_notification: "Show notification when saving tabs using context menu"
       unload_tabs: "Do not load tabs after opening"
+      allow_analytics: "Allow collection of anonymous statistics"
       list_locations:
         title: "Open collection list in:"
         options:
