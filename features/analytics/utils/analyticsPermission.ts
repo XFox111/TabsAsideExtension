@@ -50,7 +50,7 @@ const analyticsPermission: Pick<WxtStorageItem<boolean, Record<string, unknown>>
 				{
 					// @ts-expect-error Introduced in Firefox 139
 					const isGranted: boolean = await browser.permissions.contains({ data_collection: ["technicalAndInteraction"] });
-					cb(!isGranted, isGranted);
+					cb(isGranted, !isGranted);
 				}
 			};
 
