@@ -89,6 +89,7 @@ export default defineConfig({
 
 					// @ts-expect-error Introduced in Firefox 139
 					data_collection_permissions: {
+						required: ["browsingActivity"],
 						optional: ["technicalAndInteraction"]
 					}
 				}
