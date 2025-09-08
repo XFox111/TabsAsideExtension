@@ -2,7 +2,7 @@ import useSettings, { SettingsValue } from "@/hooks/useSettings";
 import { Button, Checkbox, Dropdown, Field, Option, OptionOnSelectData } from "@fluentui/react-components";
 import { KeyCommand20Regular } from "@fluentui/react-icons";
 import { useOptionsStyles } from "../hooks/useOptionsStyles";
-import { checkAnalyticsPermission, setAnalyticsPermission } from "@/features/analytics";
+import { analyticsPermission } from "@/features/analytics";
 
 export default function GeneralSection(): React.ReactElement
 {
@@ -21,14 +21,14 @@ export default function GeneralSection(): React.ReactElement
 
 	useEffect(() =>
 	{
-		checkAnalyticsPermission().then(setAllowAnalytics);
+		analyticsPermission.getValue().then(setAllowAnalytics);
+		return analyticsPermission.watch(setAllowAnalytics);
 	}, []);
 
 	const updateAnalytics = (enabled: boolean): void =>
 	{
 		setAllowAnalytics(null);
-		setAnalyticsPermission(enabled)
-			.then(setAllowAnalytics);
+		analyticsPermission.setValue(enabled);
 	};
 
 	const openShortcutsPage = (): Promise<any> =>

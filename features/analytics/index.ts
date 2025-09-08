@@ -1,14 +1,14 @@
 import { analytics } from "./utils/analytics";
-import { checkAnalyticsPermission } from "./utils/checkAnalyticsPermission";
+import analyticsPermission from "./utils/analyticsPermission";
 import { getUserProperties, userId } from "./utils/getUserProperties";
 
-export { checkAnalyticsPermission, setAnalyticsPermission } from "./utils/checkAnalyticsPermission";
+export { analyticsPermission };
 
 export async function track(eventName: string, eventProperties?: Record<string, string>): Promise<void>
 {
 	try
 	{
-		if (!await checkAnalyticsPermission())
+		if (!await analyticsPermission.getValue())
 			return;
 
 		analytics.track(eventName, eventProperties);
@@ -23,7 +23,7 @@ export async function trackError(name: string, error: Error): Promise<void>
 {
 	try
 	{
-		if (!await checkAnalyticsPermission())
+		if (!await analyticsPermission.getValue())
 			return;
 
 		analytics.track(name, {
@@ -42,7 +42,7 @@ export async function trackPage(pageName: string): Promise<void>
 {
 	try
 	{
-		if (!await checkAnalyticsPermission())
+		if (!await analyticsPermission.getValue())
 			return;
 
 		analytics.identify(await userId.getValue(), await getUserProperties());

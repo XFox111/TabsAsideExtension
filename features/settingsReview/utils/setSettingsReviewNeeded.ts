@@ -1,4 +1,4 @@
-import { checkAnalyticsPermission } from "@/features/analytics";
+import { analyticsPermission } from "@/features/analytics";
 import { Runtime } from "wxt/browser";
 import { settingsForReview } from "./showSettingsReviewDialog";
 
@@ -23,7 +23,7 @@ export const reviewSettings =
 export async function checkAnalyticsReviewNeeded(installReason: Runtime.OnInstalledReason, previousVersion?: string): Promise<boolean>
 {
 	if (installReason === "install")
-		return !await checkAnalyticsPermission();
+		return !await analyticsPermission.getValue();
 
 	if (installReason === "update")
 	{

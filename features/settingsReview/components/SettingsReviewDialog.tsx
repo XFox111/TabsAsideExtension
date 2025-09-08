@@ -1,9 +1,10 @@
 import { githubLinks } from "@/data/links";
-import { checkAnalyticsPermission, setAnalyticsPermission } from "@/features/analytics";
+import { analyticsPermission } from "@/features/analytics";
 import extLink from "@/utils/extLink";
 import * as fui from "@fluentui/react-components";
 import { settingsForReview } from "../utils/showSettingsReviewDialog";
 import { reviewSettings } from "../utils/setSettingsReviewNeeded";
+import { Unwatch } from "wxt/storage";
 
 export default function SettingsReviewDialog(): React.ReactElement
 {
@@ -13,15 +14,21 @@ export default function SettingsReviewDialog(): React.ReactElement
 
 	useEffect(() =>
 	{
-		checkAnalyticsPermission().then(setAllowAnalytics);
+		analyticsPermission.getValue().then(setAllowAnalytics);
 		settingsForReview.getValue().then(setNeedsReview);
+
+		const unwatchAnalytics: Unwatch = analyticsPermission.watch(setAllowAnalytics);
+
+		return () =>
+		{
+			unwatchAnalytics();
+		};
 	}, []);
 
 	const updateAnalytics = (enabled: boolean): void =>
 	{
 		setAllowAnalytics(null);
-		setAnalyticsPermission(enabled)
-			.then(setAllowAnalytics);
+		analyticsPermission.setValue(enabled);
 	};
 
 	return (
