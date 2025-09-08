@@ -131,6 +131,13 @@ options_page:
     disable_prompt:
       text: "此操作将禁用设备之间的收藏同步。扩展设置仍将同步。"
       action: "禁用并重新加载扩展"
+    thumbnail_capture: "为已保存的标签保存缩略图和图标"
+    thumbnail_capture_notice1: "需要访问已访问网站内容的权限"
+    thumbnail_capture_notice2: "当你有大量集合时，禁用此功能可能会提高性能"
+    clear_thumbnails:
+      action: "删除已保存的图标"
+      title: "删除缩略图和图标？"
+      prompt: "此操作将删除您已保存标签页的所有缩略图和图标。此操作无法撤消。"
   about:
     title: "关于"
     developed_by: "由尤金·福克斯开发"

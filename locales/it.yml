@@ -131,6 +131,13 @@ options_page:
     disable_prompt:
       text: "Questa azione disabiliterà la sincronizzazione delle collezioni tra i tuoi dispositivi. Le impostazioni dell'estensione saranno comunque sincronizzate."
       action: "Disabilita e ricarica l'estensione"
+    thumbnail_capture: "Cattura miniature e icone per le schede salvate"
+    thumbnail_capture_notice1: "Richiede il permesso di accedere ai contenuti dei siti web visitati"
+    thumbnail_capture_notice2: "Disabilitare questa funzione può migliorare le prestazioni su collezioni di grandi dimensioni"
+    clear_thumbnails:
+      action: "Elimina miniature salvate"
+      title: "Eliminare tutte le miniature salvate?"
+      prompt: "Questa azione rimuoverà tutte le miniature, anteprime e icone salvate per le tue schede salvate. Questa azione non può essere annullata."
   about:
     title: "Informazioni"
     developed_by: "Sviluppato da Eugene Fox"

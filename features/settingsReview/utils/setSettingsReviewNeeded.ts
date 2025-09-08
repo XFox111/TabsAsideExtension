@@ -9,6 +9,10 @@ export default async function setSettingsReviewNeeded(installReason: Runtime.OnI
 	if (!needsReview.includes(reviewSettings.ANALYTICS) && await checkAnalyticsReviewNeeded(installReason, previousVersion))
 		needsReview.push(reviewSettings.ANALYTICS);
 
+	if (!needsReview.includes(reviewSettings.THUMBNAILS) && await checkThumbnailsReviewNeeded(installReason, previousVersion))
+		needsReview.push(reviewSettings.THUMBNAILS);
+
+	console.log("Settings needing review:", needsReview);
 	// Add more settings here as needed
 
 	if (needsReview.length > 0)
@@ -17,10 +21,11 @@ export default async function setSettingsReviewNeeded(installReason: Runtime.OnI
 
 export const reviewSettings =
 {
-	ANALYTICS: "analytics"
+	ANALYTICS: "analytics",
+	THUMBNAILS: "thumbnails"
 };
 
-export async function checkAnalyticsReviewNeeded(installReason: Runtime.OnInstalledReason, previousVersion?: string): Promise<boolean>
+async function checkAnalyticsReviewNeeded(installReason: Runtime.OnInstalledReason, previousVersion?: string): Promise<boolean>
 {
 	if (installReason === "install")
 		return !await analyticsPermission.getValue();
@@ -31,6 +36,26 @@ export async function checkAnalyticsReviewNeeded(installReason: Runtime.OnInstal
 		const cummulative: number = major * 10000 + minor * 100 + patch;
 
 		if (cummulative < 30100) // < 3.1.0
+			return true;
+	}
+
+	if (import.meta.env.DEV)
+		return true;
+
+	return false;
+}
+
+async function checkThumbnailsReviewNeeded(installReason: Runtime.OnInstalledReason, previousVersion?: string): Promise<boolean>
+{
+	if (installReason === "install")
+		return true;
+
+	if (installReason === "update")
+	{
+		const [major, minor, patch] = (previousVersion ?? "0.0.0").split(".").map(parseInt);
+		const cummulative: number = major * 10000 + minor * 100 + patch;
+
+		if (cummulative < 30100) // < 3.2.0
 			return true;
 	}
 

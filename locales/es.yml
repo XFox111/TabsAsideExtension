@@ -131,6 +131,13 @@ options_page:
     disable_prompt:
       text: "Esta acción deshabilitará la sincronización de colecciones entre tus dispositivos. La configuración de la extensión seguirá sincronizándose."
       action: "Deshabilitar y recargar la extensión"
+    thumbnail_capture: "Capturar miniaturas e íconos para las pestañas guardadas"
+    thumbnail_capture_notice1: "Requiere permiso para acceder al contenido de los sitios web visitados"
+    thumbnail_capture_notice2: "Deshabilitar esta función puede mejorar el rendimiento en colecciones grandes"
+    clear_thumbnails:
+      action: "Eliminar miniaturas guardadas"
+      title: "¿Eliminar todas las miniaturas guardadas?"
+      prompt: "Esta acción eliminará todas las miniaturas, vistas previas e íconos guardados para tus pestañas guardadas. Esta acción no se puede deshacer."
   about:
     title: "Acerca de"
     developed_by: "Desarrollado por Eugene Fox"

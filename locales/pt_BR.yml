@@ -131,6 +131,13 @@ options_page:
     disable_prompt:
       text: "Esta ação desativará a sincronização de coleções entre seus dispositivos. As configurações da extensão ainda serão sincronizadas."
       action: "Desativar e recarregar a extensão"
+    thumbnail_capture: "Capturar miniaturas e ícones para as abas salvas"
+    thumbnail_capture_notice1: "Requer permissão para acessar o conteúdo dos sites visitados"
+    thumbnail_capture_notice2: "Desativar esse recurso pode melhorar o desempenho em coleções grandes"
+    clear_thumbnails:
+      action: "Eliminar miniaturas guardadas"
+      title: "Excluir todas as miniaturas salvas?"
+      prompt: "Esta ação removerá todas as miniaturas, pré-visualizações e ícones salvos para suas abas salvas. Esta ação não pode ser desfeita."
   about:
     title: "Sobre"
     developed_by: "Desenvolvido por Eugene Fox"

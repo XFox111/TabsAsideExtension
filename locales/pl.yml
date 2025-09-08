@@ -131,6 +131,13 @@ options_page:
     disable_prompt:
       text: "Ta akcja wyłączy synchronizację kolekcji między twoimi urządzeniami. Ustawienia nadal będą przechowywane w chmurze."
       action: "Wyłącz i przeładuj rozszerzenie"
+    thumbnail_capture: "Zapisuj podglądy i ikony dla zapisanych kart"
+    thumbnail_capture_notice1: "Wymagany dostęp do zawartości odwiedzanych stron internetowych"
+    thumbnail_capture_notice2: "Wyłączenie tej funkcji może poprawić wydajność przy dużej liczbie zapisanych kart"
+    clear_thumbnails:
+      action: "Usuń zapisane ikony"
+      title: "Usunąć podglądy i ikony?"
+      prompt: "Ta akcja usunie wszystkie podglądy i ikony twoich zapisanych kart. Tej akcji nie można cofnąć."
   about:
     title: "O rozszerzeniu"
     developed_by: "Wywoływacz: Eugeniusz Lis"

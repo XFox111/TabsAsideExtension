@@ -42,7 +42,8 @@ export default defineConfig({
 
 			optional_permissions:
 				[
-					"bookmarks"
+					"bookmarks",
+					"scripting"
 				],
 
 			commands:
@@ -75,7 +76,7 @@ export default defineConfig({
 				}
 			},
 
-			host_permissions: ["<all_urls>"]
+			optional_host_permissions: ["<all_urls>"]
 		};
 
 		if (browser === "firefox")

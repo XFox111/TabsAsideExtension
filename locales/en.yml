@@ -131,6 +131,13 @@ options_page:
     disable_prompt:
       text: "This action will disable collection synchronization between your devices. Extension's settings will still be synchronized."
       action: "Disable and reload the extension"
+    thumbnail_capture: "Capture thumbnails and icons for saved tabs"
+    thumbnail_capture_notice1: "Requires permission to access content on visited websites"
+    thumbnail_capture_notice2: "Disabling this feature may improve performance on large collections"
+    clear_thumbnails:
+      action: "Clear saved thumbnails"
+      title: "Delete all saved thumbnails?"
+      prompt: "This action will remove all saved thumbnails, previews and icons for your saved tabs. This action cannot be undone."
   about:
     title: "About"
     developed_by: "Developed by Eugene Fox"
