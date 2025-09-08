@@ -5,23 +5,28 @@ import * as fui from "@fluentui/react-components";
 import { settingsForReview } from "../utils/showSettingsReviewDialog";
 import { reviewSettings } from "../utils/setSettingsReviewNeeded";
 import { Unwatch } from "wxt/storage";
+import { thumbnailCaptureEnabled } from "@/features/collectionStorage";
 
 export default function SettingsReviewDialog(): React.ReactElement
 {
 	const [allowAnalytics, setAllowAnalytics] = useState<boolean | null>(null);
+	const [captureThumbnails, setCaptureThumbnails] = useState<boolean | null>(null);
 	const [needsReview, setNeedsReview] = useState<string[]>([]);
 	const cls = useStyles();
 
 	useEffect(() =>
 	{
 		analyticsPermission.getValue().then(setAllowAnalytics);
+		thumbnailCaptureEnabled.getValue().then(setCaptureThumbnails);
 		settingsForReview.getValue().then(setNeedsReview);
 
 		const unwatchAnalytics: Unwatch = analyticsPermission.watch(setAllowAnalytics);
+		const unwatchThumbnails: Unwatch = thumbnailCaptureEnabled.watch(setCaptureThumbnails);
 
 		return () =>
 		{
 			unwatchAnalytics();
+			unwatchThumbnails();
 		};
 	}, []);
 
@@ -29,6 +34,12 @@ export default function SettingsReviewDialog(): React.ReactElement
 	{
 		setAllowAnalytics(null);
 		analyticsPermission.setValue(enabled);
+	};
+
+	const updateThumbnails = (enabled: boolean): void =>
+	{
+		setCaptureThumbnails(null);
+		thumbnailCaptureEnabled.setValue(enabled);
 	};
 
 	return (
@@ -40,9 +51,9 @@ export default function SettingsReviewDialog(): React.ReactElement
 						<div className={ cls.section }>
 							<fui.Switch
 								label={ i18n.t("options_page.storage.thumbnail_capture") }
-								checked={ allowAnalytics ?? true }
-								disabled={ allowAnalytics === null }
-								onChange={ (_, e) => updateAnalytics(e.checked as boolean) } />
+								checked={ captureThumbnails ?? true }
+								disabled={ captureThumbnails === null }
+								onChange={ (_, e) => updateThumbnails(e.checked as boolean) } />
 
 							<fui.MessageBar layout="multiline">
 								<fui.MessageBarBody className={ cls.msgBarBody }>

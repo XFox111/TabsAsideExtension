@@ -33,9 +33,9 @@ async function checkAnalyticsReviewNeeded(installReason: Runtime.OnInstalledReas
 	if (installReason === "update")
 	{
 		const [major, minor, patch] = (previousVersion ?? "0.0.0").split(".").map(parseInt);
-		const cummulative: number = major * 10000 + minor * 100 + patch;
+		const cumulative: number = major * 10000 + minor * 100 + patch;
 
-		if (cummulative < 30100) // < 3.1.0
+		if (cumulative < 30100) // < 3.1.0
 			return true;
 	}
 
@@ -53,9 +53,9 @@ async function checkThumbnailsReviewNeeded(installReason: Runtime.OnInstalledRea
 	if (installReason === "update")
 	{
 		const [major, minor, patch] = (previousVersion ?? "0.0.0").split(".").map(parseInt);
-		const cummulative: number = major * 10000 + minor * 100 + patch;
+		const cumulative: number = major * 10000 + minor * 100 + patch;
 
-		if (cummulative < 30100) // < 3.2.0
+		if (cumulative < 30100) // < 3.2.0
 			return true;
 	}
 
