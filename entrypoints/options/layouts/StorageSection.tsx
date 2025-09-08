@@ -26,11 +26,7 @@ export default function StorageSection(): React.ReactElement
 		cloudDisabled.getValue().then(setCloudDisabled);
 
 		const unwatchCloud: Unwatch = cloudDisabled.watch(setCloudDisabled);
-		const unwatchThumbnails: Unwatch = thumbnailCaptureEnabled.watch(value =>
-		{
-			browser.permissions.getAll().then(permissions => console.log(permissions.origins?.join(", ")));
-			setThumbnailCaptureEnabled(value);
-		});
+		const unwatchThumbnails: Unwatch = thumbnailCaptureEnabled.watch(setThumbnailCaptureEnabled);
 
 		return () =>
 		{

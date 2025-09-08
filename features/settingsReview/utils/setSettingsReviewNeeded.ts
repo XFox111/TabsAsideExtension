@@ -55,7 +55,7 @@ async function checkThumbnailsReviewNeeded(installReason: Runtime.OnInstalledRea
 		const [major, minor, patch] = (previousVersion ?? "0.0.0").split(".").map(parseInt);
 		const cumulative: number = major * 10000 + minor * 100 + patch;
 
-		if (cumulative < 30100) // < 3.2.0
+		if (cumulative < 30100) // < 3.1.0
 			return true;
 	}
 
