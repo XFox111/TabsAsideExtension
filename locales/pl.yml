@@ -36,6 +36,15 @@ features:
     text3: "Odwiedź blog dewelopera (tylko w języku angielskim), aby dowiedzieć się więcej o tej aktualizacji i wszystkich jej funkcjach!"
     actions:
       visit_blog: "Czytaj blog"
+  settingsReview:
+    title: "Sprawdź ustawienia"
+    action: "Wszystkie ustawienia"
+    analytics:
+      title: "Ta statystyka pozwoli ulepszać rozszerzenie"
+      p1: "Zbieramy tylko statystyki użycia (liczba kolekcji, używane funkcje itp.)"
+      p2: "Nie zbieramy twoich danych osobowych!"
+      p3_text: "Pełną listę zbieranych danych można zobaczyć"
+      p3_link: "tutaj"
 
 notifications:
   tabs_saved:
@@ -74,6 +83,7 @@ options_page:
       show_badge: "Pokaż licznik"
       show_notification: "Pokaż powiadomienie przy zapisywaniu przez menu kontekstowe"
       unload_tabs: "Nie ładuj kart po otwarciu"
+      allow_analytics: "Zezwól na zbieranie anonimowej statystyki"
       list_locations:
         title: "Otwieraj listę kolekcji w:"
         options:
@@ -121,6 +131,13 @@ options_page:
     disable_prompt:
       text: "Ta akcja wyłączy synchronizację kolekcji między twoimi urządzeniami. Ustawienia nadal będą przechowywane w chmurze."
       action: "Wyłącz i przeładuj rozszerzenie"
+    thumbnail_capture: "Zapisuj podglądy i ikony dla zapisanych kart"
+    thumbnail_capture_notice1: "Wymagany dostęp do zawartości odwiedzanych stron internetowych"
+    thumbnail_capture_notice2: "Wyłączenie tej funkcji może poprawić wydajność przy dużej liczbie zapisanych kart"
+    clear_thumbnails:
+      action: "Usuń zapisane ikony"
+      title: "Usunąć podglądy i ikony?"
+      prompt: "Ta akcja usunie wszystkie podglądy i ikony twoich zapisanych kart. Tej akcji nie można cofnąć."
   about:
     title: "O rozszerzeniu"
     developed_by: "Wywoływacz: Eugeniusz Lis"
@@ -133,6 +150,7 @@ options_page:
       website: "Moja strona internetowa"
       source: "Kod źródłowy"
       changelog: "Lista zmian"
+      privacy: "Polityka prywatności"
 
 collections:
   empty: "Ta kolekcja jest pusta"

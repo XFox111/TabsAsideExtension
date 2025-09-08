@@ -34,7 +34,8 @@ export default function AboutSection(): React.ReactElement
 			<Body1 as="p">
 				<Link { ...extLink(websiteLink) }>{ i18n.t("options_page.about.links.website") }</Link><br />
 				<Link { ...extLink(githubLinks.repo) }>{ i18n.t("options_page.about.links.source") }</Link><br />
-				<Link { ...extLink(githubLinks.release) }>{ i18n.t("options_page.about.links.changelog") }</Link>
+				<Link { ...extLink(githubLinks.release) }>{ i18n.t("options_page.about.links.changelog") }</Link><br />
+				<Link { ...extLink(githubLinks.privacy) }>{ i18n.t("options_page.about.links.privacy") }</Link>
 			</Body1>
 
 			<div className={ cls.horizontalButtons }>

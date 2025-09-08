@@ -36,6 +36,15 @@ features:
     text3: "Visita il nostro blog per saperne di più su questo aggiornamento e tutte le sue funzionalità!"
     actions:
       visit_blog: "Leggi il blog degli sviluppatori"
+  settingsReview:
+    title: "Rivedi le tue impostazioni"
+    action: "Tutte le impostazioni"
+    analytics:
+      title: "Queste statistiche ci aiuteranno a migliorare l'estensione"
+      p1: "Raccogliamo solo statistiche di utilizzo (numero di collezioni, funzionalità utilizzate, ecc.)"
+      p2: "Non raccogliamo nessuno dei tuoi dati!"
+      p3_text: "Vedi l'elenco completo di ciò che raccogliamo"
+      p3_link: "qui"
 
 notifications:
   tabs_saved:
@@ -74,6 +83,7 @@ options_page:
       show_badge: "Mostra il badge del contatore"
       show_notification: "Mostra notifica quando salvi le schede usando il menu contestuale"
       unload_tabs: "Non caricare le schede dopo l'apertura"
+      allow_analytics: "Consenti la raccolta di statistiche anonime"
       list_locations:
         title: "Apri elenco delle collezioni in:"
         options:
@@ -121,6 +131,13 @@ options_page:
     disable_prompt:
       text: "Questa azione disabiliterà la sincronizzazione delle collezioni tra i tuoi dispositivi. Le impostazioni dell'estensione saranno comunque sincronizzate."
       action: "Disabilita e ricarica l'estensione"
+    thumbnail_capture: "Cattura miniature e icone per le schede salvate"
+    thumbnail_capture_notice1: "Richiede il permesso di accedere ai contenuti dei siti web visitati"
+    thumbnail_capture_notice2: "Disabilitare questa funzione può migliorare le prestazioni su collezioni di grandi dimensioni"
+    clear_thumbnails:
+      action: "Elimina miniature salvate"
+      title: "Eliminare tutte le miniature salvate?"
+      prompt: "Questa azione rimuoverà tutte le miniature, anteprime e icone salvate per le tue schede salvate. Questa azione non può essere annullata."
   about:
     title: "Informazioni"
     developed_by: "Sviluppato da Eugene Fox"
@@ -133,6 +150,7 @@ options_page:
       website: "Il mio sito web"
       source: "Codice sorgente"
       changelog: "Registro delle modifiche"
+      privacy: "Politica sulla riservatezza"
 
 collections:
   empty: "Questa collezione è vuota"

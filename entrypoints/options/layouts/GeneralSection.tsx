@@ -2,6 +2,7 @@ import useSettings, { SettingsValue } from "@/hooks/useSettings";
 import { Button, Checkbox, Dropdown, Field, Option, OptionOnSelectData } from "@fluentui/react-components";
 import { KeyCommand20Regular } from "@fluentui/react-icons";
 import { useOptionsStyles } from "../hooks/useOptionsStyles";
+import { analyticsPermission } from "@/features/analytics";
 
 export default function GeneralSection(): React.ReactElement
 {
@@ -14,7 +15,21 @@ export default function GeneralSection(): React.ReactElement
 	const [listLocation, setListLocation] = useSettings("listLocation");
 	const [contextAction, setContextAction] = useSettings("contextAction");
 
+	const [allowAnalytics, setAllowAnalytics] = useState<boolean | null>(null);
+
 	const cls = useOptionsStyles();
+
+	useEffect(() =>
+	{
+		analyticsPermission.getValue().then(setAllowAnalytics);
+		return analyticsPermission.watch(setAllowAnalytics);
+	}, []);
+
+	const updateAnalytics = (enabled: boolean): void =>
+	{
+		setAllowAnalytics(null);
+		analyticsPermission.setValue(enabled);
+	};
 
 	const openShortcutsPage = (): Promise<any> =>
 		browser.tabs.create({
@@ -60,6 +75,12 @@ export default function GeneralSection(): React.ReactElement
 					label={ i18n.t("options_page.general.options.unload_tabs") }
 					checked={ dismissOnLoad ?? false }
 					onChange={ (_, e) => setDismissOnLoad(e.checked as boolean) } />
+
+				<Checkbox
+					label={ i18n.t("options_page.general.options.allow_analytics") }
+					checked={ allowAnalytics ?? true }
+					disabled={ allowAnalytics === null }
+					onChange={ (_, e) => updateAnalytics(e.checked as boolean) } />
 			</section>
 
 			<Field label={ i18n.t("options_page.general.options.list_locations.title") }>

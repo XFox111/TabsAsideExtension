@@ -4,11 +4,7 @@ import { sendMessage } from "@/utils/messaging";
 // This content script is injected into each browser tab.
 // It's purpose is to retrive an OpenGraph thumbnail URL from the metadata
 
-export default defineContentScript({
-	matches: ["<all_urls>"],
-	runAt: "document_idle",
-	main
-});
+export default defineUnlistedScript({ main });
 
 const logger = getLogger("contentScript");
 

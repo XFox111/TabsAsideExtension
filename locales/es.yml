@@ -36,6 +36,15 @@ features:
     text3: "¡Visita nuestro blog de desarrollo para aprender más sobre esta actualización y todas sus características!"
     actions:
       visit_blog: "Leer el blog de desarrollo"
+  settingsReview:
+    title: "Revisa tus ajustes"
+    action: "Todos los ajustes"
+    analytics:
+      title: "Estas estadísticas nos ayudarán a mejorar la extensión"
+      p1: "Solo recopilamos estadísticas de uso (número de colecciones, funciones utilizadas, etc.)"
+      p2: "¡No recopilamos ninguno de tus datos!"
+      p3_text: "Ver la lista completa de lo que recopilamos"
+      p3_link: "aquí"
 
 notifications:
   tabs_saved:
@@ -74,6 +83,7 @@ options_page:
       show_badge: "Mostrar insignia de contador"
       show_notification: "Mostrar notificación al guardar pestañas usando el menú contextual"
       unload_tabs: "No cargar pestañas después de abrir"
+      allow_analytics: "Permitir la recopilación de estadísticas anónimas"
       list_locations:
         title: "Abrir lista de colecciones en:"
         options:
@@ -121,6 +131,13 @@ options_page:
     disable_prompt:
       text: "Esta acción deshabilitará la sincronización de colecciones entre tus dispositivos. La configuración de la extensión seguirá sincronizándose."
       action: "Deshabilitar y recargar la extensión"
+    thumbnail_capture: "Capturar miniaturas e íconos para las pestañas guardadas"
+    thumbnail_capture_notice1: "Requiere permiso para acceder al contenido de los sitios web visitados"
+    thumbnail_capture_notice2: "Deshabilitar esta función puede mejorar el rendimiento en colecciones grandes"
+    clear_thumbnails:
+      action: "Eliminar miniaturas guardadas"
+      title: "¿Eliminar todas las miniaturas guardadas?"
+      prompt: "Esta acción eliminará todas las miniaturas, vistas previas e íconos guardados para tus pestañas guardadas. Esta acción no se puede deshacer."
   about:
     title: "Acerca de"
     developed_by: "Desarrollado por Eugene Fox"
@@ -133,6 +150,7 @@ options_page:
       website: "Mi sitio web"
       source: "Código fuente"
       changelog: "Registro de cambios"
+      privacy: "Política de privacidad"
 
 collections:
   empty: "Esta colección está vacía"

@@ -2,7 +2,7 @@ import { ConfigEnv, defineConfig, UserManifest } from "wxt";
 
 // See https://wxt.dev/api/config.html
 export default defineConfig({
-	modules: ["@wxt-dev/module-react", "@wxt-dev/i18n/module", "@wxt-dev/analytics/module"],
+	modules: ["@wxt-dev/module-react", "@wxt-dev/i18n/module"],
 	vite: () => ({
 		build:
 		{
@@ -37,8 +37,13 @@ export default defineConfig({
 					"tabs",
 					"notifications",
 					"contextMenus",
-					"bookmarks",
 					"tabGroups"
+				],
+
+			optional_permissions:
+				[
+					"bookmarks",
+					"scripting"
 				],
 
 			commands:
@@ -71,7 +76,7 @@ export default defineConfig({
 				}
 			},
 
-			host_permissions: ["<all_urls>"]
+			optional_host_permissions: ["<all_urls>"]
 		};
 
 		if (browser === "firefox")
@@ -80,7 +85,13 @@ export default defineConfig({
 				gecko:
 				{
 					id: "tabsaside@xfox111.net",
-					strict_min_version: "139.0"
+					strict_min_version: "139.0",
+
+					// @ts-expect-error Introduced in Firefox 139
+					data_collection_permissions: {
+						required: ["browsingActivity"],
+						optional: ["technicalAndInteraction"]
+					}
 				}
 			};
 

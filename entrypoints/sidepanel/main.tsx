@@ -1,5 +1,6 @@
 import App from "@/App.tsx";
 import "@/assets/global.css";
+import { trackPage } from "@/features/analytics";
 import { useLocalMigration } from "@/features/migration";
 import useWelcomeDialog from "@/features/v3welcome/hooks/useWelcomeDialog";
 import { Divider, makeStyles } from "@fluentui/react-components";
@@ -7,6 +8,8 @@ import ReactDOM from "react-dom/client";
 import CollectionsProvider from "./contexts/CollectionsProvider";
 import CollectionListView from "./layouts/collections/CollectionListView";
 import Header from "./layouts/header/Header";
+import { useSettingsReviewDialog } from "@/features/settingsReview";
+import useDialogTrain from "@/hooks/useDialogTrain";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<App>
@@ -15,14 +18,17 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 );
 
 document.title = i18n.t("manifest.name");
-analytics.page("collection_list");
+trackPage("collection_list");
 
 function MainPage(): React.ReactElement
 {
 	const cls = useStyles();
 
 	useLocalMigration();
-	useWelcomeDialog();
+	useDialogTrain(
+		useWelcomeDialog,
+		useSettingsReviewDialog
+	);
 
 	return (
 		<CollectionsProvider>
