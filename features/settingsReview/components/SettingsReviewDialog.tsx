@@ -3,7 +3,7 @@ import { checkAnalyticsPermission, setAnalyticsPermission } from "@/features/ana
 import extLink from "@/utils/extLink";
 import * as fui from "@fluentui/react-components";
 import { settingsForReview } from "../utils/showSettingsReviewDialog";
-import { reviewSettings } from "../utils/checkSettingsReviewNeeded";
+import { reviewSettings } from "../utils/setSettingsReviewNeeded";
 
 export default function SettingsReviewDialog(): React.ReactElement
 {

@@ -13,7 +13,7 @@ import watchTabSelection from "@/utils/watchTabSelection";
 import { Tabs, Windows } from "wxt/browser";
 import { Unwatch } from "wxt/storage";
 import { openCollection, openGroup } from "./sidepanel/utils/opener";
-import { setSettingsReviewNeeded } from "@/features/settingsReview";
+import { setSettingsReviewNeeded } from "@/features/settingsReview/utils";
 
 export default defineBackground(() =>
 {
