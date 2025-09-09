@@ -36,6 +36,15 @@ features:
     text3: "Visite nosso blog de desenvolvimento para saber mais sobre esta atualização e todos os seus recursos!"
     actions:
       visit_blog: "Ler blog de desenvolvimento"
+  settingsReview:
+    title: "Revise suas configurações"
+    action: "Todas as configurações"
+    analytics:
+      title: "Estas estatísticas nos ajudarão a melhorar a extensão"
+      p1: "Nós coletamos apenas estatísticas de uso (número de coleções, recursos usados, etc.)"
+      p2: "Nós não coletamos nenhum dos seus dados!"
+      p3_text: "Veja a lista completa do que coletamos"
+      p3_link: "aqui"
 
 notifications:
   tabs_saved:
@@ -74,6 +83,7 @@ options_page:
       show_badge: "Mostrar contador no ícone"
       show_notification: "Mostrar notificação ao salvar abas pelo menu de contexto"
       unload_tabs: "Não carregar abas após abrir"
+      allow_analytics: "Permitir coleta de estatísticas anônimas"
       list_locations:
         title: "Abrir lista de coleções em:"
         options:
@@ -121,6 +131,13 @@ options_page:
     disable_prompt:
       text: "Esta ação desativará a sincronização de coleções entre seus dispositivos. As configurações da extensão ainda serão sincronizadas."
       action: "Desativar e recarregar a extensão"
+    thumbnail_capture: "Capturar miniaturas e ícones para as abas salvas"
+    thumbnail_capture_notice1: "Requer permissão para acessar o conteúdo dos sites visitados"
+    thumbnail_capture_notice2: "Desativar esse recurso pode melhorar o desempenho em coleções grandes"
+    clear_thumbnails:
+      action: "Eliminar miniaturas guardadas"
+      title: "Excluir todas as miniaturas salvas?"
+      prompt: "Esta ação removerá todas as miniaturas, pré-visualizações e ícones salvos para suas abas salvas. Esta ação não pode ser desfeita."
   about:
     title: "Sobre"
     developed_by: "Desenvolvido por Eugene Fox"
@@ -133,6 +150,7 @@ options_page:
       website: "Meu site"
       source: "Código-fonte"
       changelog: "Registro de alterações"
+      privacy: "Política de Privacidade"
 
 collections:
   empty: "Esta coleção está vazia"

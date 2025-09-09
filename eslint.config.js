@@ -50,7 +50,7 @@ export default defineConfig([
 			"@stylistic/semi": ["error", "always"],
 			"@stylistic/block-spacing": ["warn", "always"],
 			"@stylistic/arrow-spacing": ["warn", { before: true, after: true }],
-			"@stylistic/indent": ["warn", "tab"],
+			"@stylistic/indent": ["warn", "tab", { assignmentOperator: "off" }],
 			"@stylistic/quotes": ["error", "double"],
 			"@stylistic/comma-spacing": ["warn"],
 			"@stylistic/comma-dangle": ["warn", "never"],

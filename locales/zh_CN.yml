@@ -36,6 +36,15 @@ features:
     text3: "访问我们的开发博客以了解有关此更新及其所有功能的更多信息！"
     actions:
       visit_blog: "阅读开发博客"
+  settingsReview:
+    title: "检查您的设置"
+    action: "所有设置"
+    analytics:
+      title: "这些统计数据将帮助我们改进扩展"
+      p1: "我们只收集使用统计数据（收藏数量、使用的功能等）"
+      p2: "我们不会收集您的任何数据！"
+      p3_text: ""
+      p3_link: "请参阅我们收集内容的完整列表"
 
 notifications:
   tabs_saved:
@@ -74,6 +83,7 @@ options_page:
       show_badge: "显示计数徽章"
       show_notification: "使用上下文菜单保存标签时显示通知"
       unload_tabs: "打开后不加载标签"
+      allow_analytics: "允许收集匿名统计数据"
       list_locations:
         title: "在以下位置打开收藏列表："
         options:
@@ -121,6 +131,13 @@ options_page:
     disable_prompt:
       text: "此操作将禁用设备之间的收藏同步。扩展设置仍将同步。"
       action: "禁用并重新加载扩展"
+    thumbnail_capture: "为已保存的标签保存缩略图和图标"
+    thumbnail_capture_notice1: "需要访问已访问网站内容的权限"
+    thumbnail_capture_notice2: "当你有大量集合时，禁用此功能可能会提高性能"
+    clear_thumbnails:
+      action: "删除已保存的图标"
+      title: "删除缩略图和图标？"
+      prompt: "此操作将删除您已保存标签页的所有缩略图和图标。此操作无法撤消。"
   about:
     title: "关于"
     developed_by: "由尤金·福克斯开发"
@@ -133,6 +150,7 @@ options_page:
       website: "我的网站"
       source: "源代码"
       changelog: "更新日志"
+      privacy: "隐私政策"
 
 collections:
   empty: "此收藏为空"

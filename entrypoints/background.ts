@@ -1,5 +1,5 @@
 import { track, trackError } from "@/features/analytics";
-import { collectionCount, getCollections, saveCollections } from "@/features/collectionStorage";
+import { collectionCount, getCollections, thumbnailCaptureEnabled, saveCollections } from "@/features/collectionStorage";
 import { migrateStorage } from "@/features/migration";
 import { showWelcomeDialog } from "@/features/v3welcome/utils/showWelcomeDialog";
 import { SettingsValue } from "@/hooks/useSettings";
@@ -13,13 +13,15 @@ import watchTabSelection from "@/utils/watchTabSelection";
 import { Tabs, Windows } from "wxt/browser";
 import { Unwatch } from "wxt/storage";
 import { openCollection, openGroup } from "./sidepanel/utils/opener";
+import { setSettingsReviewNeeded } from "@/features/settingsReview/utils";
+import { RemoveListenerCallback } from "@webext-core/messaging";
 
 export default defineBackground(() =>
 {
 	try
 	{
 		const logger = getLogger("background");
-		const graphicsCache: GraphicsStorage = {};
+		let graphicsCache: GraphicsStorage = {};
 		let listLocation: SettingsValue<"listLocation"> = "sidebar";
 
 		logger("Background script started");
@@ -36,6 +38,8 @@ export default defineBackground(() =>
 
 			const previousMajor: number = previousVersion ? parseInt(previousVersion.split(".")[0]) : 0;
 
+			await setSettingsReviewNeeded(reason, previousVersion);
+
 			if (reason === "update" && previousMajor < 3)
 			{
 				await migrateStorage();
@@ -44,31 +48,11 @@ export default defineBackground(() =>
 			}
 		});
 
-		browser.tabs.onUpdated.addListener((_, __, tab) =>
-		{
-			if (!tab.url)
-				return;
-
-			graphicsCache[tab.url] = {
-				preview: graphicsCache[tab.url]?.preview,
-				capture: graphicsCache[tab.url]?.capture,
-				icon: tab.favIconUrl ?? graphicsCache[tab.url]?.icon
-			};
-		});
-
 		browser.commands.onCommand.addListener(
 			(command, tab) => performContextAction(command, tab!.windowId!)
 		);
 
 		onMessage("getGraphicsCache", () => graphicsCache);
-		onMessage("addThumbnail", ({ data }) =>
-		{
-			graphicsCache[data.url] = {
-				preview: data.thumbnail,
-				capture: graphicsCache[data.url]?.capture,
-				icon: graphicsCache[data.url]?.icon
-			};
-		});
 		onMessage("refreshCollections", () => { });
 
 		if (import.meta.env.FIREFOX)
@@ -80,6 +64,21 @@ export default defineBackground(() =>
 		setupTabCaputre();
 		async function setupTabCaputre(): Promise<void>
 		{
+			let unwatchAddThumbnail: RemoveListenerCallback | null = null;
+			let captureInterval: NodeJS.Timeout | null = null;
+
+			const captureFavicon = (_: any, __: any, tab: Tabs.Tab): void =>
+			{
+				if (!tab.url)
+					return;
+
+				graphicsCache[tab.url] = {
+					preview: graphicsCache[tab.url]?.preview,
+					capture: graphicsCache[tab.url]?.capture,
+					icon: tab.favIconUrl ?? graphicsCache[tab.url]?.icon
+				};
+			};
+
 			const tryCaptureTab = async (tab: Tabs.Tab): Promise<void> =>
 			{
 				if (!tab.url || tab.status !== "complete" || !tab.active)
@@ -113,11 +112,61 @@ export default defineBackground(() =>
 				}
 			};
 
-			setInterval(() =>
+			const updateCapture = async (captureThumbnails: boolean): Promise<void> =>
 			{
-				browser.tabs.query({ active: true })
-					.then(tabs => tabs.forEach(tab => tryCaptureTab(tab)));
-			}, 1000);
+				const scriptingGranted: boolean = await browser.permissions.contains({ permissions: ["scripting"] });
+
+				if (captureThumbnails)
+				{
+					if (scriptingGranted)
+						await browser.scripting.registerContentScripts([
+							{
+								id: "capture-script",
+								matches: ["<all_urls>"],
+								runAt: "document_idle",
+								js: ["capture.js"]
+							}
+						]);
+
+					unwatchAddThumbnail = onMessage("addThumbnail", ({ data }) =>
+					{
+						graphicsCache[data.url] = {
+							preview: data.thumbnail,
+							capture: graphicsCache[data.url]?.capture,
+							icon: graphicsCache[data.url]?.icon
+						};
+					});
+
+					captureInterval = setInterval(() =>
+					{
+						browser.tabs.query({ active: true })
+							.then(tabs => tabs.forEach(tab => tryCaptureTab(tab)));
+					}, 1000);
+
+					browser.tabs.onUpdated.addListener(captureFavicon);
+				}
+				else
+				{
+					if (scriptingGranted)
+						await browser.scripting.unregisterContentScripts({
+							ids: ["capture-script"]
+						});
+
+					unwatchAddThumbnail?.();
+
+					if (captureInterval)
+						clearInterval(captureInterval);
+
+					browser.tabs.onUpdated.removeListener(captureFavicon);
+
+					graphicsCache = {};
+				}
+			};
+
+			if (await thumbnailCaptureEnabled.getValue())
+				updateCapture(true);
+
+			thumbnailCaptureEnabled.watch(updateCapture);
 		}
 
 		setupContextMenu();

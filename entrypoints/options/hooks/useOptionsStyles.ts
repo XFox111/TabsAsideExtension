@@ -34,5 +34,12 @@ export const useOptionsStyles = makeStyles({
 		display: "flex",
 		flexWrap: "wrap",
 		gap: tokens.spacingHorizontalS
+	},
+	group:
+	{
+		display: "flex",
+		flexFlow: "column",
+		alignItems: "flex-start",
+		gap: tokens.spacingVerticalSNudge
 	}
 });

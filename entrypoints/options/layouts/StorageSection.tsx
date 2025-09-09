@@ -1,18 +1,20 @@
 import { useDialog } from "@/contexts/DialogProvider";
-import { cloudDisabled, setCloudStorage } from "@/features/collectionStorage";
+import { clearGraphicsStorage, cloudDisabled, setCloudStorage, thumbnailCaptureEnabled } from "@/features/collectionStorage";
 import { useDangerStyles } from "@/hooks/useDangerStyles";
 import useStorageInfo from "@/hooks/useStorageInfo";
-import { Button, Field, MessageBar, MessageBarBody, MessageBarTitle, ProgressBar } from "@fluentui/react-components";
+import { Button, Field, InfoLabel, LabelProps, MessageBar, MessageBarBody, MessageBarTitle, ProgressBar, Switch } from "@fluentui/react-components";
 import { ArrowDownload20Regular, ArrowUpload20Regular } from "@fluentui/react-icons";
 import { useOptionsStyles } from "../hooks/useOptionsStyles";
 import exportData from "../utils/exportData";
 import importData from "../utils/importData";
+import { Unwatch } from "wxt/storage";
 
 export default function StorageSection(): React.ReactElement
 {
 	const { bytesInUse, storageQuota, usedStorageRatio } = useStorageInfo();
 	const [importResult, setImportResult] = useState<boolean | null>(null);
 	const [isCloudDisabled, setCloudDisabled] = useState<boolean>(null!);
+	const [isThumbnailCaptureEnabled, setThumbnailCaptureEnabled] = useState<boolean | null>(null);
 
 	const dialog = useDialog();
 	const cls = useOptionsStyles();
@@ -20,9 +22,34 @@ export default function StorageSection(): React.ReactElement
 
 	useEffect(() =>
 	{
+		thumbnailCaptureEnabled.getValue().then(setThumbnailCaptureEnabled);
 		cloudDisabled.getValue().then(setCloudDisabled);
-		return cloudDisabled.watch(setCloudDisabled);
+
+		const unwatchCloud: Unwatch = cloudDisabled.watch(setCloudDisabled);
+		const unwatchThumbnails: Unwatch = thumbnailCaptureEnabled.watch(setThumbnailCaptureEnabled);
+
+		return () =>
+		{
+			unwatchCloud();
+			unwatchThumbnails();
+		};
 	}, []);
+
+	const handleSetThumbnailCapture = (enabled: boolean): void =>
+	{
+		setThumbnailCaptureEnabled(null);
+		thumbnailCaptureEnabled.setValue(enabled)
+			.catch(() => setThumbnailCaptureEnabled(!enabled));
+	};
+
+	const handleClearThumbnails = (): void =>
+		dialog.pushPrompt({
+			title: i18n.t("options_page.storage.clear_thumbnails.title"),
+			content: i18n.t("options_page.storage.clear_thumbnails.prompt"),
+			confirmText: i18n.t("common.actions.delete"),
+			destructive: true,
+			onConfirm: () => clearGraphicsStorage()
+		});
 
 	const handleImport = (): void =>
 		dialog.pushPrompt({
@@ -51,6 +78,29 @@ export default function StorageSection(): React.ReactElement
 
 	return (
 		<>
+			<div className={ cls.group }>
+				<Switch
+					checked={ isThumbnailCaptureEnabled ?? true }
+					disabled={ isThumbnailCaptureEnabled === null }
+					onChange={ (_, e) => handleSetThumbnailCapture(e.checked as boolean) }
+					label={ {
+						children: (_: any, props: LabelProps) =>
+							<InfoLabel
+								{ ...props }
+								label={ i18n.t("options_page.storage.thumbnail_capture") }
+								info={
+									<p>
+										{ i18n.t("options_page.storage.thumbnail_capture_notice1") }<br /><br />
+										{ i18n.t("options_page.storage.thumbnail_capture_notice2") }
+									</p>
+								} />
+					} } />
+
+				<Button onClick={ handleClearThumbnails } className={ dangerCls.buttonSubtle } appearance="subtle">
+					{ i18n.t("options_page.storage.clear_thumbnails.action") }
+				</Button>
+			</div>
+
 			{ isCloudDisabled === false &&
 				<Field
 					label={ i18n.t("options_page.storage.capacity.title") }

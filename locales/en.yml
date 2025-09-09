@@ -36,6 +36,15 @@ features:
     text3: "Visit our dev blog to learn more about this update and all of its features!"
     actions:
       visit_blog: "Read dev blog"
+  settingsReview:
+    title: "Review your settings"
+    action: "All settings"
+    analytics:
+      title: "These statistics will help us improve the extension"
+      p1: "We only collect usage statistics (number of collections, used features, etc.)"
+      p2: "We do not collect any of your data!"
+      p3_text: "See the full list of what we collect"
+      p3_link: "here"
 
 notifications:
   tabs_saved:
@@ -74,6 +83,7 @@ options_page:
       show_badge: "Show counter badge"
       show_notification: "Show notification when saving tabs using context menu"
       unload_tabs: "Do not load tabs after opening"
+      allow_analytics: "Allow collection of anonymous statistics"
       list_locations:
         title: "Open collection list in:"
         options:
@@ -121,6 +131,13 @@ options_page:
     disable_prompt:
       text: "This action will disable collection synchronization between your devices. Extension's settings will still be synchronized."
       action: "Disable and reload the extension"
+    thumbnail_capture: "Capture thumbnails and icons for saved tabs"
+    thumbnail_capture_notice1: "Requires permission to access content on visited websites"
+    thumbnail_capture_notice2: "Disabling this feature may improve performance on large collections"
+    clear_thumbnails:
+      action: "Clear saved thumbnails"
+      title: "Delete all saved thumbnails?"
+      prompt: "This action will remove all saved thumbnails, previews and icons for your saved tabs. This action cannot be undone."
   about:
     title: "About"
     developed_by: "Developed by Eugene Fox"
@@ -133,6 +150,7 @@ options_page:
       website: "My website"
       source: "Source code"
       changelog: "Changelog"
+      privacy: "Privacy policy"
 
 collections:
   empty: "This collection is empty"
