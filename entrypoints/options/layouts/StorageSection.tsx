@@ -35,6 +35,13 @@ export default function StorageSection(): React.ReactElement
 		};
 	}, []);
 
+	const handleSetThumbnailCapture = (enabled: boolean): void =>
+	{
+		setThumbnailCaptureEnabled(null);
+		thumbnailCaptureEnabled.setValue(enabled)
+			.catch(() => setThumbnailCaptureEnabled(!enabled));
+	};
+
 	const handleClearThumbnails = (): void =>
 		dialog.pushPrompt({
 			title: i18n.t("options_page.storage.clear_thumbnails.title"),
@@ -75,7 +82,7 @@ export default function StorageSection(): React.ReactElement
 				<Switch
 					checked={ isThumbnailCaptureEnabled ?? true }
 					disabled={ isThumbnailCaptureEnabled === null }
-					onChange={ (_, e) => thumbnailCaptureEnabled.setValue(e.checked as boolean) }
+					onChange={ (_, e) => handleSetThumbnailCapture(e.checked as boolean) }
 					label={ {
 						children: (_: any, props: LabelProps) =>
 							<InfoLabel

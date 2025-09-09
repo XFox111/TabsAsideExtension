@@ -26,16 +26,21 @@ const analyticsPermission: Pick<WxtStorageItem<boolean, Record<string, unknown>>
 				return;
 			}
 
+			let result: boolean = false;
+
 			if (value)
-				await browser.permissions.request({
+				result = await browser.permissions.request({
 					// @ts-expect-error Introduced in Firefox 139
 					data_collection: ["technicalAndInteraction"]
 				});
 			else
-				await browser.permissions.remove({
+				result = await browser.permissions.remove({
 					// @ts-expect-error Introduced in Firefox 139
 					data_collection: ["technicalAndInteraction"]
 				});
+
+			if (!result)
+				throw new Error("Permission request was denied");
 		},
 
 		watch: (cb: WatchCallback<boolean>): Unwatch =>

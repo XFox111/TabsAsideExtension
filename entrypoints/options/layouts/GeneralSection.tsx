@@ -27,7 +27,9 @@ export default function GeneralSection(): React.ReactElement
 
 	const updateAnalytics = (enabled: boolean): void =>
 	{
-		analyticsPermission.setValue(enabled);
+		setAllowAnalytics(null);
+		analyticsPermission.setValue(enabled)
+			.catch(() => setAllowAnalytics(!enabled));
 	};
 
 	const openShortcutsPage = (): Promise<any> =>

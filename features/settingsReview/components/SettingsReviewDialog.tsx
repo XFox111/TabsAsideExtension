@@ -33,13 +33,15 @@ export default function SettingsReviewDialog(): React.ReactElement
 	const updateAnalytics = (enabled: boolean): void =>
 	{
 		setAllowAnalytics(null);
-		analyticsPermission.setValue(enabled);
+		analyticsPermission.setValue(enabled)
+			.catch(() => setAllowAnalytics(!enabled));
 	};
 
 	const updateThumbnails = (enabled: boolean): void =>
 	{
 		setCaptureThumbnails(null);
-		thumbnailCaptureEnabled.setValue(enabled);
+		thumbnailCaptureEnabled.setValue(enabled)
+			.catch(() => setCaptureThumbnails(!enabled));
 	};
 
 	return (

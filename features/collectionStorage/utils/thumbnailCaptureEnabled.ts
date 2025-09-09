@@ -30,15 +30,20 @@ const thumbnailCaptureEnabled: Pick<WxtStorageItem<boolean, Record<string, unkno
 
 		setValue: async (value: boolean): Promise<void> =>
 		{
+			let result: boolean = false;
+
 			if (value)
-				await browser.permissions.request({ permissions: ["scripting"], origins: ["<all_urls>"] });
+				result = await browser.permissions.request({ permissions: ["scripting"], origins: ["<all_urls>"] });
 			else
 			{
-				await browser.permissions.remove({ origins: ["<all_urls>"] });
+				result = await browser.permissions.remove({ origins: ["<all_urls>"] });
 
 				if (import.meta.env.DEV)
 					await browser.permissions.request({ origins: ["http://localhost/*"] });
 			}
+
+			if (!result)
+				throw new Error("Permission request was denied");
 		}
 	};
 
