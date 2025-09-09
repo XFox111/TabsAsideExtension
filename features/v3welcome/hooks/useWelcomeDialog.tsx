@@ -18,6 +18,8 @@ export default function useWelcomeDialog(dialog: DialogContextType): Promise<voi
 						res();
 					}
 				);
+			else
+				res();
 		});
 	});
 }

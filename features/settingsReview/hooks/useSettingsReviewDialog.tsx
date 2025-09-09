@@ -18,6 +18,8 @@ export default function useSettingsReviewDialog(dialog: DialogContextType): Prom
 						res();
 					}
 				);
+			else
+				res();
 		});
 	});
 }
