@@ -27,7 +27,6 @@ export default function GeneralSection(): React.ReactElement
 
 	const updateAnalytics = (enabled: boolean): void =>
 	{
-		setAllowAnalytics(null);
 		analyticsPermission.setValue(enabled);
 	};
 
