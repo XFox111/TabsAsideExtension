@@ -37,7 +37,7 @@ Check out our [latest blog post](https://at.xfox111.net/tabs-aside-3-0) regardin
 
 - [Google Chrome Webstore](https://chrome.google.com/webstore/detail/mgmjbodjgijnebfgohlnjkegdpbdjgin)
 - [Microsoft Edge Add-ons Webstore](https://microsoftedge.microsoft.com/addons/detail/kmnblllmalkiapkfknnlpobmjjdnlhnd)
-- [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/ms-edge-tabs-aside/)
+- [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/ms-edge-tabs-aside/)
 - [GitHub Releases](https://github.com/xfox111/TabsAsideExtension/releases/latest)
 
 ### Sideloading (for testing purposes only)
