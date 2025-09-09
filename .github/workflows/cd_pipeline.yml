@@ -75,10 +75,11 @@ jobs:
 
       - name: web-ext lint
         if: ${{ matrix.target == 'firefox' }}
-        uses: freaktechnik/web-ext-lint@main
+        uses: kewisch/action-web-ext@main
         with:
-          extension-root: ./.output/firefox-mv3
-          self-hosted: false
+          cmd: lint
+          source: ./.output/firefox-mv3
+          channel: listed
 
       - run: yarn npm audit
         continue-on-error: ${{ github.event_name != 'release' && github.event.inputs.bypass_audit == 'true' }}
