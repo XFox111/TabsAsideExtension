@@ -45,7 +45,7 @@ export async function trackPage(pageName: string): Promise<void>
 		if (!await analyticsPermission.getValue())
 			return;
 
-		analytics.identify(await userId.getValue(), await getUserProperties());
+		analytics.identify(await userId.getValue() as string, await getUserProperties());
 		analytics.page(pageName);
 	}
 	catch (ex)
