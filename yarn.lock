@@ -1182,7 +1182,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fluentui/react-icons@npm:^2.0.237, @fluentui/react-icons@npm:^2.0.239, @fluentui/react-icons@npm:^2.0.245, @fluentui/react-icons@npm:^2.0.309":
+"@fluentui/react-icons@npm:^2.0.237, @fluentui/react-icons@npm:^2.0.239, @fluentui/react-icons@npm:^2.0.245":
   version: 2.0.309
   resolution: "@fluentui/react-icons@npm:2.0.309"
   dependencies:
@@ -1191,6 +1191,18 @@ __metadata:
   peerDependencies:
     react: ">=16.8.0 <19.0.0"
   checksum: 10c0/4fbd6b4c1e5f5a3c771b71288028b1724083c3eecd95f2adc0474b64236a505024ba86fc4c75299ea3bab269ec61f5957e3770daf0cdbd04e16887b60791421e
+  languageName: node
+  linkType: hard
+
+"@fluentui/react-icons@npm:^2.0.311":
+  version: 2.0.311
+  resolution: "@fluentui/react-icons@npm:2.0.311"
+  dependencies:
+    "@griffel/react": "npm:^1.0.0"
+    tslib: "npm:^2.1.0"
+  peerDependencies:
+    react: ">=16.8.0 <20.0.0"
+  checksum: 10c0/92374c68a5271afb4f8ed7e42e012bf422b3569aa0209216b65a2ec0d828bf011c1a6eccc438ff5fea7f49bf114df919ce2da861f3dcc21091025c1a4e430563
   languageName: node
   linkType: hard
 
@@ -8418,7 +8430,7 @@ __metadata:
     "@eslint/js": "npm:^9.35.0"
     "@eslint/json": "npm:^0.13.2"
     "@fluentui/react-components": "npm:^9.70.0"
-    "@fluentui/react-icons": "npm:^2.0.309"
+    "@fluentui/react-icons": "npm:^2.0.311"
     "@stylistic/eslint-plugin": "npm:^5.3.1"
     "@types/react": "npm:~18.3.1"
     "@types/react-dom": "npm:~18.3.1"
