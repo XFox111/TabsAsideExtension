@@ -2959,14 +2959,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wxt-dev/analytics@npm:^0.4.1":
-  version: 0.4.1
-  resolution: "@wxt-dev/analytics@npm:0.4.1"
+"@wxt-dev/analytics@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "@wxt-dev/analytics@npm:0.5.1"
   dependencies:
-    ua-parser-js: "npm:^1.0.38"
+    "@wxt-dev/browser": "npm:^0.1.4"
+    ua-parser-js: "npm:^1.0.40"
   peerDependencies:
-    wxt: ">=0.19.23"
-  checksum: 10c0/e430759c7f2d91152e82029a78bc8ce1ec20194637c70517b19d924889ae37a8f56ef70c2eecb4f3d9945513a9c7398109bbb98d9feb6dd44d6aead54087dfab
+    wxt: ">=0.20.0"
+  checksum: 10c0/78784da7188d0b98f1c61d16c9a5b8630e55fbaaf72a3042d0c5526a71519272cf08cfd09b020ff2bedfb65127a66b562c30cdde784b0bfb7514e4e3fc78b303
   languageName: node
   linkType: hard
 
@@ -8415,7 +8416,7 @@ __metadata:
     "@types/react": "npm:~18.3.1"
     "@types/react-dom": "npm:~18.3.1"
     "@webext-core/messaging": "npm:^2.3.0"
-    "@wxt-dev/analytics": "npm:^0.4.1"
+    "@wxt-dev/analytics": "npm:^0.5.1"
     "@wxt-dev/i18n": "npm:^0.2.4"
     "@wxt-dev/module-react": "npm:^1.1.5"
     eslint: "npm:^9.35.0"
@@ -8689,7 +8690,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ua-parser-js@npm:^1.0.38":
+"ua-parser-js@npm:^1.0.40":
   version: 1.0.41
   resolution: "ua-parser-js@npm:1.0.41"
   bin:
