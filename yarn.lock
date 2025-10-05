@@ -5180,10 +5180,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globals@npm:^16.3.0":
-  version: 16.3.0
-  resolution: "globals@npm:16.3.0"
-  checksum: 10c0/c62dc20357d1c0bf2be4545d6c4141265d1a229bf1c3294955efb5b5ef611145391895e3f2729f8603809e81b30b516c33e6c2597573844449978606aad6eb38
+"globals@npm:^16.4.0":
+  version: 16.4.0
+  resolution: "globals@npm:16.4.0"
+  checksum: 10c0/a14b447a78b664b42f6d324e8675fcae6fe5e57924fecc1f6328dce08af9b2ca3a3138501e1b1f244a49814a732dc60cfc1aa24e714e0b64ac8bd18910bfac90
   languageName: node
   linkType: hard
 
@@ -8428,7 +8428,7 @@ __metadata:
     "@wxt-dev/module-react": "npm:^1.1.5"
     eslint: "npm:^9.36.0"
     eslint-plugin-react: "npm:^7.37.5"
-    globals: "npm:^16.3.0"
+    globals: "npm:^16.4.0"
     lzutf8: "npm:^0.6.3"
     react: "npm:~18.3.1"
     react-dom: "npm:~18.3.1"
