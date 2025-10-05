@@ -596,14 +596,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/css@npm:^0.11.0":
-  version: 0.11.0
-  resolution: "@eslint/css@npm:0.11.0"
+"@eslint/css@npm:^0.11.1":
+  version: 0.11.1
+  resolution: "@eslint/css@npm:0.11.1"
   dependencies:
     "@eslint/core": "npm:^0.15.2"
     "@eslint/css-tree": "npm:^3.6.5"
     "@eslint/plugin-kit": "npm:^0.3.5"
-  checksum: 10c0/97f87699039d3d151e94eef7e834a993334f93ac89ae5b48531c8511091a9ebd25a4af2fa0fac957cdc7a279a81f3496f8ec0e2417b8bb0fc2c7b845d3ac83eb
+  checksum: 10c0/c812f8b6aaef51b9a79f866c951b65af52095ef4efa16faed04c95daad3ca5f7f643a80ea645a8b5eeddeb1911992a44f23db839018e0855f074227a5e8a29c9
   languageName: node
   linkType: hard
 
@@ -8414,7 +8414,7 @@ __metadata:
     "@dnd-kit/modifiers": "npm:^9.0.0"
     "@dnd-kit/sortable": "npm:^10.0.0"
     "@dnd-kit/utilities": "npm:^3.2.2"
-    "@eslint/css": "npm:^0.11.0"
+    "@eslint/css": "npm:^0.11.1"
     "@eslint/js": "npm:^9.35.0"
     "@eslint/json": "npm:^0.13.2"
     "@fluentui/react-components": "npm:^9.70.0"
