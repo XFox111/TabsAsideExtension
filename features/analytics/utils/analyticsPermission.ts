@@ -8,7 +8,6 @@ const analyticsPermission: Pick<WxtStorageItem<boolean, Record<string, unknown>>
 		{
 			const isGranted: boolean = import.meta.env.FIREFOX
 				? await browser.permissions.contains({
-					// @ts-expect-error Introduced in Firefox 139
 					data_collection: ["technicalAndInteraction"]
 				})
 				: await allowAnalytics.getValue();
@@ -30,12 +29,10 @@ const analyticsPermission: Pick<WxtStorageItem<boolean, Record<string, unknown>>
 
 			if (value)
 				result = await browser.permissions.request({
-					// @ts-expect-error Introduced in Firefox 139
 					data_collection: ["technicalAndInteraction"]
 				});
 			else
 				result = await browser.permissions.remove({
-					// @ts-expect-error Introduced in Firefox 139
 					data_collection: ["technicalAndInteraction"]
 				});
 
@@ -50,10 +47,8 @@ const analyticsPermission: Pick<WxtStorageItem<boolean, Record<string, unknown>>
 
 			const listener = async (permissions: Permissions.Permissions): Promise<void> =>
 			{
-				// @ts-expect-error Introduced in Firefox 139
 				if (permissions.data_collection?.includes("technicalAndInteraction"))
 				{
-					// @ts-expect-error Introduced in Firefox 139
 					const isGranted: boolean = await browser.permissions.contains({ data_collection: ["technicalAndInteraction"] });
 					cb(isGranted, !isGranted);
 				}

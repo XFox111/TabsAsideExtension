@@ -5,8 +5,8 @@ manifest:
 
 shortcuts:
   toggle_sidebar: "打开收藏列表"
-  set_aside: "将标签放到一边"
-  save_tabs: "保存标签而不关闭"
+  set_aside: "搁置标签页"
+  save_tabs: "保存标签页但不关闭"
 
 common:
   actions:
@@ -14,10 +14,10 @@ common:
     save: "保存"
     close: "关闭"
     delete: "删除"
-    reset_filters: "重置筛选器"
+    reset_filters: "重置筛选"
   cta:
     feedback: "留下反馈"
-    sponsor: "请我喝咖啡"
+    sponsor: "请我喝杯咖啡！"
   tooltips:
     more: "更多"
   delete_prompt: "您确定吗？此操作无法撤销。"
@@ -25,13 +25,13 @@ common:
 features:
   v3welcome:
     title: "欢迎使用搁置的标签页 3.0"
-    text1: "我们很高兴宣布搁置的标签页扩展的新重大更新！"
+    text1: "我们很高兴宣布搁置的标签页扩展新的重大更新！"
     text2: "此更新带来了全新的用户界面，以及许多新功能，包括："
     list:
       item1: "支持标签组"
       item2: "收藏自定义"
-      item3: "拖放重新排序和组织"
-      item4: "从头开始手动创建收藏"
+      item3: "拖放排序和整理"
+      item4: "从零开始创建收藏"
       item5: "以及更多！"
     text3: "访问我们的开发博客以了解有关此更新及其所有功能的更多信息！"
     actions:
@@ -43,33 +43,33 @@ features:
       title: "这些统计数据将帮助我们改进扩展"
       p1: "我们只收集使用统计数据（收藏数量、使用的功能等）"
       p2: "我们不会收集您的任何数据！"
-      p3_text: ""
-      p3_link: "请参阅我们收集内容的完整列表"
+      p3_text: "请参阅我们收集内容的"
+      p3_link: "完整列表"
 
 notifications:
   tabs_saved:
-    title: "新收藏已创建"
-    message: "您的标签已保存到新收藏中"
+    title: "已创建新收藏"
+    message: "您的标签页已保存到新收藏中"
   error_quota_exceeded:
-    title: "超出最大云写入操作"
-    message: "我们已将您的标签保存到本地存储。您需要手动更新云存储"
+    title: "超出最大云储存写入操作"
+    message: "我们已将您的标签页保存到本地存储。您需要手动更新云存储"
   error_storage_full:
     title: "您的云存储已满"
-    message: "我们已将您的标签保存到本地存储。请清理一些云存储空间"
+    message: "我们已将您的标签页保存到本地存储。请清理一些云存储空间"
   bookmark_saved:
     title: "已导出到书签"
     message: "您的收藏已导出到书签"
   partial_save:
-    title: "某些标签无法保存"
-    message: "某些标签是我们无法访问的系统标签。它们已被跳过"
+    title: "部分标签页无法保存"
+    message: "部分标签页是无法访问的系统标签页。它们已被跳过"
 
 actions:
   save:
-    all: "保存所有标签"
-    selected: "保存选定的标签"
+    all: "保存所有标签页"
+    selected: "保存选定的标签页"
   set_aside:
-    all: "将所有标签放到一边"
-    selected: "将选定的标签放到一边"
+    all: "搁置所有标签页"
+    selected: "搁置选定的标签页"
   show_collections: "显示收藏"
 
 options_page:
@@ -78,11 +78,11 @@ options_page:
     title: "常规"
     options:
       always_show_toolbars: "始终显示工具栏"
-      include_pinned: "保存所有标签时包括固定标签"
+      include_pinned: "保存所有标签页时包括已固定的标签页"
       show_delete_prompt: "删除项目时要求确认"
-      show_badge: "显示计数徽章"
-      show_notification: "使用上下文菜单保存标签时显示通知"
-      unload_tabs: "打开后不加载标签"
+      show_badge: "显示计数角标"
+      show_notification: "使用上下文菜单保存标签页时显示通知"
+      unload_tabs: "打开后不加载标签页"
       allow_analytics: "允许收集匿名统计数据"
       list_locations:
         title: "在以下位置打开收藏列表："
@@ -102,15 +102,15 @@ options_page:
     title: "默认操作"
     options:
       save_actions:
-        title: "保存标签时的默认操作"
+        title: "保存标签页时的默认操作"
         options:
-          set_aside: "保存并关闭标签"
-          save: "保存标签而不关闭"
+          set_aside: "保存并关闭标签页"
+          save: "保存标签页而不关闭"
       restore_actions:
         title: "打开收藏时的默认操作"
         options:
-          open: "仅打开标签"
-          restore: "打开标签并删除收藏"
+          open: "仅打开标签页"
+          restore: "打开标签页并删除收藏"
   storage:
     title: "存储"
     capacity:
@@ -124,16 +124,16 @@ options_page:
     import_prompt:
       title: "导入数据"
       warning_title: "这是不可逆的操作"
-      warning_text: "这将覆盖您的所有数据。请确保选择了正确的文件，否则可能会导致数据损坏或丢失。建议先导出数据。"
+      warning_text: "这将覆盖您的所有数据！请确保选择了正确的文件，否则可能会导致数据损坏或丢失。建议先导出数据。"
       proceed: "选择文件"
     enable: "启用云存储"
     disable: "禁用云存储"
     disable_prompt:
       text: "此操作将禁用设备之间的收藏同步。扩展设置仍将同步。"
       action: "禁用并重新加载扩展"
-    thumbnail_capture: "为已保存的标签保存缩略图和图标"
+    thumbnail_capture: "为已保存的标签页保存缩略图和图标"
     thumbnail_capture_notice1: "需要访问已访问网站内容的权限"
-    thumbnail_capture_notice2: "当你有大量集合时，禁用此功能可能会提高性能"
+    thumbnail_capture_notice2: "有大量收藏时，禁用此功能可能会提高性能"
     clear_thumbnails:
       action: "删除已保存的图标"
       title: "删除缩略图和图标？"
@@ -142,10 +142,10 @@ options_page:
     title: "关于"
     developed_by: "由尤金·福克斯开发"
     licensed_under: "许可协议"
-    mit_license: "MIT 许可协议"
+    mit_license: "MIT 协议"
     translation_cta:
       text: "发现错别字或想为您的语言提供翻译？"
-      button: "从这里开始"
+      button: "快速入门"
     links:
       website: "我的网站"
       source: "源代码"
@@ -154,7 +154,7 @@ options_page:
 
 collections:
   empty: "此收藏为空"
-  tabs_count: "$1 个标签"
+  tabs_count: "$1 个标签页"
   actions:
     open: "打开所有"
     restore: "恢复所有"
@@ -170,35 +170,35 @@ collections:
         p1: "扩展需要权限才能在 InPrivate 窗口中打开标签"
         p2: "为此，请单击“设置”，然后勾选“允许在 InPrivate 中”选项"
       firefox:
-        p1: "扩展需要权限才能在隐私窗口中打开标签"
+        p1: "扩展需要权限才能在隐私窗口中打开标签页"
         p2: "为此，请单击“设置”，转到“详细信息”并将“在隐私窗口中运行”设置为“允许”"
       chrome:
-        p1: "扩展需要权限才能在隐身窗口中打开标签"
+        p1: "扩展需要权限才能在隐身窗口中打开标签页"
         p2: "为此，请单击“设置”，然后勾选“允许在隐身中”选项"
     action: "设置"
   menu:
     delete: "删除收藏"
-    add_selected: "添加选定的标签"
-    add_all: "添加所有标签"
-    add_group: "添加空组"
+    add_selected: "添加选定的标签页"
+    add_all: "添加所有标签页"
+    add_group: "添加空分组"
     export_bookmarks: "导出到书签"
     edit: "编辑收藏"
 
 groups:
-  title: "组"
+  title: "分组"
   pinned: "已固定"
   open: "打开所有"
-  empty: "此组为空"
+  empty: "此分组为空"
   menu:
     new_window: "在新窗口中打开"
-    add_selected: "添加选定的标签"
-    add_all: "添加所有标签"
-    edit: "编辑组"
+    add_selected: "添加选定的标签页"
+    add_all: "添加所有标签页"
+    edit: "编辑分组"
     ungroup: "取消分组"
-    delete: "删除组"
+    delete: "删除分组"
 
 tabs:
-  delete: "删除标签"
+  delete: "删除标签页"
 
 colors:
   none: "无颜色"
@@ -217,8 +217,8 @@ dialogs:
   edit:
     title:
       edit_collection: "编辑收藏"
-      edit_group: "编辑组"
-      new_group: "新组"
+      edit_group: "编辑分组"
+      new_group: "新分组"
       new_collection: "新收藏"
     collection_title: "标题"
     color: "颜色"
@@ -228,7 +228,7 @@ main:
     create_collection: "创建新收藏"
     menu:
       tiles_view: "平铺视图"
-      changelog: "更新内容？"
+      changelog: "更新内容"
   list:
     searchbar:
       title: "搜索"
@@ -243,7 +243,7 @@ main:
           custom: "自定义"
     empty:
       title: "这里还没有内容"
-      message: "将当前标签放到一边，或创建新收藏"
+      message: "搁置当前标签页，或创建新收藏"
     empty_search:
       title: "未找到任何内容"
       message: "尝试更改搜索查询"
@@ -265,5 +265,5 @@ parse_error_message:
 merge_conflict_message:
   title: "您的本地和云存储有冲突的更改。"
   message: "要解决此问题，您可以将本地副本上传到云端，或接受云端更改。"
-  accept_local: "用本地替换"
+  accept_local: "采用本地替换云端"
   accept_cloud: "接受云端更改"
