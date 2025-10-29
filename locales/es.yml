@@ -82,6 +82,7 @@ options_page:
       show_delete_prompt: "Pedir confirmación al eliminar un elemento"
       show_badge: "Mostrar insignia de contador"
       show_notification: "Mostrar notificación al guardar pestañas usando el menú contextual"
+      show_partial_save_notification: "Mostrar notificación cuando algunas pestañas no se pudieron guardar"
       unload_tabs: "No cargar pestañas después de abrir"
       allow_analytics: "Permitir la recopilación de estadísticas anónimas"
       list_locations:

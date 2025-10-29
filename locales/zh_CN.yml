@@ -82,6 +82,7 @@ options_page:
       show_delete_prompt: "删除项目时要求确认"
       show_badge: "显示计数角标"
       show_notification: "使用上下文菜单保存标签页时显示通知"
+      show_partial_save_notification: "如果某些标签页无法保存则显示通知"
       unload_tabs: "打开后不加载标签页"
       allow_analytics: "允许收集匿名统计数据"
       list_locations:

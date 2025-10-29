@@ -14,6 +14,7 @@ export default function GeneralSection(): React.ReactElement
 	const [dismissOnLoad, setDismissOnLoad] = useSettings("dismissOnLoad");
 	const [listLocation, setListLocation] = useSettings("listLocation");
 	const [contextAction, setContextAction] = useSettings("contextAction");
+	const [showPartialSaveNotification, setShowPartialSaveNotification] = useSettings("showPartialSaveNotification");
 
 	const [allowAnalytics, setAllowAnalytics] = useState<boolean | null>(null);
 
@@ -72,6 +73,10 @@ export default function GeneralSection(): React.ReactElement
 					label={ i18n.t("options_page.general.options.show_notification") }
 					checked={ notifyOnSave ?? false }
 					onChange={ (_, e) => setNotifyOnSave(e.checked as boolean) } />
+				<Checkbox
+					label={ i18n.t("options_page.general.options.show_partial_save_notification") }
+					checked={ showPartialSaveNotification ?? false }
+					onChange={ (_, e) => setShowPartialSaveNotification(e.checked as boolean) } />
 				<Checkbox
 					label={ i18n.t("options_page.general.options.unload_tabs") }
 					checked={ dismissOnLoad ?? false }

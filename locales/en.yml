@@ -82,6 +82,7 @@ options_page:
       show_delete_prompt: "Ask for confirmation when deleting an item"
       show_badge: "Show counter badge"
       show_notification: "Show notification when saving tabs using context menu"
+      show_partial_save_notification: "Show notification when some tabs couldn't be saved"
       unload_tabs: "Do not load tabs after opening"
       allow_analytics: "Allow collection of anonymous statistics"
       list_locations:
