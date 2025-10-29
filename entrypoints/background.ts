@@ -1,20 +1,23 @@
 import { track, trackError } from "@/features/analytics";
-import { collectionCount, getCollections, thumbnailCaptureEnabled, saveCollections } from "@/features/collectionStorage";
+import { collectionCount, getCollections, saveCollections, thumbnailCaptureEnabled } from "@/features/collectionStorage";
 import { migrateStorage } from "@/features/migration";
+import { setSettingsReviewNeeded } from "@/features/settingsReview/utils";
 import { showWelcomeDialog } from "@/features/v3welcome/utils/showWelcomeDialog";
 import { SettingsValue } from "@/hooks/useSettings";
 import { CollectionItem, GraphicsStorage } from "@/models/CollectionModels";
 import getLogger from "@/utils/getLogger";
 import { onMessage, sendMessage } from "@/utils/messaging";
-import saveTabsToCollection from "@/utils/saveTabsToCollection";
 import sendNotification from "@/utils/sendNotification";
+import sendPartialSaveNotification from "@/utils/sendPartialSaveNotification";
 import { settings } from "@/utils/settings";
 import watchTabSelection from "@/utils/watchTabSelection";
+import { RemoveListenerCallback } from "@webext-core/messaging";
 import { Tabs, Windows } from "wxt/browser";
 import { Unwatch } from "wxt/storage";
 import { openCollection, openGroup } from "./sidepanel/utils/opener";
-import { setSettingsReviewNeeded } from "@/features/settingsReview/utils";
-import { RemoveListenerCallback } from "@webext-core/messaging";
+import { closeTabsAsync } from "@/utils/closeTabsAsync";
+import { getTabsToSaveAsync } from "@/utils/getTabsToSaveAsync";
+import { createCollectionFromTabs } from "@/utils/createCollectionFromTabs";
 
 export default defineBackground(() =>
 {
@@ -447,13 +450,27 @@ export default defineBackground(() =>
 		{
 			logger("saveTabs", closeAfterSave);
 
-			const collection: CollectionItem = await saveTabsToCollection(closeAfterSave);
+			const [tabs, skipCount] = await getTabsToSaveAsync();
+
+			if (tabs.length < 1)
+			{
+				await sendPartialSaveNotification();
+				return;
+			}
+
+			const collection: CollectionItem = await createCollectionFromTabs(tabs);
 			const [savedCollections, cloudIssue] = await getCollections();
 			const newList = [collection, ...savedCollections];
-
 			await saveCollections(newList, cloudIssue === null, graphicsCache);
 
+			track(closeAfterSave ? "set_aside" : "save");
 			sendMessage("refreshCollections", undefined);
+
+			if (skipCount > 0)
+				await sendPartialSaveNotification();
+
+			if (closeAfterSave)
+				await closeTabsAsync(tabs);
 
 			if (await settings.notifyOnSave.getValue())
 				await sendNotification({

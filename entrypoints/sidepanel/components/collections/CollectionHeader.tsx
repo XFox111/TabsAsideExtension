@@ -1,20 +1,20 @@
 import { getCollectionTitle } from "@/entrypoints/sidepanel/utils/getCollectionTitle";
-import getSelectedTabs from "@/entrypoints/sidepanel/utils/getSelectedTabs";
 import useSettings from "@/hooks/useSettings";
-import { GroupItem, TabItem } from "@/models/CollectionModels";
+import { TabItem } from "@/models/CollectionModels";
 import { Button, Caption1, makeStyles, mergeClasses, Subtitle2, tokens, Tooltip } from "@fluentui/react-components";
 import { Add20Filled, Add20Regular, bundleIcon } from "@fluentui/react-icons";
 import CollectionContext, { CollectionContextType } from "../../contexts/CollectionContext";
 import { useCollections } from "../../contexts/CollectionsProvider";
 import CollectionMoreButton from "./CollectionMoreButton";
 import OpenCollectionButton from "./OpenCollectionButton";
-import saveTabsToCollection from "@/utils/saveTabsToCollection";
+import sendPartialSaveNotification from "@/utils/sendPartialSaveNotification";
+import { getTabsToSaveAsync } from "@/utils/getTabsToSaveAsync";
 
 export default function CollectionHeader({ dragHandleRef, dragHandleProps }: CollectionHeaderProps): React.ReactElement
 {
 	const [contextOpen, setContextOpen] = useState<boolean>(false);
 	const [listLocation] = useSettings("listLocation");
-	const isTab: boolean = listLocation === "tab" || listLocation === "pinned";
+	const isTabView: boolean = listLocation === "tab" || listLocation === "pinned";
 	const { updateCollection } = useCollections();
 	const { tabCount, collection } = useContext<CollectionContextType>(CollectionContext);
 	const [alwaysShowToolbars] = useSettings("alwaysShowToolbars");
@@ -23,10 +23,16 @@ export default function CollectionHeader({ dragHandleRef, dragHandleProps }: Col
 
 	const handleAddSelected = async () =>
 	{
-		const newTabs: (TabItem | GroupItem)[] = isTab ?
-			(await saveTabsToCollection(false)).items :
-			await getSelectedTabs();
-		updateCollection({ ...collection, items: [...collection.items, ...newTabs] }, collection.timestamp);
+		const [newTabs, skipCount] = await getTabsToSaveAsync();
+
+		if (newTabs.length > 0)
+			await updateCollection({
+				...collection,
+				items: [...collection.items, ...newTabs.map<TabItem>(i => ({ type: "tab", url: i.url!, title: i.title }))]
+			}, collection.timestamp);
+
+		if (skipCount > 0)
+			await sendPartialSaveNotification();
 	};
 
 	const cls = useStyles();
@@ -59,7 +65,7 @@ export default function CollectionHeader({ dragHandleRef, dragHandleProps }: Col
 			>
 				{ tabCount < 1 ?
 					<Button icon={ <AddIcon /> } appearance="subtle" onClick={ handleAddSelected }>
-						{ isTab ? i18n.t("collections.menu.add_all") : i18n.t("collections.menu.add_selected") }
+						{ isTabView ? i18n.t("collections.menu.add_all") : i18n.t("collections.menu.add_selected") }
 					</Button>
 					:
 					<OpenCollectionButton onOpenChange={ (_, e) => setContextOpen(e.open) } />

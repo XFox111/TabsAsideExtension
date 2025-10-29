@@ -44,4 +44,5 @@ export default async function saveCollections(
 		}
 
 	await updateGraphics(collections, graphicsCache);
+	logger("Save complete");
 };
