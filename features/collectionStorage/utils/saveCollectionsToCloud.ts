@@ -9,7 +9,10 @@ export default async function saveCollectionsToCloud(collections: CollectionItem
 {
 	if (!collections || collections.length < 1)
 	{
-		await collectionStorage.chunkCount.setValue(0);
+		await browser.storage.sync.set({
+			[getStorageKey(collectionStorage.chunkCount)]: 0,
+			[getStorageKey(collectionStorage.syncLastUpdated)]: timestamp
+		});
 		await browser.storage.sync.remove(getChunkKeys());
 		return;
 	}
