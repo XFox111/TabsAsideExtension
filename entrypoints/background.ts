@@ -18,6 +18,9 @@ import { openCollection, openGroup } from "./sidepanel/utils/opener";
 import { closeTabsAsync } from "@/utils/closeTabsAsync";
 import { getTabsToSaveAsync } from "@/utils/getTabsToSaveAsync";
 import { createCollectionFromTabs } from "@/utils/createCollectionFromTabs";
+import getCollectionsFromLocal from "@/features/collectionStorage/utils/getCollectionsFromLocal";
+import { collectionStorage } from "@/features/collectionStorage/utils/collectionStorage";
+import getCollectionsFromCloud from "@/features/collectionStorage/utils/getCollectionsFromCloud";
 
 export default defineBackground(() =>
 {
@@ -39,15 +42,41 @@ export default defineBackground(() =>
 			logger("onInstalled", reason, previousVersion);
 			track("extension_installed", { reason, previousVersion: previousVersion ?? "none" });
 
-			const previousMajor: number = previousVersion ? parseInt(previousVersion.split(".")[0]) : 0;
+			const [major, minor, patch] = (previousVersion ?? "0.0.0").split(".").map(parseInt);
+			const cumulative: number = major * 10000 + minor * 100 + patch;
 
 			await setSettingsReviewNeeded(reason, previousVersion);
 
-			if (reason === "update" && previousMajor < 3)
+			if (reason === "update" && cumulative < 30000) // < 3.0.0
 			{
 				await migrateStorage();
 				await showWelcomeDialog.setValue(true);
 				browser.runtime.reload();
+			}
+
+			if (reason === "update" && cumulative >= 30000 && cumulative < 30200) // >= 3.0.0 && < 3.2.0
+			{
+				// Merge cloud and local storage if they are out of sync
+				const localTimestamp: number = await collectionStorage.localLastUpdated.getValue();
+				const syncTimestamp: number = await collectionStorage.syncLastUpdated.getValue();
+
+				if (localTimestamp === syncTimestamp)
+					return;
+
+				try
+				{
+					const localCollections: CollectionItem[] = await getCollectionsFromLocal();
+					const cloudCollections: CollectionItem[] = await getCollectionsFromCloud();
+					const mergedCollections: CollectionItem[] = [...cloudCollections, ...localCollections];
+
+					await saveCollections(mergedCollections, true, graphicsCache);
+				}
+				catch (ex)
+				{
+					logger("Failed to merge cloud and local storage during update");
+					trackError("cloud_sync_merge_error", ex as Error);
+					console.error(ex);
+				}
 			}
 		});
 

@@ -1,7 +1,8 @@
 import resolveConflict from "@/features/collectionStorage/utils/resolveConflict";
 import { Button, MessageBar, MessageBarActions, MessageBarBody, MessageBarProps, MessageBarTitle } from "@fluentui/react-components";
-import { ArrowUpload20Regular, CloudArrowDown20Regular, Wrench20Regular } from "@fluentui/react-icons";
+import { ArrowDownload20Regular, ArrowUpload20Regular, CloudArrowDown20Regular, Wrench20Regular } from "@fluentui/react-icons";
 import { useCollections } from "../../../contexts/CollectionsProvider";
+import exportData from "@/entrypoints/options/utils/exportData";
 
 export default function CloudIssueMessages(props: MessageBarProps): React.ReactElement
 {
@@ -36,6 +37,9 @@ export default function CloudIssueMessages(props: MessageBarProps): React.ReactE
 						{ i18n.t("merge_conflict_message.message") }
 					</MessageBarBody>
 					<MessageBarActions>
+						<Button icon={ <ArrowDownload20Regular /> } onClick={ exportData }>
+							{ i18n.t("options_page.storage.export") }
+						</Button>
 						<Button icon={ <ArrowUpload20Regular /> } onClick={ () => overrideStorageWith("local") }>
 							{ i18n.t("merge_conflict_message.accept_local") }
 						</Button>
