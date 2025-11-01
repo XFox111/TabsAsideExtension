@@ -597,24 +597,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/css-tree@npm:^3.6.5":
-  version: 3.6.5
-  resolution: "@eslint/css-tree@npm:3.6.5"
+"@eslint/css-tree@npm:^3.6.6":
+  version: 3.6.6
+  resolution: "@eslint/css-tree@npm:3.6.6"
   dependencies:
     mdn-data: "npm:2.23.0"
     source-map-js: "npm:^1.0.1"
-  checksum: 10c0/dd6baf8c88d6014e0afa8ddf13067b87a728484a2805093c4c9e0ec57427bc3462016a5b1ac0d9e590218a5d99440f8d43bfdcea8025b834e0adb8e4005e7b0e
+  checksum: 10c0/df7ff781d58a39ac7782de007dc388bdb4822d9e4305d491065125e78054cf6b3cf12951eff87a1002b8d864f391a9c3b35d62dc66619c9bab7721dda72a2056
   languageName: node
   linkType: hard
 
-"@eslint/css@npm:^0.11.1":
-  version: 0.11.1
-  resolution: "@eslint/css@npm:0.11.1"
+"@eslint/css@npm:^0.14.0":
+  version: 0.14.0
+  resolution: "@eslint/css@npm:0.14.0"
   dependencies:
-    "@eslint/core": "npm:^0.15.2"
-    "@eslint/css-tree": "npm:^3.6.5"
-    "@eslint/plugin-kit": "npm:^0.3.5"
-  checksum: 10c0/c812f8b6aaef51b9a79f866c951b65af52095ef4efa16faed04c95daad3ca5f7f643a80ea645a8b5eeddeb1911992a44f23db839018e0855f074227a5e8a29c9
+    "@eslint/core": "npm:^0.16.0"
+    "@eslint/css-tree": "npm:^3.6.6"
+    "@eslint/plugin-kit": "npm:^0.4.0"
+  checksum: 10c0/34bbc4435e055a2bbb8477114b117b3edf38fb7d42341973c88710db0c1b86facd4c333994257a2d0e545f08aae5c05dbd02a2f36b82c3c702e190de3559e97b
   languageName: node
   linkType: hard
 
@@ -8419,7 +8419,7 @@ __metadata:
     "@dnd-kit/modifiers": "npm:^9.0.0"
     "@dnd-kit/sortable": "npm:^10.0.0"
     "@dnd-kit/utilities": "npm:^3.2.2"
-    "@eslint/css": "npm:^0.11.1"
+    "@eslint/css": "npm:^0.14.0"
     "@eslint/js": "npm:^9.37.0"
     "@eslint/json": "npm:^0.13.2"
     "@fluentui/react-components": "npm:^9.72.0"
