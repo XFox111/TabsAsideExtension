@@ -19,7 +19,7 @@
 		"@fluentui/react-components": "^9.72.0",
 		"@fluentui/react-icons": "^2.0.311",
 		"@webext-core/messaging": "^2.3.0",
-		"@wxt-dev/analytics": "^0.4.1",
+		"@wxt-dev/analytics": "^0.5.1",
 		"@wxt-dev/i18n": "^0.2.4",
 		"lzutf8": "^0.6.3",
 		"react": "~19.2.0",
