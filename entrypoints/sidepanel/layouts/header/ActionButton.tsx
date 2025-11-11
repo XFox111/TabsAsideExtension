@@ -1,6 +1,11 @@
 import { useCollections } from "@/entrypoints/sidepanel/contexts/CollectionsProvider";
+import { track } from "@/features/analytics";
 import useSettings, { SettingsValue } from "@/hooks/useSettings";
-import saveTabsToCollection from "@/utils/saveTabsToCollection";
+import { CollectionItem } from "@/models/CollectionModels";
+import { closeTabsAsync } from "@/utils/closeTabsAsync";
+import { createCollectionFromTabs } from "@/utils/createCollectionFromTabs";
+import { getTabsToSaveAsync } from "@/utils/getTabsToSaveAsync";
+import sendPartialSaveNotification from "@/utils/sendPartialSaveNotification";
 import watchTabSelection from "@/utils/watchTabSelection";
 import { Menu, MenuButtonProps, MenuItem, MenuList, MenuPopover, MenuTrigger, SplitButton } from "@fluentui/react-components";
 import * as ic from "@fluentui/react-icons";
@@ -14,8 +19,26 @@ export default function ActionButton(): ReactElement
 
 	const handleAction = async (primary: boolean) =>
 	{
-		const colection = await saveTabsToCollection(primary === (defaultAction === "set_aside"));
-		addCollection(colection);
+		const [tabs, skipCount] = await getTabsToSaveAsync();
+
+		if (tabs.length < 1)
+		{
+			await sendPartialSaveNotification();
+			return;
+		}
+
+		const collection: CollectionItem = await createCollectionFromTabs(tabs);
+		await addCollection(collection);
+
+		if (skipCount > 0)
+			await sendPartialSaveNotification();
+
+		const closeTabs: boolean = primary === (defaultAction === "set_aside");
+
+		if (closeTabs)
+			await closeTabsAsync(tabs);
+
+		track(closeTabs ? "set_aside" : "save");
 	};
 
 	useEffect(() =>

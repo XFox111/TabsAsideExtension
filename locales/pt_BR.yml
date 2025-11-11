@@ -82,6 +82,7 @@ options_page:
       show_delete_prompt: "Pedir confirmação ao excluir um item"
       show_badge: "Mostrar contador no ícone"
       show_notification: "Mostrar notificação ao salvar abas pelo menu de contexto"
+      show_partial_save_notification: "Mostrar notificação quando algumas abas não puderam ser salvas"
       unload_tabs: "Não carregar abas após abrir"
       allow_analytics: "Permitir coleta de estatísticas anônimas"
       list_locations:

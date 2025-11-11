@@ -3,21 +3,21 @@ import EditDialog from "@/entrypoints/sidepanel/components/EditDialog";
 import CollectionContext, { CollectionContextType } from "@/entrypoints/sidepanel/contexts/CollectionContext";
 import { useCollections } from "@/entrypoints/sidepanel/contexts/CollectionsProvider";
 import GroupContext, { GroupContextType } from "@/entrypoints/sidepanel/contexts/GroupContext";
-import getSelectedTabs from "@/entrypoints/sidepanel/utils/getSelectedTabs";
 import { useDangerStyles } from "@/hooks/useDangerStyles";
 import useSettings from "@/hooks/useSettings";
 import { TabItem } from "@/models/CollectionModels";
 import { sendMessage } from "@/utils/messaging";
-import saveTabsToCollection from "@/utils/saveTabsToCollection";
 import { Button, Menu, MenuItem, MenuList, MenuPopover, MenuTrigger, Tooltip } from "@fluentui/react-components";
 import * as ic from "@fluentui/react-icons";
 import { ReactElement } from "react";
 import { openGroup } from "../../utils/opener";
+import { getTabsToSaveAsync } from "@/utils/getTabsToSaveAsync";
+import sendPartialSaveNotification from "@/utils/sendPartialSaveNotification";
 
 export default function GroupMoreMenu(): ReactElement
 {
 	const [listLocation] = useSettings("listLocation");
-	const isTab: boolean = listLocation === "tab" || listLocation === "pinned";
+	const isTabView: boolean = listLocation === "tab" || listLocation === "pinned";
 	const { group, indices } = useContext<GroupContextType>(GroupContext);
 	const { hasPinnedGroup, collection } = useContext<CollectionContextType>(CollectionContext);
 	const [deletePrompt] = useSettings("deletePrompt");
@@ -67,10 +67,16 @@ export default function GroupMoreMenu(): ReactElement
 
 	const handleAddSelected = async () =>
 	{
-		const newTabs: TabItem[] = isTab ?
-			(await saveTabsToCollection(false)).items.flatMap(i => i.type === "tab" ? i : i.items) :
-			await getSelectedTabs();
-		updateGroup({ ...group, items: [...group.items, ...newTabs] }, collection.timestamp, indices[1]);
+		const [newTabs, skipCount] = await getTabsToSaveAsync();
+
+		if (newTabs.length > 0)
+			await updateGroup({
+				...group,
+				items: [...group.items, ...newTabs.map<TabItem>(i => ({ type: "tab", url: i.url!, title: i.title }))]
+			}, collection.timestamp, indices[1]);
+
+		if (skipCount > 0)
+			await sendPartialSaveNotification();
 	};
 
 	return (
@@ -90,7 +96,7 @@ export default function GroupMoreMenu(): ReactElement
 					}
 
 					<MenuItem icon={ <AddIcon /> } onClick={ handleAddSelected }>
-						{ isTab ? i18n.t("groups.menu.add_all") : i18n.t("groups.menu.add_selected") }
+						{ isTabView ? i18n.t("groups.menu.add_all") : i18n.t("groups.menu.add_selected") }
 					</MenuItem>
 
 					<MenuItem icon={ <EditIcon /> } onClick={ handleEdit }>

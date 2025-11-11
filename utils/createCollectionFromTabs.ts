@@ -1,68 +1,16 @@
-import { track } from "@/features/analytics";
 import { CollectionItem, GroupItem } from "@/models/CollectionModels";
 import { Tabs } from "wxt/browser";
-import sendNotification from "./sendNotification";
-import { settings } from "./settings";
 
-export default async function saveTabsToCollection(closeTabs: boolean): Promise<CollectionItem>
+export async function createCollectionFromTabs(tabs: Tabs.Tab[]): Promise<CollectionItem>
 {
-	let tabs: Tabs.Tab[] = await browser.tabs.query({
-		currentWindow: true,
-		highlighted: true
-	});
-
-	if (tabs.length < 2)
-	{
-		const ignorePinned: boolean = await settings.ignorePinned.getValue();
-		tabs = await browser.tabs.query({
-			currentWindow: true,
-			pinned: ignorePinned ? false : undefined
-		});
-	}
-
-	const [collection, tabsToClose] = await createCollectionFromTabs(tabs);
-
-	if (closeTabs)
-	{
-		await browser.tabs.create({
-			active: true,
-			windowId: tabs[0].windowId
-		});
-		await browser.tabs.remove(tabsToClose.map(i => i.id!));
-	}
-
-	track(closeTabs ? "set_aside" : "save");
-
-	return collection;
-}
-
-async function createCollectionFromTabs(tabs: Tabs.Tab[]): Promise<[CollectionItem, Tabs.Tab[]]>
-{
-	if (tabs.length < 1)
-		return [{ type: "collection", timestamp: Date.now(), items: [] }, []];
-
-	const tabCount: number = tabs.length;
-
-	tabs = tabs.filter(i =>
-		i.url
-		&& new URL(i.url).protocol !== "about:"
-		&& new URL(i.url).hostname !== "newtab"
-	);
-
-	if (tabs.length < tabCount)
-		await sendNotification({
-			title: i18n.t("notifications.partial_save.title"),
-			message: i18n.t("notifications.partial_save.message"),
-			icon: "/notification_icons/save_warning.png"
-		});
-
-	tabs = tabs.filter(i => !i.url!.startsWith(browser.runtime.getURL("/")));
-
 	const collection: CollectionItem = {
 		type: "collection",
 		timestamp: Date.now(),
 		items: []
 	};
+
+	if (tabs.length < 1)
+		return collection;
 
 	let tabIndex: number = 0;
 
@@ -96,7 +44,7 @@ async function createCollectionFromTabs(tabs: Tabs.Tab[]): Promise<[CollectionIt
 			collection.items.push({ type: "tab", url: i.url!, title: i.title })
 		);
 
-		return [collection, tabs];
+		return collection;
 	}
 
 	let activeGroup: number | null = null;
@@ -132,5 +80,5 @@ async function createCollectionFromTabs(tabs: Tabs.Tab[]): Promise<[CollectionIt
 		});
 	}
 
-	return [collection, tabs];
+	return collection;
 }

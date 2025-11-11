@@ -82,6 +82,7 @@ options_page:
       show_delete_prompt: "Chiedi conferma quando elimini un elemento"
       show_badge: "Mostra il badge del contatore"
       show_notification: "Mostra notifica quando salvi le schede usando il menu contestuale"
+      show_partial_save_notification: "Mostra notifica quando alcune schede non sono state salvate"
       unload_tabs: "Non caricare le schede dopo l'apertura"
       allow_analytics: "Consenti la raccolta di statistiche anonime"
       list_locations:

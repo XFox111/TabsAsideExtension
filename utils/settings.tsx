@@ -95,5 +95,13 @@ export const settings = {
 			fallback: true,
 			version: 1
 		}
+	),
+
+	showPartialSaveNotification: storage.defineItem<boolean>(
+		"sync:showPartialSaveNotification",
+		{
+			fallback: true,
+			version: 1
+		}
 	)
 };

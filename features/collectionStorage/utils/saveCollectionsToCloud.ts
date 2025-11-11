@@ -4,36 +4,66 @@ import { WxtStorageItem } from "wxt/storage";
 import { collectionStorage } from "./collectionStorage";
 import getChunkKeys from "./getChunkKeys";
 import serializeCollections from "./serializeCollections";
+import { trackError } from "@/features/analytics";
+import sendNotification from "@/utils/sendNotification";
+import getLogger from "@/utils/getLogger";
+
+const logger = getLogger("saveCollectionsToCloud");
 
 export default async function saveCollectionsToCloud(collections: CollectionItem[], timestamp: number): Promise<void>
 {
-	if (!collections || collections.length < 1)
+	try
 	{
-		await collectionStorage.chunkCount.setValue(0);
-		await browser.storage.sync.remove(getChunkKeys());
-		return;
+		if (!collections || collections.length < 1)
+		{
+			await browser.storage.sync.set({
+				[getStorageKey(collectionStorage.chunkCount)]: 0,
+				[getStorageKey(collectionStorage.syncLastUpdated)]: timestamp
+			});
+			await browser.storage.sync.remove(getChunkKeys());
+			return;
+		}
+
+		const data: string = compress(serializeCollections(collections), { outputEncoding: "Base64" });
+		const chunks: string[] = splitIntoChunks(data);
+
+		if (chunks.length > collectionStorage.maxChunkCount)
+			throw new Error("Data is too large to be stored in sync storage.");
+
+		// Since there's a limit for cloud write operations, we need to write all chunks in one go.
+		const newRecords: Record<string, string | number> =
+		{
+			[getStorageKey(collectionStorage.chunkCount)]: chunks.length,
+			[getStorageKey(collectionStorage.syncLastUpdated)]: timestamp
+		};
+
+		for (let i = 0; i < chunks.length; i++)
+			newRecords[`c${i}`] = chunks[i];
+
+		await browser.storage.sync.set(newRecords);
+
+		if (chunks.length < collectionStorage.maxChunkCount)
+			await browser.storage.sync.remove(getChunkKeys(chunks.length));
 	}
-
-	const data: string = compress(serializeCollections(collections), { outputEncoding: "Base64" });
-	const chunks: string[] = splitIntoChunks(data);
-
-	if (chunks.length > collectionStorage.maxChunkCount)
-		throw new Error("Data is too large to be stored in sync storage.");
-
-	// Since there's a limit for cloud write operations, we need to write all chunks in one go.
-	const newRecords: Record<string, string | number> =
+	catch (ex)
 	{
-		[getStorageKey(collectionStorage.chunkCount)]: chunks.length,
-		[getStorageKey(collectionStorage.syncLastUpdated)]: timestamp
-	};
+		logger("Failed to save cloud storage");
+		console.error(ex);
+		trackError("cloud_save_error", ex as Error);
 
-	for (let i = 0; i < chunks.length; i++)
-		newRecords[`c${i}`] = chunks[i];
-
-	await browser.storage.sync.set(newRecords);
-
-	if (chunks.length < collectionStorage.maxChunkCount)
-		await browser.storage.sync.remove(getChunkKeys(chunks.length));
+		if ((ex as Error).message.includes("MAX_WRITE_OPERATIONS_PER_MINUTE"))
+			await sendNotification({
+				title: i18n.t("notifications.error_quota_exceeded.title"),
+				message: i18n.t("notifications.error_quota_exceeded.message"),
+				icon: "/notification_icons/cloud_error.png"
+			});
+		else
+			await sendNotification({
+				title: i18n.t("notifications.error_storage_full.title"),
+				message: i18n.t("notifications.error_storage_full.message"),
+				icon: "/notification_icons/cloud_error.png"
+			});
+	}
 }
 
 function splitIntoChunks(data: string): string[]

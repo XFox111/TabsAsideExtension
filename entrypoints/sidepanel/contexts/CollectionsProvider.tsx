@@ -43,12 +43,12 @@ export default function CollectionsProvider({ children }: React.PropsWithChildre
 		sendMessage("refreshCollections", undefined);
 	};
 
-	const addCollection = (collection: CollectionItem): void =>
+	const addCollection = async (collection: CollectionItem): Promise<void> =>
 	{
-		updateStorage([collection, ...collections]);
+		await updateStorage([collection, ...collections]);
 	};
 
-	const removeItem = (...indices: number[]): void =>
+	const removeItem = async (...indices: number[]): Promise<void> =>
 	{
 		const collectionIndex: number = collections.findIndex(i => i.timestamp === indices[0]);
 
@@ -59,34 +59,34 @@ export default function CollectionsProvider({ children }: React.PropsWithChildre
 		else
 			collections.splice(collectionIndex, 1);
 
-		updateStorage(collections);
+		await updateStorage(collections);
 	};
 
-	const updateCollections = (collectionList: CollectionItem[]): void =>
+	const updateCollections = async (collectionList: CollectionItem[]): Promise<void> =>
 	{
-		updateStorage(collectionList);
+		await updateStorage(collectionList);
 	};
 
-	const updateCollection = (collection: CollectionItem, id: number): void =>
+	const updateCollection = async (collection: CollectionItem, id: number): Promise<void> =>
 	{
 		const index: number = collections.findIndex(i => i.timestamp === id);
 		collections[index] = collection;
-		updateStorage(collections);
+		await updateStorage(collections);
 	};
 
-	const updateGroup = (group: GroupItem, collectionId: number, groupIndex: number): void =>
+	const updateGroup = async (group: GroupItem, collectionId: number, groupIndex: number): Promise<void> =>
 	{
 		const collectionIndex: number = collections.findIndex(i => i.timestamp === collectionId);
 		collections[collectionIndex].items[groupIndex] = group;
-		updateStorage(collections);
+		await updateStorage(collections);
 	};
 
-	const ungroup = (collectionId: number, groupIndex: number): void =>
+	const ungroup = async (collectionId: number, groupIndex: number): Promise<void> =>
 	{
 		const collectionIndex: number = collections.findIndex(i => i.timestamp === collectionId);
 		const group = collections[collectionIndex].items[groupIndex] as GroupItem;
 		collections[collectionIndex].items.splice(groupIndex, 1, ...group.items);
-		updateStorage(collections);
+		await updateStorage(collections);
 	};
 
 	return (
@@ -110,12 +110,12 @@ export type CollectionsContextType =
 		tilesView: boolean;
 
 		refreshCollections: () => Promise<void>;
-		addCollection: (collection: CollectionItem) => void;
+		addCollection: (collection: CollectionItem) => Promise<void>;
 
-		updateCollections: (collections: CollectionItem[]) => void;
-		updateCollection: (collection: CollectionItem, id: number) => void;
-		updateGroup: (group: GroupItem, collectionId: number, groupIndex: number) => void;
-		ungroup: (collectionId: number, groupIndex: number) => void;
+		updateCollections: (collections: CollectionItem[]) => Promise<void>;
+		updateCollection: (collection: CollectionItem, id: number) => Promise<void>;
+		updateGroup: (group: GroupItem, collectionId: number, groupIndex: number) => Promise<void>;
+		ungroup: (collectionId: number, groupIndex: number) => Promise<void>;
 
-		removeItem: (...indices: number[]) => void;
+		removeItem: (...indices: number[]) => Promise<void>;
 	};
