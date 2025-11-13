@@ -17,7 +17,7 @@ export type DefaultGroupItem =
 		type: "group";
 		pinned?: false;
 		title?: string;
-		color: chrome.tabGroups.ColorEnum;
+		color: `${Browser.tabGroups.Color}`;
 		items: TabItem[];
 	};
 
@@ -28,7 +28,7 @@ export type CollectionItem =
 		type: "collection";
 		timestamp: number;
 		title?: string;
-		color?: chrome.tabGroups.ColorEnum;
+		color?: `${Browser.tabGroups.Color}`;
 		items: (TabItem | GroupItem)[];
 	};
 

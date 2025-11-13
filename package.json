@@ -1,7 +1,7 @@
 {
 	"name": "tabs-aside",
 	"private": true,
-	"version": "3.2.0",
+	"version": "3.2.1",
 	"type": "module",
 	"scripts": {
 		"dev": "wxt",
@@ -40,7 +40,7 @@
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.46.4",
 		"vite": "^7.2.2",
-		"wxt": "~0.19.29"
+		"wxt": "^0.20.11"
 	},
 	"packageManager": "yarn@4.9.2"
 }

@@ -14,8 +14,8 @@ export default function useStorageInfo(): StorageInfoHook
 
 	return {
 		bytesInUse,
-		storageQuota: chrome.storage.sync.QUOTA_BYTES ?? 102400,
-		usedStorageRatio: bytesInUse / (chrome.storage.sync.QUOTA_BYTES ?? 102400)
+		storageQuota: browser.storage.sync.QUOTA_BYTES ?? 102400,
+		usedStorageRatio: bytesInUse / (browser.storage.sync.QUOTA_BYTES ?? 102400)
 	};
 }
 

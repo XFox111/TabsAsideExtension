@@ -1,11 +1,11 @@
 import { githubLinks } from "@/data/links";
 import { analyticsPermission } from "@/features/analytics";
+import { thumbnailCaptureEnabled } from "@/features/collectionStorage";
 import extLink from "@/utils/extLink";
 import * as fui from "@fluentui/react-components";
-import { settingsForReview } from "../utils/showSettingsReviewDialog";
+import { Unwatch } from "wxt/utils/storage";
 import { reviewSettings } from "../utils/setSettingsReviewNeeded";
-import { Unwatch } from "wxt/storage";
-import { thumbnailCaptureEnabled } from "@/features/collectionStorage";
+import { settingsForReview } from "../utils/showSettingsReviewDialog";
 
 export default function SettingsReviewDialog(): React.ReactElement
 {

@@ -1,9 +1,8 @@
-import { Tabs } from "wxt/browser";
 import { settings } from "./settings";
 
-export async function getTabsToSaveAsync(): Promise<[Tabs.Tab[], number]>
+export async function getTabsToSaveAsync(): Promise<[Browser.tabs.Tab[], number]>
 {
-	let tabs: Tabs.Tab[] = await browser.tabs.query({
+	let tabs: Browser.tabs.Tab[] = await browser.tabs.query({
 		currentWindow: true,
 		highlighted: true
 	});

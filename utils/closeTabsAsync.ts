@@ -1,6 +1,4 @@
-import { Tabs } from "wxt/browser";
-
-export async function closeTabsAsync(tabs: Tabs.Tab[]): Promise<void>
+export async function closeTabsAsync(tabs: Browser.tabs.Tab[]): Promise<void>
 {
 	if (tabs.length < 1)
 		return;

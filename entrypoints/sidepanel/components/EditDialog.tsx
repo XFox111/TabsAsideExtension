@@ -16,7 +16,7 @@ export default function EditDialog(props: GroupEditDialogProps): ReactElement
 		?? ""
 	);
 
-	const [color, setColor] = useState<chrome.tabGroups.ColorEnum | undefined | "pinned">(
+	const [color, setColor] = useState<`${Browser.tabGroups.Color}` | undefined | "pinned">(
 		props.type === "collection"
 			? props.collection?.color :
 			props.group?.pinned === true ? "pinned" : (props.group?.color ?? "blue")
@@ -112,8 +112,8 @@ export default function EditDialog(props: GroupEditDialogProps): ReactElement
 									{ Object.keys(colorCls).map(i =>
 										<fui.ToggleButton
 											checked={ color === i }
-											onClick={ () => setColor(i as chrome.tabGroups.ColorEnum) }
-											className={ fui.mergeClasses(cls.colorButton, colorCls[i as chrome.tabGroups.ColorEnum]) }
+											onClick={ () => setColor(i as `${Browser.tabGroups.Color}`) }
+											className={ fui.mergeClasses(cls.colorButton, colorCls[i as `${Browser.tabGroups.Color}`]) }
 											icon={ {
 												className: cls.colorButton_icon,
 												children: <Circle20Filled />
@@ -121,7 +121,7 @@ export default function EditDialog(props: GroupEditDialogProps): ReactElement
 											key={ i }
 											shape="circular"
 										>
-											{ i18n.t(`colors.${i as chrome.tabGroups.ColorEnum}`) }
+											{ i18n.t(`colors.${i as `${Browser.tabGroups.Color}`}`) }
 										</fui.ToggleButton>
 									) }
 								</div>

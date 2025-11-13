@@ -1,12 +1,11 @@
+import { trackError } from "@/features/analytics";
 import { CollectionItem } from "@/models/CollectionModels";
+import getLogger from "@/utils/getLogger";
+import sendNotification from "@/utils/sendNotification";
 import { compress } from "lzutf8";
-import { WxtStorageItem } from "wxt/storage";
 import { collectionStorage } from "./collectionStorage";
 import getChunkKeys from "./getChunkKeys";
 import serializeCollections from "./serializeCollections";
-import { trackError } from "@/features/analytics";
-import sendNotification from "@/utils/sendNotification";
-import getLogger from "@/utils/getLogger";
 
 const logger = getLogger("saveCollectionsToCloud");
 
@@ -70,7 +69,7 @@ function splitIntoChunks(data: string): string[]
 {
 	// QUOTA_BYTES_PER_ITEM includes length of key name, length of content and 2 more bytes (for unknown reason).
 	const chunkKey: string = getChunkKeys(collectionStorage.maxChunkCount - 1)[0];
-	const chunkSize = (chrome.storage.sync.QUOTA_BYTES_PER_ITEM ?? 8192) - chunkKey.length - 2;
+	const chunkSize = (browser.storage.sync.QUOTA_BYTES_PER_ITEM ?? 8192) - chunkKey.length - 2;
 	const chunks: string[] = [];
 
 	for (let i = 0; i < data.length; i += chunkSize)
