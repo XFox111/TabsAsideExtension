@@ -1,12 +1,11 @@
+import { track } from "@/features/analytics";
 import { CollectionItem, TabItem } from "@/models/CollectionModels";
 import sendNotification from "@/utils/sendNotification";
-import { Bookmarks, Permissions } from "wxt/browser";
 import { getCollectionTitle } from "./getCollectionTitle";
-import { track } from "@/features/analytics";
 
 export default async function exportCollectionToBookmarks(collection: CollectionItem)
 {
-	const permissions: Permissions.AnyPermissions = await browser.permissions.getAll();
+	const permissions: Browser.permissions.Permissions = await browser.permissions.getAll();
 
 	if (!permissions.permissions?.includes("bookmarks"))
 	{
@@ -16,7 +15,7 @@ export default async function exportCollectionToBookmarks(collection: Collection
 			return;
 	}
 
-	const rootFolder: Bookmarks.BookmarkTreeNode = await browser.bookmarks.create({
+	const rootFolder: Browser.bookmarks.BookmarkTreeNode = await browser.bookmarks.create({
 		title: getCollectionTitle(collection)
 	});
 

@@ -61,5 +61,5 @@ export default function filterCollections(
 export type CollectionFilterType =
 	{
 		query: string;
-		colors: (chrome.tabGroups.ColorEnum | "none")[];
+		colors: (`${Browser.tabGroups.Color}` | "none")[];
 	};

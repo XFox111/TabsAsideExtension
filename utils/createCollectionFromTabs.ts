@@ -1,7 +1,6 @@
 import { CollectionItem, GroupItem } from "@/models/CollectionModels";
-import { Tabs } from "wxt/browser";
 
-export async function createCollectionFromTabs(tabs: Tabs.Tab[]): Promise<CollectionItem>
+export async function createCollectionFromTabs(tabs: Browser.tabs.Tab[]): Promise<CollectionItem>
 {
 	const collection: CollectionItem = {
 		type: "collection",
@@ -36,7 +35,7 @@ export async function createCollectionFromTabs(tabs: Tabs.Tab[]): Promise<Collec
 		tabs.every(i => i.groupId === tabs[0].groupId)
 	)
 	{
-		const group = await chrome.tabGroups.get(tabs[0].groupId);
+		const group = await browser.tabGroups.get(tabs[0].groupId);
 		collection.title = group.title;
 		collection.color = group.color;
 
@@ -63,7 +62,7 @@ export async function createCollectionFromTabs(tabs: Tabs.Tab[]): Promise<Collec
 		if (!activeGroup || activeGroup !== tab.groupId)
 		{
 			activeGroup = tab.groupId;
-			const group = await chrome.tabGroups.get(activeGroup);
+			const group = await browser.tabGroups.get(activeGroup!);
 
 			collection.items.push({
 				type: "group",

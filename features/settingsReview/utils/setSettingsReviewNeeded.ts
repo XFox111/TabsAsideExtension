@@ -1,8 +1,7 @@
 import { analyticsPermission } from "@/features/analytics";
-import { Runtime } from "wxt/browser";
 import { settingsForReview } from "./showSettingsReviewDialog";
 
-export default async function setSettingsReviewNeeded(installReason: Runtime.OnInstalledReason, previousVersion?: string): Promise<void>
+export default async function setSettingsReviewNeeded(installReason: `${Browser.runtime.OnInstalledReason}`, previousVersion?: string): Promise<void>
 {
 	const needsReview: string[] = await settingsForReview.getValue();
 
@@ -25,7 +24,7 @@ export const reviewSettings =
 	THUMBNAILS: "thumbnails"
 };
 
-async function checkAnalyticsReviewNeeded(installReason: Runtime.OnInstalledReason, previousVersion?: string): Promise<boolean>
+async function checkAnalyticsReviewNeeded(installReason: `${Browser.runtime.OnInstalledReason}`, previousVersion?: string): Promise<boolean>
 {
 	if (installReason === "install")
 		return !await analyticsPermission.getValue();
@@ -45,7 +44,7 @@ async function checkAnalyticsReviewNeeded(installReason: Runtime.OnInstalledReas
 	return false;
 }
 
-async function checkThumbnailsReviewNeeded(installReason: Runtime.OnInstalledReason, previousVersion?: string): Promise<boolean>
+async function checkThumbnailsReviewNeeded(installReason: `${Browser.runtime.OnInstalledReason}`, previousVersion?: string): Promise<boolean>
 {
 	if (installReason === "install")
 		return true;

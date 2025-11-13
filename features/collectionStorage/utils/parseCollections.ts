@@ -44,7 +44,7 @@ function parseCollection(data: string): CollectionItem
 	return {
 		type: "collection",
 		timestamp: parseInt(data.match(/(?<=^c)\d+/)!.toString()),
-		color: data.match(/(?<=^c\d+\/)[a-z]+/)?.toString() as chrome.tabGroups.ColorEnum,
+		color: data.match(/(?<=^c\d+\/)[a-z]+/)?.toString() as `${Browser.tabGroups.Color}`,
 		title: data.match(/(?<=^c[\da-z/]*\|).*/)?.toString(),
 		items: []
 	};
@@ -64,7 +64,7 @@ function parseGroup(data: string): GroupItem
 	return {
 		type: "group",
 		pinned: false,
-		color: data.match(/(?<=^\tg\/)[a-z]+/)?.toString() as chrome.tabGroups.ColorEnum,
+		color: data.match(/(?<=^\tg\/)[a-z]+/)?.toString() as `${Browser.tabGroups.Color}`,
 		title: data.match(/(?<=^\tg\/[a-z]+\|).*$/)?.toString(),
 		items: []
 	};

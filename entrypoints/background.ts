@@ -1,26 +1,25 @@
 import { track, trackError } from "@/features/analytics";
 import { collectionCount, getCollections, saveCollections, thumbnailCaptureEnabled } from "@/features/collectionStorage";
+import { collectionStorage } from "@/features/collectionStorage/utils/collectionStorage";
+import getCollectionsFromCloud from "@/features/collectionStorage/utils/getCollectionsFromCloud";
+import getCollectionsFromLocal from "@/features/collectionStorage/utils/getCollectionsFromLocal";
 import { migrateStorage } from "@/features/migration";
 import { setSettingsReviewNeeded } from "@/features/settingsReview/utils";
 import { showWelcomeDialog } from "@/features/v3welcome/utils/showWelcomeDialog";
 import { SettingsValue } from "@/hooks/useSettings";
 import { CollectionItem, GraphicsStorage } from "@/models/CollectionModels";
+import { closeTabsAsync } from "@/utils/closeTabsAsync";
+import { createCollectionFromTabs } from "@/utils/createCollectionFromTabs";
 import getLogger from "@/utils/getLogger";
+import { getTabsToSaveAsync } from "@/utils/getTabsToSaveAsync";
 import { onMessage, sendMessage } from "@/utils/messaging";
 import sendNotification from "@/utils/sendNotification";
 import sendPartialSaveNotification from "@/utils/sendPartialSaveNotification";
 import { settings } from "@/utils/settings";
 import watchTabSelection from "@/utils/watchTabSelection";
 import { RemoveListenerCallback } from "@webext-core/messaging";
-import { Tabs, Windows } from "wxt/browser";
-import { Unwatch } from "wxt/storage";
+import { Unwatch } from "wxt/utils/storage";
 import { openCollection, openGroup } from "./sidepanel/utils/opener";
-import { closeTabsAsync } from "@/utils/closeTabsAsync";
-import { getTabsToSaveAsync } from "@/utils/getTabsToSaveAsync";
-import { createCollectionFromTabs } from "@/utils/createCollectionFromTabs";
-import getCollectionsFromLocal from "@/features/collectionStorage/utils/getCollectionsFromLocal";
-import { collectionStorage } from "@/features/collectionStorage/utils/collectionStorage";
-import getCollectionsFromCloud from "@/features/collectionStorage/utils/getCollectionsFromCloud";
 
 export default defineBackground(() =>
 {
@@ -99,7 +98,7 @@ export default defineBackground(() =>
 			let unwatchAddThumbnail: RemoveListenerCallback | null = null;
 			let captureInterval: NodeJS.Timeout | null = null;
 
-			const captureFavicon = (_: any, __: any, tab: Tabs.Tab): void =>
+			const captureFavicon = (_: any, __: any, tab: Browser.tabs.Tab): void =>
 			{
 				if (!tab.url)
 					return;
@@ -111,7 +110,7 @@ export default defineBackground(() =>
 				};
 			};
 
-			const tryCaptureTab = async (tab: Tabs.Tab): Promise<void> =>
+			const tryCaptureTab = async (tab: Browser.tabs.Tab): Promise<void> =>
 			{
 				if (!tab.url || tab.status !== "complete" || !tab.active)
 					return;
@@ -123,7 +122,7 @@ export default defineBackground(() =>
 				{
 					// We use chrome here because polyfill throws uncatchable errors for some reason
 					// It's a compatible API anyway
-					const capture: string = await chrome.tabs.captureVisibleTab(tab.windowId!, { format: "jpeg", quality: 1 });
+					const capture: string = await browser.tabs.captureVisibleTab(tab.windowId!, { format: "jpeg", quality: 1 });
 
 					if (capture)
 					{
@@ -287,6 +286,7 @@ export default defineBackground(() =>
 			};
 
 			const toggleSidebarFirefox = async (): Promise<void> =>
+				// @ts-expect-error Firefox-only API
 				await browser.sidebarAction.toggle();
 
 			const updateButton = async (action: SettingsValue<"contextAction">): Promise<void> =>
@@ -303,7 +303,7 @@ export default defineBackground(() =>
 				unwatchActionTitle?.();
 
 				if (!import.meta.env.FIREFOX)
-					await chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: false });
+					await browser.sidePanel.setPanelBehavior({ openPanelOnActionClick: false });
 
 				// Setup new behavior
 				if (action === "action")
@@ -322,7 +322,7 @@ export default defineBackground(() =>
 						if (import.meta.env.FIREFOX)
 							browser.action.onClicked.addListener(toggleSidebarFirefox);
 						else
-							chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true });
+							browser.sidePanel.setPanelBehavior({ openPanelOnActionClick: true });
 					}
 					else if (location !== "popup")
 						browser.action.onClicked.addListener(openCollectionsInTab);
@@ -341,17 +341,17 @@ export default defineBackground(() =>
 			{
 				logger("enforcePinnedTab");
 
-				const openWindows: Windows.Window[] = await browser.windows.getAll({ populate: true });
+				const openWindows: Browser.windows.Window[] = await browser.windows.getAll({ populate: true });
 
 				for (const openWindow of openWindows)
 				{
 					if (openWindow.incognito || openWindow.type !== "normal")
 						continue;
 
-					const activeTabs: Tabs.Tab[] = openWindow.tabs!.filter(tab =>
+					const activeTabs: Browser.tabs.Tab[] = openWindow.tabs!.filter(tab =>
 						tab.url === browser.runtime.getURL("/sidepanel.html"));
 
-					const targetTab: Tabs.Tab | undefined = activeTabs.find(tab => tab.pinned);
+					const targetTab: Browser.tabs.Tab | undefined = activeTabs.find(tab => tab.pinned);
 
 					if (!targetTab)
 						await browser.tabs.create({
@@ -361,7 +361,7 @@ export default defineBackground(() =>
 							pinned: true
 						});
 
-					const tabsToClose: Tabs.Tab[] = activeTabs.filter(tab => tab.id !== targetTab?.id);
+					const tabsToClose: Browser.tabs.Tab[] = activeTabs.filter(tab => tab.id !== targetTab?.id);
 
 					if (tabsToClose.length > 0)
 						await browser.tabs.remove(tabsToClose.map(tab => tab.id!));
@@ -373,7 +373,7 @@ export default defineBackground(() =>
 				logger("updateView", viewLocation);
 
 				browser.tabs.onHighlighted.removeListener(enforcePinnedTab);
-				const tabs: Tabs.Tab[] = await browser.tabs.query({
+				const tabs: Browser.tabs.Tab[] = await browser.tabs.query({
 					url: browser.runtime.getURL("/sidepanel.html")
 				});
 				await browser.tabs.remove(tabs.map(tab => tab.id!));
@@ -383,11 +383,12 @@ export default defineBackground(() =>
 				});
 
 				if (import.meta.env.FIREFOX)
+					// @ts-expect-error Firefox-only API
 					await browser.sidebarAction.setPanel({
 						panel: viewLocation === "sidebar" ? browser.runtime.getURL("/sidepanel.html") : ""
 					});
 				else
-					await chrome.sidePanel.setOptions({ enabled: viewLocation === "sidebar" });
+					await browser.sidePanel.setOptions({ enabled: viewLocation === "sidebar" });
 
 				if (viewLocation === "pinned")
 				{
@@ -418,9 +419,10 @@ export default defineBackground(() =>
 			if (view === "sidebar")
 			{
 				if (import.meta.env.FIREFOX)
+					// @ts-expect-error Firefox-only API
 					browser.sidebarAction.open();
 				else
-					chrome.sidePanel.open({ windowId });
+					browser.sidePanel.open({ windowId });
 			}
 			else
 				browser.action.openPopup();
@@ -430,11 +432,11 @@ export default defineBackground(() =>
 		{
 			logger("openCollectionsInTab");
 
-			const currentWindow: Windows.Window = await browser.windows.getCurrent({ populate: true });
+			const currentWindow: Browser.windows.Window = await browser.windows.getCurrent({ populate: true });
 
 			if (currentWindow.incognito)
 			{
-				let availableWindows: Windows.Window[] = await browser.windows.getAll({ populate: true });
+				let availableWindows: Browser.windows.Window[] = await browser.windows.getAll({ populate: true });
 
 				availableWindows = availableWindows.filter(window =>
 					!window.incognito &&
@@ -443,7 +445,7 @@ export default defineBackground(() =>
 
 				if (availableWindows.length > 0)
 				{
-					const availableTab: Tabs.Tab = availableWindows[0].tabs!.find(
+					const availableTab: Browser.tabs.Tab = availableWindows[0].tabs!.find(
 						tab => tab.url === browser.runtime.getURL("/sidepanel.html")
 					)!;
 
@@ -460,7 +462,7 @@ export default defineBackground(() =>
 			}
 			else
 			{
-				const collectionTab: Tabs.Tab | undefined = currentWindow.tabs!.find(
+				const collectionTab: Browser.tabs.Tab | undefined = currentWindow.tabs!.find(
 					tab => tab.url === browser.runtime.getURL("/sidepanel.html")
 				);
 

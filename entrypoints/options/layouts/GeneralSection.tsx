@@ -1,8 +1,8 @@
+import { analyticsPermission } from "@/features/analytics";
 import useSettings, { SettingsValue } from "@/hooks/useSettings";
 import { Button, Checkbox, Dropdown, Field, Option, OptionOnSelectData } from "@fluentui/react-components";
 import { KeyCommand20Regular } from "@fluentui/react-icons";
 import { useOptionsStyles } from "../hooks/useOptionsStyles";
-import { analyticsPermission } from "@/features/analytics";
 
 export default function GeneralSection(): React.ReactElement
 {
@@ -45,6 +45,7 @@ export default function GeneralSection(): React.ReactElement
 			setContextAction("open");
 
 		if (import.meta.env.FIREFOX && e.optionValue !== "sidebar")
+			// @ts-expect-error Firefox-only API
 			browser.sidebarAction.close();
 
 		setListLocation(e.optionValue as ListLocationType);

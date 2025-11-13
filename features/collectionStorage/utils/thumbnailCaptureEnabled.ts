@@ -1,5 +1,4 @@
-import { Permissions } from "wxt/browser";
-import { Unwatch, WatchCallback, WxtStorageItem } from "wxt/storage";
+import { Unwatch, WatchCallback } from "wxt/utils/storage";
 
 const thumbnailCaptureEnabled: Pick<WxtStorageItem<boolean, Record<string, unknown>>, "getValue" | "watch" | "setValue"> =
 	{
@@ -8,7 +7,7 @@ const thumbnailCaptureEnabled: Pick<WxtStorageItem<boolean, Record<string, unkno
 
 		watch: (cb: WatchCallback<boolean>): Unwatch =>
 		{
-			const listener = async (permissions: Permissions.Permissions): Promise<void> =>
+			const listener = async (permissions: Browser.permissions.Permissions): Promise<void> =>
 			{
 				if (permissions.permissions?.includes("scripting") || permissions.origins?.includes("<all_urls>"))
 				{

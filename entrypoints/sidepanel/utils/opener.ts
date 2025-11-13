@@ -1,7 +1,6 @@
 import { getCollectionTitle } from "@/entrypoints/sidepanel/utils/getCollectionTitle";
 import { CollectionItem, GroupItem, TabItem } from "@/models/CollectionModels";
 import { settings } from "@/utils/settings";
-import { Tabs, Windows } from "wxt/browser";
 
 export async function openCollection(collection: CollectionItem, targetWindow?: "current" | "new" | "incognito"): Promise<void>
 {
@@ -55,7 +54,7 @@ export async function openGroup(group: GroupItem, newWindow: boolean = false): P
 async function createGroup(group: GroupItem, windowId: number, discard?: boolean): Promise<void>
 {
 	discard ??= await settings.dismissOnLoad.getValue();
-	const tabs: Tabs.Tab[] = await Promise.all(group.items.map(async i =>
+	const tabs: Browser.tabs.Tab[] = await Promise.all(group.items.map(async i =>
 		await createTab(i.url, windowId, discard, group.pinned)
 	));
 
@@ -63,21 +62,21 @@ async function createGroup(group: GroupItem, windowId: number, discard?: boolean
 	if (group.pinned === true)
 		return;
 
-	const groupId: number = await chrome.tabs.group({
-		tabIds: tabs.filter(i => i.windowId === windowId).map(i => i.id!),
+	const groupId: number = await browser.tabs.group({
+		tabIds: tabs.filter(i => i.windowId === windowId).map(i => i.id!) as [number, ...number[]],
 		createProperties: { windowId }
 	});
 
-	await chrome.tabGroups.update(groupId, {
+	await browser.tabGroups.update(groupId, {
 		title: group.title,
 		color: group.color
 	});
 }
 
-async function manageWindow(handle: (windowId: number) => Promise<void>, windowProps?: Windows.CreateCreateDataType): Promise<void>
+async function manageWindow(handle: (windowId: number) => Promise<void>, windowProps?: Browser.windows.CreateData): Promise<void>
 {
-	const currentWindow: Windows.Window = windowProps ?
-		await browser.windows.create({ url: "about:blank", focused: false, ...windowProps }) :
+	const currentWindow: Browser.windows.Window = windowProps ?
+		(await browser.windows.create({ url: "about:blank", focused: false, ...windowProps }))! :
 		await browser.windows.getCurrent();
 	const windowId: number = currentWindow.id!;
 
@@ -90,7 +89,7 @@ async function manageWindow(handle: (windowId: number) => Promise<void>, windowP
 		await browser.tabs.remove(currentWindow.tabs![0].id!);
 }
 
-async function createTab(url: string, windowId: number, discard: boolean, pinned?: boolean): Promise<Tabs.Tab>
+async function createTab(url: string, windowId: number, discard: boolean, pinned?: boolean): Promise<Browser.tabs.Tab>
 {
 	const tab = await browser.tabs.create({ url, windowId: windowId, active: false, pinned });
 
@@ -102,7 +101,7 @@ async function createTab(url: string, windowId: number, discard: boolean, pinned
 
 function discardOnLoad(tabId: number): void
 {
-	const handleTabUpdated = (id: number, _: any, tab: Tabs.Tab) =>
+	const handleTabUpdated = (id: number, _: any, tab: Browser.tabs.Tab) =>
 	{
 		if (id !== tabId || !tab.url)
 			return;

@@ -1,6 +1,6 @@
 import { makeStyles, tokens } from "@fluentui/react-components";
 
-export const useGroupColors: () => Record<chrome.tabGroups.ColorEnum, string> = makeStyles({
+export const useGroupColors: () => Record<`${Browser.tabGroups.Color}`, string> = makeStyles({
 	blue:
 	{
 		"--border": tokens.colorPaletteBlueBorderActive,

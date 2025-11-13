@@ -44,11 +44,11 @@ export default function FilterCollectionsButton({ value, onChange }: FilterColle
 								<ColorIcon
 									className={ fui.mergeClasses(
 										cls.colorIcon,
-										colorCls[i as chrome.tabGroups.ColorEnum]
+										colorCls[i as `${Browser.tabGroups.Color}`]
 									) } />
 							}
 						>
-							{ i18n.t(`colors.${i as chrome.tabGroups.ColorEnum}`) }
+							{ i18n.t(`colors.${i as `${Browser.tabGroups.Color}`}`) }
 						</fui.MenuItemCheckbox>
 					) }
 				</fui.MenuList>

@@ -20,6 +20,6 @@ export const githubLinks =
 export const storeLink: string =
 	import.meta.env.FIREFOX
 		? "https://addons.mozilla.org/en-US/firefox/addon/ms-edge-tabs-aside/" :
-		chrome.runtime.getManifest().update_url?.startsWith("https://edge.microsoft.com/") ?
+		browser.runtime.getManifest().update_url?.startsWith("https://edge.microsoft.com/") ?
 			"https://microsoftedge.microsoft.com/addons/detail/tabs-aside/kmnblllmalkiapkfknnlpobmjjdnlhnd" :
 			"https://chromewebstore.google.com/detail/tabs-aside/mgmjbodjgijnebfgohlnjkegdpbdjgin";

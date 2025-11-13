@@ -1,10 +1,9 @@
 import { TabItem } from "@/models/CollectionModels";
 import sendNotification from "@/utils/sendNotification";
-import { Tabs } from "wxt/browser";
 
 export default async function getSelectedTabs(): Promise<TabItem[]>
 {
-	let tabs: Tabs.Tab[] = await browser.tabs.query({ currentWindow: true, highlighted: true });
+	let tabs: Browser.tabs.Tab[] = await browser.tabs.query({ currentWindow: true, highlighted: true });
 	const tabCount: number = tabs.length;
 
 	tabs = tabs.filter(i =>

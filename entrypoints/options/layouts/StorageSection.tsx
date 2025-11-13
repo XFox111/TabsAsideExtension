@@ -4,10 +4,10 @@ import { useDangerStyles } from "@/hooks/useDangerStyles";
 import useStorageInfo from "@/hooks/useStorageInfo";
 import { Button, Field, InfoLabel, LabelProps, MessageBar, MessageBarBody, MessageBarTitle, ProgressBar, Switch } from "@fluentui/react-components";
 import { ArrowDownload20Regular, ArrowUpload20Regular } from "@fluentui/react-icons";
+import { Unwatch } from "wxt/utils/storage";
 import { useOptionsStyles } from "../hooks/useOptionsStyles";
 import exportData from "../utils/exportData";
 import importData from "../utils/importData";
-import { Unwatch } from "wxt/storage";
 
 export default function StorageSection(): React.ReactElement
 {
