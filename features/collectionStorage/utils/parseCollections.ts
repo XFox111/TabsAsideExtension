@@ -74,7 +74,7 @@ function parseTab(data: string): TabItem
 {
 	return {
 		type: "tab",
-		url: data.match(/(?<=^(\t){1,2}t\|).*(?=\|)/)!.toString(),
-		title: data.match(/(?<=^(\t){1,2}t\|.*\|).*$/)?.toString()
+		url: data.match(/(?<=^\t{1,2}t\|).*(?=\|)/)!.toString(),
+		title: data.match(/(?<=^\t{1,2}t\|.*\|).*$/)?.toString()
 	};
 }
