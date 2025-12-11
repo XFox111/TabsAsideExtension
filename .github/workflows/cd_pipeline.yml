@@ -51,7 +51,6 @@ jobs:
           echo "WXT_GA4_API_SECRET=${{ secrets.GA4_SECRET }}" >> .env
           echo "WXT_GA4_MEASUREMENT_ID=${{ secrets.GA4_MEASUREMENT_ID }}" >> .env
 
-      - run: corepack enable
       - run: npm install
 
       # Patch for firefox dnd popup (see https://github.com/clauderic/dnd-kit/issues/1043)
@@ -64,7 +63,7 @@ jobs:
         working-directory: ./node_modules/@wxt-dev/analytics/dist
         if: ${{ matrix.target == 'firefox' }}
 
-      - run: npm run zip -b ${{ matrix.target }}
+      - run: npm run zip -- -b ${{ matrix.target }}
 
       - name: Drop build artifacts (${{ matrix.target }})
         uses: actions/upload-artifact@main
