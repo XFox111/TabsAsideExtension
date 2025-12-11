@@ -19,13 +19,14 @@ export default defineConfig([
 	{ files: ["**/*.css"], plugins: { css }, language: "css/css", extends: ["css/recommended"] },
 	{
 		files: ["**/*.{jsonc,json}"],
+		ignores: [".devcontainer/devcontainer.json", "package-lock.json"],
 		plugins: { json },
 		language: "json/jsonc",
 		extends: ["json/recommended"]
 	},
 	{
 		files: ["**/*.json"],
-		ignores: [".devcontainer/devcontainer.json"],
+		ignores: [".devcontainer/devcontainer.json", "package-lock.json"],
 		plugins: { json },
 		language: "json/json",
 		extends: ["json/recommended"]
