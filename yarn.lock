@@ -2710,12 +2710,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:~19.2.2":
-  version: 19.2.4
-  resolution: "@types/react@npm:19.2.4"
+"@types/react@npm:~19.2.7":
+  version: 19.2.7
+  resolution: "@types/react@npm:19.2.7"
   dependencies:
-    csstype: "npm:^3.0.2"
-  checksum: 10c0/c878262c4bce047e53a44ef644088fce359ebdfdca7060a4ac1717c8362563b9506a7ebae145977836e95d5948b8f8b426dcd516044c3a3c0563a6f1b60408ce
+    csstype: "npm:^3.2.2"
+  checksum: 10c0/a7b75f1f9fcb34badd6f84098be5e35a0aeca614bc91f93d2698664c0b2ba5ad128422bd470ada598238cebe4f9e604a752aead7dc6f5a92261d0c7f9b27cfd1
   languageName: node
   linkType: hard
 
@@ -3742,10 +3742,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"csstype@npm:^3.0.2, csstype@npm:^3.1.3":
+"csstype@npm:^3.1.3":
   version: 3.1.3
   resolution: "csstype@npm:3.1.3"
   checksum: 10c0/80c089d6f7e0c5b2bd83cf0539ab41474198579584fa10d86d0cafe0642202343cbc119e076a0b1aece191989477081415d66c9fefbf3c957fc2fc4b7009f248
+  languageName: node
+  linkType: hard
+
+"csstype@npm:^3.2.2":
+  version: 3.2.3
+  resolution: "csstype@npm:3.2.3"
+  checksum: 10c0/cd29c51e70fa822f1cecd8641a1445bed7063697469d35633b516e60fe8c1bde04b08f6c5b6022136bb669b64c63d4173af54864510fbb4ee23281801841a3ce
   languageName: node
   linkType: hard
 
@@ -6933,14 +6940,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:~19.2.0":
-  version: 19.2.0
-  resolution: "react-dom@npm:19.2.0"
+"react-dom@npm:~19.2.1":
+  version: 19.2.1
+  resolution: "react-dom@npm:19.2.1"
   dependencies:
     scheduler: "npm:^0.27.0"
   peerDependencies:
-    react: ^19.2.0
-  checksum: 10c0/fa2cae05248d01288e91523b590ce4e7635b1e13f1344e225f850d722a8da037bf0782f63b1c1d46353334e0c696909b82e582f8cad607948fde6f7646cc18d9
+    react: ^19.2.1
+  checksum: 10c0/e56b6b3d72314df580ca800b70a69a21c6372703c8f45d9b5451ca6519faefb2496d76ffa9c5adb94136d2bbf2fd303d0dfc208a2cd77ede3132877471af9470
   languageName: node
   linkType: hard
 
@@ -6965,10 +6972,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:~19.2.0":
-  version: 19.2.0
-  resolution: "react@npm:19.2.0"
-  checksum: 10c0/1b6d64eacb9324725bfe1e7860cb7a6b8a34bc89a482920765ebff5c10578eb487e6b46b2f0df263bd27a25edbdae2c45e5ea5d81ae61404301c1a7192c38330
+"react@npm:~19.2.1":
+  version: 19.2.1
+  resolution: "react@npm:19.2.1"
+  checksum: 10c0/2b5eaf407abb3db84090434c20d6c5a8e447ab7abcd8fe9eaf1ddc299babcf31284ee9db7ea5671d21c85ac5298bd632fa1a7da1ed78d5b368a537f5e1cd5d62
   languageName: node
   linkType: hard
 
@@ -7881,7 +7888,7 @@ __metadata:
     "@fluentui/react-components": "npm:^9.72.6"
     "@fluentui/react-icons": "npm:^2.0.313"
     "@stylistic/eslint-plugin": "npm:^5.5.0"
-    "@types/react": "npm:~19.2.2"
+    "@types/react": "npm:~19.2.7"
     "@types/react-dom": "npm:~19.2.2"
     "@webext-core/messaging": "npm:^2.3.0"
     "@wxt-dev/analytics": "npm:^0.5.1"
@@ -7891,8 +7898,8 @@ __metadata:
     eslint-plugin-react: "npm:^7.37.5"
     globals: "npm:^16.5.0"
     lzutf8: "npm:^0.6.3"
-    react: "npm:~19.2.0"
-    react-dom: "npm:~19.2.0"
+    react: "npm:~19.2.1"
+    react-dom: "npm:~19.2.1"
     scheduler: "npm:0.23.0"
     typescript: "npm:^5.9.3"
     typescript-eslint: "npm:^8.46.4"
