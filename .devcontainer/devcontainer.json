@@ -22,5 +22,5 @@
 		}
 	},
 
-	"postCreateCommand": "yarn install"
+	"postCreateCommand": "npm install"
 }
