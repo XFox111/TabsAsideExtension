@@ -9,13 +9,16 @@ export default function filterCollections(
 	if (!collections || collections.length < 1)
 		return [];
 
-	if (!filter.query && filter.colors.length < 1)
+	if (!filter.query && filter.colors.length < 1 && filter.showHidden)
 		return collections;
 
 	const query: string = filter.query.toLocaleLowerCase();
 
 	return collections.filter(collection =>
 	{
+		if (filter.showHidden === false && collection.hidden === true)
+			return false;
+
 		let querySatisfied: boolean = query.length < 1 ||
 			getCollectionTitle(collection).toLocaleLowerCase().includes(query);
 		let colorSatisfied: boolean = filter.colors.length < 1 ||
@@ -62,4 +65,5 @@ export type CollectionFilterType =
 	{
 		query: string;
 		colors: (`${Browser.tabGroups.Color}` | "none")[];
+		showHidden: boolean;
 	};

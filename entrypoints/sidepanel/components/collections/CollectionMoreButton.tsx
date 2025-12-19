@@ -22,6 +22,8 @@ export default function CollectionMoreButton({ onAddSelected, onOpenChange }: Co
 	const EditIcon = ic.bundleIcon(ic.Edit20Filled, ic.Edit20Regular);
 	const DeleteIcon = ic.bundleIcon(ic.Delete20Filled, ic.Delete20Regular);
 	const BookmarkIcon = ic.bundleIcon(ic.BookmarkAdd20Filled, ic.BookmarkAdd20Regular);
+	const ShowIcon = ic.bundleIcon(ic.Eye20Filled, ic.Eye20Regular);
+	const HideIcon = ic.bundleIcon(ic.EyeOff20Filled, ic.EyeOff20Regular);
 
 	const dangerCls = useDangerStyles();
 
@@ -37,6 +39,11 @@ export default function CollectionMoreButton({ onAddSelected, onOpenChange }: Co
 			});
 		else
 			removeItem(collection.timestamp);
+	};
+
+	const toggleHidden = () =>
+	{
+		updateCollection({ ...collection, hidden: !collection.hidden }, collection.timestamp);
 	};
 
 	const handleEdit = () =>
@@ -81,6 +88,9 @@ export default function CollectionMoreButton({ onAddSelected, onOpenChange }: Co
 					<MenuDivider />
 					<MenuItem icon={ <EditIcon /> } onClick={ handleEdit }>
 						{ i18n.t("collections.menu.edit") }
+					</MenuItem>
+					<MenuItem icon={ collection.hidden ? <ShowIcon /> : <HideIcon /> } onClick={ toggleHidden }>
+						{ collection.hidden ? i18n.t("collections.menu.hide") : i18n.t("collections.menu.unhide") }
 					</MenuItem>
 					<MenuItem icon={ <DeleteIcon /> } className={ dangerCls.menuItem } onClick={ handleDelete }>
 						{ i18n.t("collections.menu.delete") }
