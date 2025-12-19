@@ -46,6 +46,17 @@ features:
       p3_text: "Pełną listę zbieranych danych można zobaczyć"
       p3_link: "tutaj"
 
+  netscape_bookmarks:
+    title: "Import/eksport zakładek"
+    export: "Eksportuj kolekcje jako plik zakładek"
+    import: "Importuj z pliku zakładek"
+    import_dialog:
+      title: "Import zakładek"
+      content: "Importuj zakładki z pliku zakładek w formacie Netscape wyeksportowanego z przeglądarki."
+    import_result:
+      success: "Zakładki zostały pomyślnie zaimportowane ($1)"
+      error: "Nie udało się zaimportować zakładek. Upewnij się, że plik jest poprawnym plikiem zakładek."
+
 notifications:
   tabs_saved:
     title: "Utworzono nową kolekcję"
@@ -114,6 +125,8 @@ options_page:
           restore: "Otwórz karty i usuń kolekcję"
   storage:
     title: "Magazyn"
+    manage_title: "Zarządzaj magazynem"
+    thumbnails_title: "Podglądy i ikony"
     capacity:
       title: "Magazyn w chmurze"
       description: "$1 z $2 KiB"

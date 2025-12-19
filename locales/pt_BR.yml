@@ -46,6 +46,17 @@ features:
       p3_text: "Veja a lista completa do que coletamos"
       p3_link: "aqui"
 
+  netscape_bookmarks:
+    title: "Favoritos do navegador"
+    export: "Exportar coleções como favoritos"
+    import: "Importar de arquivo de favoritos"
+    import_dialog:
+      title: "Importar favoritos"
+      content: "Importe favoritos de um arquivo de favoritos no formato Netscape exportado do seu navegador."
+    import_result:
+      success: "Importados com sucesso $1 favoritos."
+      error: "Falha ao importar favoritos. Por favor, certifique-se de que o arquivo é um arquivo de favoritos válido."
+
 notifications:
   tabs_saved:
     title: "Nova coleção criada"
@@ -114,6 +125,8 @@ options_page:
           restore: "Abrir abas e remover a coleção"
   storage:
     title: "Armazenamento"
+    manage_title: "Gerenciar armazenamento"
+    thumbnails_title: "Miniaturas e ícones"
     capacity:
       title: "Capacidade de armazenamento na nuvem"
       description: "$1 de $2 KiB"

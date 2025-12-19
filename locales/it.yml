@@ -46,6 +46,17 @@ features:
       p3_text: "Vedi l'elenco completo di ciò che raccogliamo"
       p3_link: "qui"
 
+  netscape_bookmarks:
+    title: "Segnalibri del browser"
+    export: "Esporta collezioni come segnalibri"
+    import: "Importa da file di segnalibri"
+    import_dialog:
+      title: "Importa segnalibri"
+      content: "Importa segnalibri da un file di segnalibri in formato Netscape esportato dal tuo browser."
+    import_result:
+      success: "Importati con successo $1 segnalibri."
+      error: "Impossibile importare i segnalibri. Assicurati che il file sia un file di segnalibri valido."
+
 notifications:
   tabs_saved:
     title: "Nuova collezione creata"
@@ -114,6 +125,8 @@ options_page:
           restore: "Apri le schede e rimuovi la collezione"
   storage:
     title: "Archiviazione"
+    manage_title: "Gestisci archiviazione"
+    thumbnails_title: "Miniature e icone"
     capacity:
       title: "Capacità di archiviazione cloud"
       description: "$1 di $2 KiB"

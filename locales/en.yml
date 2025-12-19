@@ -46,6 +46,17 @@ features:
       p3_text: "See the full list of what we collect"
       p3_link: "here"
 
+  netscape_bookmarks:
+    title: "Browser bookmarks"
+    export: "Export collections as bookmarks"
+    import: "Import from bookmarks file"
+    import_dialog:
+      title: "Import bookmarks"
+      content: "Import bookmarks from a Netscape-format bookmarks file exported from your browser."
+    import_result:
+      success: "Successfully imported $1 bookmarks."
+      error: "Failed to import bookmarks. Please ensure the file is a valid bookmarks file."
+
 notifications:
   tabs_saved:
     title: "New collection created"
@@ -114,6 +125,8 @@ options_page:
           restore: "Open tabs and remove the collection"
   storage:
     title: "Storage"
+    manage_title: "Storage management"
+    thumbnails_title: "Thumbnails & icons"
     capacity:
       title: "Cloud storage capacity"
       description: "$1 of $2 KiB"

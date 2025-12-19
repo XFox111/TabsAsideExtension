@@ -41,5 +41,9 @@ export const useOptionsStyles = makeStyles({
 		flexFlow: "column",
 		alignItems: "flex-start",
 		gap: tokens.spacingVerticalSNudge
+	},
+	messageBar:
+	{
+		flexShrink: 0
 	}
 });
