@@ -90,7 +90,7 @@ export default function CollectionMoreButton({ onAddSelected, onOpenChange }: Co
 						{ i18n.t("collections.menu.edit") }
 					</MenuItem>
 					<MenuItem icon={ collection.hidden ? <ShowIcon /> : <HideIcon /> } onClick={ toggleHidden }>
-						{ collection.hidden ? i18n.t("collections.menu.hide") : i18n.t("collections.menu.unhide") }
+						{ collection.hidden ? i18n.t("collections.menu.unhide") : i18n.t("collections.menu.hide") }
 					</MenuItem>
 					<MenuItem icon={ <DeleteIcon /> } className={ dangerCls.menuItem } onClick={ handleDelete }>
 						{ i18n.t("collections.menu.delete") }
