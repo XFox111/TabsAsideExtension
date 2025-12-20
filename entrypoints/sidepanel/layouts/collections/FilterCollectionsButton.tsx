@@ -22,12 +22,11 @@ export default function FilterCollectionsButton({ value, onChange, showHidden }:
 
 	const onCheckedValueChange = useCallback((_: fui.MenuCheckedValueChangeEvent, e: fui.MenuCheckedValueChangeData) =>
 	{
-		console.log(e, e.checkedItems.includes("show"));
 		if (e.name === "hidden")
 			onChange?.(value ?? [], e.checkedItems.includes("show"));
 		else
 			onChange?.(e.checkedItems.includes("any") ? [] : e.checkedItems as CollectionFilterType["colors"], showHidden ?? false);
-	}, [onChange, showHidden]);
+	}, [onChange, showHidden, value]);
 
 	return (
 		<fui.Menu
