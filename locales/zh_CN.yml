@@ -184,6 +184,8 @@ collections:
     add_group: "添加空分组"
     export_bookmarks: "导出到书签"
     edit: "编辑收藏"
+    hide: "隐藏收藏"
+    unhide: "显示收藏"
 
 groups:
   title: "分组"
@@ -234,6 +236,7 @@ main:
     searchbar:
       title: "搜索"
       filter: "筛选"
+      show_hidden: "显示隐藏项"
       sort:
         title: "排序"
         options:

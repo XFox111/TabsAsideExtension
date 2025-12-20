@@ -184,6 +184,8 @@ collections:
     add_group: "Додати порожню групу"
     export_bookmarks: "Експортувати в закладки"
     edit: "Редагувати колекцію"
+    hide: "Приховати колекцію"
+    unhide: "Показати колекцію"
 
 groups:
   title: "Група"
@@ -234,6 +236,7 @@ main:
     searchbar:
       title: "Пошук"
       filter: "Фільтр"
+      show_hidden: "Показати приховані"
       sort:
         title: "Сортування"
         options:

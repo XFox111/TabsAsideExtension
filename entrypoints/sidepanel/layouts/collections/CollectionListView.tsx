@@ -30,6 +30,7 @@ export default function CollectionListView(): ReactElement
 	const [sortMode, setSortMode] = useSettings("sortMode");
 	const [query, setQuery] = useState<string>("");
 	const [colors, setColors] = useState<CollectionFilterType["colors"]>([]);
+	const [showHidden, setShowHidden] = useState<boolean>(false);
 
 	const [active, setActive] = useState<DndItem | null>(null);
 
@@ -39,8 +40,8 @@ export default function CollectionListView(): ReactElement
 	);
 
 	const resultList = useMemo(
-		() => sortCollections(filterCollections(collections, { query, colors }), sortMode),
-		[query, colors, sortMode, collections]
+		() => sortCollections(filterCollections(collections, { query, colors, showHidden }), sortMode),
+		[query, colors, sortMode, collections, showHidden]
 	);
 
 	const cls = useStyles_CollectionListView();
@@ -49,6 +50,13 @@ export default function CollectionListView(): ReactElement
 	{
 		setQuery("");
 		setColors([]);
+		setShowHidden(false);
+	}, []);
+
+	const updateFilter = useCallback((newColors: CollectionFilterType["colors"], newShowHidden: boolean) =>
+	{
+		setColors(newColors);
+		setShowHidden(newShowHidden);
 	}, []);
 
 	const handleDragStart = (event: DragStartEvent): void =>
@@ -87,8 +95,9 @@ export default function CollectionListView(): ReactElement
 		<article className={ cls.root }>
 			<SearchBar
 				query={ query } onQueryChange={ setQuery }
-				filter={ colors } onFilterChange={ setColors }
+				filter={ colors } onFilterChange={ updateFilter }
 				sort={ sortMode } onSortChange={ setSortMode }
+				showHidden={ showHidden }
 				onReset={ resetFilter } />
 
 			<CtaMessage className={ cls.msgBar } />

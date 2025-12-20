@@ -3,32 +3,48 @@ import * as fui from "@fluentui/react-components";
 import * as ic from "@fluentui/react-icons";
 import { CollectionFilterType } from "../../utils/filterCollections";
 
-export default function FilterCollectionsButton({ value, onChange }: FilterCollectionsButtonProps): React.ReactElement
+export default function FilterCollectionsButton({ value, onChange, showHidden }: FilterCollectionsButtonProps): React.ReactElement
 {
 	const cls = useStyles();
 	const colorCls = useGroupColors();
 
-	const ColorFilterIcon = ic.bundleIcon(ic.Color20Filled, ic.Color20Regular);
+	const FilterIcon = ic.bundleIcon(ic.Filter20Filled, ic.Filter20Regular);
 	const ColorIcon = ic.bundleIcon(ic.Circle20Filled, ic.CircleHalfFill20Regular);
 	const NoColorIcon = ic.bundleIcon(ic.CircleOffFilled, ic.CircleOffRegular);
 	const AnyColorIcon = ic.bundleIcon(ic.PhotoFilter20Filled, ic.PhotoFilter20Regular);
+	const HiddenIcon = ic.bundleIcon(ic.EyeOff20Filled, ic.EyeOff20Regular);
+
+	const values: Record<string, string[]> = useMemo(() => ({
+		default: !value || value.length < 1 ? ["any"] : [],
+		colors: value || [],
+		hidden: showHidden ? ["show"] : []
+	}), [value, showHidden]);
+
+	const onCheckedValueChange = useCallback((_: fui.MenuCheckedValueChangeEvent, e: fui.MenuCheckedValueChangeData) =>
+	{
+		if (e.name === "hidden")
+			onChange?.(value ?? [], e.checkedItems.includes("show"));
+		else
+			onChange?.(e.checkedItems.includes("any") ? [] : e.checkedItems as CollectionFilterType["colors"], showHidden ?? false);
+	}, [onChange, showHidden, value]);
 
 	return (
 		<fui.Menu
-			checkedValues={ !value || value.length < 1 ? { default: ["any"] } : { colors: value } }
-			onCheckedValueChange={ (_, e) =>
-				onChange?.(e.checkedItems.includes("any") ? [] : e.checkedItems as CollectionFilterType["colors"])
-			}
+			checkedValues={ values }
+			onCheckedValueChange={ onCheckedValueChange }
 		>
 
 			<fui.Tooltip relationship="label" content={ i18n.t("main.list.searchbar.filter") }>
 				<fui.MenuTrigger disableButtonEnhancement>
-					<fui.Button appearance="subtle" icon={ <ColorFilterIcon /> } />
+					<fui.Button appearance="subtle" icon={ <FilterIcon /> } />
 				</fui.MenuTrigger>
 			</fui.Tooltip>
 
 			<fui.MenuPopover>
 				<fui.MenuList>
+					<fui.MenuItemCheckbox name="hidden" value="show" icon={ <HiddenIcon /> }>
+						{ i18n.t("main.list.searchbar.show_hidden") }
+					</fui.MenuItemCheckbox>
 					<fui.MenuItemCheckbox name="default" value="any" icon={ <AnyColorIcon /> }>
 						{ i18n.t("colors.any") }
 					</fui.MenuItemCheckbox>
@@ -60,7 +76,8 @@ export default function FilterCollectionsButton({ value, onChange }: FilterColle
 export type FilterCollectionsButtonProps =
 	{
 		value?: CollectionFilterType["colors"];
-		onChange?: (value: CollectionFilterType["colors"]) => void;
+		showHidden?: boolean;
+		onChange?: (value: CollectionFilterType["colors"], showHidden: boolean) => void;
 	};
 
 const useStyles = fui.makeStyles({

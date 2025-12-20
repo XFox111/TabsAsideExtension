@@ -184,6 +184,8 @@ collections:
     add_group: "Добавить пустую группу"
     export_bookmarks: "Экспортировать в закладки"
     edit: "Редактировать коллекцию"
+    hide: "Скрыть коллекцию"
+    unhide: "Показать коллекцию"
 
 groups:
   title: "Группа"
@@ -234,6 +236,7 @@ main:
     searchbar:
       title: "Поиск"
       filter: "Фильтр"
+      show_hidden: "Показать скрытые"
       sort:
         title: "Сортировка"
         options:

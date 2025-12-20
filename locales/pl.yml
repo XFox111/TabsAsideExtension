@@ -184,6 +184,8 @@ collections:
     add_group: "Dodaj pustą grupę"
     export_bookmarks: "Eksportuj do zakładek"
     edit: "Edytuj kolekcję"
+    hide: "Ukryj kolekcję"
+    unhide: "Pokaż kolekcję"
 
 groups:
   title: "Grupa"
@@ -234,6 +236,7 @@ main:
     searchbar:
       title: "Szukaj"
       filter: "Filtr"
+      show_hidden: "Pokaż ukryte"
       sort:
         title: "Sortowanie"
         options:
