@@ -103,5 +103,13 @@ export const settings = {
 			fallback: true,
 			version: 1
 		}
+	),
+
+	compactView: storage.defineItem<boolean>(
+		"sync:compactView",
+		{
+			fallback: false,
+			version: 1
+		}
 	)
 };

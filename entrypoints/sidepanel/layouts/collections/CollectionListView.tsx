@@ -18,10 +18,10 @@ import CollectionContext from "../../contexts/CollectionContext";
 import { useCollections } from "../../contexts/CollectionsProvider";
 import applyReorder from "../../utils/dnd/applyReorder";
 import { collisionDetector } from "../../utils/dnd/collisionDetector";
+import { snapHandleToCursor } from "../../utils/dnd/snapHandleToCursor";
 import { useStyles_CollectionListView } from "./CollectionListView.styles";
 import SearchBar from "./SearchBar";
 import StorageCapacityIssueMessage from "./messages/StorageCapacityIssueMessage";
-import { snapHandleToCursor } from "../../utils/dnd/snapHandleToCursor";
 
 export default function CollectionListView(): ReactElement
 {
@@ -31,11 +31,12 @@ export default function CollectionListView(): ReactElement
 	const [query, setQuery] = useState<string>("");
 	const [colors, setColors] = useState<CollectionFilterType["colors"]>([]);
 	const [showHidden, setShowHidden] = useState<boolean>(false);
+	const [compactView] = useSettings("compactView");
 
 	const [active, setActive] = useState<DndItem | null>(null);
 
 	const sensors = useSensors(
-		useSensor(MouseSensor, { activationConstraint: { delay: 10, tolerance: 20 } }),
+		useSensor(MouseSensor, { activationConstraint: { delay: 150, tolerance: 20 } }),
 		useSensor(TouchSensor, { activationConstraint: { delay: 300, tolerance: 20 } })
 	);
 
@@ -114,7 +115,7 @@ export default function CollectionListView(): ReactElement
 					</Button>
 				</div>
 				:
-				<section className={ mergeClasses(cls.collectionList, !tilesView && cls.listView) }>
+				<section className={ mergeClasses(cls.collectionList, !tilesView && cls.listView, !!(!tilesView && compactView) && cls.compactList) }>
 					<DndContext
 						sensors={ sensors }
 						collisionDetection={ collisionDetector(!tilesView) }
@@ -127,7 +128,7 @@ export default function CollectionListView(): ReactElement
 							strategy={ tilesView ? verticalListSortingStrategy : rectSortingStrategy }
 						>
 							{ resultList.map((collection, index) =>
-								<CollectionView key={ index } collection={ collection } index={ index } />
+								<CollectionView key={ index } collection={ collection } index={ index } compact={ compactView } />
 							) }
 						</SortableContext>
 
