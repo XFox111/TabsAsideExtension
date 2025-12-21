@@ -54,7 +54,7 @@ export default function MoreButton(): ReactElement
 						{ i18n.t("main.header.menu.tiles_view") }
 					</fui.MenuItemCheckbox>
 					<fui.MenuItemCheckbox name="view" value="compact" icon={ <CompactIcon /> }>
-						Compact view
+						{ i18n.t("main.header.menu.compact_view") }
 					</fui.MenuItemCheckbox>
 
 					<fui.MenuDivider />
