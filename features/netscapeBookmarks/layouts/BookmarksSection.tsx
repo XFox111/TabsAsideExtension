@@ -1,6 +1,6 @@
 import { useDialog } from "@/contexts/DialogProvider";
 import { Body1, Button, makeStyles, MessageBar, MessageBarBody, Subtitle2, tokens } from "@fluentui/react-components";
-import { ArrowDownload24Regular, ArrowUpload24Regular } from "@fluentui/react-icons";
+import { ArrowDownload20Regular, ArrowUpload20Regular } from "@fluentui/react-icons";
 import importBookmarks from "../utils/importBookmarks";
 import exportBookmarks from "../utils/exportBookmarks";
 
@@ -39,10 +39,10 @@ export default function BookmarksSection(): React.ReactElement
 			}
 
 			<div className={ cls.buttons }>
-				<Button icon={ <ArrowDownload24Regular /> } onClick={ exportBookmarks }>
+				<Button icon={ <ArrowDownload20Regular /> } onClick={ exportBookmarks }>
 					{ i18n.t("features.netscape_bookmarks.export") }
 				</Button>
-				<Button icon={ <ArrowUpload24Regular /> } onClick={ handleImport }>
+				<Button icon={ <ArrowUpload20Regular /> } onClick={ handleImport }>
 					{ i18n.t("features.netscape_bookmarks.import") }
 				</Button>
 			</div>

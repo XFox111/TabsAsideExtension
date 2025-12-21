@@ -19,7 +19,7 @@ export default function convertBookmarks(bookmarks: Bookmark[]): [CollectionItem
 			untitled.items.push(getTab(bookmark, graphics));
 			count++;
 		}
-		else if (bookmark.type === "folder" && bookmark.children)
+		else if (bookmark.type === "folder")
 		{
 			const collection: CollectionItem = getCollection(bookmark, graphics);
 			items.push(collection);
@@ -33,6 +33,9 @@ export default function convertBookmarks(bookmarks: Bookmark[]): [CollectionItem
 			}, 0);
 		}
 	}
+
+	if (untitled.items.length > 0)
+		items.unshift(untitled);
 
 	return [items, graphics, count];
 }
@@ -60,13 +63,14 @@ function getCollection(bookmark: Bookmark, graphics: GraphicsStorage): Collectio
 		type: "collection"
 	};
 
-	for (const child of bookmark.children!)
-	{
-		if (child.type === "bookmark")
-			collection.items.push(getTab(child, graphics));
-		else if (child.type === "folder" && child.children)
-			collection.items.push(getGroup(child, graphics));
-	}
+	if (bookmark.children)
+		for (const child of bookmark.children)
+		{
+			if (child.type === "bookmark")
+				collection.items.push(getTab(child, graphics));
+			else if (child.type === "folder" && child.children)
+				collection.items.push(getGroup(child, graphics));
+		}
 
 	return collection;
 }
@@ -81,13 +85,14 @@ function getGroup(bookmark: Bookmark, graphics: GraphicsStorage): GroupItem
 		color: getRandomColor()
 	};
 
-	for (const child of bookmark.children!)
-	{
-		if (child.type === "bookmark")
-			group.items.push(getTab(child, graphics));
-		else if (child.type === "folder")
-			group.items.push(...getGroup(child, graphics).items);
-	}
+	if (bookmark.children)
+		for (const child of bookmark.children)
+		{
+			if (child.type === "bookmark")
+				group.items.push(getTab(child, graphics));
+			else if (child.type === "folder")
+				group.items.push(...getGroup(child, graphics).items);
+		}
 
 	return group;
 }

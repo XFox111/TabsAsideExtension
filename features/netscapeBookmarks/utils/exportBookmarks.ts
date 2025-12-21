@@ -50,7 +50,7 @@ function createFolder(item: CollectionItem | GroupItem): string[]
 	for (const subItem of item.items)
 	{
 		if (subItem.type === "tab")
-			lines.push(`<DT><A HREF="${encodeURI(subItem.url)}">${sanitizeString(subItem.title || subItem.url)}</A>`);
+			lines.push(`<DT><A HREF="${encodeURI(subItem.url).replace(/"/g, "%22")}">${sanitizeString(subItem.title || subItem.url)}</A>`);
 		else if (subItem.type === "group")
 			lines.push(...createFolder(subItem));
 	}
@@ -61,5 +61,9 @@ function createFolder(item: CollectionItem | GroupItem): string[]
 
 function sanitizeString(str: string): string
 {
-	return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+	return str
+		.replace(/&/g, "&amp;")
+		.replace(/</g, "&lt;")
+		.replace(/>/g, "&gt;")
+		.replace(/"/g, "&quot;");
 }
