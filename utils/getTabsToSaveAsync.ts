@@ -1,13 +1,13 @@
 import { settings } from "./settings";
 
-export async function getTabsToSaveAsync(): Promise<[Browser.tabs.Tab[], number]>
+export async function getTabsToSaveAsync(forceSelected: boolean = false): Promise<[Browser.tabs.Tab[], number]>
 {
 	let tabs: Browser.tabs.Tab[] = await browser.tabs.query({
 		currentWindow: true,
 		highlighted: true
 	});
 
-	if (tabs.length < 2)
+	if (!forceSelected && tabs.length < 2)
 	{
 		const ignorePinned: boolean = await settings.ignorePinned.getValue();
 		tabs = await browser.tabs.query({
