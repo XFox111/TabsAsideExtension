@@ -231,6 +231,7 @@ main:
     create_collection: "创建新收藏"
     menu:
       tiles_view: "平铺视图"
+      compact_view: "紧凑视图"
       changelog: "更新内容"
   list:
     searchbar:

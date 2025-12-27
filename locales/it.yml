@@ -231,6 +231,7 @@ main:
     create_collection: "Crea nuova collezione"
     menu:
       tiles_view: "Vista a riquadri"
+      compact_view: "Vista compatta"
       changelog: "Cosa c'è di nuovo?"
   list:
     searchbar:

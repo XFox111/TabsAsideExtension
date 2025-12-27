@@ -231,6 +231,7 @@ main:
     create_collection: "Create new collection"
     menu:
       tiles_view: "Tiles view"
+      compact_view: "Compact view"
       changelog: "What's new?"
   list:
     searchbar:
