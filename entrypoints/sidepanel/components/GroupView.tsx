@@ -14,7 +14,7 @@ import GroupMoreMenu from "./collections/GroupMoreMenu";
 import { useStyles_GroupView } from "./GroupView.styles";
 import TabView from "./TabView";
 
-export default function GroupView({ group, indices, dragOverlay }: GroupViewProps): ReactElement
+export default function GroupView({ group, indices, dragOverlay, collectionId }: GroupViewProps): ReactElement
 {
 	const [alwaysShowToolbars] = useSettings("alwaysShowToolbars");
 	const { tilesView } = useCollections();
@@ -101,7 +101,9 @@ export default function GroupView({ group, indices, dragOverlay }: GroupViewProp
 								strategy={ !tilesView ? verticalListSortingStrategy : horizontalListSortingStrategy }
 							>
 								{ group.items.map((i, index) =>
-									<TabView key={ index } tab={ i } indices={ [...indices, index] } />
+									<TabView
+										key={ index } tab={ i } indices={ [...indices, index] }
+										collectionId={ collectionId } />
 								) }
 							</SortableContext>
 						</div>
@@ -117,4 +119,5 @@ export type GroupViewProps =
 		group: GroupItem;
 		indices: number[];
 		dragOverlay?: boolean;
+		collectionId: number;
 	};

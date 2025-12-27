@@ -71,9 +71,12 @@ export default function CollectionView({
 									{ collection.items.map((i, index) =>
 										i.type === "group" ?
 											<GroupView
-												key={ index } group={ i } indices={ [collectionIndex, index] } />
+												key={ index } group={ i } indices={ [collectionIndex, index] }
+												collectionId={ collection.timestamp } />
 											:
-											<TabView key={ index } tab={ i } indices={ [collectionIndex, index] } />
+											<TabView
+												key={ index } tab={ i } indices={ [collectionIndex, index] }
+												collectionId={ collection.timestamp } />
 									) }
 								</SortableContext>
 							</div>
