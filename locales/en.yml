@@ -221,10 +221,12 @@ dialogs:
     title:
       edit_collection: "Edit collection"
       edit_group: "Edit group"
+      edit_tab: "Edit tab"
       new_group: "New group"
       new_collection: "New collection"
     collection_title: "Title"
     color: "Color"
+    url_error: "URL is required"
 
 main:
   header:

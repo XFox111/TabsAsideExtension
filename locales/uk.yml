@@ -221,10 +221,12 @@ dialogs:
     title:
       edit_collection: "Редагувати колекцію"
       edit_group: "Редагувати групу"
+      edit_tab: "Редагувати вкладку"
       new_group: "Нова група"
       new_collection: "Нова колекція"
     collection_title: "Назва"
     color: "Колір"
+    url_error: "URL є обов'язковим"
 
 main:
   header:

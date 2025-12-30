@@ -221,10 +221,12 @@ dialogs:
     title:
       edit_collection: "编辑收藏"
       edit_group: "编辑分组"
+      edit_tab: "编辑标签页"
       new_group: "新分组"
       new_collection: "新收藏"
     collection_title: "标题"
     color: "颜色"
+    url_error: "需要 URL"
 
 main:
   header:

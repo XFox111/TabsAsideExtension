@@ -145,9 +145,9 @@ export default function CollectionListView(): ReactElement
 										} }
 									>
 										{ active.item.type === "group" ?
-											<GroupView group={ active.item } indices={ [-1] } dragOverlay />
+											<GroupView group={ active.item } indices={ [-1] } collectionId={ -1 } dragOverlay />
 											:
-											<TabView tab={ active.item } indices={ [-1] } dragOverlay />
+											<TabView tab={ active.item } indices={ [-1] } collectionId={ -1 } dragOverlay />
 										}
 									</CollectionContext.Provider>
 								:
