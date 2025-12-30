@@ -2,12 +2,13 @@ import { useDialog } from "@/contexts/DialogProvider";
 import { clearGraphicsStorage, cloudDisabled, setCloudStorage, thumbnailCaptureEnabled } from "@/features/collectionStorage";
 import { useDangerStyles } from "@/hooks/useDangerStyles";
 import useStorageInfo from "@/hooks/useStorageInfo";
-import { Button, Field, InfoLabel, LabelProps, MessageBar, MessageBarBody, MessageBarTitle, ProgressBar, Switch } from "@fluentui/react-components";
+import { Button, Divider, Field, InfoLabel, LabelProps, MessageBar, MessageBarBody, MessageBarTitle, ProgressBar, Subtitle2, Switch } from "@fluentui/react-components";
 import { ArrowDownload20Regular, ArrowUpload20Regular } from "@fluentui/react-icons";
 import { Unwatch } from "wxt/utils/storage";
 import { useOptionsStyles } from "../hooks/useOptionsStyles";
 import exportData from "../utils/exportData";
 import importData from "../utils/importData";
+import BookmarksSection from "@/features/netscapeBookmarks/layouts/BookmarksSection";
 
 export default function StorageSection(): React.ReactElement
 {
@@ -78,6 +79,59 @@ export default function StorageSection(): React.ReactElement
 
 	return (
 		<>
+			<Subtitle2>{ i18n.t("options_page.storage.manage_title") }</Subtitle2>
+
+			{ isCloudDisabled === false &&
+				<Field
+					label={ i18n.t("options_page.storage.capacity.title") }
+					hint={ i18n.t("options_page.storage.capacity.description", [(bytesInUse / 1024).toFixed(1), storageQuota / 1024]) }
+					validationState={ usedStorageRatio >= 0.8 ? "error" : undefined }
+				>
+					<ProgressBar value={ usedStorageRatio } thickness="large" />
+				</Field>
+			}
+
+			<div className={ cls.horizontalButtons }>
+				{ isCloudDisabled === true &&
+					<Button appearance="primary" onClick={ () => setCloudStorage(true) }>
+						{ i18n.t("options_page.storage.enable") }
+					</Button>
+				}
+
+				{ isCloudDisabled === false &&
+					<div className={ cls.horizontalButtons }>
+						<Button
+							appearance="subtle" className={ dangerCls.buttonSubtle }
+							onClick={ handleDisableCloud }
+						>
+							{ i18n.t("options_page.storage.disable") }
+						</Button>
+					</div>
+				}
+			</div>
+
+			<div className={ cls.horizontalButtons }>
+				<Button icon={ <ArrowDownload20Regular /> } onClick={ exportData }>
+					{ i18n.t("options_page.storage.export") }
+				</Button>
+				<Button icon={ <ArrowUpload20Regular /> } onClick={ handleImport }>
+					{ i18n.t("options_page.storage.import") }
+				</Button>
+			</div>
+
+			{ importResult !== null &&
+				<MessageBar intent={ importResult ? "success" : "error" } className={ cls.messageBar }>
+					<MessageBarBody>
+						{ importResult === true ?
+							i18n.t("options_page.storage.import_results.success") :
+							i18n.t("options_page.storage.import_results.error")
+						}
+					</MessageBarBody>
+				</MessageBar>
+			}
+
+			<Divider />
+			<Subtitle2>{ i18n.t("options_page.storage.thumbnails_title") }</Subtitle2>
 			<div className={ cls.group }>
 				<Switch
 					checked={ isThumbnailCaptureEnabled ?? true }
@@ -101,52 +155,8 @@ export default function StorageSection(): React.ReactElement
 				</Button>
 			</div>
 
-			{ isCloudDisabled === false &&
-				<Field
-					label={ i18n.t("options_page.storage.capacity.title") }
-					hint={ i18n.t("options_page.storage.capacity.description", [(bytesInUse / 1024).toFixed(1), storageQuota / 1024]) }
-					validationState={ usedStorageRatio >= 0.8 ? "error" : undefined }
-				>
-					<ProgressBar value={ usedStorageRatio } thickness="large" />
-				</Field>
-			}
-
-			{ isCloudDisabled === true &&
-				<Button appearance="primary" onClick={ () => setCloudStorage(true) }>
-					{ i18n.t("options_page.storage.enable") }
-				</Button>
-			}
-
-			<div className={ cls.horizontalButtons }>
-				<Button icon={ <ArrowDownload20Regular /> } onClick={ exportData }>
-					{ i18n.t("options_page.storage.export") }
-				</Button>
-				<Button icon={ <ArrowUpload20Regular /> } onClick={ handleImport }>
-					{ i18n.t("options_page.storage.import") }
-				</Button>
-			</div>
-
-			{ importResult !== null &&
-				<MessageBar intent={ importResult ? "success" : "error" }>
-					<MessageBarBody>
-						{ importResult === true ?
-							i18n.t("options_page.storage.import_results.success") :
-							i18n.t("options_page.storage.import_results.error")
-						}
-					</MessageBarBody>
-				</MessageBar>
-			}
-
-			{ isCloudDisabled === false &&
-				<div className={ cls.horizontalButtons }>
-					<Button
-						appearance="subtle" className={ dangerCls.buttonSubtle }
-						onClick={ handleDisableCloud }
-					>
-						{ i18n.t("options_page.storage.disable") }
-					</Button>
-				</div>
-			}
+			<Divider />
+			<BookmarksSection />
 		</>
 	);
 }

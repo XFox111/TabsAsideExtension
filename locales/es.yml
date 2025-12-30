@@ -46,6 +46,17 @@ features:
       p3_text: "Ver la lista completa de lo que recopilamos"
       p3_link: "aquí"
 
+  netscape_bookmarks:
+    title: "Marcadores del navegador"
+    export: "Exportar colecciones como marcadores"
+    import: "Importar desde archivo de marcadores"
+    import_dialog:
+      title: "Importar marcadores"
+      content: "Importa marcadores desde un archivo de marcadores en formato Netscape exportado desde tu navegador."
+    import_result:
+      success: "Se importaron correctamente $1 marcadores."
+      error: "No se pudieron importar los marcadores. Asegúrate de que el archivo sea un archivo de marcadores válido."
+
 notifications:
   tabs_saved:
     title: "Nueva colección creada"
@@ -114,6 +125,8 @@ options_page:
           restore: "Abrir pestañas y eliminar la colección"
   storage:
     title: "Almacenamiento"
+    manage_title: "Administrar almacenamiento"
+    thumbnails_title: "Miniaturas e íconos"
     capacity:
       title: "Capacidad de almacenamiento en la nube"
       description: "$1 de $2 KiB"

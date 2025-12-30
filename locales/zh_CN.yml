@@ -46,6 +46,17 @@ features:
       p3_text: "请参阅我们收集内容的"
       p3_link: "完整列表"
 
+  netscape_bookmarks:
+    title: "浏览器书签"
+    export: "将收藏导出为书签"
+    import: "从书签文件导入"
+    import_dialog:
+      title: "导入书签"
+      content: "从您的浏览器导出的 Netscape 格式书签文件中导入书签。"
+    import_result:
+      success: "成功导入 $1 个书签。"
+      error: "导入书签失败。请确保该文件是有效的书签文件。"
+
 notifications:
   tabs_saved:
     title: "已创建新收藏"
@@ -114,6 +125,8 @@ options_page:
           restore: "打开标签页并删除收藏"
   storage:
     title: "存储"
+    manage_title: "存储管理"
+    thumbnails_title: "缩略图和图标"
     capacity:
       title: "云存储容量"
       description: "$1 / $2 KiB"
