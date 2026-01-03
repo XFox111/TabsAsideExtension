@@ -16,7 +16,7 @@
 		"@dnd-kit/modifiers": "^9.0.0",
 		"@dnd-kit/sortable": "^10.0.0",
 		"@dnd-kit/utilities": "^3.2.2",
-		"@fluentui/react-components": "^9.72.8",
+		"@fluentui/react-components": "^9.72.9",
 		"@fluentui/react-icons": "^2.0.316",
 		"@webext-core/messaging": "^2.3.0",
 		"@wxt-dev/analytics": "^0.5.1",
@@ -27,16 +27,16 @@
 	},
 	"devDependencies": {
 		"@eslint/css": "^0.14.1",
-		"@eslint/js": "^9.39.1",
+		"@eslint/js": "^9.39.2",
 		"@eslint/json": "^0.14.0",
 		"@stylistic/eslint-plugin": "^5.6.1",
 		"@types/react": "^19.2.7",
 		"@types/react-dom": "^19.2.3",
 		"@wxt-dev/module-react": "^1.1.5",
-		"eslint": "^9.39.1",
+		"eslint": "^9.39.2",
 		"eslint-plugin-react": "^7.37.5",
 		"typescript": "^5.9.3",
-		"typescript-eslint": "^8.49.0",
+		"typescript-eslint": "^8.51.0",
 		"wxt": "^0.20.11"
 	}
 }
