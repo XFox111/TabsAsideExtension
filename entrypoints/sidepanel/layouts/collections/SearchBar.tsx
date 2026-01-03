@@ -25,7 +25,7 @@ export default function SearchBar(props: SearchBarProps): React.ReactElement
 							<Button appearance="subtle" icon={ <ResetIcon /> } onClick={ props.onReset } />
 						</Tooltip>
 					}
-					<FilterCollectionsButton value={ props.filter } onChange={ props.onFilterChange } />
+					<FilterCollectionsButton value={ props.filter } onChange={ props.onFilterChange } showHidden={ props.showHidden } />
 					<SortCollectionsButton value={ props.sort } onChange={ props.onSortChange } />
 				</>
 			} />
@@ -37,8 +37,9 @@ export type SearchBarProps =
 		query?: string;
 		onQueryChange?: (query: string) => void;
 		filter?: CollectionFilterType["colors"];
-		onFilterChange?: (filter: CollectionFilterType["colors"]) => void;
+		onFilterChange?: (filter: CollectionFilterType["colors"], showHidden: boolean) => void;
 		sort?: CollectionSortMode;
+		showHidden?: boolean;
 		onSortChange?: (sort: CollectionSortMode) => void;
 		onReset?: () => void;
 	};

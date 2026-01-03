@@ -184,6 +184,8 @@ collections:
     add_group: "Add empty group"
     export_bookmarks: "Export to bookmarks"
     edit: "Edit collection"
+    hide: "Hide collection"
+    unhide: "Unhide collection"
 
 groups:
   title: "Group"
@@ -219,21 +221,25 @@ dialogs:
     title:
       edit_collection: "Edit collection"
       edit_group: "Edit group"
+      edit_tab: "Edit tab"
       new_group: "New group"
       new_collection: "New collection"
     collection_title: "Title"
     color: "Color"
+    url_error: "URL is required"
 
 main:
   header:
     create_collection: "Create new collection"
     menu:
       tiles_view: "Tiles view"
+      compact_view: "Compact view"
       changelog: "What's new?"
   list:
     searchbar:
       title: "Search"
       filter: "Filter"
+      show_hidden: "Show hidden"
       sort:
         title: "Sort"
         options:

@@ -30,6 +30,7 @@ export type CollectionItem =
 		title?: string;
 		color?: `${Browser.tabGroups.Color}`;
 		items: (TabItem | GroupItem)[];
+		hidden?: boolean;
 	};
 
 export type GraphicsStorage = Record<string, GraphicsItem>;

@@ -4,16 +4,17 @@ import { useDialog } from "@/contexts/DialogProvider";
 import { useCollections } from "@/entrypoints/sidepanel/contexts/CollectionsProvider";
 import useDndItem from "@/entrypoints/sidepanel/hooks/useDndItem";
 import useSettings from "@/hooks/useSettings";
-import { TabItem } from "@/models/CollectionModels";
-import { Button, Caption1, Link, mergeClasses, Tooltip } from "@fluentui/react-components";
-import { Dismiss20Regular } from "@fluentui/react-icons";
+import { CollectionItem, GroupItem, TabItem } from "@/models/CollectionModels";
+import { Caption1, Link, mergeClasses, Tooltip } from "@fluentui/react-components";
 import { MouseEventHandler, ReactElement } from "react";
 import { useStyles_TabView } from "./TabView.styles";
 import CollectionContext, { CollectionContextType } from "../contexts/CollectionContext";
+import TabMoreButton from "./TabMoreButton";
+import TabEditDialog from "./TabEditDialog";
 
-export default function TabView({ tab, indices, dragOverlay }: TabViewProps): ReactElement
+export default function TabView({ tab, indices, dragOverlay, collectionId }: TabViewProps): ReactElement
 {
-	const { removeItem, graphics, tilesView } = useCollections();
+	const { removeItem, graphics, tilesView, collections, updateCollection } = useCollections();
 	const { collection } = useContext<CollectionContextType>(CollectionContext);
 	const {
 		setNodeRef, setActivatorNodeRef,
@@ -26,11 +27,8 @@ export default function TabView({ tab, indices, dragOverlay }: TabViewProps): Re
 
 	const cls = useStyles_TabView();
 
-	const handleDelete: MouseEventHandler<HTMLButtonElement> = (args) =>
+	const handleDelete = (): void =>
 	{
-		args.preventDefault();
-		args.stopPropagation();
-
 		const removeIndex: number[] = [collection.timestamp, ...indices.slice(1)];
 
 		if (deletePrompt)
@@ -43,6 +41,26 @@ export default function TabView({ tab, indices, dragOverlay }: TabViewProps): Re
 			});
 		else
 			removeItem(...removeIndex);
+	};
+
+	const handleEdit = (): void =>
+	{
+		if (collectionId < 0)
+			return;
+
+		const updateTab = async (updatedTab: TabItem): Promise<void> =>
+		{
+			const collection: CollectionItem = collections!.find(i => i.timestamp === collectionId)!;
+
+			if (indices.length > 2)
+				(collection.items[indices[1]] as GroupItem).items[indices[2]] = updatedTab;
+			else
+				collection.items[indices[1]] = updatedTab;
+
+			await updateCollection(collection, collection.timestamp);
+		};
+
+		dialog.pushCustom(<TabEditDialog tab={ tab } onSave={ updateTab } />);
 	};
 
 	const handleClick: MouseEventHandler<HTMLAnchorElement> = (args) =>
@@ -91,12 +109,10 @@ export default function TabView({ tab, indices, dragOverlay }: TabViewProps): Re
 					</Caption1>
 				</Tooltip>
 
-				<Tooltip relationship="label" content={ i18n.t("tabs.delete") }>
-					<Button
-						className={ mergeClasses(cls.deleteButton, showToolbar === true && cls.showDeleteButton) }
-						appearance="subtle" icon={ <Dismiss20Regular /> }
-						onClick={ handleDelete } />
-				</Tooltip>
+				<TabMoreButton
+					className={ mergeClasses(cls.deleteButton, showToolbar === true && cls.showDeleteButton) }
+					onEdit={ handleEdit }
+					onDelete={ handleDelete } />
 			</div>
 		</Link>
 	);
@@ -107,4 +123,5 @@ export type TabViewProps =
 		tab: TabItem;
 		indices: number[];
 		dragOverlay?: boolean;
+		collectionId: number;
 	};

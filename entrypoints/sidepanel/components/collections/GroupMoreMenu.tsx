@@ -67,7 +67,7 @@ export default function GroupMoreMenu(): ReactElement
 
 	const handleAddSelected = async () =>
 	{
-		const [newTabs, skipCount] = await getTabsToSaveAsync();
+		const [newTabs, skipCount] = await getTabsToSaveAsync(true);
 
 		if (newTabs.length > 0)
 			await updateGroup({

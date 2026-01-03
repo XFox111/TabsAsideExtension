@@ -12,7 +12,12 @@ import { useStyles_CollectionView } from "./CollectionView.styles";
 import GroupView from "./GroupView";
 import TabView from "./TabView";
 
-export default function CollectionView({ collection, index: collectionIndex, dragOverlay }: CollectionViewProps): ReactElement
+export default function CollectionView({
+	collection,
+	index: collectionIndex,
+	dragOverlay,
+	compact
+}: CollectionViewProps): ReactElement
 {
 	const { tilesView } = useCollections();
 	const {
@@ -53,12 +58,12 @@ export default function CollectionView({ collection, index: collectionIndex, dra
 				{ (!activeItem || activeItem.item.type !== "collection") && !dragOverlay &&
 					<>
 						{ collection.items.length < 1 ?
-							<div className={ cls.empty }>
+							<div className={ mergeClasses(cls.empty, compact === true && "compact") }>
 								<CollectionsRegular fontSize={ 32 } />
 								<Body1Strong>{ i18n.t("collections.empty") }</Body1Strong>
 							</div>
 							:
-							<div className={ mergeClasses(cls.list, !tilesView && cls.verticalList) }>
+							<div className={ mergeClasses(cls.list, !tilesView && cls.verticalList, compact === true && "compact") }>
 								<SortableContext
 									items={ collection.items.map((_, index) => [collectionIndex, index].join("/")) }
 									strategy={ tilesView ? horizontalListSortingStrategy : verticalListSortingStrategy }
@@ -66,9 +71,12 @@ export default function CollectionView({ collection, index: collectionIndex, dra
 									{ collection.items.map((i, index) =>
 										i.type === "group" ?
 											<GroupView
-												key={ index } group={ i } indices={ [collectionIndex, index] } />
+												key={ index } group={ i } indices={ [collectionIndex, index] }
+												collectionId={ collection.timestamp } />
 											:
-											<TabView key={ index } tab={ i } indices={ [collectionIndex, index] } />
+											<TabView
+												key={ index } tab={ i } indices={ [collectionIndex, index] }
+												collectionId={ collection.timestamp } />
 									) }
 								</SortableContext>
 							</div>
@@ -85,4 +93,5 @@ export type CollectionViewProps =
 		collection: CollectionItem;
 		index: number;
 		dragOverlay?: boolean;
+		compact?: boolean | null;
 	};

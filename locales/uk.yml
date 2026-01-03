@@ -184,6 +184,8 @@ collections:
     add_group: "Додати порожню групу"
     export_bookmarks: "Експортувати в закладки"
     edit: "Редагувати колекцію"
+    hide: "Приховати колекцію"
+    unhide: "Показати колекцію"
 
 groups:
   title: "Група"
@@ -219,21 +221,25 @@ dialogs:
     title:
       edit_collection: "Редагувати колекцію"
       edit_group: "Редагувати групу"
+      edit_tab: "Редагувати вкладку"
       new_group: "Нова група"
       new_collection: "Нова колекція"
     collection_title: "Назва"
     color: "Колір"
+    url_error: "URL є обов'язковим"
 
 main:
   header:
     create_collection: "Створити нову колекцію"
     menu:
       tiles_view: "Плитки"
+      compact_view: "Компактний вид"
       changelog: "Що нового?"
   list:
     searchbar:
       title: "Пошук"
       filter: "Фільтр"
+      show_hidden: "Показати приховані"
       sort:
         title: "Сортування"
         options:

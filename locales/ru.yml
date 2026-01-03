@@ -184,6 +184,8 @@ collections:
     add_group: "Добавить пустую группу"
     export_bookmarks: "Экспортировать в закладки"
     edit: "Редактировать коллекцию"
+    hide: "Скрыть коллекцию"
+    unhide: "Показать коллекцию"
 
 groups:
   title: "Группа"
@@ -219,21 +221,25 @@ dialogs:
     title:
       edit_collection: "Редактировать коллекцию"
       edit_group: "Редактировать группу"
+      edit_tab: "Редактировать вкладку"
       new_group: "Новая группа"
       new_collection: "Новая коллекция"
     collection_title: "Название"
     color: "Цвет"
+    url_error: "URL является обязательным"
 
 main:
   header:
     create_collection: "Создать новую коллекцию"
     menu:
       tiles_view: "Плитки"
+      compact_view: "Компактный вид"
       changelog: "Что нового?"
   list:
     searchbar:
       title: "Поиск"
       filter: "Фильтр"
+      show_hidden: "Показать скрытые"
       sort:
         title: "Сортировка"
         options:

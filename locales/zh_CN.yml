@@ -184,6 +184,8 @@ collections:
     add_group: "添加空分组"
     export_bookmarks: "导出到书签"
     edit: "编辑收藏"
+    hide: "隐藏收藏"
+    unhide: "显示收藏"
 
 groups:
   title: "分组"
@@ -219,21 +221,25 @@ dialogs:
     title:
       edit_collection: "编辑收藏"
       edit_group: "编辑分组"
+      edit_tab: "编辑标签页"
       new_group: "新分组"
       new_collection: "新收藏"
     collection_title: "标题"
     color: "颜色"
+    url_error: "需要 URL"
 
 main:
   header:
     create_collection: "创建新收藏"
     menu:
       tiles_view: "平铺视图"
+      compact_view: "紧凑视图"
       changelog: "更新内容"
   list:
     searchbar:
       title: "搜索"
       filter: "筛选"
+      show_hidden: "显示隐藏项"
       sort:
         title: "排序"
         options:

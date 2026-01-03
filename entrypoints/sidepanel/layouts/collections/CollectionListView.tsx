@@ -18,10 +18,10 @@ import CollectionContext from "../../contexts/CollectionContext";
 import { useCollections } from "../../contexts/CollectionsProvider";
 import applyReorder from "../../utils/dnd/applyReorder";
 import { collisionDetector } from "../../utils/dnd/collisionDetector";
+import { snapHandleToCursor } from "../../utils/dnd/snapHandleToCursor";
 import { useStyles_CollectionListView } from "./CollectionListView.styles";
 import SearchBar from "./SearchBar";
 import StorageCapacityIssueMessage from "./messages/StorageCapacityIssueMessage";
-import { snapHandleToCursor } from "../../utils/dnd/snapHandleToCursor";
 
 export default function CollectionListView(): ReactElement
 {
@@ -30,17 +30,19 @@ export default function CollectionListView(): ReactElement
 	const [sortMode, setSortMode] = useSettings("sortMode");
 	const [query, setQuery] = useState<string>("");
 	const [colors, setColors] = useState<CollectionFilterType["colors"]>([]);
+	const [showHidden, setShowHidden] = useState<boolean>(false);
+	const [compactView] = useSettings("compactView");
 
 	const [active, setActive] = useState<DndItem | null>(null);
 
 	const sensors = useSensors(
-		useSensor(MouseSensor, { activationConstraint: { delay: 10, tolerance: 20 } }),
+		useSensor(MouseSensor, { activationConstraint: { delay: 150, tolerance: 20 } }),
 		useSensor(TouchSensor, { activationConstraint: { delay: 300, tolerance: 20 } })
 	);
 
 	const resultList = useMemo(
-		() => sortCollections(filterCollections(collections, { query, colors }), sortMode),
-		[query, colors, sortMode, collections]
+		() => sortCollections(filterCollections(collections, { query, colors, showHidden }), sortMode),
+		[query, colors, sortMode, collections, showHidden]
 	);
 
 	const cls = useStyles_CollectionListView();
@@ -49,6 +51,13 @@ export default function CollectionListView(): ReactElement
 	{
 		setQuery("");
 		setColors([]);
+		setShowHidden(false);
+	}, []);
+
+	const updateFilter = useCallback((newColors: CollectionFilterType["colors"], newShowHidden: boolean) =>
+	{
+		setColors(newColors);
+		setShowHidden(newShowHidden);
 	}, []);
 
 	const handleDragStart = (event: DragStartEvent): void =>
@@ -87,8 +96,9 @@ export default function CollectionListView(): ReactElement
 		<article className={ cls.root }>
 			<SearchBar
 				query={ query } onQueryChange={ setQuery }
-				filter={ colors } onFilterChange={ setColors }
+				filter={ colors } onFilterChange={ updateFilter }
 				sort={ sortMode } onSortChange={ setSortMode }
+				showHidden={ showHidden }
 				onReset={ resetFilter } />
 
 			<CtaMessage className={ cls.msgBar } />
@@ -105,7 +115,7 @@ export default function CollectionListView(): ReactElement
 					</Button>
 				</div>
 				:
-				<section className={ mergeClasses(cls.collectionList, !tilesView && cls.listView) }>
+				<section className={ mergeClasses(cls.collectionList, !tilesView && cls.listView, !!(!tilesView && compactView) && cls.compactList) }>
 					<DndContext
 						sensors={ sensors }
 						collisionDetection={ collisionDetector(!tilesView) }
@@ -118,7 +128,7 @@ export default function CollectionListView(): ReactElement
 							strategy={ tilesView ? verticalListSortingStrategy : rectSortingStrategy }
 						>
 							{ resultList.map((collection, index) =>
-								<CollectionView key={ index } collection={ collection } index={ index } />
+								<CollectionView key={ index } collection={ collection } index={ index } compact={ compactView } />
 							) }
 						</SortableContext>
 
@@ -135,9 +145,9 @@ export default function CollectionListView(): ReactElement
 										} }
 									>
 										{ active.item.type === "group" ?
-											<GroupView group={ active.item } indices={ [-1] } dragOverlay />
+											<GroupView group={ active.item } indices={ [-1] } collectionId={ -1 } dragOverlay />
 											:
-											<TabView tab={ active.item } indices={ [-1] } dragOverlay />
+											<TabView tab={ active.item } indices={ [-1] } collectionId={ -1 } dragOverlay />
 										}
 									</CollectionContext.Provider>
 								:

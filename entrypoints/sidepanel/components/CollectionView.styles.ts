@@ -19,6 +19,11 @@ export const useStyles_CollectionView = makeStyles({
 		"&:hover":
 		{
 			boxShadow: tokens.shadow4
+		},
+
+		"&:not(:focus-within) .compact":
+		{
+			display: "none"
 		}
 	},
 	color:

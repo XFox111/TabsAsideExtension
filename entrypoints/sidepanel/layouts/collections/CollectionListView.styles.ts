@@ -51,5 +51,9 @@ export const useStyles_CollectionListView = makeStyles({
 		{
 			gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))"
 		}
+	},
+	compactList:
+	{
+		alignItems: "baseline"
 	}
 });

@@ -184,6 +184,8 @@ collections:
     add_group: "Dodaj pustą grupę"
     export_bookmarks: "Eksportuj do zakładek"
     edit: "Edytuj kolekcję"
+    hide: "Ukryj kolekcję"
+    unhide: "Pokaż kolekcję"
 
 groups:
   title: "Grupa"
@@ -219,21 +221,25 @@ dialogs:
     title:
       edit_collection: "Edytuj kolekcję"
       edit_group: "Edytuj grupę"
+      edit_tab: "Edytuj zakładkę"
       new_group: "Nowa grupa"
       new_collection: "Nowa kolekcja"
     collection_title: "Nazwij"
     color: "Kolor"
+    url_error: "URL jest wymagany"
 
 main:
   header:
     create_collection: "Utwórz nową kolekcję"
     menu:
       tiles_view: "Kafelki"
+      compact_view: "Widok kompaktowy"
       changelog: "Co nowego?"
   list:
     searchbar:
       title: "Szukaj"
       filter: "Filtr"
+      show_hidden: "Pokaż ukryte"
       sort:
         title: "Sortowanie"
         options:

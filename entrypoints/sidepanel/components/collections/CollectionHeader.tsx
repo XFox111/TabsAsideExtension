@@ -2,7 +2,7 @@ import { getCollectionTitle } from "@/entrypoints/sidepanel/utils/getCollectionT
 import useSettings from "@/hooks/useSettings";
 import { TabItem } from "@/models/CollectionModels";
 import { Button, Caption1, makeStyles, mergeClasses, Subtitle2, tokens, Tooltip } from "@fluentui/react-components";
-import { Add20Filled, Add20Regular, bundleIcon } from "@fluentui/react-icons";
+import { Add20Filled, Add20Regular, bundleIcon, EyeOff16Regular } from "@fluentui/react-icons";
 import CollectionContext, { CollectionContextType } from "../../contexts/CollectionContext";
 import { useCollections } from "../../contexts/CollectionsProvider";
 import CollectionMoreButton from "./CollectionMoreButton";
@@ -23,7 +23,7 @@ export default function CollectionHeader({ dragHandleRef, dragHandleProps }: Col
 
 	const handleAddSelected = async () =>
 	{
-		const [newTabs, skipCount] = await getTabsToSaveAsync();
+		const [newTabs, skipCount] = await getTabsToSaveAsync(true);
 
 		if (newTabs.length > 0)
 			await updateCollection({
@@ -45,9 +45,12 @@ export default function CollectionHeader({ dragHandleRef, dragHandleProps }: Col
 					content={ getCollectionTitle(collection) }
 					positioning="above-start"
 				>
-					<Subtitle2 truncate wrap={ false } className={ cls.titleText }>
-						{ getCollectionTitle(collection) }
-					</Subtitle2>
+					<div className={ cls.titleContainer }>
+						{ collection.hidden && <EyeOff16Regular /> }
+						<Subtitle2 truncate wrap={ false } className={ cls.titleText }>
+							{ getCollectionTitle(collection) }
+						</Subtitle2>
+					</div>
 				</Tooltip>
 
 				<Caption1>
@@ -112,5 +115,11 @@ const useStyles = makeStyles({
 	showToolbar:
 	{
 		display: "flex"
+	},
+	titleContainer:
+	{
+		display: "flex",
+		alignItems: "center",
+		gap: tokens.spacingHorizontalS
 	}
 });

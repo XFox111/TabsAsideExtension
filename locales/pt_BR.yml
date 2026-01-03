@@ -184,6 +184,8 @@ collections:
     add_group: "Adicionar grupo vazio"
     export_bookmarks: "Exportar para favoritos"
     edit: "Editar coleção"
+    hide: "Ocultar coleção"
+    unhide: "Mostrar coleção"
 
 groups:
   title: "Grupo"
@@ -219,21 +221,25 @@ dialogs:
     title:
       edit_collection: "Editar coleção"
       edit_group: "Editar grupo"
+      edit_tab: "Editar aba"
       new_group: "Novo grupo"
       new_collection: "Nova coleção"
     collection_title: "Título"
     color: "Cor"
+    url_error: "A URL é obrigatória"
 
 main:
   header:
     create_collection: "Criar nova coleção"
     menu:
       tiles_view: "Visualização em blocos"
+      compact_view: "Visualização compacta"
       changelog: "O que há de novo?"
   list:
     searchbar:
       title: "Pesquisar"
       filter: "Filtrar"
+      show_hidden: "Mostrar ocultas"
       sort:
         title: "Ordenar"
         options:

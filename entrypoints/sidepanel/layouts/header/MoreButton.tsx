@@ -11,18 +11,32 @@ import { ReactElement } from "react";
 export default function MoreButton(): ReactElement
 {
 	const [tilesView, setTilesView] = useSettings("tilesView");
+	const [compactView, setCompactView] = useSettings("compactView");
 
 	const SettingsIcon: ic.FluentIcon = ic.bundleIcon(ic.Settings20Filled, ic.Settings20Regular);
-	const ViewIcon: ic.FluentIcon = ic.bundleIcon(ic.GridKanban20Filled, ic.GridKanban20Regular);
+	const GridIcon: ic.FluentIcon = ic.bundleIcon(ic.GridKanban20Filled, ic.GridKanban20Regular);
+	const CompactIcon: ic.FluentIcon = ic.bundleIcon(ic.ArrowMinimizeVerticalFilled, ic.ArrowMinimizeVerticalRegular);
 	const FeedbackIcon: ic.FluentIcon = ic.bundleIcon(ic.PersonFeedback20Filled, ic.PersonFeedback20Regular);
 	const LearnIcon: ic.FluentIcon = ic.bundleIcon(ic.QuestionCircle20Filled, ic.QuestionCircle20Regular);
 	const BmcIcon: ic.FluentIcon = ic.bundleIcon(BuyMeACoffee20Filled, BuyMeACoffee20Regular);
 
+	const checkedValues = useMemo(() => ({
+		view: [
+			tilesView ? "tiles" : "",
+			compactView ? "compact" : ""
+		]
+	}), [tilesView, compactView]);
+
+	const onCheckedValueChange = (_: unknown, e: fui.MenuCheckedValueChangeData) =>
+	{
+		setTilesView(e.checkedItems.includes("tiles"));
+		setCompactView(e.checkedItems.includes("compact"));
+	};
+
 	return (
 		<fui.Menu
 			hasIcons hasCheckmarks
-			checkedValues={ { tilesView: tilesView ? ["true"] : [] } }
-			onCheckedValueChange={ (_, e) => setTilesView(e.checkedItems.length > 0) }
+			checkedValues={ checkedValues } onCheckedValueChange={ onCheckedValueChange }
 		>
 			<fui.Tooltip relationship="label" content={ i18n.t("common.tooltips.more") }>
 				<fui.MenuTrigger disableButtonEnhancement>
@@ -36,8 +50,11 @@ export default function MoreButton(): ReactElement
 					<fui.MenuItem icon={ <SettingsIcon /> } onClick={ () => browser.runtime.openOptionsPage() }>
 						{ i18n.t("options_page.title") }
 					</fui.MenuItem>
-					<fui.MenuItemCheckbox name="tilesView" value="true" icon={ <ViewIcon /> }>
+					<fui.MenuItemCheckbox name="view" value="tiles" icon={ <GridIcon /> }>
 						{ i18n.t("main.header.menu.tiles_view") }
+					</fui.MenuItemCheckbox>
+					<fui.MenuItemCheckbox name="view" value="compact" icon={ <CompactIcon /> }>
+						{ i18n.t("main.header.menu.compact_view") }
 					</fui.MenuItemCheckbox>
 
 					<fui.MenuDivider />

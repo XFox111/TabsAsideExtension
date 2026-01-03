@@ -87,7 +87,7 @@ export default function EditDialog(props: GroupEditDialogProps): ReactElement
 									value={ color === "pinned" ? i18n.t("groups.pinned") : title }
 									onChange={ (_, e) => setTitle(e.value) } />
 							</fui.Field>
-							<fui.Field label="Color">
+							<fui.Field label={ i18n.t("dialogs.edit.color") }>
 								<div className={ cls.colorPicker } { ...horizontalNavigationAttributes }>
 									{ (props.type === "group" && (!props.hidePinned || props.group?.pinned)) &&
 										<fui.ToggleButton
