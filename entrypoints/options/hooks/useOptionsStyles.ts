@@ -41,5 +41,11 @@ export const useOptionsStyles = makeStyles({
 		flexFlow: "column",
 		alignItems: "flex-start",
 		gap: tokens.spacingVerticalSNudge
+	},
+	img:
+	{
+		height: "100px",
+		flexGrow: 1,
+		alignSelf: "flex-end"
 	}
 });
