@@ -52,7 +52,10 @@ updates:
     schedule:
       interval: monthly
     rebase-strategy: disabled
-    open-pull-requests-limit: 20
+    groups:
+      actions:
+        patterns:
+          - "*"
 
   - package-ecosystem: "devcontainers"
     directory: "/"
@@ -62,4 +65,7 @@ updates:
     schedule:
       interval: monthly
     rebase-strategy: disabled
-    open-pull-requests-limit: 20
+    groups:
+      devcontainers:
+        patterns:
+          - "*"

@@ -9,13 +9,19 @@ export default function TabMoreButton({ onEdit, onDelete, ...props }: TabMoreBut
 	const DeleteIcon = bundleIcon(Delete20Filled, Delete20Regular);
 	const dangerCls = useDangerStyles();
 
+	const onClick = (ev: React.MouseEvent): void =>
+	{
+		ev.stopPropagation();
+		ev.preventDefault();
+	};
+
 	return (
 		<Menu>
 			<Tooltip relationship="label" content={ i18n.t("common.tooltips.more") }>
-				<MenuTrigger>
+				<MenuTrigger disableButtonEnhancement>
 					<Button
 						appearance="subtle" icon={ <MoreHorizontal20Regular /> }
-						onClick={ ev => ev.stopPropagation() }
+						onClick={ onClick }
 						{ ...props } />
 				</MenuTrigger>
 			</Tooltip>

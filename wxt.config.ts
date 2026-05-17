@@ -87,7 +87,6 @@ export default defineConfig({
 					id: "tabsaside@xfox111.net",
 					strict_min_version: "139.0",
 
-					// @ts-expect-error Introduced in Firefox 139
 					data_collection_permissions: {
 						required: ["browsingActivity"],
 						optional: ["technicalAndInteraction"]
