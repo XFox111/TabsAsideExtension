@@ -32,12 +32,19 @@ Check out our [latest blog post](https://at.xfox111.net/tabs-aside-3-0) regardin
 - Ukrainian
 
 ## Download
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/users/mgmjbodjgijnebfgohlnjkegdpbdjgin?label=Chrome%20Webstore%20downloads)](https://chrome.google.com/webstore/detail/mgmjbodjgijnebfgohlnjkegdpbdjgin)
-[![Mozilla Add-on](https://img.shields.io/amo/users/ms-edge-tabs-aside?label=Firefox%20Webstore%20downloads)](https://addons.mozilla.org/firefox/addon/ms-edge-tabs-aside/)
+[![Chrome web store](https://img.shields.io/chrome-web-store/users/mgmjbodjgijnebfgohlnjkegdpbdjgin?label=Chrome%20webstore%20users)](https://chrome.google.com/webstore/detail/mgmjbodjgijnebfgohlnjkegdpbdjgin)
+[![Firefox Browser Add-ons](https://img.shields.io/amo/users/ms-edge-tabs-aside?label=Firefox%20Browser%20Add-ons%20users)](https://addons.mozilla.org/firefox/addon/ms-edge-tabs-aside/)
+[![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fgetproductdetailsbycrxid%2Fkmnblllmalkiapkfknnlpobmjjdnlhnd&query=%24.activeInstallCount&label=Edge%20Add-ons%20users)](https://microsoftedge.microsoft.com/addons/detail/kmnblllmalkiapkfknnlpobmjjdnlhnd)
+![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fgetproductdetailsbycrxid%2Fkmnblllmalkiapkfknnlpobmjjdnlhnd&query=%24.activeInstallCount&label=Edge%20Add-ons%20users&link=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fdetail%2Fkmnblllmalkiapkfknnlpobmjjdnlhnd)
 
-- [Google Chrome Webstore](https://chrome.google.com/webstore/detail/mgmjbodjgijnebfgohlnjkegdpbdjgin)
-- [Microsoft Edge Add-ons Webstore](https://microsoftedge.microsoft.com/addons/detail/kmnblllmalkiapkfknnlpobmjjdnlhnd)
-- [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/ms-edge-tabs-aside/)
+![Edge Add-ons](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fgetproductdetailsbycrxid%2Fmanimdhobjbkfpeeehlhhneookiokpbj&query=%24.activeInstallCount&label=Edge%20Add-ons%20users&link=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fdetail%2Fmanimdhobjbkfpeeehlhhneookiokpbj)
+
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/users/mgmjbodjgijnebfgohlnjkegdpbdjgin?label=Chrome%20webstore%20users)](https://chrome.google.com/webstore/detail/mgmjbodjgijnebfgohlnjkegdpbdjgin)
+[![Firefox Browser Add-ons](https://img.shields.io/amo/users/ms-edge-tabs-aside?label=Firefox%20Browser%20Add-ons%20users)](https://addons.mozilla.org/firefox/addon/ms-edge-tabs-aside/)
+
+- [Chrome web store](https://chrome.google.com/webstore/detail/mgmjbodjgijnebfgohlnjkegdpbdjgin)
+- [Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/kmnblllmalkiapkfknnlpobmjjdnlhnd)
+- [Firefox Browser Add-ons](https://addons.mozilla.org/firefox/addon/ms-edge-tabs-aside/)
 - [GitHub Releases](https://github.com/xfox111/TabsAsideExtension/releases/latest)
 
 ### Sideloading (for testing purposes only)
