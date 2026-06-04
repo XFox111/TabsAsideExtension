@@ -11,7 +11,7 @@ export default function useWelcomeDialog(dialog: DialogContextType): Promise<voi
 			if (showWelcome || import.meta.env.DEV)
 				dialog.pushCustom(
 					<WelcomeDialog />,
-					undefined,
+					"alert",
 					() =>
 					{
 						showWelcomeDialog.removeValue();

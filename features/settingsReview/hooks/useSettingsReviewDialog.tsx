@@ -11,7 +11,7 @@ export default function useSettingsReviewDialog(dialog: DialogContextType): Prom
 			if (needsReview.length > 0)
 				dialog.pushCustom(
 					<SettingsReviewDialog />,
-					undefined,
+					"alert",
 					() =>
 					{
 						settingsForReview.removeValue();
