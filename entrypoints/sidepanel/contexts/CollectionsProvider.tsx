@@ -45,7 +45,37 @@ export default function CollectionsProvider({ children }: React.PropsWithChildre
 
 	const addCollection = async (collection: CollectionItem): Promise<void> =>
 	{
-		await updateStorage([collection, ...collections]);
+		// TEMP
+		// await updateStorage([collection, ...collections]);
+		const items: CollectionItem[] = [];
+
+		for (let i = 0; i < 128; i++)
+			items.push({
+				title: i.toString(),
+				items: [
+					{
+						type: "tab",
+						title: "Google",
+						url: "https://www.google.com"
+					},
+					{
+						type: "group",
+						title: "Group",
+						color: "blue",
+						items: [
+							{
+								type: "tab",
+								title: "Facebook",
+								url: "https://www.facebook.com"
+							}
+						]
+					}
+				],
+				timestamp: Date.now() + i,
+				type: "collection"
+			});
+
+		await updateStorage(items);
 	};
 
 	const removeItem = async (...indices: number[]): Promise<void> =>

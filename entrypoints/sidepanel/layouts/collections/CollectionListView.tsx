@@ -22,6 +22,8 @@ import { snapHandleToCursor } from "../../utils/dnd/snapHandleToCursor";
 import { useStyles_CollectionListView } from "./CollectionListView.styles";
 import SearchBar from "./SearchBar";
 import StorageCapacityIssueMessage from "./messages/StorageCapacityIssueMessage";
+import VirtualList from "@/components/VirtualList";
+import calculateCollectionHeight from "../../utils/calculateCollectionHeight";
 
 export default function CollectionListView(): ReactElement
 {
@@ -59,6 +61,8 @@ export default function CollectionListView(): ReactElement
 		setColors(newColors);
 		setShowHidden(newShowHidden);
 	}, []);
+
+	// FIXME: disable drag and drop if filters are active!!!
 
 	const handleDragStart = (event: DragStartEvent): void =>
 	{
@@ -115,7 +119,55 @@ export default function CollectionListView(): ReactElement
 					</Button>
 				</div>
 				:
-				<section className={ mergeClasses(cls.collectionList, !tilesView && cls.listView, !!(!tilesView && compactView) && cls.compactList) }>
+				<DndContext
+					sensors={ sensors }
+					collisionDetection={ collisionDetector(!tilesView) }
+					onDragStart={ handleDragStart }
+					onDragEnd={ handleDragEnd }
+					modifiers={ [snapHandleToCursor] }
+				>
+					<SortableContext
+						items={ resultList.map((_, index) => index.toString()) }
+						strategy={ tilesView ? verticalListSortingStrategy : rectSortingStrategy }
+					>
+
+						<VirtualList
+							className={ mergeClasses(cls.collectionList, !tilesView && cls.listView, !!(!tilesView && compactView) && cls.compactList) }
+							itemHeight={ item => calculateCollectionHeight(item, tilesView, compactView ?? true) }
+							horizontalOffset={ 32 }
+							columnMinWidth={ !tilesView ? 360 : undefined }
+							items={ resultList }
+							containerSelector="article"
+							itemRenderer={ (item, index) =>
+								<CollectionView key={ item.timestamp } collection={ item } index={ index } compact={ compactView } />
+							} />
+					</SortableContext>
+
+					<DragOverlay dropAnimation={ null }>
+						{ active !== null ?
+							active.item.type === "collection" ?
+								<CollectionView collection={ active.item } index={ -1 } dragOverlay />
+								:
+								<CollectionContext.Provider
+									value={ {
+										tabCount: 0,
+										collection: resultList[active.indices[0]],
+										hasPinnedGroup: true
+									} }
+								>
+									{ active.item.type === "group" ?
+										<GroupView group={ active.item } indices={ [-1] } collectionId={ -1 } dragOverlay />
+										:
+										<TabView tab={ active.item } indices={ [-1] } collectionId={ -1 } dragOverlay />
+									}
+								</CollectionContext.Provider>
+							:
+							<></>
+						}
+					</DragOverlay>
+				</DndContext>
+
+				/* <section className={ mergeClasses(cls.collectionList, !tilesView && cls.listView, !!(!tilesView && compactView) && cls.compactList) }>
 					<DndContext
 						sensors={ sensors }
 						collisionDetection={ collisionDetector(!tilesView) }
@@ -155,7 +207,7 @@ export default function CollectionListView(): ReactElement
 							}
 						</DragOverlay>
 					</DndContext>
-				</section>
+				</section> */
 			}
 		</article>
 	);
