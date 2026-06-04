@@ -15,7 +15,7 @@ body:
     attributes:
       label: Description
       description: A clear and concise description of what the bug is.
-      placeholder: e.g. Sometimes when generating a password not all character sets are included
+      placeholder: e.g. Sometimes clicking on the extension icon doesn't open the side panel
     validations:
       required: true
 
@@ -104,4 +104,6 @@ body:
         - label: Check that there isn't already an issue that reports the same bug to avoid creating a duplicate.
           required: true
         - label: The provided reproduction is a minimal reproducible example of the bug.
+          required: true
+        - label: This issue was written in English.
           required: true
