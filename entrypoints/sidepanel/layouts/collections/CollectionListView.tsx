@@ -62,17 +62,24 @@ export default function CollectionListView(): ReactElement
 
 	const handleDragStart = (event: DragStartEvent): void =>
 	{
+		if (query.length > 0 || colors.length > 0 || showHidden)
+			return;
+
 		setActive(event.active.data.current as DndItem);
 	};
 
 	const handleDragEnd = (args: DragEndEvent): void =>
 	{
+		if (!active)
+			return;
+
 		setActive(null);
 		const result: CollectionItem[] | null = applyReorder(resultList, args);
 
 		if (result !== null)
 		{
-			updateCollections(result);
+			updateCollections([...collections.filter(i => i.hidden), ...result]);
+
 			if (sortMode !== "custom")
 				setSortMode("custom");
 
