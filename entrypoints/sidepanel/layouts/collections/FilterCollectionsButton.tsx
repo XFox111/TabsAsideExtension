@@ -1,7 +1,7 @@
 import { useGroupColors } from "@/hooks/useGroupColors";
 import * as fui from "@fluentui/react-components";
 import * as ic from "@fluentui/react-icons";
-import { CollectionFilterType } from "../../utils/filterCollections";
+import { type CollectionFilterType } from "../../utils/filterCollections";
 
 export default function FilterCollectionsButton({ value, onChange, showHidden }: FilterCollectionsButtonProps): React.ReactElement
 {

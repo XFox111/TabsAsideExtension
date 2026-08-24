@@ -1,9 +1,9 @@
 import { getCollectionTitle } from "@/entrypoints/sidepanel/utils/getCollectionTitle";
 import useSettings from "@/hooks/useSettings";
-import { TabItem } from "@/models/CollectionModels";
+import { type TabItem } from "@/models/CollectionModels";
 import { Button, Caption1, makeStyles, mergeClasses, Subtitle2, tokens, Tooltip } from "@fluentui/react-components";
 import { Add20Filled, Add20Regular, bundleIcon, EyeOff16Regular } from "@fluentui/react-icons";
-import CollectionContext, { CollectionContextType } from "../../contexts/CollectionContext";
+import CollectionContext, { type CollectionContextType } from "../../contexts/CollectionContext";
 import { useCollections } from "../../contexts/CollectionsProvider";
 import CollectionMoreButton from "./CollectionMoreButton";
 import OpenCollectionButton from "./OpenCollectionButton";

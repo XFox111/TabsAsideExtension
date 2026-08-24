@@ -1,6 +1,7 @@
 import { trackError } from "@/features/analytics";
-import { CollectionItem, GraphicsStorage, GroupItem } from "@/models/CollectionModels";
-import { defineExtensionMessaging, ExtensionMessagingConfig, ExtensionMessenger, ExtensionSendMessageArgs, GetDataType, GetReturnType } from "@webext-core/messaging";
+import type { CollectionItem, GraphicsStorage, GroupItem } from "@/models/CollectionModels";
+import type { ExtensionMessagingConfig, ExtensionMessenger, ExtensionSendMessageArgs, GetDataType, GetReturnType } from "@webext-core/messaging";
+import { defineExtensionMessaging } from "@webext-core/messaging";
 
 type ProtocolMap =
 	{

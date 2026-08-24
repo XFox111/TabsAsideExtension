@@ -1,5 +1,5 @@
 import { makeStyles } from "@fluentui/react-components";
-import { FluentIcon } from "@fluentui/react-icons";
+import { type FluentIcon } from "@fluentui/react-icons";
 
 export const BuyMeACoffee20Regular: FluentIcon = (props) =>
 {

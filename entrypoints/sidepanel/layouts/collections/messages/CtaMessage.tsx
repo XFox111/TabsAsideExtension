@@ -3,9 +3,9 @@ import { buyMeACoffeeLink, storeLink } from "@/data/links";
 import { track } from "@/features/analytics";
 import { useBmcStyles } from "@/hooks/useBmcStyles";
 import extLink from "@/utils/extLink";
-import { Button, Link, MessageBar, MessageBarActions, MessageBarBody, MessageBarProps, MessageBarTitle } from "@fluentui/react-components";
+import { Button, Link, MessageBar, MessageBarActions, MessageBarBody, type MessageBarProps, MessageBarTitle } from "@fluentui/react-components";
 import { DismissRegular, HeartFilled } from "@fluentui/react-icons";
-import { ReactElement } from "react";
+import { type ReactElement } from "react";
 
 export default function CtaMessage(props: MessageBarProps): ReactElement
 {

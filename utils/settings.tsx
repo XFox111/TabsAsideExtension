@@ -1,4 +1,4 @@
-import { CollectionSortMode } from "@/entrypoints/sidepanel/utils/sortCollections";
+import { type CollectionSortMode } from "@/entrypoints/sidepanel/utils/sortCollections";
 
 export const settings = {
 	defaultRestoreAction: storage.defineItem<"open" | "restore">(

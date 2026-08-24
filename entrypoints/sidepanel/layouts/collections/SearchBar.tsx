@@ -1,7 +1,7 @@
 import { Button, Input, makeStyles, tokens, Tooltip } from "@fluentui/react-components";
 import { ArrowUndo20Filled, ArrowUndo20Regular, bundleIcon, Search20Regular } from "@fluentui/react-icons";
-import { CollectionFilterType } from "../../utils/filterCollections";
-import { CollectionSortMode } from "../../utils/sortCollections";
+import { type CollectionFilterType } from "../../utils/filterCollections";
+import { type CollectionSortMode } from "../../utils/sortCollections";
 import FilterCollectionsButton from "./FilterCollectionsButton";
 import SortCollectionsButton from "./SortCollectionsButton";
 

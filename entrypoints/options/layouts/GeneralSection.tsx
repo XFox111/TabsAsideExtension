@@ -1,6 +1,6 @@
 import { analyticsPermission } from "@/features/analytics";
-import useSettings, { SettingsValue } from "@/hooks/useSettings";
-import { Button, Checkbox, Dropdown, Field, Option, OptionOnSelectData } from "@fluentui/react-components";
+import useSettings, { type SettingsValue } from "@/hooks/useSettings";
+import { Button, Checkbox, Dropdown, Field, Option, type OptionOnSelectData } from "@fluentui/react-components";
 import { KeyCommand20Regular } from "@fluentui/react-icons";
 import { useOptionsStyles } from "../hooks/useOptionsStyles";
 

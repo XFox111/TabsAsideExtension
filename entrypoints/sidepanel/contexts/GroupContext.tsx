@@ -1,4 +1,4 @@
-import { GroupItem } from "@/models/CollectionModels";
+import { type GroupItem } from "@/models/CollectionModels";
 import { createContext } from "react";
 
 const GroupContext = createContext<GroupContextType>(null!);

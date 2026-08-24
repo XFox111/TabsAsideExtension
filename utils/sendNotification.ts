@@ -1,5 +1,5 @@
 import { trackError } from "@/features/analytics";
-import { PublicPath } from "wxt/browser";
+import { type PublicPath } from "wxt/browser";
 
 export default async function sendNotification(props: NotificationProps): Promise<void>
 {

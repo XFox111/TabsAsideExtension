@@ -1,4 +1,4 @@
-import { CollectionItem, GraphicsItem, GraphicsStorage } from "@/models/CollectionModels";
+import type { CollectionItem, GraphicsItem, GraphicsStorage } from "@/models/CollectionModels";
 import { sendMessage } from "@/utils/messaging";
 import { collectionStorage } from "./collectionStorage";
 

@@ -1,4 +1,4 @@
-import { TabItem } from "@/models/CollectionModels";
+import { type TabItem } from "@/models/CollectionModels";
 import sendNotification from "@/utils/sendNotification";
 
 export default async function getSelectedTabs(): Promise<TabItem[]>

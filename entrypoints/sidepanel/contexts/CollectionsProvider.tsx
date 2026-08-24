@@ -1,6 +1,6 @@
-import { CloudStorageIssueType, getCollections, graphics as graphicsStorage, saveCollections } from "@/features/collectionStorage";
+import { type CloudStorageIssueType, getCollections, graphics as graphicsStorage, saveCollections } from "@/features/collectionStorage";
 import useSettings from "@/hooks/useSettings";
-import { CollectionItem, GraphicsStorage, GroupItem } from "@/models/CollectionModels";
+import type { CollectionItem, GraphicsStorage, GroupItem } from "@/models/CollectionModels";
 import getLogger from "@/utils/getLogger";
 import { onMessage, sendMessage } from "@/utils/messaging";
 import { createContext } from "react";

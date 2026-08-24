@@ -1,5 +1,5 @@
 import { getCollectionTitle } from "@/entrypoints/sidepanel/utils/getCollectionTitle";
-import { CollectionItem, GroupItem, TabItem } from "@/models/CollectionModels";
+import type { CollectionItem, GroupItem, TabItem } from "@/models/CollectionModels";
 import { settings } from "@/utils/settings";
 
 export async function openCollection(collection: CollectionItem, targetWindow?: "current" | "new" | "incognito"): Promise<void>

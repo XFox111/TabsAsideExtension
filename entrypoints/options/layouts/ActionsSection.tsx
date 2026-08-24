@@ -1,4 +1,4 @@
-import useSettings, { SettingsValue } from "@/hooks/useSettings";
+import useSettings, { type SettingsValue } from "@/hooks/useSettings";
 import { Dropdown, Field, Option } from "@fluentui/react-components";
 
 export default function ActionsSection(): React.ReactElement

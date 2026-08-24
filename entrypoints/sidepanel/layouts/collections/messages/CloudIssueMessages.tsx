@@ -1,5 +1,5 @@
 import resolveConflict from "@/features/collectionStorage/utils/resolveConflict";
-import { Button, MessageBar, MessageBarActions, MessageBarBody, MessageBarProps, MessageBarTitle } from "@fluentui/react-components";
+import { Button, MessageBar, MessageBarActions, MessageBarBody, type MessageBarProps, MessageBarTitle } from "@fluentui/react-components";
 import { ArrowDownload20Regular, ArrowUpload20Regular, CloudArrowDown20Regular, Wrench20Regular } from "@fluentui/react-icons";
 import { useCollections } from "../../../contexts/CollectionsProvider";
 import exportData from "@/entrypoints/options/utils/exportData";

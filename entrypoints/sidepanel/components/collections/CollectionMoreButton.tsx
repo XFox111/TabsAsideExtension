@@ -1,9 +1,9 @@
 import { useDialog } from "@/contexts/DialogProvider";
 import { useDangerStyles } from "@/hooks/useDangerStyles";
 import useSettings from "@/hooks/useSettings";
-import { Button, Menu, MenuDivider, MenuItem, MenuList, MenuOpenChangeData, MenuOpenEvent, MenuPopover, MenuTrigger, Tooltip } from "@fluentui/react-components";
+import { Button, Menu, MenuDivider, MenuItem, MenuList, type MenuOpenChangeData, type MenuOpenEvent, MenuPopover, MenuTrigger, Tooltip } from "@fluentui/react-components";
 import * as ic from "@fluentui/react-icons";
-import CollectionContext, { CollectionContextType } from "../../contexts/CollectionContext";
+import CollectionContext, { type CollectionContextType } from "../../contexts/CollectionContext";
 import { useCollections } from "../../contexts/CollectionsProvider";
 import exportCollectionToBookmarks from "../../utils/exportCollectionToBookmarks";
 import EditDialog from "../EditDialog";

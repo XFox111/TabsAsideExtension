@@ -1,6 +1,6 @@
 import { getCollections } from "@/features/collectionStorage";
 import saveCollections from "@/features/collectionStorage/utils/saveCollections";
-import { LegacyCollection } from "../models/LegacyModels";
+import { type LegacyCollection } from "../models/LegacyModels";
 import migrateCollections from "./migrateCollections";
 
 export default async function migrateLocalStorage(): Promise<void>

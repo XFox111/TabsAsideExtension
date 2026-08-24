@@ -1,4 +1,4 @@
-import { Unwatch, WatchCallback } from "wxt/utils/storage";
+import type { Unwatch, WatchCallback } from "wxt/utils/storage";
 import { analytics } from "./analytics";
 
 const analyticsPermission: Pick<WxtStorageItem<boolean, Record<string, unknown>>, "getValue" | "watch" | "setValue"> =
@@ -24,7 +24,7 @@ const analyticsPermission: Pick<WxtStorageItem<boolean, Record<string, unknown>>
 				return;
 			}
 
-			let result: boolean = false;
+			let result: boolean;
 
 			if (value)
 				result = await browser.permissions.request({

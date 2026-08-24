@@ -1,5 +1,5 @@
 import { track } from "@/features/analytics";
-import { TabItem } from "@/models/CollectionModels";
+import { type TabItem } from "@/models/CollectionModels";
 import { Button, DialogActions, DialogBody, DialogContent, DialogSurface, DialogTitle, DialogTrigger, Field, Input, makeStyles, tokens } from "@fluentui/react-components";
 
 export default function TabEditDialog({ tab, onSave }: TabEditDialogProps): React.ReactElement

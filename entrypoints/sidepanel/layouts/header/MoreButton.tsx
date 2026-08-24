@@ -6,7 +6,7 @@ import extLink from "@/utils/extLink";
 import sendNotification from "@/utils/sendNotification";
 import * as fui from "@fluentui/react-components";
 import * as ic from "@fluentui/react-icons";
-import { ReactElement } from "react";
+import { type ReactElement } from "react";
 
 export default function MoreButton(): ReactElement
 {

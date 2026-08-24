@@ -1,4 +1,4 @@
-import { DialogContextType } from "@/contexts/DialogProvider";
+import { type DialogContextType } from "@/contexts/DialogProvider";
 import WelcomeDialog from "../components/WelcomeDialog";
 import { showWelcomeDialog } from "../utils/showWelcomeDialog";
 

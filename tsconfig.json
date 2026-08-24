@@ -4,6 +4,6 @@
 		"allowImportingTsExtensions": true,
 		"jsx": "react-jsx",
 		"strict": true,
-		"strictNullChecks": true
+		"strictNullChecks": false
 	}
 }

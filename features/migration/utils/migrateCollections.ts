@@ -1,5 +1,5 @@
-import { CollectionItem, GraphicsStorage, TabItem } from "@/models/CollectionModels";
-import { LegacyCollection } from "../models/LegacyModels";
+import type { CollectionItem, GraphicsStorage, TabItem } from "@/models/CollectionModels";
+import type { LegacyCollection } from "../models/LegacyModels";
 
 export default function migrateCollections(legacyCollections: LegacyCollection[]): [CollectionItem[], GraphicsStorage]
 {

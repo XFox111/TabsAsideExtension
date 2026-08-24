@@ -1,5 +1,5 @@
 import { track } from "@/features/analytics";
-import { CollectionItem, TabItem } from "@/models/CollectionModels";
+import type { CollectionItem, TabItem } from "@/models/CollectionModels";
 import sendNotification from "@/utils/sendNotification";
 import { getCollectionTitle } from "./getCollectionTitle";
 
@@ -31,7 +31,7 @@ export default async function exportCollectionToBookmarks(collection: Collection
 		{
 			const groupFolder = await browser.bookmarks.create({
 				parentId: rootFolder.id,
-				title: item.pinned
+				title: item.pinned === true
 					? `📌 ${i18n.t("groups.pinned")}` :
 					(item.title?.trim() || `${i18n.t("groups.title")} ${i}`)
 			});

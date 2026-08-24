@@ -1,4 +1,4 @@
-import { CollectionSortMode } from "@/entrypoints/sidepanel/utils/sortCollections";
+import { type CollectionSortMode } from "@/entrypoints/sidepanel/utils/sortCollections";
 import { Button, Menu, MenuItemRadio, MenuList, MenuPopover, MenuTrigger, Tooltip } from "@fluentui/react-components";
 import * as ic from "@fluentui/react-icons";
 

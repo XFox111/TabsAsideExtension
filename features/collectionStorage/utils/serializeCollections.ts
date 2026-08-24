@@ -1,4 +1,4 @@
-import { CollectionItem, GroupItem, TabItem } from "@/models/CollectionModels";
+import type { CollectionItem, GroupItem, TabItem } from "@/models/CollectionModels";
 
 export default function serializeCollections(collections: CollectionItem[]): string
 {

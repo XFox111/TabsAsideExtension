@@ -1,10 +1,10 @@
 import { getCollectionTitle } from "@/entrypoints/sidepanel/utils/getCollectionTitle";
 import { track } from "@/features/analytics";
 import { useGroupColors } from "@/hooks/useGroupColors";
-import { CollectionItem, GroupItem } from "@/models/CollectionModels";
+import type { CollectionItem, GroupItem } from "@/models/CollectionModels";
 import * as fui from "@fluentui/react-components";
 import { Circle20Filled, CircleOff20Regular, Pin20Filled, Rename20Regular } from "@fluentui/react-icons";
-import { ReactElement } from "react";
+import { type ReactElement } from "react";
 import { useStyles_EditDialog } from "./EditDialog.styles";
 
 export default function EditDialog(props: GroupEditDialogProps): ReactElement

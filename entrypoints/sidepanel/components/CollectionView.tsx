@@ -1,11 +1,11 @@
 import CollectionHeader from "@/entrypoints/sidepanel/components/collections/CollectionHeader";
 import useDndItem from "@/entrypoints/sidepanel/hooks/useDndItem";
 import { useGroupColors } from "@/hooks/useGroupColors";
-import { CollectionItem } from "@/models/CollectionModels";
+import { type CollectionItem } from "@/models/CollectionModels";
 import { horizontalListSortingStrategy, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { Body1Strong, mergeClasses } from "@fluentui/react-components";
 import { CollectionsRegular } from "@fluentui/react-icons";
-import { ReactElement } from "react";
+import { type ReactElement } from "react";
 import CollectionContext from "../contexts/CollectionContext";
 import { useCollections } from "../contexts/CollectionsProvider";
 import { useStyles_CollectionView } from "./CollectionView.styles";

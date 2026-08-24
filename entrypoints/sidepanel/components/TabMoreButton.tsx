@@ -1,7 +1,7 @@
 import { useDangerStyles } from "@/hooks/useDangerStyles";
 import { Button, Menu, MenuItem, MenuList, MenuPopover, MenuTrigger, Tooltip } from "@fluentui/react-components";
 import { bundleIcon, Delete20Filled, Delete20Regular, Edit20Filled, Edit20Regular, MoreHorizontal20Regular } from "@fluentui/react-icons";
-import { ButtonHTMLAttributes } from "react";
+import { type ButtonHTMLAttributes } from "react";
 
 export default function TabMoreButton({ onEdit, onDelete, ...props }: TabMoreButtonProps): React.ReactElement
 {

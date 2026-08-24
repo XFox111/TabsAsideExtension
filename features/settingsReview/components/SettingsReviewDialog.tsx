@@ -3,7 +3,7 @@ import { analyticsPermission } from "@/features/analytics";
 import { thumbnailCaptureEnabled } from "@/features/collectionStorage";
 import extLink from "@/utils/extLink";
 import * as fui from "@fluentui/react-components";
-import { Unwatch } from "wxt/utils/storage";
+import { type Unwatch } from "wxt/utils/storage";
 import { reviewSettings } from "../utils/setSettingsReviewNeeded";
 import { settingsForReview } from "../utils/showSettingsReviewDialog";
 

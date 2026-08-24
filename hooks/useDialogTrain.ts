@@ -1,4 +1,4 @@
-import { DialogContextType, useDialog } from "@/contexts/DialogProvider";
+import { type DialogContextType, useDialog } from "@/contexts/DialogProvider";
 
 export default function useDialogTrain(...dialogs: ((dialog: DialogContextType) => Promise<void>)[]): void
 {
