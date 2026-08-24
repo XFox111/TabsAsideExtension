@@ -1,5 +1,5 @@
 import { trackError } from "@/features/analytics";
-import { CollectionItem } from "@/models/CollectionModels";
+import { type CollectionItem } from "@/models/CollectionModels";
 import getLogger from "@/utils/getLogger";
 import { collectionStorage } from "./collectionStorage";
 import getCollectionsFromCloud from "./getCollectionsFromCloud";

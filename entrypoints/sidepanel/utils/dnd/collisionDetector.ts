@@ -1,5 +1,5 @@
-import { ClientRect, Collision, CollisionDescriptor, CollisionDetection } from "@dnd-kit/core";
-import { DndItem } from "../../hooks/useDndItem";
+import type { ClientRect, Collision, CollisionDescriptor, CollisionDetection } from "@dnd-kit/core";
+import { type DndItem } from "../../hooks/useDndItem";
 import { centerOfRectangle, distanceBetween, getIntersectionRatio, getMaxIntersectionRatio, getRectSideCoordinates, sortCollisionsAsc } from "./dndUtils";
 
 export function collisionDetector(vertical?: boolean): CollisionDetection

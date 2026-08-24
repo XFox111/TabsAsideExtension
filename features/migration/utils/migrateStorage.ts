@@ -1,8 +1,8 @@
 import { saveCollections } from "@/features/collectionStorage";
-import { GraphicsStorage } from "@/models/CollectionModels";
+import type { GraphicsStorage } from "@/models/CollectionModels";
 import { settings } from "@/utils/settings";
 import { decompress } from "lzutf8";
-import { LegacyCollection, LegacyGraphics } from "../models/LegacyModels";
+import type { LegacyCollection, LegacyGraphics } from "../models/LegacyModels";
 import migrateCollections from "./migrateCollections";
 
 export default async function migrateStorage(): Promise<void>

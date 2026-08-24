@@ -6,8 +6,8 @@ import getCollectionsFromLocal from "@/features/collectionStorage/utils/getColle
 import { migrateStorage } from "@/features/migration";
 import { setSettingsReviewNeeded } from "@/features/settingsReview/utils";
 import { showWelcomeDialog } from "@/features/v3welcome/utils/showWelcomeDialog";
-import { SettingsValue } from "@/hooks/useSettings";
-import { CollectionItem, GraphicsStorage } from "@/models/CollectionModels";
+import { type SettingsValue } from "@/hooks/useSettings";
+import type { CollectionItem, GraphicsStorage } from "@/models/CollectionModels";
 import { closeTabsAsync } from "@/utils/closeTabsAsync";
 import { createCollectionFromTabs } from "@/utils/createCollectionFromTabs";
 import getLogger from "@/utils/getLogger";
@@ -17,8 +17,8 @@ import sendNotification from "@/utils/sendNotification";
 import sendPartialSaveNotification from "@/utils/sendPartialSaveNotification";
 import { settings } from "@/utils/settings";
 import watchTabSelection from "@/utils/watchTabSelection";
-import { RemoveListenerCallback } from "@webext-core/messaging";
-import { Unwatch } from "wxt/utils/storage";
+import { type RemoveListenerCallback } from "@webext-core/messaging";
+import { type Unwatch } from "wxt/utils/storage";
 import { openCollection, openGroup } from "./sidepanel/utils/opener";
 
 export default defineBackground(() =>
@@ -96,7 +96,7 @@ export default defineBackground(() =>
 		async function setupTabCaputre(): Promise<void>
 		{
 			let unwatchAddThumbnail: RemoveListenerCallback | null = null;
-			let captureInterval: NodeJS.Timeout | null = null;
+			let captureInterval: number | null = null;
 
 			const captureFavicon = (_: any, __: any, tab: Browser.tabs.Tab): void =>
 			{

@@ -1,5 +1,5 @@
 import { getCollectionTitle } from "@/entrypoints/sidepanel/utils/getCollectionTitle";
-import { CollectionItem } from "@/models/CollectionModels";
+import { type CollectionItem } from "@/models/CollectionModels";
 
 export default function sortCollections(
 	collections: CollectionItem[],

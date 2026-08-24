@@ -1,5 +1,5 @@
 import useStorageInfo from "@/hooks/useStorageInfo";
-import { MessageBar, MessageBarBody, MessageBarProps, MessageBarTitle } from "@fluentui/react-components";
+import { MessageBar, MessageBarBody, type MessageBarProps, MessageBarTitle } from "@fluentui/react-components";
 
 export default function StorageCapacityIssueMessage(props: MessageBarProps): React.ReactElement
 {

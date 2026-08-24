@@ -2,7 +2,7 @@ import { useDialog } from "@/contexts/DialogProvider";
 import { useCollections } from "@/entrypoints/sidepanel/contexts/CollectionsProvider";
 import { Button, makeStyles, tokens, Tooltip } from "@fluentui/react-components";
 import { CollectionsAddRegular } from "@fluentui/react-icons";
-import { ReactElement } from "react";
+import { type ReactElement } from "react";
 import EditDialog from "../../components/EditDialog";
 import ActionButton from "./ActionButton";
 import MoreButton from "./MoreButton";

@@ -1,4 +1,4 @@
-import { ConfigEnv, defineConfig, UserManifest } from "wxt";
+import { type ConfigEnv, defineConfig, type UserManifest } from "wxt";
 
 // See https://wxt.dev/api/config.html
 export default defineConfig({

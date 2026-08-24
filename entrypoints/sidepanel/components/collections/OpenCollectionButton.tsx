@@ -2,9 +2,9 @@ import { useDialog } from "@/contexts/DialogProvider";
 import useSettings from "@/hooks/useSettings";
 import browserLocaleKey from "@/utils/browserLocaleKey";
 import { sendMessage } from "@/utils/messaging";
-import { Menu, MenuButtonProps, MenuItem, MenuList, MenuOpenChangeData, MenuOpenEvent, MenuPopover, MenuTrigger, SplitButton } from "@fluentui/react-components";
+import { Menu, type MenuButtonProps, MenuItem, MenuList, type MenuOpenChangeData, type MenuOpenEvent, MenuPopover, MenuTrigger, SplitButton } from "@fluentui/react-components";
 import * as ic from "@fluentui/react-icons";
-import CollectionContext, { CollectionContextType } from "../../contexts/CollectionContext";
+import CollectionContext, { type CollectionContextType } from "../../contexts/CollectionContext";
 import { useCollections } from "../../contexts/CollectionsProvider";
 import { openCollection } from "../../utils/opener";
 

@@ -1,4 +1,4 @@
-import { CollectionItem } from "@/models/CollectionModels";
+import { type CollectionItem } from "@/models/CollectionModels";
 import { createContext } from "react";
 
 const CollectionContext = createContext<CollectionContextType>(null!);

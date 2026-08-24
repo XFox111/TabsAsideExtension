@@ -1,6 +1,6 @@
-import { CollectionItem, GroupItem, TabItem } from "@/models/CollectionModels";
+import type { CollectionItem, GroupItem, TabItem } from "@/models/CollectionModels";
 import { useSortable } from "@dnd-kit/sortable";
-import { Arguments } from "@dnd-kit/sortable/dist/hooks/useSortable";
+import type { Arguments } from "@dnd-kit/sortable/dist/hooks/useSortable";
 
 export default function useDndItem(args: Arguments): DndItemHook
 {

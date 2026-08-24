@@ -1,4 +1,4 @@
-import { CollectionItem } from "@/models/CollectionModels";
+import { type CollectionItem } from "@/models/CollectionModels";
 import { decompress } from "lzutf8";
 import { collectionStorage } from "./collectionStorage";
 import getChunkKeys from "./getChunkKeys";

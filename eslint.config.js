@@ -2,7 +2,6 @@ import css from "@eslint/css";
 import js from "@eslint/js";
 import json from "@eslint/json";
 import stylistic from "@stylistic/eslint-plugin";
-import pluginReact from "eslint-plugin-react";
 import { defineConfig } from "eslint/config";
 import globals from "globals";
 import tseslint from "typescript-eslint";
@@ -14,7 +13,6 @@ export default defineConfig([
 	{ files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"], plugins: { js }, extends: ["js/recommended"] },
 	{ files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"], languageOptions: { globals: globals.browser } },
 	{ files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"], extends: [tseslint.configs.recommended] },
-	{ files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"], extends: [pluginReact.configs.flat.recommended] },
 	{ files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"], extends: [stylistic.configs.recommended] },
 	{ files: ["**/*.css"], plugins: { css }, language: "css/css", extends: ["css/recommended"] },
 	{

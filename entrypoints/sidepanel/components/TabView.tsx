@@ -4,11 +4,11 @@ import { useDialog } from "@/contexts/DialogProvider";
 import { useCollections } from "@/entrypoints/sidepanel/contexts/CollectionsProvider";
 import useDndItem from "@/entrypoints/sidepanel/hooks/useDndItem";
 import useSettings from "@/hooks/useSettings";
-import { CollectionItem, GroupItem, TabItem } from "@/models/CollectionModels";
+import type { CollectionItem, GroupItem, TabItem } from "@/models/CollectionModels";
 import { Caption1, Link, mergeClasses, Tooltip } from "@fluentui/react-components";
-import { MouseEventHandler, ReactElement } from "react";
+import type { MouseEventHandler, ReactElement } from "react";
 import { useStyles_TabView } from "./TabView.styles";
-import CollectionContext, { CollectionContextType } from "../contexts/CollectionContext";
+import CollectionContext, { type CollectionContextType } from "../contexts/CollectionContext";
 import TabMoreButton from "./TabMoreButton";
 import TabEditDialog from "./TabEditDialog";
 

@@ -1,4 +1,4 @@
-import { CollectionItem, TabItem } from "@/models/CollectionModels";
+import type { CollectionItem, TabItem } from "@/models/CollectionModels";
 
 export default function mergePinnedGroups(collection: CollectionItem): void
 {

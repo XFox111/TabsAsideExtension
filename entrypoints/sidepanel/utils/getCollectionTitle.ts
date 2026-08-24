@@ -1,4 +1,4 @@
-import { CollectionItem } from "@/models/CollectionModels";
+import { type CollectionItem } from "@/models/CollectionModels";
 
 export function getCollectionTitle(collection?: CollectionItem, useTimestamp?: boolean): string
 {

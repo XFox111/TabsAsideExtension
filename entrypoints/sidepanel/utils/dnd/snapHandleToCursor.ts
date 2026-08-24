@@ -1,6 +1,6 @@
-import { Modifier } from "@dnd-kit/core";
-import { Coordinates, getEventCoordinates } from "@dnd-kit/utilities";
-import { DndItem } from "../../hooks/useDndItem";
+import { type Modifier } from "@dnd-kit/core";
+import { type Coordinates, getEventCoordinates } from "@dnd-kit/utilities";
+import { type DndItem } from "../../hooks/useDndItem";
 
 export const snapHandleToCursor: Modifier = ({
 	activatorEvent,

@@ -1,4 +1,4 @@
-import { DialogContextType } from "@/contexts/DialogProvider";
+import { type DialogContextType } from "@/contexts/DialogProvider";
 import WelcomeDialog from "../components/WelcomeDialog";
 import { showWelcomeDialog } from "../utils/showWelcomeDialog";
 
@@ -11,7 +11,7 @@ export default function useWelcomeDialog(dialog: DialogContextType): Promise<voi
 			if (showWelcome || import.meta.env.DEV)
 				dialog.pushCustom(
 					<WelcomeDialog />,
-					undefined,
+					"alert",
 					() =>
 					{
 						showWelcomeDialog.removeValue();

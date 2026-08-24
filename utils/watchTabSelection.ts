@@ -1,4 +1,4 @@
-import { Unwatch } from "wxt/utils/storage";
+import { type Unwatch } from "wxt/utils/storage";
 
 export default function watchTabSelection(onChange: TabSelectChangeHandler): Unwatch
 {

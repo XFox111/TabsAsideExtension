@@ -1,5 +1,5 @@
 import { getCollectionTitle } from "@/entrypoints/sidepanel/utils/getCollectionTitle";
-import { CollectionItem, TabItem } from "@/models/CollectionModels";
+import type { CollectionItem, TabItem } from "@/models/CollectionModels";
 
 export default function filterCollections(
 	collections: CollectionItem[] | null,

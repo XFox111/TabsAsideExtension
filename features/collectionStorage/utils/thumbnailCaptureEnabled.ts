@@ -1,4 +1,4 @@
-import { Unwatch, WatchCallback } from "wxt/utils/storage";
+import type { Unwatch, WatchCallback } from "wxt/utils/storage";
 
 const thumbnailCaptureEnabled: Pick<WxtStorageItem<boolean, Record<string, unknown>>, "getValue" | "watch" | "setValue"> =
 	{
@@ -29,7 +29,7 @@ const thumbnailCaptureEnabled: Pick<WxtStorageItem<boolean, Record<string, unkno
 
 		setValue: async (value: boolean): Promise<void> =>
 		{
-			let result: boolean = false;
+			let result: boolean;
 
 			if (value)
 				result = await browser.permissions.request({ permissions: ["scripting"], origins: ["<all_urls>"] });

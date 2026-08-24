@@ -1,6 +1,6 @@
-import { Dialog, DialogModalType } from "@fluentui/react-components";
-import { createContext, PropsWithChildren, ReactElement } from "react";
-import PromptDialog, { PromptDialogProps } from "@/components/PromptDialog";
+import { Dialog, type DialogModalType } from "@fluentui/react-components";
+import { createContext, type PropsWithChildren, type ReactElement } from "react";
+import PromptDialog, { type PromptDialogProps } from "@/components/PromptDialog";
 
 const DialogContext = createContext<DialogContextType>(null!);
 

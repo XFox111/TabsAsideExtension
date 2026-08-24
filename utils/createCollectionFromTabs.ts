@@ -1,4 +1,4 @@
-import { CollectionItem, GroupItem } from "@/models/CollectionModels";
+import type { CollectionItem, GroupItem } from "@/models/CollectionModels";
 
 export async function createCollectionFromTabs(tabs: Browser.tabs.Tab[]): Promise<CollectionItem>
 {
@@ -12,30 +12,31 @@ export async function createCollectionFromTabs(tabs: Browser.tabs.Tab[]): Promis
 		return collection;
 
 	let tabIndex: number = 0;
+	const firstTab = tabs[0]!;
 
-	if (tabs[tabIndex].pinned)
+	if (firstTab.pinned)
 	{
 		collection.items.push({ type: "group", pinned: true, items: [] });
 
 		for (; tabIndex < tabs.length; tabIndex++)
 		{
-			if (!tabs[tabIndex].pinned)
+			if (!firstTab.pinned)
 				break;
 
 			(collection.items[0] as GroupItem).items.push({
 				type: "tab",
-				url: tabs[tabIndex].url!,
-				title: tabs[tabIndex].title
+				url: firstTab.url!,
+				title: firstTab.title
 			});
 		}
 	}
 
 	// Special case, if all tabs are in the same group, create a collection with the group title
-	if (tabs[0].groupId && tabs[0].groupId !== -1 &&
-		tabs.every(i => i.groupId === tabs[0].groupId)
+	if (firstTab.groupId && firstTab.groupId !== -1 &&
+		tabs.every(i => i.groupId === firstTab.groupId)
 	)
 	{
-		const group = await browser.tabGroups.get(tabs[0].groupId);
+		const group = await browser.tabGroups.get(firstTab.groupId);
 		collection.title = group.title;
 		collection.color = group.color;
 
@@ -50,7 +51,7 @@ export async function createCollectionFromTabs(tabs: Browser.tabs.Tab[]): Promis
 
 	for (; tabIndex < tabs.length; tabIndex++)
 	{
-		const tab = tabs[tabIndex];
+		const tab = tabs[tabIndex]!;
 
 		if (!tab.groupId || tab.groupId === -1)
 		{

@@ -1,5 +1,5 @@
-import { ClientRect, CollisionDescriptor } from "@dnd-kit/core";
-import { Coordinates } from "@dnd-kit/utilities";
+import type { ClientRect, CollisionDescriptor } from "@dnd-kit/core";
+import { type Coordinates } from "@dnd-kit/utilities";
 
 export function getRectSideCoordinates(rect: ClientRect, before: boolean, vertical?: boolean)
 {

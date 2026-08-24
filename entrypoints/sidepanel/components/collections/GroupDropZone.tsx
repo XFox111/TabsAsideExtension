@@ -1,6 +1,6 @@
 import { useDroppable } from "@dnd-kit/core";
 import { makeStyles, mergeClasses, tokens } from "@fluentui/react-components";
-import GroupContext, { GroupContextType } from "../../contexts/GroupContext";
+import GroupContext, { type GroupContextType } from "../../contexts/GroupContext";
 
 export default function GroupDropZone({ disabled, ...props }: DropZoneProps): React.ReactElement
 {

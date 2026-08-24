@@ -1,4 +1,4 @@
-import { CollectionItem } from "@/models/CollectionModels";
+import type { CollectionItem } from "@/models/CollectionModels";
 import { collectionStorage } from "./collectionStorage";
 
 export default async function saveCollectionsToLocal(collections: CollectionItem[], timestamp: number): Promise<void>

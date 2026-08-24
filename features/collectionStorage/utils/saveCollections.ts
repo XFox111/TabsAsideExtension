@@ -1,4 +1,4 @@
-import { CollectionItem, GraphicsStorage } from "@/models/CollectionModels";
+import type { CollectionItem, GraphicsStorage } from "@/models/CollectionModels";
 import getLogger from "@/utils/getLogger";
 import { collectionStorage } from "./collectionStorage";
 import saveCollectionsToCloud from "./saveCollectionsToCloud";

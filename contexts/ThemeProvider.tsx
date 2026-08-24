@@ -1,4 +1,4 @@
-import { FluentProvider, Theme, webDarkTheme, webLightTheme } from "@fluentui/react-components";
+import { FluentProvider, type Theme, webDarkTheme, webLightTheme } from "@fluentui/react-components";
 import { createContext } from "react";
 
 const ThemeContext = createContext<ThemeContextType>({ theme: webLightTheme, isDark: false });

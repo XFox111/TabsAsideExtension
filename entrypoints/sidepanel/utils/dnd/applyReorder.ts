@@ -1,7 +1,7 @@
-import { CollectionItem, GroupItem, TabItem } from "@/models/CollectionModels";
-import { DragEndEvent } from "@dnd-kit/core";
+import type { CollectionItem, GroupItem, TabItem } from "@/models/CollectionModels";
+import { type DragEndEvent } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
-import { DndItem } from "../../hooks/useDndItem";
+import { type DndItem } from "../../hooks/useDndItem";
 
 export default function applyReorder(collections: CollectionItem[], { over, active }: DragEndEvent): null | CollectionItem[]
 {

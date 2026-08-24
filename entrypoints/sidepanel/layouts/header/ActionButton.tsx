@@ -1,15 +1,15 @@
 import { useCollections } from "@/entrypoints/sidepanel/contexts/CollectionsProvider";
 import { track } from "@/features/analytics";
-import useSettings, { SettingsValue } from "@/hooks/useSettings";
-import { CollectionItem } from "@/models/CollectionModels";
+import useSettings, { type SettingsValue } from "@/hooks/useSettings";
+import { type CollectionItem } from "@/models/CollectionModels";
 import { closeTabsAsync } from "@/utils/closeTabsAsync";
 import { createCollectionFromTabs } from "@/utils/createCollectionFromTabs";
 import { getTabsToSaveAsync } from "@/utils/getTabsToSaveAsync";
 import sendPartialSaveNotification from "@/utils/sendPartialSaveNotification";
 import watchTabSelection from "@/utils/watchTabSelection";
-import { Menu, MenuButtonProps, MenuItem, MenuList, MenuPopover, MenuTrigger, SplitButton } from "@fluentui/react-components";
+import { Menu, type MenuButtonProps, MenuItem, MenuList, MenuPopover, MenuTrigger, SplitButton } from "@fluentui/react-components";
 import * as ic from "@fluentui/react-icons";
-import { ReactElement } from "react";
+import { type ReactElement } from "react";
 
 export default function ActionButton(): ReactElement
 {
