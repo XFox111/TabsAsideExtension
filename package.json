@@ -17,7 +17,7 @@
 		"@dnd-kit/sortable": "^10.0.0",
 		"@dnd-kit/utilities": "^3.2.2",
 		"@fluentui/react-components": "^9.74.7",
-		"@fluentui/react-icons": "^2.0.338",
+		"@fluentui/react-icons": "^2.0.339",
 		"@webext-core/messaging": "^4.0.0",
 		"@wxt-dev/analytics": "^0.5.6",
 		"@wxt-dev/i18n": "^0.2.7",
@@ -33,10 +33,10 @@
 		"@types/react": "^19.2.18",
 		"@types/react-dom": "^19.2.5",
 		"@wxt-dev/module-react": "^1.2.2",
-		"eslint": "^10.9.0",
+		"eslint": "^10.9.1",
 		"globals": "^17.11.0",
 		"typescript": "^6.0.3",
-		"typescript-eslint": "^8.67.0",
+		"typescript-eslint": "^8.68.0",
 		"wxt": "^0.21.4"
 	},
 	"allowScripts": {
