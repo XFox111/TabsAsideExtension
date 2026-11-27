@@ -40,6 +40,6 @@
 		"wxt": "^0.21.5"
 	},
 	"allowScripts": {
-		"@wxt-dev/analytics@0.5.9": true
+		"@wxt-dev/analytics": false
 	}
 }
