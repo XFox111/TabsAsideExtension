@@ -1,7 +1,7 @@
 {
 	"name": "tabs-aside",
 	"private": true,
-	"version": "3.3.4",
+	"version": "3.3.5",
 	"type": "module",
 	"scripts": {
 		"dev": "wxt",
@@ -16,28 +16,28 @@
 		"@dnd-kit/modifiers": "^9.0.0",
 		"@dnd-kit/sortable": "^10.0.0",
 		"@dnd-kit/utilities": "^3.2.2",
-		"@fluentui/react-components": "^9.74.9",
-		"@fluentui/react-icons": "^2.0.343",
-		"@webext-core/messaging": "^4.0.0",
-		"@wxt-dev/analytics": "^0.5.7",
-		"@wxt-dev/i18n": "^0.2.8",
+		"@fluentui/react-components": "^9.75.3",
+		"@fluentui/react-icons": "^2.0.347",
+		"@webext-core/messaging": "^4.0.2",
+		"@wxt-dev/analytics": "^0.5.9",
+		"@wxt-dev/i18n": "^0.2.9",
 		"lzutf8": "^0.6.3",
-		"react": "^19.3.0",
-		"react-dom": "^19.3.0"
+		"react": "^19.3.1",
+		"react-dom": "^19.3.1"
 	},
 	"devDependencies": {
-		"@eslint/css": "^2.0.0",
+		"@eslint/css": "^2.0.1",
 		"@eslint/js": "^10.0.1",
 		"@eslint/json": "^2.1.1",
 		"@stylistic/eslint-plugin": "^5.10.0",
-		"@types/react": "^19.3.0",
+		"@types/react": "^19.3.3",
 		"@types/react-dom": "^19.3.0",
 		"@wxt-dev/module-react": "^1.2.2",
-		"eslint": "^10.12.0",
-		"globals": "^17.13.0",
-		"typescript": "^6.0.3",
-		"typescript-eslint": "^8.71.1",
-		"wxt": "^0.21.4"
+		"eslint": "^10",
+		"globals": "^17.14.0",
+		"typescript": "^6",
+		"typescript-eslint": "^8.74.0",
+		"wxt": "^0.21.5"
 	},
 	"allowScripts": {
 		"@wxt-dev/analytics": false
