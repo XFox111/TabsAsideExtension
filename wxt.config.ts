@@ -85,7 +85,7 @@ export default defineConfig({
 				gecko:
 				{
 					id: "tabsaside@xfox111.net",
-					strict_min_version: "139.0",
+					strict_min_version: "140.0",
 
 					data_collection_permissions: {
 						required: ["browsingActivity"],
